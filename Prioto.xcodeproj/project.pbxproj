@@ -14,6 +14,7 @@
 		0FA486D31D3416400075CD9B /* TasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA486D21D3416400075CD9B /* TasksTableViewController.swift */; };
 		0FA486D51D3433490075CD9B /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA486D41D3433490075CD9B /* TaskTableViewCell.swift */; };
 		0FA486DA1D3435950075CD9B /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA486D91D3435950075CD9B /* Task.swift */; };
+		0FA486DE1D345C540075CD9B /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA486DD1D345C540075CD9B /* Priority.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		0FA486D21D3416400075CD9B /* TasksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TasksTableViewController.swift; path = ../TasksTableViewController.swift; sourceTree = "<group>"; };
 		0FA486D41D3433490075CD9B /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskTableViewCell.swift; path = ../TaskTableViewCell.swift; sourceTree = "<group>"; };
 		0FA486D91D3435950075CD9B /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		0FA486DD1D345C540075CD9B /* Priority.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Priority.swift; path = Prioto/Models/Priority.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 		0FA486D61D34353D0075CD9B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0FA486DD1D345C540075CD9B /* Priority.swift */,
 				0FA486D21D3416400075CD9B /* TasksTableViewController.swift */,
 			);
 			path = Controllers;
@@ -169,6 +172,7 @@
 				0FA486DA1D3435950075CD9B /* Task.swift in Sources */,
 				0FA486D31D3416400075CD9B /* TasksTableViewController.swift in Sources */,
 				0FA486C11D3406B70075CD9B /* AppDelegate.swift in Sources */,
+				0FA486DE1D345C540075CD9B /* Priority.swift in Sources */,
 				0FA486D51D3433490075CD9B /* TaskTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

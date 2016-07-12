@@ -10,18 +10,26 @@ import UIKit
 
 class TasksTableViewController: UITableViewController {
 	
-	var tasks: [Task] = []
-
+	var tasks: [Priority] =
+		[Priority(type: "Important | Urgent"),
+		 Priority(type: "Not Important | Urgent"),
+		 Priority(type: "Important | Not Urgent"),
+		 Priority(type: "Not Important | Not Urgent")]
+	
+	
     override func viewDidLoad() {
         super.viewDidLoad()
-		tasks.append(Task(text: "Take out the trash"))
-		tasks.append(Task(text: "Study for test"))
-		tasks.append(Task(text: "Finish todo list app"))
-		tasks.append(Task(text: "Implement priorities into todo list app"))
-		tasks.append(Task(text: "Work on college apps"))
-		tasks.append(Task(text: "Email Mr. Shuen"))
-		tasks.append(Task(text: "Catch Pokemon "))
-		tasks.append(Task(text: "Eat a sandwich."))
+		
+		self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
+		
+		tasks[1].addTask("Take out the trash.")
+		tasks[0].addTask("Study for test")
+		tasks[2].addTask("Finish todo list app")
+		tasks[0].addTask("Implement priorities into todo list app")
+		tasks[0].addTask("Work on college apps")
+		tasks[2].addTask("Email Mr. Shuen")
+		tasks[3].addTask("Catch Pokemon ")
+		tasks[3].addTask("Eat a sandwich.")
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -43,36 +51,43 @@ class TasksTableViewController: UITableViewController {
 	
 	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 4
+        return tasks.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return tasks.count
+        return tasks[section].tasksInPriority.count
     }
+	
+	
+	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		return tasks[section].type
+	}
 
 	
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("taskTableViewCell", forIndexPath: indexPath) as! TaskTableViewCell
 
         // Configure the cell...
-		let item = tasks[indexPath.row]
-		cell.taskTextLabel.text = item.text
+		let task = tasks[indexPath.section].tasksInPriority[indexPath.row]
+		
+		cell.taskTextLabel.text = task.text
 
         return cell
     }
 	
 	// MARK: - Table view delegate
  
-	func colorForIndex(index: Int) -> UIColor {
+	func colorForIndexRow(index: Int) -> UIColor {
 		let itemCount = tasks.count - 1
 		let val = (CGFloat(index) / CGFloat(itemCount)) * 0.6
 		return UIColor(red: 0.0, green: val, blue: 1.0, alpha: 0.75)
 	}
+	
  
 	override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
 	               forRowAtIndexPath indexPath: NSIndexPath) {
-		cell.backgroundColor = colorForIndex(indexPath.row)
+		cell.backgroundColor = colorForIndexRow(indexPath.row)
 	}
 
 	
