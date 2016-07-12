@@ -22,21 +22,34 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Task Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9bF-aM-rXF">
-                                            <rect key="frame" x="23" y="14" width="73" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9bF-aM-rXF">
+                                            <rect key="frame" x="23" y="14" width="76" height="21"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xQC-KV-ckH">
+                                            <rect key="frame" x="546" y="10" width="46" height="30"/>
+                                            <state key="normal" title="Delete">
+                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="deleteButtonTapped:" destination="lU5-ta-AHk" eventType="touchUpInside" id="1P2-cG-PXR"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailingMargin" secondItem="9bF-aM-rXF" secondAttribute="trailing" constant="542" id="7Qm-QY-QOe"/>
+                                        <constraint firstItem="xQC-KV-ckH" firstAttribute="centerY" secondItem="2eF-nx-NBH" secondAttribute="centerY" id="Btu-xS-4gJ"/>
+                                        <constraint firstItem="xQC-KV-ckH" firstAttribute="baseline" secondItem="9bF-aM-rXF" secondAttribute="baseline" id="Hd9-yQ-X0B"/>
                                         <constraint firstItem="9bF-aM-rXF" firstAttribute="leading" secondItem="2eF-nx-NBH" secondAttribute="leadingMargin" constant="15" id="NAd-rg-VD1"/>
                                         <constraint firstItem="9bF-aM-rXF" firstAttribute="centerY" secondItem="2eF-nx-NBH" secondAttribute="centerY" id="Q8B-bs-RLY"/>
+                                        <constraint firstItem="xQC-KV-ckH" firstAttribute="trailing" secondItem="2eF-nx-NBH" secondAttribute="trailingMargin" id="onA-21-Zg9"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
                                             <exclude reference="7Qm-QY-QOe"/>
+                                            <exclude reference="Hd9-yQ-X0B"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>

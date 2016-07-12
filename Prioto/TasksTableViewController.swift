@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TasksTableViewController: UITableViewController {
+class TasksTableViewController: UITableViewController, TableViewCellDelegate {
 	
 	var tasks: [Priority] =
 		[Priority(type: "Important | Urgent"),
@@ -16,11 +16,12 @@ class TasksTableViewController: UITableViewController {
 		 Priority(type: "Important | Not Urgent"),
 		 Priority(type: "Not Important | Not Urgent")]
 	
-	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
 		self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
+		tableView.backgroundColor = UIColor.whiteColor()
+
 		
 		tasks[1].addTask("Take out the trash.")
 		tasks[0].addTask("Study for test")
@@ -67,29 +68,69 @@ class TasksTableViewController: UITableViewController {
 	
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("taskTableViewCell", forIndexPath: indexPath) as! TaskTableViewCell
-
+		cell.delegate = self
+		
         // Configure the cell...
 		let task = tasks[indexPath.section].tasksInPriority[indexPath.row]
+		cell.task = task
 		
 		cell.taskTextLabel.text = task.text
+		cell.taskPriorityIndex = indexPath.section
+		cell.taskIndex = indexPath.row
 
         return cell
     }
 	
+	
 	// MARK: - Table view delegate
- 
-	func colorForIndexRow(index: Int) -> UIColor {
+	
+	func colorForIndexRow(row: Int, section: Int) -> UIColor {
 		let itemCount = tasks.count - 1
-		let val = (CGFloat(index) / CGFloat(itemCount)) * 0.6
-		return UIColor(red: 0.0, green: val, blue: 1.0, alpha: 0.75)
+		let val = (CGFloat(row) / CGFloat(itemCount)) * 0.75
+		
+		switch section {
+			// important | urgent
+			case 0:
+				return UIColor(red: 1.0, green: val, blue: 0.0, alpha: 1.0)
+			
+			// not important | urgent
+			case 1:
+				return UIColor(red: 0.0, green: val, blue: 1.0, alpha: 1.0)
+
+			// important | not urgent
+			case 2:
+				return UIColor(red: val, green: val, blue: 1.0, alpha: 1.0)
+
+			// not important | not urgent
+			case 3:
+				return UIColor(red: 0.0, green: 1.0, blue: val, alpha: 1.0)
+			
+			default:
+				return UIColor(red: 1.0, green: val, blue: 0.0, alpha: 1.0)
+		}
 	}
 	
  
 	override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
-	               forRowAtIndexPath indexPath: NSIndexPath) {
-		cell.backgroundColor = colorForIndexRow(indexPath.row)
+	                        forRowAtIndexPath indexPath: NSIndexPath) {
+		cell.backgroundColor = colorForIndexRow(indexPath.row, section: indexPath.section)
 	}
+	
+	func taskDeleted(task: Task, priorityIndex: Int, index: Int) {
+		
+		// could removeAtIndex in the loop but keep it here for when indexOfObject works
+		print (tasks[priorityIndex].tasksInPriority.count)
+		tasks[priorityIndex].deleteTask(index)
+		print (tasks[priorityIndex].tasksInPriority.count)
 
+		
+		// use the UITableView to animate the removal of this row
+		tableView.beginUpdates()
+		let indexPathForRow = NSIndexPath(forRow: index, inSection: priorityIndex)
+		tableView.deleteRowsAtIndexPaths([indexPathForRow], withRowAnimation: .Fade)
+		tableView.endUpdates()
+	}
+	
 	
 
     /*

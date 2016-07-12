@@ -20,4 +20,12 @@ class Priority {
 		let task = Task(text: text)
 		self.tasksInPriority.append(task)
 	}
+	
+	func deleteTask(index: Int) {
+		tasksInPriority.removeAtIndex(index)
+	}
+	
+	func indexOfTask(task: Task) -> Int {
+		return (tasksInPriority as NSArray).indexOfObject(task)
+	}
 }
