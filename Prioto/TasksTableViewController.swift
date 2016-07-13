@@ -116,14 +116,13 @@ class TasksTableViewController: UITableViewController, TableViewCellDelegate {
 		cell.backgroundColor = colorForIndexRow(indexPath.row, section: indexPath.section)
 	}
 	
-	func taskDeleted(task: Task, priorityIndex: Int, index: Int) {
+	func deleteTask(task: Task, priorityIndex: Int) {
 		
 		// could removeAtIndex in the loop but keep it here for when indexOfObject works
-		print (tasks[priorityIndex].tasksInPriority.count)
-		tasks[priorityIndex].deleteTask(index)
-		print (tasks[priorityIndex].tasksInPriority.count)
-
+		let index = (tasks[priorityIndex].tasksInPriority as NSArray).indexOfObject(task)
+		if index == NSNotFound { return }
 		
+		tasks[priorityIndex].tasksInPriority.removeAtIndex(index)
 		// use the UITableView to animate the removal of this row
 		tableView.beginUpdates()
 		let indexPathForRow = NSIndexPath(forRow: index, inSection: priorityIndex)

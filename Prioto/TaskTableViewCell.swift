@@ -12,7 +12,7 @@ import QuartzCore
 // A protocol that the TableViewCell uses to inform its delegate of state change
 protocol TableViewCellDelegate {
 	// indicates that the given item has been deleted
-	func taskDeleted(task: Task, priorityIndex: Int, index: Int)
+	func deleteTask(task: Task, priorityIndex: Int)
 }
 
 class TaskTableViewCell: UITableViewCell {
@@ -22,7 +22,7 @@ class TaskTableViewCell: UITableViewCell {
 	@IBAction func deleteButtonTapped(sender: AnyObject) {
 		if delegate != nil && task != nil && taskPriorityIndex != nil && taskIndex != nil {
 			// notify the delegate that this item should be deleted
-			delegate!.taskDeleted(task!, priorityIndex: taskPriorityIndex!, index: taskIndex!)
+			delegate!.deleteTask(task!, priorityIndex: taskPriorityIndex!)
 		}
 	}
 	
@@ -79,7 +79,7 @@ class TaskTableViewCell: UITableViewCell {
 			if deleteOnDragRelease {
 				if delegate != nil && task != nil && taskPriorityIndex != nil && taskIndex != nil{
 					// notify the delegate that this item should be deleted
-					delegate!.taskDeleted(task!, priorityIndex: taskPriorityIndex!, index: taskIndex!)
+					delegate!.deleteTask(task!, priorityIndex: taskPriorityIndex!)
 				}
 			}
 		}
