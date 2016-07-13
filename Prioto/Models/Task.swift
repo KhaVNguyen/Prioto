@@ -12,12 +12,10 @@ class Task {
 	var text: String
 	var details: String?
 	var completed: Bool
+	var dueDate: NSDate?
 	
 	init(text: String) {
 		self.text = text
 		self.completed = false
 	}
-	
-	
-	
 }

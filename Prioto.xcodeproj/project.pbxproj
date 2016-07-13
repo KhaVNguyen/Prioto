@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F6E6D371D36AC4200FF8A76 /* DisplayTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6E6D361D36AC4200FF8A76 /* DisplayTaskViewController.swift */; };
 		0FA486C11D3406B70075CD9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA486C01D3406B70075CD9B /* AppDelegate.swift */; };
 		0FA486C61D3406B70075CD9B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FA486C41D3406B70075CD9B /* Main.storyboard */; };
 		0FA486C81D3406B70075CD9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FA486C71D3406B70075CD9B /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F6E6D361D36AC4200FF8A76 /* DisplayTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayTaskViewController.swift; sourceTree = "<group>"; };
 		0FA486BD1D3406B70075CD9B /* Prioto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Prioto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FA486C01D3406B70075CD9B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0FA486C51D3406B70075CD9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 			children = (
 				0FA486DD1D345C540075CD9B /* Priority.swift */,
 				0FA486D21D3416400075CD9B /* TasksTableViewController.swift */,
+				0F6E6D361D36AC4200FF8A76 /* DisplayTaskViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F6E6D371D36AC4200FF8A76 /* DisplayTaskViewController.swift in Sources */,
 				0FA486DA1D3435950075CD9B /* Task.swift in Sources */,
 				0FA486D31D3416400075CD9B /* TasksTableViewController.swift in Sources */,
 				0FA486C11D3406B70075CD9B /* AppDelegate.swift in Sources */,
@@ -323,6 +327,7 @@
 				0FA486D11D3406B70075CD9B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

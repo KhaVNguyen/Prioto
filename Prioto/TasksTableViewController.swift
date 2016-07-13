@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TasksTableViewController: UITableViewController, TableViewCellDelegate {
+class TasksTableViewController: UITableViewController {
 	
 	var tasks: [Priority] =
 		[Priority(type: "Important | Urgent"),
@@ -23,14 +23,22 @@ class TasksTableViewController: UITableViewController, TableViewCellDelegate {
 		tableView.backgroundColor = UIColor.whiteColor()
 
 		
+		tasks[1].addTask("Call Bill.")
 		tasks[1].addTask("Take out the trash.")
 		tasks[0].addTask("Study for test")
 		tasks[2].addTask("Finish todo list app")
 		tasks[0].addTask("Implement priorities into todo list app")
 		tasks[0].addTask("Work on college apps")
+		tasks[0].addTask("Implement pomodoro timer")
 		tasks[2].addTask("Email Mr. Shuen")
-		tasks[3].addTask("Catch Pokemon ")
+		tasks[2].addTask("Go for a walk")
+		tasks[0].addTask("Catch Pokemon ")
 		tasks[3].addTask("Eat a sandwich.")
+		tasks[3].addTask("Drink lemonade.")
+		tasks[3].addTask("Sleep a full 8 hours.")
+		tasks[3].addTask("Eat rice.")
+
+
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -64,16 +72,16 @@ class TasksTableViewController: UITableViewController, TableViewCellDelegate {
 	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		return tasks[section].type
 	}
+	
 
 	
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("taskTableViewCell", forIndexPath: indexPath) as! TaskTableViewCell
-		cell.delegate = self
 		
         // Configure the cell...
+		print("cell for Row : \(tasks[indexPath.section].tasksInPriority[indexPath.row])")
 		let task = tasks[indexPath.section].tasksInPriority[indexPath.row]
 		cell.task = task
-		
 		cell.taskTextLabel.text = task.text
 		cell.taskPriorityIndex = indexPath.section
 		cell.taskIndex = indexPath.row
@@ -81,12 +89,11 @@ class TasksTableViewController: UITableViewController, TableViewCellDelegate {
         return cell
     }
 	
-	
 	// MARK: - Table view delegate
 	
 	func colorForIndexRow(row: Int, section: Int) -> UIColor {
 		let itemCount = tasks.count - 1
-		let val = (CGFloat(row) / CGFloat(itemCount)) * 0.75
+		let val = (CGFloat(row) / CGFloat(itemCount)) * 0.4
 		
 		switch section {
 			// important | urgent
@@ -99,7 +106,7 @@ class TasksTableViewController: UITableViewController, TableViewCellDelegate {
 
 			// important | not urgent
 			case 2:
-				return UIColor(red: val, green: val, blue: 1.0, alpha: 1.0)
+				return UIColor(red: 1.0, green: val, blue: 1.0, alpha: 1.0)
 
 			// not important | not urgent
 			case 3:
@@ -113,21 +120,40 @@ class TasksTableViewController: UITableViewController, TableViewCellDelegate {
  
 	override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
 	                        forRowAtIndexPath indexPath: NSIndexPath) {
+		// self.tableView.reloadData()
 		cell.backgroundColor = colorForIndexRow(indexPath.row, section: indexPath.section)
 	}
 	
-	func deleteTask(task: Task, priorityIndex: Int) {
+	// Override to support conditional editing of the table view.
+	override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+		// Return false if you do not want the specified item to be editable.
+		return true
+	}
+	
+	
+	// Override to support editing the table view.
+	override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+		if editingStyle == .Delete {
+			// Delete the row from the data source
+			tasks[indexPath.section].tasksInPriority.removeAtIndex(indexPath.row)
+			tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+			tableView.reloadSections(NSIndexSet(index:indexPath.section), withRowAnimation: UITableViewRowAnimation.Automatic)
+		} else if editingStyle == .Insert {
+			// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+		}
+	}
 		
-		// could removeAtIndex in the loop but keep it here for when indexOfObject works
-		let index = (tasks[priorityIndex].tasksInPriority as NSArray).indexOfObject(task)
-		if index == NSNotFound { return }
-		
-		tasks[priorityIndex].tasksInPriority.removeAtIndex(index)
-		// use the UITableView to animate the removal of this row
-		tableView.beginUpdates()
-		let indexPathForRow = NSIndexPath(forRow: index, inSection: priorityIndex)
-		tableView.deleteRowsAtIndexPaths([indexPathForRow], withRowAnimation: .Fade)
-		tableView.endUpdates()
+	// Mark: Segues
+	
+	@IBAction func unwindToTasksTableViewController(segue: UIStoryboardSegue) {
+	}
+	
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if let identifier = segue.identifier {
+			if identifier == "addNewTaskSegue" {
+				
+			}
+		}
 	}
 	
 	
