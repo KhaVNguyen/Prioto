@@ -12,13 +12,13 @@
         <scene sceneID="t61-Ey-6aA">
             <objects>
                 <tableViewController id="d7n-i7-5Vo" customClass="TasksTableViewController" customModule="Prioto" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="50" sectionHeaderHeight="18" sectionFooterHeight="18" id="fpd-aC-UhB" customClass="TaskTableViewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" id="fpd-aC-UhB" customClass="TaskTableViewController">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="taskTableViewCell" rowHeight="50" id="lU5-ta-AHk" customClass="TaskTableViewCell" customModule="Prioto" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="114" width="600" height="50"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="taskTableViewCell" rowHeight="50" id="lU5-ta-AHk" customClass="TaskTableViewCell" customModule="Prioto" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lU5-ta-AHk" id="2eF-nx-NBH">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
@@ -44,6 +44,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="taskTextLabel" destination="9bF-aM-rXF" id="Abc-7f-kTC"/>
+                                    <segue destination="x4Y-Jd-H20" kind="show" identifier="editTaskDetailsSegue" id="zSj-MT-0dh"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -189,7 +190,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z3X-jx-rkP" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="EaU-8n-Zpb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2732" y="253"/>
+            <point key="canvasLocation" x="2700" y="237"/>
         </scene>
         <!--Tasks-->
         <scene sceneID="iGX-3F-t2n">
@@ -209,10 +210,10 @@
             </objects>
             <point key="canvasLocation" x="101" y="233"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Edit Task Details-->
         <scene sceneID="FRY-hB-h7x">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="etP-fC-i0u" sceneMemberID="viewController">
+                <navigationController title="Edit Task Details" automaticallyAdjustsScrollViewInsets="NO" id="etP-fC-i0u" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rjv-Rn-axY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -225,7 +226,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mAJ-0S-87N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1920" y="253"/>
+            <point key="canvasLocation" x="1684" y="229"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="zSj-MT-0dh"/>
+    </inferredMetricsTieBreakers>
 </document>

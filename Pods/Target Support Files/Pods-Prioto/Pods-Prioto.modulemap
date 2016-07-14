@@ -1,0 +1,6 @@
+framework module Pods_Prioto {
+  umbrella header "Pods-Prioto-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -19,7 +19,6 @@ class TasksTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
 		tableView.backgroundColor = UIColor.whiteColor()
 
 		
@@ -79,12 +78,11 @@ class TasksTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("taskTableViewCell", forIndexPath: indexPath) as! TaskTableViewCell
 		
         // Configure the cell...
-		print("cell for Row : \(tasks[indexPath.section].tasksInPriority[indexPath.row])")
 		let task = tasks[indexPath.section].tasksInPriority[indexPath.row]
-		cell.task = task
+//		cell.task = task
 		cell.taskTextLabel.text = task.text
-		cell.taskPriorityIndex = indexPath.section
-		cell.taskIndex = indexPath.row
+//		cell.taskPriorityIndex = indexPath.section
+//		cell.taskIndex = indexPath.row
 
         return cell
     }
@@ -130,7 +128,6 @@ class TasksTableViewController: UITableViewController {
 		return true
 	}
 	
-	
 	// Override to support editing the table view.
 	override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
 		if editingStyle == .Delete {
@@ -143,64 +140,54 @@ class TasksTableViewController: UITableViewController {
 		}
 	}
 		
-	// Mark: Segues
+	// MARK: Segues
 	
-	@IBAction func unwindToTasksTableViewController(segue: UIStoryboardSegue) {
+	@IBAction func unwindToTasksTableViewController(sender: UIStoryboardSegue) {
+		if let sourceViewController = sender.sourceViewController as? DisplayTaskViewController, task = sourceViewController.task, priorityIndex = sourceViewController.priorityIndex {
+			if let selectedIndexPath = tableView.indexPathForSelectedRow {
+				// Update an existing task.
+				if selectedIndexPath.section == priorityIndex {
+				tasks[selectedIndexPath.section].tasksInPriority[selectedIndexPath.row] = task
+				}
+				
+				else {
+					tasks[priorityIndex].tasksInPriority.append(task)
+					tasks[selectedIndexPath.section].tasksInPriority.removeAtIndex(selectedIndexPath.row)
+					tableView.reloadData()
+				}
+				tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
+			} else {
+				// Add a new meal.
+				let newIndexPath = NSIndexPath(forRow: tasks[priorityIndex].tasksInPriority.count, inSection: priorityIndex)
+				
+				tasks[priorityIndex].tasksInPriority.append(task)
+				
+				tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+				tableView.reloadData()
+			}
+		}
+
+		
 	}
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if let identifier = segue.identifier {
-			if identifier == "addNewTaskSegue" {
+			
+			if identifier == "editTaskDetailsSegue" {
+				let displayTaskViewController = segue.destinationViewController as! DisplayTaskViewController
 				
+				// set task of DisplayTaskViewController to task tapped on
+				if let selectedTaskCell = sender as? TaskTableViewCell {
+					let indexPath = tableView.indexPathForCell(selectedTaskCell)!
+					let selectedTask = tasks[indexPath.section].tasksInPriority[indexPath.row]
+					displayTaskViewController.task = selectedTask
+					displayTaskViewController.priorityIndex = indexPath.section
+				}
+			}
+			
+			else if identifier == "addNewTaskSegue" {
+				print("Adding new task")
 			}
 		}
 	}
-	
-	
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

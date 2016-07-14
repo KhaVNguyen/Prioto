@@ -1,0 +1,15 @@
+PODS:
+  - MGSwipeTableCell (1.5.5)
+  - SWTableViewCell (0.3.7)
+
+DEPENDENCIES:
+  - MGSwipeTableCell
+  - SWTableViewCell (~> 0.3.7)
+
+SPEC CHECKSUMS:
+  MGSwipeTableCell: bafeb5f351124544c9364ecbdf24c7b06a37d340
+  SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
+
+PODFILE CHECKSUM: 2c3890059b6384aa6eb85bc454872513b538cf6f
+
+COCOAPODS: 1.0.1
