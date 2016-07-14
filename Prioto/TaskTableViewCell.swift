@@ -8,6 +8,8 @@
 
 import UIKit
 import QuartzCore
+import MGSwipeTableCell
+
 
 
 // A protocol that the TableViewCell uses to inform its delegate of state change
@@ -16,7 +18,7 @@ import QuartzCore
 //	func deleteTask(task: Task, priorityIndex: Int,row:Int,section:Int)
 //}
 
-class TaskTableViewCell: UITableViewCell {
+class TaskTableViewCell: MGSwipeTableCell {
 
 	@IBOutlet weak var taskTextLabel: UILabel!
 	

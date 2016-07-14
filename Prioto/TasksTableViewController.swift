@@ -7,14 +7,15 @@
 //
 
 import UIKit
+import MGSwipeTableCell
 
 class TasksTableViewController: UITableViewController {
 	
 	var tasks: [Priority] =
-		[Priority(type: "Important | Urgent"),
-		 Priority(type: "Not Important | Urgent"),
-		 Priority(type: "Important | Not Urgent"),
-		 Priority(type: "Not Important | Not Urgent")]
+		[Priority(type: "Urgent | Important"),
+		 Priority(type: "Urgent | Not Important"),
+		 Priority(type: "Not Urgent | Important"),
+		 Priority(type: "Not Urgent | Not Important")]
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +85,10 @@ class TasksTableViewController: UITableViewController {
 //		cell.taskPriorityIndex = indexPath.section
 //		cell.taskIndex = indexPath.row
 
+		//configure left buttons
+		cell.leftButtons = [MGSwipeButton(title: "", icon: UIImage(named:"check.png"), backgroundColor: UIColor.greenColor())]
+		cell.leftSwipeSettings.transition = MGSwipeTransition.ClipCenter
+		
         return cell
     }
 	
@@ -94,19 +99,19 @@ class TasksTableViewController: UITableViewController {
 		let val = (CGFloat(row) / CGFloat(itemCount)) * 0.4
 		
 		switch section {
-			// important | urgent
+			// urgent | important
 			case 0:
 				return UIColor(red: 1.0, green: val, blue: 0.0, alpha: 1.0)
 			
-			// not important | urgent
+			// urgent | not important
 			case 1:
 				return UIColor(red: 0.0, green: val, blue: 1.0, alpha: 1.0)
 
-			// important | not urgent
+			// not urgent | important
 			case 2:
 				return UIColor(red: 1.0, green: val, blue: 1.0, alpha: 1.0)
 
-			// not important | not urgent
+			// not urgent | not important
 			case 3:
 				return UIColor(red: 0.0, green: 1.0, blue: val, alpha: 1.0)
 			
@@ -133,8 +138,8 @@ class TasksTableViewController: UITableViewController {
 		if editingStyle == .Delete {
 			// Delete the row from the data source
 			tasks[indexPath.section].tasksInPriority.removeAtIndex(indexPath.row)
-			tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-			tableView.reloadSections(NSIndexSet(index:indexPath.section), withRowAnimation: UITableViewRowAnimation.Automatic)
+			tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+			tableView.reloadSections(NSIndexSet(index:indexPath.section), withRowAnimation: UITableViewRowAnimation.None)
 		} else if editingStyle == .Insert {
 			// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
 		}
@@ -146,18 +151,22 @@ class TasksTableViewController: UITableViewController {
 		if let sourceViewController = sender.sourceViewController as? DisplayTaskViewController, task = sourceViewController.task, priorityIndex = sourceViewController.priorityIndex {
 			if let selectedIndexPath = tableView.indexPathForSelectedRow {
 				// Update an existing task.
-				if selectedIndexPath.section == priorityIndex {
-				tasks[selectedIndexPath.section].tasksInPriority[selectedIndexPath.row] = task
+				if selectedIndexPath.section == priorityIndex { // not changing priority
+					tasks[selectedIndexPath.section].tasksInPriority[selectedIndexPath.row] = task
+					tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
 				}
 				
-				else {
+				else { // changing priority
+					let newIndexPath = NSIndexPath(forRow: tasks[priorityIndex].tasksInPriority.count, inSection: priorityIndex)
 					tasks[priorityIndex].tasksInPriority.append(task)
+					tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+					
 					tasks[selectedIndexPath.section].tasksInPriority.removeAtIndex(selectedIndexPath.row)
+					tableView.deleteRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .Fade)
+					
 					tableView.reloadData()
 				}
-				tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
 			} else {
-				// Add a new meal.
 				let newIndexPath = NSIndexPath(forRow: tasks[priorityIndex].tasksInPriority.count, inSection: priorityIndex)
 				
 				tasks[priorityIndex].tasksInPriority.append(task)
