@@ -79,13 +79,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="vyD-Pv-lHq">
-                                <rect key="frame" x="140" y="281" width="320" height="216"/>
+                                <rect key="frame" x="140" y="291" width="320" height="216"/>
                                 <date key="date" timeIntervalSinceReferenceDate="490059728.98059303">
                                     <!--2016-07-12 23:42:08 +0000-->
                                 </date>
                             </datePicker>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Task Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UJW-Cp-DCk">
-                                <rect key="frame" x="20" y="64" width="560" height="90"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Task Title" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="UJW-Cp-DCk">
+                                <rect key="frame" x="20" y="74" width="560" height="90"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="UJW-Cp-DCk" secondAttribute="height" multiplier="1:1" id="Rli-Vl-g3S"/>
                                     <constraint firstAttribute="width" constant="97" id="cBq-fY-27z"/>
@@ -102,27 +102,26 @@
                                 </variation>
                             </textField>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ng2-m0-ZGS">
-                                <rect key="frame" x="20" y="212" width="560" height="29"/>
+                                <rect key="frame" x="20" y="222" width="560" height="29"/>
                                 <segments>
                                     <segment title="Important"/>
                                     <segment title="Not Important"/>
                                 </segments>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Vt5-sH-FQe">
-                                <rect key="frame" x="20" y="169" width="560" height="29"/>
+                                <rect key="frame" x="20" y="179" width="560" height="29"/>
                                 <segments>
                                     <segment title="Urgent"/>
                                     <segment title="Not Urgent"/>
                                 </segments>
                             </segmentedControl>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="610-sX-7gg">
-                                <rect key="frame" x="30" y="507" width="540" height="93"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Task Details" translatesAutoresizingMaskIntoConstraints="NO" id="610-sX-7gg">
+                                <rect key="frame" x="30" y="517" width="540" height="83"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxE-2L-Q3M">
-                                <rect key="frame" x="20" y="260" width="600" height="21"/>
+                                <rect key="frame" x="20" y="270" width="600" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -153,7 +152,7 @@
                             <constraint firstItem="610-sX-7gg" firstAttribute="leading" secondItem="03o-Ql-jau" secondAttribute="leadingMargin" constant="160" id="guh-db-Re5"/>
                             <constraint firstItem="UJW-Cp-DCk" firstAttribute="leading" secondItem="03o-Ql-jau" secondAttribute="leadingMargin" id="hVs-Iu-tD8"/>
                             <constraint firstItem="610-sX-7gg" firstAttribute="top" secondItem="vyD-Pv-lHq" secondAttribute="bottom" constant="10" id="kTc-PX-yPd"/>
-                            <constraint firstItem="UJW-Cp-DCk" firstAttribute="top" secondItem="7nO-I3-F5G" secondAttribute="bottom" id="tI2-Pk-FBJ"/>
+                            <constraint firstItem="UJW-Cp-DCk" firstAttribute="top" secondItem="7nO-I3-F5G" secondAttribute="bottom" constant="10" id="tI2-Pk-FBJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Vt5-sH-FQe" secondAttribute="trailing" id="wh4-Ee-0Tu"/>
                             <constraint firstItem="610-sX-7gg" firstAttribute="centerX" secondItem="03o-Ql-jau" secondAttribute="centerX" id="ybc-pK-XIq"/>
                         </constraints>

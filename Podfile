@@ -8,6 +8,7 @@ target 'Prioto' do
   # Pods for Prioto
 pod 'SWTableViewCell', '~> 0.3.7'
 pod 'MGSwipeTableCell'
+pod 'IQKeyboardManager'
 
 
 end

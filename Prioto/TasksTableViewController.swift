@@ -21,7 +21,6 @@ class TasksTableViewController: UITableViewController {
         super.viewDidLoad()
 		
 		tableView.backgroundColor = UIColor.whiteColor()
-
 		
 		tasks[1].addTask("Call Bill.")
 		tasks[1].addTask("Take out the trash.")
@@ -37,15 +36,7 @@ class TasksTableViewController: UITableViewController {
 		tasks[3].addTask("Drink lemonade.")
 		tasks[3].addTask("Sleep a full 8 hours.")
 		tasks[3].addTask("Eat rice.")
-
-
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
+}
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -80,17 +71,27 @@ class TasksTableViewController: UITableViewController {
 		
         // Configure the cell...
 		let task = tasks[indexPath.section].tasksInPriority[indexPath.row]
-//		cell.task = task
 		cell.taskTextLabel.text = task.text
-//		cell.taskPriorityIndex = indexPath.section
-//		cell.taskIndex = indexPath.row
 
 		//configure left buttons
-		cell.leftButtons = [MGSwipeButton(title: "", icon: UIImage(named:"check.png"), backgroundColor: UIColor.greenColor())]
-		cell.leftSwipeSettings.transition = MGSwipeTransition.ClipCenter
+		cell.leftButtons = [MGSwipeButton(title: "Done", backgroundColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0), callback: {
+			(sender: MGSwipeTableCell!) -> Bool in
+			self.tasks[indexPath.section].tasksInPriority[indexPath.row].completed = !self.tasks[indexPath.section].tasksInPriority[indexPath.row].completed
+			if self.tasks[indexPath.section].tasksInPriority[indexPath.row].completed {
+				let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: self.tasks[indexPath.section].tasksInPriority[indexPath.row].text)
+				attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 2, range: NSMakeRange(0, attributeString.length))
+				cell.taskTextLabel.attributedText = attributeString
+			}
+			else {
+				cell.taskTextLabel.text = task.text
+			}
+			return true
+			})]
+		cell.leftSwipeSettings.transition = MGSwipeTransition.Border
 		
         return cell
     }
+	
 	
 	// MARK: - Table view delegate
 	
@@ -123,7 +124,6 @@ class TasksTableViewController: UITableViewController {
  
 	override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
 	                        forRowAtIndexPath indexPath: NSIndexPath) {
-		// self.tableView.reloadData()
 		cell.backgroundColor = colorForIndexRow(indexPath.row, section: indexPath.section)
 	}
 	

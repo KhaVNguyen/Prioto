@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>IQKeyboardManager.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MGSwipeTableCell.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>18505F143837BC094131B4B7A2BB8731</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>37C76CD246D637B8E4C586284A0D96B2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>4E1263BFF45F6446CF3DE29AE234C893</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7EE1011DAEDB000B7F23DC4DF64F903A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B33789E5F07AFFBAD0711B671FBDCF75</key>
+		<key>8B7BEA5EBE988CFF55F097B633F6FCBC</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -54,7 +54,6 @@ class DisplayTaskViewController: UIViewController {
 				importanceSelector.selectedSegmentIndex = 0
 				urgencySelector.selectedSegmentIndex = 0
 			}
-			
 		}
     }
 	
@@ -109,28 +108,12 @@ class DisplayTaskViewController: UIViewController {
 			}
 		}
 	}
-//			if identifier == "Save" {
-//				let tasksTableViewController = segue.destinationViewController as! TasksTableViewController
-//
-//				if let existingTask = self.task { // task exists
-//					setTaskDetails(existingTask)
-//					existingTask.text = taskTitleTextField.text ?? ""
-//				}
-//				
-//				else { // task does not exist
-//					task = Task(text: taskTitleTextField.text ?? "")
-//					setTaskDetails(task!) // assigns priority to task
-//					tasksTableViewController.tasks[priorityIndex].tasksInPriority.append(task!)
-//				}
-//				tasksTableViewController.tableView.reloadData()
-//			}
 	
 	func setTaskDetails(task: Task) {
-//		if dueDatePicker.date != NSDate() {
-//			task.dueDate = dueDatePicker.date
-//		}
+		if dueDatePicker.date > NSDate() {
+			task.dueDate = dueDatePicker.date
+		}
 		
-		task.dueDate = dueDatePicker.date
 		
 		// Important
 		if importanceSelector.selectedSegmentIndex == 0 {
@@ -154,5 +137,14 @@ class DisplayTaskViewController: UIViewController {
 			}
 		}
 	}
-
 }
+
+public func ==(lhs: NSDate, rhs: NSDate) -> Bool {
+	return lhs === rhs || lhs.compare(rhs) == .OrderedSame
+}
+
+public func <(lhs: NSDate, rhs: NSDate) -> Bool {
+	return lhs.compare(rhs) == .OrderedAscending
+}
+
+extension NSDate: Comparable { }
