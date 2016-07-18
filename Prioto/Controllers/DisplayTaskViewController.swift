@@ -42,11 +42,11 @@ class DisplayTaskViewController: UIViewController {
 				importanceSelector.selectedSegmentIndex = 0
 				urgencySelector.selectedSegmentIndex = 0
 			case 1: // Urgent - Not Important
-				importanceSelector.selectedSegmentIndex = 0
-				urgencySelector.selectedSegmentIndex = 1
-			case 2: // Not Urgent - Important
 				importanceSelector.selectedSegmentIndex = 1
 				urgencySelector.selectedSegmentIndex = 0
+			case 2: // Not Urgent - Important
+				importanceSelector.selectedSegmentIndex = 0
+				urgencySelector.selectedSegmentIndex = 1
 			case 3: // Not Urgent - Not Important
 				importanceSelector.selectedSegmentIndex = 1
 				urgencySelector.selectedSegmentIndex = 1
@@ -103,37 +103,44 @@ class DisplayTaskViewController: UIViewController {
 		if let identifier = segue.identifier {
 			if identifier == "Save" {
 				let text = self.taskTitleTextField.text
-				task = Task(text: text ?? "")
+				task = Task()
+				task!.text = text!
 				setTaskDetails(task!)
 			}
 		}
 	}
 	
 	func setTaskDetails(task: Task) {
-		if dueDatePicker.date > NSDate() {
+//		if dueDatePicker.date > NSDate() {
 			task.dueDate = dueDatePicker.date
-		}
+//		}
 		
 		
 		// Important
 		if importanceSelector.selectedSegmentIndex == 0 {
 			// Important - Urgent
 			if urgencySelector.selectedSegmentIndex == 0 {
+				task.priorityIndex = 0
 				priorityIndex = 0
+
 			}
 				// Important - Not Urgent
 			else if urgencySelector.selectedSegmentIndex == 1 {
+				task.priorityIndex = 2
 				priorityIndex = 2
 			}
 		}
 			// Not Important
 		else if importanceSelector.selectedSegmentIndex == 1 {
 			if urgencySelector.selectedSegmentIndex == 0 {
+				task.priorityIndex = 1
 				priorityIndex = 1
 			}
 				// Important - Not Urgent
 			else if urgencySelector.selectedSegmentIndex == 1 {
+				task.priorityIndex = 3
 				priorityIndex = 3
+
 			}
 		}
 	}

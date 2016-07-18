@@ -113,7 +113,7 @@ Class IQUIToolbarButtonClass;
             }
             else
             {
-                [(IQTitleBarButtonItem*)item setSelectableTextColor:[UIColor yellowColor]];
+                [(IQTitleBarButtonItem*)item setSelectableTextColor:[UIColor whiteColor]];
             }
             
             break;

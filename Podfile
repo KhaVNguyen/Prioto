@@ -6,9 +6,10 @@ target 'Prioto' do
   use_frameworks!
 
   # Pods for Prioto
-pod 'SWTableViewCell', '~> 0.3.7'
+pod 'SWTableViewCell'
 pod 'MGSwipeTableCell'
 pod 'IQKeyboardManager'
+pod 'RealmSwift'
 
 
 end

@@ -7,15 +7,23 @@
 //
 
 import Foundation
+import RealmSwift
 
-class Task {
-	var text: String
-	var details: String?
-	var completed: Bool
-	var dueDate: NSDate?
+class Task: Object {
+	dynamic var text: String = ""
+	dynamic var details: String = ""
+	dynamic var completed: Bool = false
+	dynamic var dueDate: NSDate? = nil
+	dynamic var priorityIndex: Int = 0
 	
-	init(text: String) {
+	convenience init(text: String) {
+		self.init()
 		self.text = text
-		self.completed = false
+	}
+	
+	convenience init(text: String, priority: Int) {
+		self.init()
+		self.text = text
+		self.priorityIndex = priority
 	}
 }

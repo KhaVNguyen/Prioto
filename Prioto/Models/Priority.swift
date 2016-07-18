@@ -7,17 +7,34 @@
 //
 
 import Foundation
+import RealmSwift
+import Realm
 
-class Priority {
-	var type: String
-	var tasksInPriority: [Task] = []
+class Priority : Object{
+	dynamic var type: String = ""
+	dynamic var tasksInPriority: [Task] = []
 	
-	init(type: String) {
+
+	required init() {
+		super.init()
+	}
+	
+	required init(realm: RLMRealm, schema: RLMObjectSchema) {
+		super.init(realm: realm, schema: schema)
+	}
+	
+	required init(value: AnyObject, schema: RLMSchema) {
+		super.init(value: value, schema: schema)
+	}
+	
+	required convenience init(type: String) {
+		self.init()
 		self.type = type
 	}
 	
 	func addTask(text: String) {
-		let task = Task(text: text)
+		let task = Task()
+		task.text = text
 		self.tasksInPriority.append(task)
 	}
 	

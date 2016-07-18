@@ -8,36 +8,53 @@
 
 import UIKit
 import MGSwipeTableCell
+import RealmSwift
+import Realm
+
 
 class TasksTableViewController: UITableViewController {
-	
-	var tasks: [Priority] =
-		[Priority(type: "Urgent | Important"),
-		 Priority(type: "Urgent | Not Important"),
-		 Priority(type: "Not Urgent | Important"),
-		 Priority(type: "Not Urgent | Not Important")]
+	var realm: Realm!
+	var notificationToken: NotificationToken?
+	var priorityIndexes = [0, 1, 2, 3]
+	var priorityTitles = ["Urgent | Important", "Urgent | Not Important", "Not Urgent | Important", "Not Urgent | Not Important"]
+	var tasksByPriority = [Results<Task>]()
+
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
+		realm = try! Realm()
+		
 		tableView.backgroundColor = UIColor.whiteColor()
 		
-		tasks[1].addTask("Call Bill.")
-		tasks[1].addTask("Take out the trash.")
-		tasks[0].addTask("Study for test")
-		tasks[2].addTask("Finish todo list app")
-		tasks[0].addTask("Implement priorities into todo list app")
-		tasks[0].addTask("Work on college apps")
-		tasks[0].addTask("Implement pomodoro timer")
-		tasks[2].addTask("Email Mr. Shuen")
-		tasks[2].addTask("Go for a walk")
-		tasks[0].addTask("Catch Pokemon ")
-		tasks[3].addTask("Eat a sandwich.")
-		tasks[3].addTask("Drink lemonade.")
-		tasks[3].addTask("Sleep a full 8 hours.")
-		tasks[3].addTask("Eat rice.")
-}
+		RealmHelper.addTask(Task(text: "This is Urgent | Important", priority: 0))
+		RealmHelper.addTask(Task(text: "This is Urgent | Not Important", priority: 1))
+		RealmHelper.addTask(Task(text: "Call Bill", priority: 1))
+		RealmHelper.addTask(Task(text: "Take out the trash", priority: 1))
+		RealmHelper.addTask(Task(text: "Study for test", priority: 0))
+		RealmHelper.addTask(Task(text: "Finish todo list pomodoro app", priority: 2))
+		RealmHelper.addTask(Task(text: "Implement priorities into todo list app", priority: 2))
+		RealmHelper.addTask(Task(text: "Work on college apps", priority: 0))
+		RealmHelper.addTask(Task(text: "Implement pomodoro timer", priority: 0))
+		RealmHelper.addTask(Task(text: "Email Mr. Shuen", priority: 2))
+		RealmHelper.addTask(Task(text: "Go for a walk", priority: 2))
+		RealmHelper.addTask(Task(text: "Drink lemonade", priority: 3))
+		RealmHelper.addTask(Task(text: "Eat rice", priority: 3))
+		RealmHelper.addTask(Task(text: "Sleep 8 hours", priority: 3))
 
+		
+		notificationToken = realm.addNotificationBlock { [unowned self] note, realm in
+			self.tableView.reloadData()
+		}
+		
+		for priority in priorityIndexes {
+			let unsortedObjects = realm.objects(Task.self).filter("priorityIndex == \(priority)")
+			tasksByPriority.append(unsortedObjects)
+		}
+		
+		tableView.reloadData()
+	}
+	
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -51,53 +68,68 @@ class TasksTableViewController: UITableViewController {
 	
 	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return tasks.count
+        return priorityIndexes.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return tasks[section].tasksInPriority.count
+        return Int(tasksByPriority[section].count)
     }
 	
 	
 	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		return tasks[section].type
+		return priorityTitles[section]
 	}
 	
 
-	
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("taskTableViewCell", forIndexPath: indexPath) as! TaskTableViewCell
 		
         // Configure the cell...
-		let task = tasks[indexPath.section].tasksInPriority[indexPath.row]
-		cell.taskTextLabel.text = task.text
-
+		let task = self.taskForIndexPath(indexPath)
+		
+		self.strikethroughCompleted(indexPath, cell: cell, task: task!)
+		
 		//configure left buttons
 		cell.leftButtons = [MGSwipeButton(title: "Done", backgroundColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0), callback: {
 			(sender: MGSwipeTableCell!) -> Bool in
-			self.tasks[indexPath.section].tasksInPriority[indexPath.row].completed = !self.tasks[indexPath.section].tasksInPriority[indexPath.row].completed
-			if self.tasks[indexPath.section].tasksInPriority[indexPath.row].completed {
-				let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: self.tasks[indexPath.section].tasksInPriority[indexPath.row].text)
+			
+			task!.completed = !task!.completed
+			self.strikethroughCompleted(indexPath, cell: cell, task: task!)
+			return true
+			})]
+		cell.leftSwipeSettings.transition = MGSwipeTransition.Border
+		
+		cell.contentView.layer.cornerRadius = 8
+		cell.contentView.layer.masksToBounds = true
+		cell.layer.borderColor = UIColor.whiteColor().CGColor
+		cell.layer.borderWidth = 2
+		cell.layer.cornerRadius = 8
+		
+        return cell
+    }
+	
+	func taskForIndexPath(indexPath: NSIndexPath) -> Task? {
+		return tasksByPriority[indexPath.section][indexPath.row]
+	}
+	
+	func strikethroughCompleted(indexPath: NSIndexPath, cell: TaskTableViewCell, task: Task) {
+		if let task = taskForIndexPath(indexPath) {
+			if task.completed {
+				let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: task.text)
 				attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 2, range: NSMakeRange(0, attributeString.length))
 				cell.taskTextLabel.attributedText = attributeString
 			}
 			else {
 				cell.taskTextLabel.text = task.text
 			}
-			return true
-			})]
-		cell.leftSwipeSettings.transition = MGSwipeTransition.Border
-		
-        return cell
-    }
-	
-	
+		}
+	}
 	// MARK: - Table view delegate
 	
 	func colorForIndexRow(row: Int, section: Int) -> UIColor {
-		let itemCount = tasks.count - 1
-		let val = (CGFloat(row) / CGFloat(itemCount)) * 0.4
+		let itemCount = tasksByPriority[section].count - 1
+		let val = (CGFloat(row) / CGFloat(itemCount)) * 0.5
 		
 		switch section {
 			// urgent | important
@@ -137,9 +169,7 @@ class TasksTableViewController: UITableViewController {
 	override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
 		if editingStyle == .Delete {
 			// Delete the row from the data source
-			tasks[indexPath.section].tasksInPriority.removeAtIndex(indexPath.row)
-			tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .None)
-			tableView.reloadSections(NSIndexSet(index:indexPath.section), withRowAnimation: UITableViewRowAnimation.None)
+			RealmHelper.deleteTask(taskForIndexPath(indexPath)!)
 		} else if editingStyle == .Insert {
 			// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
 		}
@@ -152,30 +182,18 @@ class TasksTableViewController: UITableViewController {
 			if let selectedIndexPath = tableView.indexPathForSelectedRow {
 				// Update an existing task.
 				if selectedIndexPath.section == priorityIndex { // not changing priority
-					tasks[selectedIndexPath.section].tasksInPriority[selectedIndexPath.row] = task
-					tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
+					RealmHelper.updateTask(taskForIndexPath(selectedIndexPath)!, newTask: task)
 				}
 				
 				else { // changing priority
-					let newIndexPath = NSIndexPath(forRow: tasks[priorityIndex].tasksInPriority.count, inSection: priorityIndex)
-					tasks[priorityIndex].tasksInPriority.append(task)
-					tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
-					
-					tasks[selectedIndexPath.section].tasksInPriority.removeAtIndex(selectedIndexPath.row)
-					tableView.deleteRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .Fade)
-					
-					tableView.reloadData()
+					RealmHelper.addTask(task)
+					RealmHelper.deleteTask(taskForIndexPath(selectedIndexPath)!)
 				}
-			} else {
-				let newIndexPath = NSIndexPath(forRow: tasks[priorityIndex].tasksInPriority.count, inSection: priorityIndex)
-				
-				tasks[priorityIndex].tasksInPriority.append(task)
-				
-				tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
-				tableView.reloadData()
+			}
+			else {
+				RealmHelper.addTask(task)
 			}
 		}
-
 		
 	}
 	
@@ -188,7 +206,7 @@ class TasksTableViewController: UITableViewController {
 				// set task of DisplayTaskViewController to task tapped on
 				if let selectedTaskCell = sender as? TaskTableViewCell {
 					let indexPath = tableView.indexPathForCell(selectedTaskCell)!
-					let selectedTask = tasks[indexPath.section].tasksInPriority[indexPath.row]
+					let selectedTask = taskForIndexPath(indexPath)
 					displayTaskViewController.task = selectedTask
 					displayTaskViewController.priorityIndex = indexPath.section
 				}

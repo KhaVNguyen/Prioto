@@ -19,6 +19,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Realm.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RealmSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SWTableViewCell.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,11 +37,6 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>18505F143837BC094131B4B7A2BB8731</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>37C76CD246D637B8E4C586284A0D96B2</key>
 		<dict>
 			<key>primary</key>
@@ -42,7 +47,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8B7BEA5EBE988CFF55F097B633F6FCBC</key>
+		<key>66D5525A5BBCC6FA0C66F81124218F64</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8BC3F860E2B4865CC6025C583F92FBD9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8DD06C17B382B6583F80E276137974A5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DF53E0030858063265754F26C43769EE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
