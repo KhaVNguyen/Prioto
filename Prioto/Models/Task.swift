@@ -15,6 +15,7 @@ class Task: Object {
 	dynamic var completed: Bool = false
 	dynamic var dueDate: NSDate? = nil
 	dynamic var priorityIndex: Int = 0
+	dynamic var dateCreated = NSDate()
 	
 	convenience init(text: String) {
 		self.init()

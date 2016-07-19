@@ -17,39 +17,63 @@ class TasksTableViewController: UITableViewController {
 	var notificationToken: NotificationToken?
 	var priorityIndexes = [0, 1, 2, 3]
 	var priorityTitles = ["Urgent | Important", "Urgent | Not Important", "Not Urgent | Important", "Not Urgent | Not Important"]
-	var tasksByPriority = [Results<Task>]()
+	var tasksByPriority = [Results<Task>]() {
+		didSet {
+			print("didSet")
+			printOutTaskByPriority()
+		}
+	}
 
+	
+	func printOutTaskByPriority(){
+		var index = 0
+		for priority in tasksByPriority {
+			print("\(priorityTitles[index++]):\(priority.count)")
+			for task in priority {
+				print(task.text)
+			}
+		}
+	}
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
 		realm = try! Realm()
 		
-		tableView.backgroundColor = UIColor.whiteColor()
+		RealmHelper.addTask(Task(text: "1", priority: 0))
+		RealmHelper.addTask(Task(text: "2", priority: 0))
+		RealmHelper.addTask(Task(text: "3", priority: 0))
+		RealmHelper.addTask(Task(text: "4", priority: 0))
+		RealmHelper.addTask(Task(text: "5", priority: 0))
 		
-		RealmHelper.addTask(Task(text: "This is Urgent | Important", priority: 0))
-		RealmHelper.addTask(Task(text: "This is Urgent | Not Important", priority: 1))
-		RealmHelper.addTask(Task(text: "Call Bill", priority: 1))
-		RealmHelper.addTask(Task(text: "Take out the trash", priority: 1))
-		RealmHelper.addTask(Task(text: "Study for test", priority: 0))
-		RealmHelper.addTask(Task(text: "Finish todo list pomodoro app", priority: 2))
-		RealmHelper.addTask(Task(text: "Implement priorities into todo list app", priority: 2))
-		RealmHelper.addTask(Task(text: "Work on college apps", priority: 0))
-		RealmHelper.addTask(Task(text: "Implement pomodoro timer", priority: 0))
-		RealmHelper.addTask(Task(text: "Email Mr. Shuen", priority: 2))
-		RealmHelper.addTask(Task(text: "Go for a walk", priority: 2))
-		RealmHelper.addTask(Task(text: "Drink lemonade", priority: 3))
-		RealmHelper.addTask(Task(text: "Eat rice", priority: 3))
-		RealmHelper.addTask(Task(text: "Sleep 8 hours", priority: 3))
-
+		RealmHelper.addTask(Task(text: "1", priority: 1))
+		RealmHelper.addTask(Task(text: "2", priority: 1))
+		RealmHelper.addTask(Task(text: "3", priority: 1))
+		RealmHelper.addTask(Task(text: "4", priority: 1))
+		RealmHelper.addTask(Task(text: "5", priority: 1))
+		
+		RealmHelper.addTask(Task(text: "1", priority: 2))
+		RealmHelper.addTask(Task(text: "2", priority: 2))
+		RealmHelper.addTask(Task(text: "3", priority: 2))
+		RealmHelper.addTask(Task(text: "4", priority: 2))
+		RealmHelper.addTask(Task(text: "5", priority: 2))
+		
+		RealmHelper.addTask(Task(text: "1", priority: 3))
+		RealmHelper.addTask(Task(text: "2", priority: 3))
+		RealmHelper.addTask(Task(text: "3", priority: 3))
+		RealmHelper.addTask(Task(text: "4", priority: 3))
+		RealmHelper.addTask(Task(text: "5", priority: 3))
 		
 		notificationToken = realm.addNotificationBlock { [unowned self] note, realm in
 			self.tableView.reloadData()
 		}
 		
+		tableView.backgroundColor = UIColor.whiteColor()
+		
 		for priority in priorityIndexes {
 			let unsortedObjects = realm.objects(Task.self).filter("priorityIndex == \(priority)")
-			tasksByPriority.append(unsortedObjects)
+			let sortedObjects = unsortedObjects.sorted("dateCreated", ascending: true)
+			tasksByPriority.append(sortedObjects)
 		}
 		
 		tableView.reloadData()
@@ -99,6 +123,12 @@ class TasksTableViewController: UITableViewController {
 			return true
 			})]
 		cell.leftSwipeSettings.transition = MGSwipeTransition.Border
+		cell.rightButtons = [MGSwipeButton(title: "Delete", backgroundColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0), callback: {
+			(sender: MGSwipeTableCell!) -> Bool in
+			RealmHelper.deleteTask(self.taskForIndexPath(indexPath)!)
+			self.printOutTaskByPriority()
+			return true
+		})]
 		
 		cell.contentView.layer.cornerRadius = 8
 		cell.contentView.layer.masksToBounds = true
@@ -166,15 +196,16 @@ class TasksTableViewController: UITableViewController {
 	}
 	
 	// Override to support editing the table view.
-	override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-		if editingStyle == .Delete {
-			// Delete the row from the data source
-			RealmHelper.deleteTask(taskForIndexPath(indexPath)!)
-		} else if editingStyle == .Insert {
-			// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-		}
-	}
-		
+//	override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+//		if editingStyle == .Delete {
+//			// Delete the row from the data source
+//			// RealmHelper.deleteTask(taskForIndexPath(indexPath)!)
+//			print(tasksByPriority[indexPath.section])
+//		} else if editingStyle == .Insert {
+//			// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+//		}
+//	}
+	
 	// MARK: Segues
 	
 	@IBAction func unwindToTasksTableViewController(sender: UIStoryboardSegue) {
@@ -188,10 +219,12 @@ class TasksTableViewController: UITableViewController {
 				else { // changing priority
 					RealmHelper.addTask(task)
 					RealmHelper.deleteTask(taskForIndexPath(selectedIndexPath)!)
+					printOutTaskByPriority()
 				}
 			}
 			else {
 				RealmHelper.addTask(task)
+				printOutTaskByPriority()
 			}
 		}
 		

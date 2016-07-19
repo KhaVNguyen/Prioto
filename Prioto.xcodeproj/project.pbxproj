@@ -16,6 +16,15 @@
 		0FA486D31D3416400075CD9B /* TasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA486D21D3416400075CD9B /* TasksTableViewController.swift */; };
 		0FA486D51D3433490075CD9B /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA486D41D3433490075CD9B /* TaskTableViewCell.swift */; };
 		0FA486DA1D3435950075CD9B /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA486D91D3435950075CD9B /* Task.swift */; };
+		0FE40A041D3D9D2B0097CF01 /* TimerStyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE40A031D3D9D2B0097CF01 /* TimerStyleKit.swift */; };
+		0FE40A091D3D9D500097CF01 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE40A071D3D9D500097CF01 /* SettingsView.swift */; };
+		0FE40A0A1D3D9D500097CF01 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE40A081D3D9D500097CF01 /* SettingsViewController.swift */; };
+		0FE40A101D3D9D670097CF01 /* FocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE40A0C1D3D9D670097CF01 /* FocusView.swift */; };
+		0FE40A111D3D9D670097CF01 /* FocusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE40A0D1D3D9D670097CF01 /* FocusViewController.swift */; };
+		0FE40A121D3D9D670097CF01 /* TimerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE40A0E1D3D9D670097CF01 /* TimerType.swift */; };
+		0FE40A131D3D9D670097CF01 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE40A0F1D3D9D670097CF01 /* TimerView.swift */; };
+		0FE40A171D3D9D840097CF01 /* DHNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE40A151D3D9D840097CF01 /* DHNavigationController.swift */; };
+		0FE40A181D3D9D840097CF01 /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE40A161D3D9D840097CF01 /* Int+Extensions.swift */; };
 		2629B616C9A137A8E2E3E1F6 /* Pods_Prioto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA1247242AB93DDBEAB8C8DD /* Pods_Prioto.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +40,15 @@
 		0FA486D21D3416400075CD9B /* TasksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TasksTableViewController.swift; path = ../TasksTableViewController.swift; sourceTree = "<group>"; };
 		0FA486D41D3433490075CD9B /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskTableViewCell.swift; path = ../TaskTableViewCell.swift; sourceTree = "<group>"; };
 		0FA486D91D3435950075CD9B /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		0FE40A031D3D9D2B0097CF01 /* TimerStyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerStyleKit.swift; sourceTree = "<group>"; };
+		0FE40A071D3D9D500097CF01 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		0FE40A081D3D9D500097CF01 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		0FE40A0C1D3D9D670097CF01 /* FocusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusView.swift; sourceTree = "<group>"; };
+		0FE40A0D1D3D9D670097CF01 /* FocusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusViewController.swift; sourceTree = "<group>"; };
+		0FE40A0E1D3D9D670097CF01 /* TimerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerType.swift; sourceTree = "<group>"; };
+		0FE40A0F1D3D9D670097CF01 /* TimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		0FE40A151D3D9D840097CF01 /* DHNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHNavigationController.swift; sourceTree = "<group>"; };
+		0FE40A161D3D9D840097CF01 /* Int+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
 		8F407FD40451180A0811EECE /* Pods-Prioto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prioto.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Prioto/Pods-Prioto.debug.xcconfig"; sourceTree = "<group>"; };
 		B984ABDC2173C26660387769 /* Pods-Prioto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prioto.release.xcconfig"; path = "Pods/Target Support Files/Pods-Prioto/Pods-Prioto.release.xcconfig"; sourceTree = "<group>"; };
 		BA1247242AB93DDBEAB8C8DD /* Pods_Prioto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Prioto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +100,7 @@
 				0FA486C71D3406B70075CD9B /* Assets.xcassets */,
 				0FA486C91D3406B70075CD9B /* LaunchScreen.storyboard */,
 				0FA486CC1D3406B70075CD9B /* Info.plist */,
+				0FE40A051D3D9D300097CF01 /* Timer */,
 				0F6F0F8B1D3956A8001D63B8 /* Helpers */,
 				0FA486D61D34353D0075CD9B /* Controllers */,
 				0FA486D71D34353D0075CD9B /* Models */,
@@ -113,6 +132,46 @@
 				0FA486D41D3433490075CD9B /* TaskTableViewCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		0FE40A051D3D9D300097CF01 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				0FE40A151D3D9D840097CF01 /* DHNavigationController.swift */,
+				0FE40A161D3D9D840097CF01 /* Int+Extensions.swift */,
+				0FE40A141D3D9D6B0097CF01 /* Focus */,
+				0FE40A0B1D3D9D550097CF01 /* Settings */,
+				0FE40A061D3D9D360097CF01 /* Style */,
+			);
+			name = Timer;
+			sourceTree = "<group>";
+		};
+		0FE40A061D3D9D360097CF01 /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				0FE40A031D3D9D2B0097CF01 /* TimerStyleKit.swift */,
+			);
+			name = Style;
+			sourceTree = "<group>";
+		};
+		0FE40A0B1D3D9D550097CF01 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				0FE40A071D3D9D500097CF01 /* SettingsView.swift */,
+				0FE40A081D3D9D500097CF01 /* SettingsViewController.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		0FE40A141D3D9D6B0097CF01 /* Focus */ = {
+			isa = PBXGroup;
+			children = (
+				0FE40A0C1D3D9D670097CF01 /* FocusView.swift */,
+				0FE40A0D1D3D9D670097CF01 /* FocusViewController.swift */,
+				0FE40A0E1D3D9D670097CF01 /* TimerType.swift */,
+				0FE40A0F1D3D9D670097CF01 /* TimerView.swift */,
+			);
+			name = Focus;
 			sourceTree = "<group>";
 		};
 		6BF8C0732690FCA8601577D6 /* Frameworks */ = {
@@ -256,11 +315,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F6E6D371D36AC4200FF8A76 /* DisplayTaskViewController.swift in Sources */,
+				0FE40A121D3D9D670097CF01 /* TimerType.swift in Sources */,
+				0FE40A091D3D9D500097CF01 /* SettingsView.swift in Sources */,
 				0F4355411D3C9A7F001764AB /* RealmHelper.swift in Sources */,
 				0FA486DA1D3435950075CD9B /* Task.swift in Sources */,
+				0FE40A131D3D9D670097CF01 /* TimerView.swift in Sources */,
 				0FA486D31D3416400075CD9B /* TasksTableViewController.swift in Sources */,
 				0FA486C11D3406B70075CD9B /* AppDelegate.swift in Sources */,
+				0FE40A041D3D9D2B0097CF01 /* TimerStyleKit.swift in Sources */,
+				0FE40A181D3D9D840097CF01 /* Int+Extensions.swift in Sources */,
 				0FA486D51D3433490075CD9B /* TaskTableViewCell.swift in Sources */,
+				0FE40A0A1D3D9D500097CF01 /* SettingsViewController.swift in Sources */,
+				0FE40A111D3D9D670097CF01 /* FocusViewController.swift in Sources */,
+				0FE40A101D3D9D670097CF01 /* FocusView.swift in Sources */,
+				0FE40A171D3D9D840097CF01 /* DHNavigationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
