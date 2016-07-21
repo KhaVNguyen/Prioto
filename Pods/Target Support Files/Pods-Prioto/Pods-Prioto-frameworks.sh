@@ -84,16 +84,32 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/AEAccordion/AEAccordion.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/AEXibceptionView/AEXibceptionView.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/CircleProgressView/CircleProgressView.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ConcentricProgressRingView/ConcentricProgressRingView.framework"
   install_framework "$BUILT_PRODUCTS_DIR/IQKeyboardManager/IQKeyboardManager.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/LionheartExtensions/LionheartExtensions.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MGSwipeTableCell/MGSwipeTableCell.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/MKRingProgressView/MKRingProgressView.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/MZTimerLabel/MZTimerLabel.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Realm/Realm.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RealmSwift/RealmSwift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SWTableViewCell/SWTableViewCell.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SwiftyTimer/SwiftyTimer.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/AEAccordion/AEAccordion.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/AEXibceptionView/AEXibceptionView.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/CircleProgressView/CircleProgressView.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ConcentricProgressRingView/ConcentricProgressRingView.framework"
   install_framework "$BUILT_PRODUCTS_DIR/IQKeyboardManager/IQKeyboardManager.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/LionheartExtensions/LionheartExtensions.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MGSwipeTableCell/MGSwipeTableCell.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/MKRingProgressView/MKRingProgressView.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/MZTimerLabel/MZTimerLabel.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Realm/Realm.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RealmSwift/RealmSwift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SWTableViewCell/SWTableViewCell.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SwiftyTimer/SwiftyTimer.framework"
 fi

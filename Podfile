@@ -10,6 +10,13 @@ pod 'SWTableViewCell'
 pod 'MGSwipeTableCell'
 pod 'IQKeyboardManager'
 pod 'RealmSwift'
+pod 'AEAccordion'
+pod 'AEXibceptionView'
+pod 'CircleProgressView', :git => 'https://github.com/CardinalNow/iOS-CircleProgressView.git'
+pod 'MZTimerLabel'
+pod 'SwiftyTimer'
+pod 'MKRingProgressView'
+pod "ConcentricProgressRingView"
 
 
 end

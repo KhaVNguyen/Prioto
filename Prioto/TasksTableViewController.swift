@@ -10,36 +10,11 @@ import UIKit
 import MGSwipeTableCell
 import RealmSwift
 import Realm
-
+import AEAccordion
 
 class TasksTableViewController: UITableViewController {
-	var realm: Realm!
-	var notificationToken: NotificationToken?
-	var priorityIndexes = [0, 1, 2, 3]
-	var priorityTitles = ["Urgent | Important", "Urgent | Not Important", "Not Urgent | Important", "Not Urgent | Not Important"]
-	var tasksByPriority = [Results<Task>]() {
-		didSet {
-			print("didSet")
-			printOutTaskByPriority()
-		}
-	}
-
 	
-	func printOutTaskByPriority(){
-		var index = 0
-		for priority in tasksByPriority {
-			print("\(priorityTitles[index++]):\(priority.count)")
-			for task in priority {
-				print(task.text)
-			}
-		}
-	}
-	
-    override func viewDidLoad() {
-        super.viewDidLoad()
-		
-		realm = try! Realm()
-		
+	@IBAction func fillButtonTapped(sender: AnyObject) {
 		RealmHelper.addTask(Task(text: "1", priority: 0))
 		RealmHelper.addTask(Task(text: "2", priority: 0))
 		RealmHelper.addTask(Task(text: "3", priority: 0))
@@ -63,6 +38,24 @@ class TasksTableViewController: UITableViewController {
 		RealmHelper.addTask(Task(text: "3", priority: 3))
 		RealmHelper.addTask(Task(text: "4", priority: 3))
 		RealmHelper.addTask(Task(text: "5", priority: 3))
+	}
+	
+	
+	@IBAction func deleteAllButtonTapped(sender: AnyObject) {
+		try! realm.write() {
+			realm.deleteAll()
+		}
+	}
+	
+	var realm: Realm!
+	var notificationToken: NotificationToken?
+	var priorityIndexes = [0, 1, 2, 3]
+	var priorityTitles = ["Urgent | Important", "Urgent | Not Important", "Not Urgent | Important", "Not Urgent | Not Important"]
+	var tasksByPriority = [Results<Task>]()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+		
+		realm = try! Realm()
 		
 		notificationToken = realm.addNotificationBlock { [unowned self] note, realm in
 			self.tableView.reloadData()
@@ -77,7 +70,118 @@ class TasksTableViewController: UITableViewController {
 		}
 		
 		tableView.reloadData()
+		
+		// long press drag and drop gesture recognizer
+//		let longpress = UILongPressGestureRecognizer(target: self, action: "longPressGestureRecognized:")
+//		tableView.addGestureRecognizer(longpress)
 	}
+	
+//	func longPressGestureRecognized(gestureRecognizer: UIGestureRecognizer) {
+//		let longPress = gestureRecognizer as! UILongPressGestureRecognizer
+//		let state = longPress.state
+//		let locationInView = longPress.locationInView(tableView)
+//		let indexPath = tableView.indexPathForRowAtPoint(locationInView)
+//		
+//		struct My {
+//			static var cellSnapshot : UIView? = nil
+//			static var cellIsAnimating : Bool = false
+//			static var cellNeedToShow : Bool = false
+//		}
+//		struct Path {
+//			static var initialIndexPath : NSIndexPath? = nil
+//		}
+//		
+//		switch state {
+//		case UIGestureRecognizerState.Began:
+//			if indexPath != nil {
+//				Path.initialIndexPath = indexPath
+//				let cell = tableView.cellForRowAtIndexPath(indexPath!) as UITableViewCell!
+//				My.cellSnapshot  = snapshotOfCell(cell)
+//				
+//				var center = cell.center
+//				My.cellSnapshot!.center = center
+//				My.cellSnapshot!.alpha = 0.0
+//				tableView.addSubview(My.cellSnapshot!)
+//				
+//				UIView.animateWithDuration(0.25, animations: { () -> Void in
+//					center.y = locationInView.y
+//					My.cellIsAnimating = true
+//					My.cellSnapshot!.center = center
+//					My.cellSnapshot!.transform = CGAffineTransformMakeScale(1.05, 1.05)
+//					My.cellSnapshot!.alpha = 0.98
+//					cell.alpha = 0.0
+//					}, completion: { (finished) -> Void in
+//						if finished {
+//							My.cellIsAnimating = false
+//							if My.cellNeedToShow {
+//								My.cellNeedToShow = false
+//								UIView.animateWithDuration(0.25, animations: { () -> Void in
+//									cell.alpha = 1
+//								})
+//							} else {
+//								cell.hidden = true
+//							}
+//						}
+//				})
+//			}
+//			
+//		case UIGestureRecognizerState.Changed:
+//			if My.cellSnapshot != nil {
+//				var center = My.cellSnapshot!.center
+//				center.y = locationInView.y
+//				My.cellSnapshot!.center = center
+//				
+//				if ((indexPath != nil) && (indexPath != Path.initialIndexPath)) {
+//					//itemsArray.insert(itemsArray.removeAtIndex(Path.initialIndexPath!.row), atIndex: indexPath!.row)
+//					try! realm.write() {
+//						taskForIndexPath(Path.initialIndexPath!)?.priorityIndex = indexPath!.section
+//						tableView.reloadData()
+//					}
+//					Path.initialIndexPath = indexPath
+//				}
+//			}
+//		default:
+//			if Path.initialIndexPath != nil {
+//				let cell = tableView.cellForRowAtIndexPath(Path.initialIndexPath!) as UITableViewCell!
+//				if My.cellIsAnimating {
+//					My.cellNeedToShow = true
+//				} else {
+//					cell.hidden = false
+//					cell.alpha = 0.0
+//				}
+//				
+//				UIView.animateWithDuration(0.25, animations: { () -> Void in
+//					My.cellSnapshot!.center = cell.center
+//					My.cellSnapshot!.transform = CGAffineTransformIdentity
+//					My.cellSnapshot!.alpha = 0.0
+//					cell.alpha = 1.0
+//					
+//					}, completion: { (finished) -> Void in
+//						if finished {
+//							Path.initialIndexPath = nil
+//							My.cellSnapshot!.removeFromSuperview()
+//							My.cellSnapshot = nil
+//						}
+//				})
+//			}
+//		}
+//	}
+//	
+//	func snapshotOfCell(inputView: UIView) -> UIView {
+//		UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, false, 0.0)
+//		inputView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+//		let image = UIGraphicsGetImageFromCurrentImageContext() as UIImage
+//		UIGraphicsEndImageContext()
+//		
+//		let cellSnapshot : UIView = UIImageView(image: image)
+//		cellSnapshot.layer.masksToBounds = false
+//		cellSnapshot.layer.cornerRadius = 0.0
+//		cellSnapshot.layer.shadowOffset = CGSizeMake(-5.0, 0.0)
+//		cellSnapshot.layer.shadowRadius = 5.0
+//		cellSnapshot.layer.shadowOpacity = 0.4
+//		return cellSnapshot
+//	}
+//	
 	
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -111,30 +215,31 @@ class TasksTableViewController: UITableViewController {
 		
         // Configure the cell...
 		let task = self.taskForIndexPath(indexPath)
-		
-		self.strikethroughCompleted(indexPath, cell: cell, task: task!)
-		
+				
 		//configure left buttons
 		cell.leftButtons = [MGSwipeButton(title: "Done", backgroundColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0), callback: {
 			(sender: MGSwipeTableCell!) -> Bool in
-			
-			task!.completed = !task!.completed
-			self.strikethroughCompleted(indexPath, cell: cell, task: task!)
+			try! self.realm.write() {
+				let task = self.taskForIndexPath(indexPath)
+				self.taskForIndexPath(indexPath)?.completed = !(self.taskForIndexPath(indexPath)?.completed)!
+				self.strikethroughCompleted(indexPath, cell: cell, task: task!)
+			}
 			return true
 			})]
 		cell.leftSwipeSettings.transition = MGSwipeTransition.Border
 		cell.rightButtons = [MGSwipeButton(title: "Delete", backgroundColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0), callback: {
 			(sender: MGSwipeTableCell!) -> Bool in
 			RealmHelper.deleteTask(self.taskForIndexPath(indexPath)!)
-			self.printOutTaskByPriority()
 			return true
 		})]
+		
+		self.strikethroughCompleted(indexPath, cell: cell, task: task!)
 		
 		cell.contentView.layer.cornerRadius = 8
 		cell.contentView.layer.masksToBounds = true
 		cell.layer.borderColor = UIColor.whiteColor().CGColor
 		cell.layer.borderWidth = 2
-		cell.layer.cornerRadius = 8
+		cell.layer.cornerRadius = 5
 		
         return cell
     }
@@ -195,17 +300,6 @@ class TasksTableViewController: UITableViewController {
 		return true
 	}
 	
-	// Override to support editing the table view.
-//	override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-//		if editingStyle == .Delete {
-//			// Delete the row from the data source
-//			// RealmHelper.deleteTask(taskForIndexPath(indexPath)!)
-//			print(tasksByPriority[indexPath.section])
-//		} else if editingStyle == .Insert {
-//			// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-//		}
-//	}
-	
 	// MARK: Segues
 	
 	@IBAction func unwindToTasksTableViewController(sender: UIStoryboardSegue) {
@@ -219,12 +313,10 @@ class TasksTableViewController: UITableViewController {
 				else { // changing priority
 					RealmHelper.addTask(task)
 					RealmHelper.deleteTask(taskForIndexPath(selectedIndexPath)!)
-					printOutTaskByPriority()
 				}
 			}
 			else {
 				RealmHelper.addTask(task)
-				printOutTaskByPriority()
 			}
 		}
 		
@@ -241,13 +333,18 @@ class TasksTableViewController: UITableViewController {
 					let indexPath = tableView.indexPathForCell(selectedTaskCell)!
 					let selectedTask = taskForIndexPath(indexPath)
 					displayTaskViewController.task = selectedTask
+					print("Task completed: \(selectedTask!.completed)")
 					displayTaskViewController.priorityIndex = indexPath.section
+					displayTaskViewController.completed = (selectedTask?.completed)!
 				}
 			}
 			
 			else if identifier == "addNewTaskSegue" {
-				print("Adding new task")
 			}
 		}
 	}
+}
+
+extension AEAccordionTableViewController {
+	
 }

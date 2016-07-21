@@ -1,26 +1,61 @@
 PODS:
+  - AEAccordion (1.0.3)
+  - AEXibceptionView (1.0.3)
+  - CircleProgressView (1.0.10)
+  - ConcentricProgressRingView (1.3.3):
+    - LionheartExtensions
   - IQKeyboardManager (4.0.4)
+  - LionheartExtensions (1.8.0):
+    - LionheartExtensions/Core (= 1.8.0)
+  - LionheartExtensions/Core (1.8.0)
   - MGSwipeTableCell (1.5.5)
+  - MKRingProgressView (1.0.1)
+  - MZTimerLabel (0.5.4)
   - Realm (1.0.2):
     - Realm/Headers (= 1.0.2)
   - Realm/Headers (1.0.2)
   - RealmSwift (1.0.2):
     - Realm (= 1.0.2)
+  - SwiftyTimer (1.4.0)
   - SWTableViewCell (0.3.7)
 
 DEPENDENCIES:
+  - AEAccordion
+  - AEXibceptionView
+  - CircleProgressView (from `https://github.com/CardinalNow/iOS-CircleProgressView.git`)
+  - ConcentricProgressRingView
   - IQKeyboardManager
   - MGSwipeTableCell
+  - MKRingProgressView
+  - MZTimerLabel
   - RealmSwift
+  - SwiftyTimer
   - SWTableViewCell
 
+EXTERNAL SOURCES:
+  CircleProgressView:
+    :git: https://github.com/CardinalNow/iOS-CircleProgressView.git
+
+CHECKOUT OPTIONS:
+  CircleProgressView:
+    :commit: 89f1aaa52fe492d42a6dfe77a6ac1c7012e5e707
+    :git: https://github.com/CardinalNow/iOS-CircleProgressView.git
+
 SPEC CHECKSUMS:
+  AEAccordion: 4a6b3b938fc9abe8a20d7e9e238a50a5eae02572
+  AEXibceptionView: cb1e5696c2cf1283a8d083406928222c9b59608e
+  CircleProgressView: 5116fc2d3be792d755e6979d7f7309648de79d11
+  ConcentricProgressRingView: d342fef62dddcde119c07ce945f79094e6e58455
   IQKeyboardManager: 4a6f83b540283c2645aaeba2bd8dc0f09b5c77f8
+  LionheartExtensions: c3771293fed4b369e0f4a5dac730319460774247
   MGSwipeTableCell: bafeb5f351124544c9364ecbdf24c7b06a37d340
+  MKRingProgressView: 935ea328a986731018d5c1000d3ac09256b059e6
+  MZTimerLabel: cd9bfb9304540ef2a9e163384fca9c978f0dbf83
   Realm: 9d5c46a4d7d27958530a8dfc58f63a99e5c2cba3
   RealmSwift: 82f3ac5e24530143dddfde2033acc0d308f27d96
+  SwiftyTimer: db4458cfaf67fc71e16ad6e4637c60b86f76a649
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
 
-PODFILE CHECKSUM: a77f51cd7321cc72fa638c5e215fe0983f380533
+PODFILE CHECKSUM: 05025e1d5c6f322e0d5d860df613605f41b4c6fb
 
 COCOAPODS: 1.0.1

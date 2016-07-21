@@ -1,0 +1,6 @@
+framework module AEXibceptionView {
+  umbrella header "AEXibceptionView-umbrella.h"
+
+  export *
+  module * { export * }
+}

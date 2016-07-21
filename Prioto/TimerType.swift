@@ -10,7 +10,6 @@ import Foundation
 
 enum TimerType : String {
   case Work = "Work"
-  case Break = "Break"
-  case Procrastination = "Procrastination"
   case Idle = "Idle"
+	case Break = "Break"
 }

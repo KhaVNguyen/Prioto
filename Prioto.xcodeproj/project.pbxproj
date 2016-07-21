@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F167FD41D3FEFCC0075AEE9 /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F167FD31D3FEFCC0075AEE9 /* CircleProgressView.swift */; };
+		0F167FDC1D408C1D0075AEE9 /* MKGradientGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F167FDA1D408C1D0075AEE9 /* MKGradientGenerator.swift */; };
+		0F167FDD1D408C1D0075AEE9 /* MKRingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F167FDB1D408C1D0075AEE9 /* MKRingProgressView.swift */; };
+		0F2D07511D3EE7C6007B815A /* ExpandedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2D07501D3EE7C6007B815A /* ExpandedView.swift */; };
+		0F2D07551D3EEAD4007B815A /* ExpandedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F2D07541D3EEAD4007B815A /* ExpandedView.xib */; };
+		0F2D07571D3EECB5007B815A /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F2D07561D3EECB5007B815A /* HeaderView.xib */; };
+		0F2D07591D3EEE1A007B815A /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2D07581D3EEE1A007B815A /* HeaderView.swift */; };
+		0F2D075B1D3FE587007B815A /* NewFocusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2D075A1D3FE587007B815A /* NewFocusViewController.swift */; };
 		0F4355411D3C9A7F001764AB /* RealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4355401D3C9A7F001764AB /* RealmHelper.swift */; };
 		0F6E6D371D36AC4200FF8A76 /* DisplayTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6E6D361D36AC4200FF8A76 /* DisplayTaskViewController.swift */; };
 		0FA486C11D3406B70075CD9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA486C01D3406B70075CD9B /* AppDelegate.swift */; };
@@ -29,6 +37,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F167FD31D3FEFCC0075AEE9 /* CircleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
+		0F167FDA1D408C1D0075AEE9 /* MKGradientGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKGradientGenerator.swift; sourceTree = "<group>"; };
+		0F167FDB1D408C1D0075AEE9 /* MKRingProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKRingProgressView.swift; sourceTree = "<group>"; };
+		0F2D07501D3EE7C6007B815A /* ExpandedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandedView.swift; sourceTree = "<group>"; };
+		0F2D07541D3EEAD4007B815A /* ExpandedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpandedView.xib; sourceTree = "<group>"; };
+		0F2D07561D3EECB5007B815A /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
+		0F2D07581D3EEE1A007B815A /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		0F2D075A1D3FE587007B815A /* NewFocusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFocusViewController.swift; sourceTree = "<group>"; };
 		0F4355401D3C9A7F001764AB /* RealmHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmHelper.swift; sourceTree = "<group>"; };
 		0F6E6D361D36AC4200FF8A76 /* DisplayTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayTaskViewController.swift; sourceTree = "<group>"; };
 		0FA486BD1D3406B70075CD9B /* Prioto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Prioto.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,6 +82,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F167FD91D408C1D0075AEE9 /* MKRingProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				0F167FDA1D408C1D0075AEE9 /* MKGradientGenerator.swift */,
+				0F167FDB1D408C1D0075AEE9 /* MKRingProgressView.swift */,
+			);
+			path = MKRingProgressView;
+			sourceTree = "<group>";
+		};
 		0F6F0F8B1D3956A8001D63B8 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,7 +154,12 @@
 		0FA486D81D34353D0075CD9B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0F167FD91D408C1D0075AEE9 /* MKRingProgressView */,
 				0FA486D41D3433490075CD9B /* TaskTableViewCell.swift */,
+				0F2D07581D3EEE1A007B815A /* HeaderView.swift */,
+				0F2D07561D3EECB5007B815A /* HeaderView.xib */,
+				0F2D07501D3EE7C6007B815A /* ExpandedView.swift */,
+				0F2D07541D3EEAD4007B815A /* ExpandedView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -140,7 +170,6 @@
 				0FE40A151D3D9D840097CF01 /* DHNavigationController.swift */,
 				0FE40A161D3D9D840097CF01 /* Int+Extensions.swift */,
 				0FE40A141D3D9D6B0097CF01 /* Focus */,
-				0FE40A0B1D3D9D550097CF01 /* Settings */,
 				0FE40A061D3D9D360097CF01 /* Style */,
 			);
 			name = Timer;
@@ -166,10 +195,13 @@
 		0FE40A141D3D9D6B0097CF01 /* Focus */ = {
 			isa = PBXGroup;
 			children = (
+				0F167FD31D3FEFCC0075AEE9 /* CircleProgressView.swift */,
 				0FE40A0C1D3D9D670097CF01 /* FocusView.swift */,
 				0FE40A0D1D3D9D670097CF01 /* FocusViewController.swift */,
 				0FE40A0E1D3D9D670097CF01 /* TimerType.swift */,
 				0FE40A0F1D3D9D670097CF01 /* TimerView.swift */,
+				0F2D075A1D3FE587007B815A /* NewFocusViewController.swift */,
+				0FE40A0B1D3D9D550097CF01 /* Settings */,
 			);
 			name = Focus;
 			sourceTree = "<group>";
@@ -254,6 +286,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0FA486CB1D3406B70075CD9B /* LaunchScreen.storyboard in Resources */,
+				0F2D07571D3EECB5007B815A /* HeaderView.xib in Resources */,
+				0F2D07551D3EEAD4007B815A /* ExpandedView.xib in Resources */,
 				0FA486C81D3406B70075CD9B /* Assets.xcassets in Resources */,
 				0FA486C61D3406B70075CD9B /* Main.storyboard in Resources */,
 			);
@@ -314,15 +348,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F2D075B1D3FE587007B815A /* NewFocusViewController.swift in Sources */,
 				0F6E6D371D36AC4200FF8A76 /* DisplayTaskViewController.swift in Sources */,
+				0F2D07511D3EE7C6007B815A /* ExpandedView.swift in Sources */,
 				0FE40A121D3D9D670097CF01 /* TimerType.swift in Sources */,
 				0FE40A091D3D9D500097CF01 /* SettingsView.swift in Sources */,
 				0F4355411D3C9A7F001764AB /* RealmHelper.swift in Sources */,
 				0FA486DA1D3435950075CD9B /* Task.swift in Sources */,
+				0F2D07591D3EEE1A007B815A /* HeaderView.swift in Sources */,
+				0F167FDC1D408C1D0075AEE9 /* MKGradientGenerator.swift in Sources */,
 				0FE40A131D3D9D670097CF01 /* TimerView.swift in Sources */,
 				0FA486D31D3416400075CD9B /* TasksTableViewController.swift in Sources */,
 				0FA486C11D3406B70075CD9B /* AppDelegate.swift in Sources */,
+				0F167FDD1D408C1D0075AEE9 /* MKRingProgressView.swift in Sources */,
 				0FE40A041D3D9D2B0097CF01 /* TimerStyleKit.swift in Sources */,
+				0F167FD41D3FEFCC0075AEE9 /* CircleProgressView.swift in Sources */,
 				0FE40A181D3D9D840097CF01 /* Int+Extensions.swift in Sources */,
 				0FA486D51D3433490075CD9B /* TaskTableViewCell.swift in Sources */,
 				0FE40A0A1D3D9D500097CF01 /* SettingsViewController.swift in Sources */,

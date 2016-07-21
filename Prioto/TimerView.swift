@@ -9,9 +9,9 @@
 import UIKit
 import QuartzCore
 
-final class TimerView: UIView {
+@IBDesignable class TimerView: UIView {
   
-  var durationInSeconds: CGFloat = 0.0
+  @IBInspectable var durationInSeconds: CGFloat = 0.0
   var maxValue: CGFloat = 60.0
   var showRemaining = true
   let timerShapeLayer: CAShapeLayer

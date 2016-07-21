@@ -22,13 +22,6 @@ class TaskTableViewCell: MGSwipeTableCell {
 
 	@IBOutlet weak var taskTextLabel: UILabel!
 	
-	// The object that acts as delegate for this cell.
-	//var delegate: TableViewCellDelegate?
-	// The item that this cell renders.
-//	var task: Task?
-//	var taskPriorityIndex: Int?
-//	var taskIndex: Int?
-	
 	let gradientLayer = CAGradientLayer()
 	
 	override func awakeFromNib() {

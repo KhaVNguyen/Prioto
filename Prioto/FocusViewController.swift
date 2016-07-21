@@ -42,8 +42,6 @@ final class FocusViewController: UIViewController {
     super.viewDidLoad()
     
     focusView.workButton.addTarget(self, action: #selector(FocusViewController.startWork(_:)), forControlEvents: .TouchUpInside)
-    focusView.breakButton.addTarget(self, action: #selector(FocusViewController.startBreak(_:)), forControlEvents: .TouchUpInside)
-    focusView.procrastinateButton.addTarget(self, action: #selector(FocusViewController.startProcrastination(_:)), forControlEvents: .TouchUpInside)
     focusView.settingsButton.addTarget(self, action: #selector(FocusViewController.showSettings), forControlEvents: .TouchUpInside)
 	registerDefaultUserDefaults()
 //    let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: "showSettingsFromLongPross:")
@@ -72,17 +70,7 @@ final class FocusViewController: UIViewController {
     guard currentType != .Work else { showAlert(); return }
     startTimerWithType(.Work)
   }
-  
-  func startBreak(sender: UIButton?) {
-    guard currentType != .Break else { showAlert(); return }
-    startTimerWithType(.Break)
-  }
-  
-  func startProcrastination(sender: UIButton) {
-    guard currentType != .Procrastination else { showAlert(); return }
-    startTimerWithType(.Procrastination)
-  }
-  
+	
   func showSettings() {
     presentViewController(DHNavigationController(rootViewController: SettingsViewController()), animated: true, completion: nil)
   }
@@ -99,21 +87,9 @@ final class FocusViewController: UIViewController {
       switch timerType {
       case .Work:
         self.set(self.focusView.workButton, enabled: true)
-        self.set(self.focusView.breakButton, enabled: false)
-        self.set(self.focusView.procrastinateButton, enabled: false)
-      case .Break:
-        self.set(self.focusView.workButton, enabled: false)
-        self.set(self.focusView.breakButton, enabled: true)
-        self.set(self.focusView.procrastinateButton, enabled: false)
-      case .Procrastination:
-        self.set(self.focusView.workButton, enabled: false)
-        self.set(self.focusView.breakButton, enabled: false)
-        self.set(self.focusView.procrastinateButton, enabled: true)
-      default:
+	default:
         self.set(self.focusView.workButton, enabled: true)
-        self.set(self.focusView.breakButton, enabled: true)
-        self.set(self.focusView.procrastinateButton, enabled: true)
-      }
+	}
       
       }, completion: nil)
   }
@@ -142,12 +118,6 @@ extension FocusViewController {
       typeName = "Work"
       currentType = .Work
 //      workPeriods.append(NSDate())
-    case .Break:
-      typeName = "Break"
-      currentType = .Break
-    case .Procrastination:
-      typeName = "Procrastination"
-      currentType = .Procrastination
     default:
       typeName = "None"
       currentType = .Idle
@@ -285,10 +255,6 @@ private extension FocusViewController {
     switch currentType {
     case .Work:
       alertMessage += NSLocalizedString("work timer?", comment: "second part of alert message")
-    case .Break:
-      alertMessage += NSLocalizedString("break timer?", comment: "secont part of alert message")
-    case .Procrastination:
-      alertMessage += NSLocalizedString("procrastination?", comment: "secont part of alert message")
     default:
       break
     }
@@ -312,7 +278,8 @@ private extension FocusViewController {
   }
 	
 	func registerDefaultUserDefaults() {
-		let defaultPreferences = [kRegisterNotificationSettings : true, TimerType.Work.rawValue : 1501, TimerType.Break.rawValue : 301, TimerType.Procrastination.rawValue: 601]
+		// let defaultPreferences = [kRegisterNotificationSettings : true, TimerType.Work.rawValue : 1501, TimerType.Break.rawValue : 301, TimerType.Procrastination.rawValue: 601]
+		let defaultPreferences = [kRegisterNotificationSettings : true, TimerType.Work.rawValue : 1501]
 		NSUserDefaults.standardUserDefaults().registerDefaults(defaultPreferences)
 		NSUserDefaults.standardUserDefaults().synchronize()
 		

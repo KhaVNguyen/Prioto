@@ -18,6 +18,7 @@ class DisplayTaskViewController: UIViewController {
 	@IBOutlet weak var dueDateLabel: UILabel!
 	
 	var priorityIndex: Int!
+	var completed: Bool = false
 	var task: Task?
 	
     override func viewDidLoad() {
@@ -105,6 +106,8 @@ class DisplayTaskViewController: UIViewController {
 				let text = self.taskTitleTextField.text
 				task = Task()
 				task!.text = text!
+				task!.completed = self.completed
+				
 				setTaskDetails(task!)
 			}
 		}
