@@ -17,6 +17,8 @@ pod 'MZTimerLabel'
 pod 'SwiftyTimer'
 pod 'MKRingProgressView'
 pod "ConcentricProgressRingView"
+pod "LionheartExtensions"
+pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift2'
 
 
 end

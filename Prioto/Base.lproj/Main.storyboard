@@ -253,11 +253,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zoa-5l-nwl" customClass="CircleProgressView" customModule="CircleProgressView">
-                                <rect key="frame" x="135" y="120" width="330" height="330"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zoa-5l-nwl">
+                                <rect key="frame" x="150" y="150" width="300" height="300"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Left" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFe-sf-x2M">
-                                        <rect key="frame" x="50" y="124" width="231" height="83"/>
+                                        <rect key="frame" x="45" y="113" width="210" height="75"/>
                                         <constraints>
                                             <constraint firstAttribute="width" priority="750" constant="300" id="nal-D3-WPY"/>
                                             <constraint firstAttribute="height" priority="750" constant="100" id="oZg-br-IlE"/>
@@ -279,14 +279,6 @@
                                     <constraint firstAttribute="width" priority="750" constant="1000" id="g9R-xq-hem"/>
                                     <constraint firstItem="jFe-sf-x2M" firstAttribute="width" secondItem="zoa-5l-nwl" secondAttribute="width" multiplier="0.7" id="hQ2-Sm-M78"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="progress">
-                                        <real key="value" value="0.80000000000000004"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="trackFillColor">
-                                        <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="VSq-ud-QXp"/>
@@ -294,10 +286,10 @@
                                 </variation>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="liu-xl-RZd">
-                                <rect key="frame" x="94" y="480" width="413" height="66"/>
+                                <rect key="frame" x="113" y="500" width="375" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="49x-wS-QRy" userLabel="Start">
-                                        <rect key="frame" x="0.0" y="0.0" width="207" height="66"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="188" height="60"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <state key="normal" title="Start"/>
                                         <connections>
@@ -305,7 +297,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Um-e9-LB6">
-                                        <rect key="frame" x="207" y="0.0" width="206" height="66"/>
+                                        <rect key="frame" x="188" y="0.0" width="187" height="60"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <state key="normal" title="Restart"/>
@@ -322,13 +314,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="zoa-5l-nwl" firstAttribute="top" secondItem="XWl-mo-qJ9" secondAttribute="bottom" constant="100" id="5uO-qb-gfQ"/>
+                            <constraint firstItem="zoa-5l-nwl" firstAttribute="top" relation="greaterThanOrEqual" secondItem="XWl-mo-qJ9" secondAttribute="bottom" constant="100" id="5uO-qb-gfQ"/>
                             <constraint firstItem="l5M-1R-gDd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="zoa-5l-nwl" secondAttribute="bottom" constant="150" id="8WA-uy-xbN"/>
                             <constraint firstItem="liu-xl-RZd" firstAttribute="width" secondItem="zoa-5l-nwl" secondAttribute="width" multiplier="1.25" id="EPA-6E-pFC"/>
                             <constraint firstItem="liu-xl-RZd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="zoa-5l-nwl" secondAttribute="bottom" constant="30" id="EsL-0x-LDh"/>
+                            <constraint firstItem="zoa-5l-nwl" firstAttribute="centerY" secondItem="5eh-35-kI9" secondAttribute="centerY" id="HIt-z6-fem"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="centerY" secondItem="5eh-35-kI9" secondAttribute="centerY" id="KU5-fS-XXV"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="centerX" secondItem="5eh-35-kI9" secondAttribute="centerX" id="SfB-cr-qGw"/>
-                            <constraint firstItem="liu-xl-RZd" firstAttribute="top" secondItem="zoa-5l-nwl" secondAttribute="bottom" constant="30" id="WXD-vx-2A1"/>
+                            <constraint firstItem="liu-xl-RZd" firstAttribute="top" secondItem="zoa-5l-nwl" secondAttribute="bottom" constant="50" id="WXD-vx-2A1"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="centerY" secondItem="5eh-35-kI9" secondAttribute="centerY" id="X84-55-jt6"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="zoa-5l-nwl" secondAttribute="trailing" constant="30" id="aCZ-WW-An5"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="height" secondItem="5eh-35-kI9" secondAttribute="height" id="k04-jT-nt5"/>
@@ -337,25 +330,17 @@
                             <constraint firstItem="liu-xl-RZd" firstAttribute="centerX" secondItem="5eh-35-kI9" secondAttribute="centerX" id="ulv-ZM-AQu"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="width" secondItem="5eh-35-kI9" secondAttribute="width" id="v0q-ZK-WRn"/>
                         </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="progress">
-                                <real key="value" value="0.65000000000000002"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="trackWidth">
-                                <real key="value" value="10"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="KU5-fS-XXV"/>
                                 <exclude reference="X84-55-jt6"/>
                                 <exclude reference="k04-jT-nt5"/>
                                 <exclude reference="v0q-ZK-WRn"/>
+                                <exclude reference="EsL-0x-LDh"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="circleProgressView" destination="zoa-5l-nwl" id="8CE-uU-aJ9"/>
                         <outlet property="startPauseButton" destination="49x-wS-QRy" id="Rsk-Fy-s5G"/>
                         <outlet property="timeLeftLabel" destination="jFe-sf-x2M" id="ITf-ZU-0aP"/>
                     </connections>

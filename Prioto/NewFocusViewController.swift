@@ -9,7 +9,8 @@ import Foundation
 import UIKit
 import MZTimerLabel
 import SwiftyTimer
-import CircleProgressView
+import ConcentricProgressRingView
+import LionheartExtensions
 
 
 class NewFocusViewController: UIViewController {
@@ -21,15 +22,13 @@ class NewFocusViewController: UIViewController {
 	
 	@IBOutlet weak var timeLeftLabel: UILabel!
 	
-	
-	@IBOutlet weak var circleProgressView: CircleProgressView!
-	
-	
+	var progressRingView: ConcentricProgressRingView!
+
 	var timeRemaining: Int!
 	var timeMax: Int!
 	
-	var breakTimeMax: Int = 5
-	var workTimeMax: Int = 15
+	var breakTimeMax: Int = 300
+	var workTimeMax: Int = 1500
 	
 	var timer: NSTimer?
 	var counting: Bool = false
@@ -60,6 +59,22 @@ class NewFocusViewController: UIViewController {
 	}
 	
 	override func viewDidLoad() {
+		let margin: CGFloat = 1
+		let radius: CGFloat = 130
+		
+		let rings = [
+			ProgressRing(color: UIColor(.RGB(232, 11, 45)), backgroundColor: UIColor(.RGB(255, 255, 255))),
+			ProgressRing(color: UIColor(.RGB(137, 242, 0)), backgroundColor: UIColor(.RGB(255, 255, 255)))]
+
+		progressRingView = try! ConcentricProgressRingView(center: view.center, radius: radius, margin: margin, rings: rings, defaultColor: UIColor.clearColor(), defaultWidth: 18)
+		
+		for ring in progressRingView {
+			ring.progress = 0.0
+		}
+		
+		view.backgroundColor = UIColor.whiteColor()
+		view.addSubview(progressRingView)
+		
 		timerType = TimerType.Work
 		self.setTimeBasedOnTimerType(self.timerType)
 		self.resetTimer()
@@ -71,11 +86,9 @@ class NewFocusViewController: UIViewController {
 		if self.timeRemaining == 0 {
 			if self.timerType == TimerType.Work {
 				self.timerType = TimerType.Break
-				self.circleProgressView.trackFillColor = UIColor.greenColor()
 			}
 			else if self.timerType == TimerType.Break {
 				self.timerType = TimerType.Work
-				self.circleProgressView.trackFillColor = UIColor.redColor()
 			}
 			setTimeBasedOnTimerType(self.timerType)
 			resetTimer()
@@ -85,14 +98,18 @@ class NewFocusViewController: UIViewController {
 	func updateTimer() {
 		self.timeLeftLabel.text = formatSecondsAsTimeString(timeRemaining)
 		
-		self.circleProgressView.progress = 1.0 - (Double(self.timeRemaining) / Double(self.timeMax))
+//		self.circleProgressView.progress = 1.0 - (Double(self.timeRemaining) / Double(self.timeMax))
+		self.progressRingView[1].progress = 1.0 - (CGFloat(self.timeRemaining) / CGFloat(self.timeMax))
+		if (timeRemaining <= timeMax && timeRemaining % 60 == 0) {
+			self.progressRingView[0].progress = 1.0 - (CGFloat(self.timeRemaining) / CGFloat(self.timeMax))
+		}
 	}
 	
 	func resetTimer() {
 		self.timeLeftLabel.text = formatSecondsAsTimeString(timeMax)
 		self.timeRemaining = self.timeMax
 		
-		self.circleProgressView.progress = 1.0 - (Double(self.timeRemaining) / Double(self.timeMax))
+//		self.circleProgressView.progress = 1.0 - (Double(self.timeRemaining) / Double(self.timeMax))
 	}
 	
 	
