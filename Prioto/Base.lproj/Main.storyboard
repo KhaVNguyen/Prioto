@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zDZ-FL-W2b">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RoI-Ck-V6C">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -20,7 +20,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="aAb-X6-0MN" kind="relationship" relationship="viewControllers" id="i3f-wS-x4Z"/>
-                        <segue destination="qmC-Yt-U0a" kind="relationship" relationship="viewControllers" id="A6S-xl-iTM"/>
+                        <segue destination="zDZ-FL-W2b" kind="relationship" relationship="viewControllers" id="HaZ-Hg-nfA"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ST-lh-Qe8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -254,15 +254,15 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zoa-5l-nwl">
-                                <rect key="frame" x="150" y="150" width="300" height="300"/>
+                                <rect key="frame" x="199" y="199" width="202" height="202"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Left" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFe-sf-x2M">
-                                        <rect key="frame" x="45" y="113" width="210" height="75"/>
+                                        <rect key="frame" x="30" y="76" width="142" height="51"/>
                                         <constraints>
                                             <constraint firstAttribute="width" priority="750" constant="300" id="nal-D3-WPY"/>
                                             <constraint firstAttribute="height" priority="750" constant="100" id="oZg-br-IlE"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -286,20 +286,20 @@
                                 </variation>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="liu-xl-RZd">
-                                <rect key="frame" x="113" y="500" width="375" height="60"/>
+                                <rect key="frame" x="174" y="451" width="252" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="49x-wS-QRy" userLabel="Start">
-                                        <rect key="frame" x="0.0" y="0.0" width="188" height="60"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="126" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Start"/>
                                         <connections>
                                             <action selector="startPauseButtonPressed:" destination="zDZ-FL-W2b" eventType="touchUpInside" id="tha-8e-ymQ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Um-e9-LB6">
-                                        <rect key="frame" x="188" y="0.0" width="187" height="60"/>
+                                        <rect key="frame" x="126" y="0.0" width="126" height="40"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Restart"/>
                                         <connections>
                                             <action selector="restartButtonPressed:" destination="zDZ-FL-W2b" eventType="touchUpInside" id="8CD-U7-Kva"/>
@@ -311,14 +311,24 @@
                                     <constraint firstItem="49x-wS-QRy" firstAttribute="width" secondItem="1Um-e9-LB6" secondAttribute="width" id="3EB-84-cLg"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P8N-wE-1SD">
+                                <rect key="frame" x="20" y="20" width="83" height="30"/>
+                                <state key="normal" title="Preferences"/>
+                                <connections>
+                                    <action selector="preferencesButtonPressed:" destination="zDZ-FL-W2b" eventType="touchUpInside" id="giF-r2-9TX"/>
+                                    <segue destination="sPf-pD-0Ab" kind="show" id="L05-pa-wcT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="P8N-wE-1SD" firstAttribute="top" secondItem="XWl-mo-qJ9" secondAttribute="bottom" id="37R-nC-hzl"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="top" relation="greaterThanOrEqual" secondItem="XWl-mo-qJ9" secondAttribute="bottom" constant="100" id="5uO-qb-gfQ"/>
                             <constraint firstItem="l5M-1R-gDd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="zoa-5l-nwl" secondAttribute="bottom" constant="150" id="8WA-uy-xbN"/>
                             <constraint firstItem="liu-xl-RZd" firstAttribute="width" secondItem="zoa-5l-nwl" secondAttribute="width" multiplier="1.25" id="EPA-6E-pFC"/>
                             <constraint firstItem="liu-xl-RZd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="zoa-5l-nwl" secondAttribute="bottom" constant="30" id="EsL-0x-LDh"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="centerY" secondItem="5eh-35-kI9" secondAttribute="centerY" id="HIt-z6-fem"/>
+                            <constraint firstItem="P8N-wE-1SD" firstAttribute="leading" secondItem="5eh-35-kI9" secondAttribute="leadingMargin" id="IVF-pb-hxz"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="centerY" secondItem="5eh-35-kI9" secondAttribute="centerY" id="KU5-fS-XXV"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="centerX" secondItem="5eh-35-kI9" secondAttribute="centerX" id="SfB-cr-qGw"/>
                             <constraint firstItem="liu-xl-RZd" firstAttribute="top" secondItem="zoa-5l-nwl" secondAttribute="bottom" constant="50" id="WXD-vx-2A1"/>
@@ -340,6 +350,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="Z4f-fp-Pc2"/>
                     <connections>
                         <outlet property="startPauseButton" destination="49x-wS-QRy" id="Rsk-Fy-s5G"/>
                         <outlet property="timeLeftLabel" destination="jFe-sf-x2M" id="ITf-ZU-0aP"/>
@@ -347,26 +358,86 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KRp-fe-VtH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-993" y="509"/>
+            <point key="canvasLocation" x="-993" y="511"/>
         </scene>
-        <!--Focus-->
-        <scene sceneID="Oiz-b1-b7q">
+        <!--PreferencesViewController-->
+        <scene sceneID="AvD-wH-jib">
             <objects>
-                <viewController id="qmC-Yt-U0a" userLabel="Focus" customClass="FocusViewController" customModule="Prioto" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="PreferencesViewController" id="4ra-gF-f1i" customClass="PreferencesViewController" customModule="Prioto" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="XLM-ME-kZm"/>
-                        <viewControllerLayoutGuide type="bottom" id="if8-xB-WxF"/>
+                        <viewControllerLayoutGuide type="top" id="Iz7-Ks-KaR"/>
+                        <viewControllerLayoutGuide type="bottom" id="Tfe-wI-GFU"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="A5w-Yx-lfI">
+                    <view key="view" contentMode="scaleToFill" id="8RC-o9-Qlp">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="P6a-1X-dUd" userLabel="WorkDuration">
+                                <rect key="frame" x="140" y="94" width="320" height="237"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Work Duration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4l5-VE-tfy">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="atg-6M-Dpv" userLabel="WorkDurationPickerView">
+                                        <rect key="frame" x="0.0" y="21" width="320" height="216"/>
+                                    </pickerView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="4l5-VE-tfy" firstAttribute="width" secondItem="atg-6M-Dpv" secondAttribute="width" id="2fu-Tz-92V"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kN6-MM-c0e" userLabel="BreakDuration">
+                                <rect key="frame" x="140" y="361" width="320" height="237"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Break Duration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jqq-nx-LBK">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b2t-V1-Djo" userLabel="BreakDurationPickerView">
+                                        <rect key="frame" x="0.0" y="21" width="320" height="216"/>
+                                    </pickerView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Jqq-nx-LBK" firstAttribute="width" secondItem="b2t-V1-Djo" secondAttribute="width" id="64O-1r-l4T"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kN6-MM-c0e" firstAttribute="top" secondItem="P6a-1X-dUd" secondAttribute="bottom" constant="30" id="38b-pO-3u2"/>
+                            <constraint firstItem="P6a-1X-dUd" firstAttribute="centerX" secondItem="8RC-o9-Qlp" secondAttribute="centerX" id="OX4-Yw-yx3"/>
+                            <constraint firstItem="kN6-MM-c0e" firstAttribute="centerX" secondItem="8RC-o9-Qlp" secondAttribute="centerX" id="ky8-le-v3Y"/>
+                            <constraint firstItem="P6a-1X-dUd" firstAttribute="top" secondItem="Iz7-Ks-KaR" secondAttribute="bottom" constant="30" id="s6P-1e-1Dg"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="VDi-r6-JlZ"/>
+                    <navigationItem key="navigationItem" id="iqR-pr-gbE">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Z52-Ei-qe3">
+                            <connections>
+                                <segue destination="eKm-8b-qpd" kind="unwind" identifier="cancel" unwindAction="unwindToNewFocusViewController:" id="dFF-Bo-wWr"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="avI-4Z-ztM">
+                            <connections>
+                                <segue destination="eKm-8b-qpd" kind="unwind" identifier="save" unwindAction="unwindToNewFocusViewController:" id="hpF-56-oUJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="breakDurationLabel" destination="Jqq-nx-LBK" id="Yje-bW-Fbr"/>
+                        <outlet property="breakDurationPickerView" destination="b2t-V1-Djo" id="k6F-JJ-m1A"/>
+                        <outlet property="workDurationLabel" destination="4l5-VE-tfy" id="f6q-Ze-ICS"/>
+                        <outlet property="workDurationPickerView" destination="atg-6M-Dpv" id="2iD-0r-1hf"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0oS-q9-639" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uBQ-Ce-0cy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="eKm-8b-qpd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-324" y="511"/>
+            <point key="canvasLocation" x="-181" y="1325"/>
         </scene>
         <!--Edit Task Details-->
         <scene sceneID="FRY-hB-h7x">
@@ -384,7 +455,25 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mAJ-0S-87N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1328" y="953"/>
+            <point key="canvasLocation" x="2140" y="953"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="hdU-Gg-cqJ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sPf-pD-0Ab" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="O9i-sz-w4z">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="4ra-gF-f1i" kind="relationship" relationship="rootViewController" id="ia9-FI-qX8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aeJ-ce-MEe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-993" y="1325"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

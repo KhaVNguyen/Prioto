@@ -7,11 +7,15 @@
 
 import Foundation
 import UIKit
-import MZTimerLabel
 import SwiftyTimer
 import ConcentricProgressRingView
 import LionheartExtensions
+import SwiftyUserDefaults
 
+extension DefaultsKeys {
+	static let workTimeMax = DefaultsKey<Int>("workTimeMax")
+	static let breakTimeMax = DefaultsKey<Int>("breakTimeMax")
+}
 
 class NewFocusViewController: UIViewController {
 	
@@ -26,6 +30,10 @@ class NewFocusViewController: UIViewController {
 
 	var timeRemaining: Int!
 	var timeMax: Int!
+	
+	@IBAction func preferencesButtonPressed(sender: AnyObject) {
+		
+	}
 	
 	var breakTimeMax: Int = 300
 	var workTimeMax: Int = 1500
@@ -63,8 +71,8 @@ class NewFocusViewController: UIViewController {
 		let radius: CGFloat = 130
 		
 		let rings = [
-			ProgressRing(color: UIColor(.RGB(232, 11, 45)), backgroundColor: UIColor(.RGB(255, 255, 255))),
-			ProgressRing(color: UIColor(.RGB(137, 242, 0)), backgroundColor: UIColor(.RGB(255, 255, 255)))]
+			ProgressRing(color: UIColor(.RGB(192,57,43)), backgroundColor: UIColor(.RGB(255, 255, 255))),
+			ProgressRing(color: UIColor(.RGB(231,76,60)), backgroundColor: UIColor(.RGB(255, 255, 255)))]
 
 		progressRingView = try! ConcentricProgressRingView(center: view.center, radius: radius, margin: margin, rings: rings, defaultColor: UIColor.clearColor(), defaultWidth: 18)
 		
@@ -75,9 +83,24 @@ class NewFocusViewController: UIViewController {
 		view.backgroundColor = UIColor.whiteColor()
 		view.addSubview(progressRingView)
 		
+		self.workTimeMax = Defaults[.workDuration] ?? 1500
+		self.breakTimeMax = Defaults[.breakDuration] ?? 300
 		timerType = TimerType.Work
 		self.setTimeBasedOnTimerType(self.timerType)
 		self.resetTimer()
+	}
+	
+	@IBAction func unwindToNewFocusViewController(segue: UIStoryboardSegue) {
+		if segue.identifier == "save" {
+			self.workTimeMax = Defaults[.workDuration]
+			self.breakTimeMax = Defaults[.breakDuration]
+			self.setTimeBasedOnTimerType(self.timerType)
+			self.resetTimer()
+			self.timer?.invalidate()
+			self.counting = false
+			self.updateTimer()
+			self.startPauseButton.setTitle("Start", forState: .Normal)
+		}
 	}
 	
 	func countdown() { // gets called by timer every second
@@ -97,12 +120,18 @@ class NewFocusViewController: UIViewController {
 	
 	func updateTimer() {
 		self.timeLeftLabel.text = formatSecondsAsTimeString(timeRemaining)
+//		self.progressRingView[1].progress = 1.0 - (CGFloat(self.timeRemaining) / CGFloat(self.timeMax))
+
+		self.progressRingView[1].progress = 1.0 - ((CGFloat(self.timeRemaining) % 60.0) / 60.0)
 		
-//		self.circleProgressView.progress = 1.0 - (Double(self.timeRemaining) / Double(self.timeMax))
-		self.progressRingView[1].progress = 1.0 - (CGFloat(self.timeRemaining) / CGFloat(self.timeMax))
-		if (timeRemaining <= timeMax && timeRemaining % 60 == 0) {
-			self.progressRingView[0].progress = 1.0 - (CGFloat(self.timeRemaining) / CGFloat(self.timeMax))
+		if timeRemaining == timeMax {
+			self.progressRingView[1].progress = 0.0
 		}
+		
+		// if (timeRemaining <= timeMax && timeRemaining % 60 == 0) {
+			// self.progressRingView[0].progress = 1.0 - (CGFloat(self.timeRemaining) / CGFloat(self.timeMax)) -> updated every minute
+			self.progressRingView[0].progress = 1.0 - (CGFloat(self.timeRemaining) / CGFloat(self.timeMax)) // updated constantly
+		//}
 	}
 	
 	func resetTimer() {

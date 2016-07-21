@@ -69,7 +69,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Spring.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SwiftyTimer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SwiftyUserDefaults.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -77,12 +87,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>151536DDB1417C150DFA9BC2610A7CF0</key>
+		<key>0C56872A10F6F234655F9C503B381EAE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1A42848772421DA1E9562BB704C342C1</key>
+		<key>0E27016FBF20A09E7F69C8DDC6539E9B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,7 +122,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5D690AB9A8CBD2259C660C38724B7D6C</key>
+		<key>561E86B8FEE1780440A0331273AE602E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5AEFAD0A223612E7A7A48A9DA88620A8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -122,17 +137,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7E43E50764BD52F2526B706AF40326B4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7E615C8DC8A0C57B0D4CA565380724ED</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>905833B1C9F4AC05AFA21DAB576E8143</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9C6461675A616A818D9D318F2A00BBDC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -142,7 +152,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>B9127453A119063BE1FBA100C3D19C17</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>CB1323C43CF15802C419AEA24C649A40</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F413E3383B7C352AE005A85F0A13CB84</key>
 		<dict>
 			<key>primary</key>
 			<true/>
