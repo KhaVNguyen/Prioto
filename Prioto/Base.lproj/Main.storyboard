@@ -44,8 +44,8 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Text" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9bF-aM-rXF">
-                                            <rect key="frame" x="18" y="14" width="76" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                            <rect key="frame" x="18" y="13" width="69" height="24"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -80,7 +80,8 @@
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="bCg-qv-ilA">
+                            <barButtonItem image="newNote" id="bCg-qv-ilA">
+                                <color key="tintColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <segue destination="etP-fC-i0u" kind="show" identifier="addNewTaskSegue" id="OHH-pX-crZ"/>
                                 </connections>
@@ -110,19 +111,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="vyD-Pv-lHq">
-                                <rect key="frame" x="140" y="291" width="320" height="216"/>
+                                <rect key="frame" x="140" y="234" width="320" height="216"/>
                                 <date key="date" timeIntervalSinceReferenceDate="490059728.98059303">
                                     <!--2016-07-12 23:42:08 +0000-->
                                 </date>
                             </datePicker>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Task Title" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="UJW-Cp-DCk">
-                                <rect key="frame" x="20" y="74" width="560" height="90"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Task Title" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="UJW-Cp-DCk">
+                                <rect key="frame" x="20" y="74" width="560" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="UJW-Cp-DCk" secondAttribute="height" multiplier="1:1" id="Rli-Vl-g3S"/>
                                     <constraint firstAttribute="width" constant="97" id="cBq-fY-27z"/>
                                     <constraint firstAttribute="height" constant="100" id="gPr-T6-3NY"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="25"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -133,27 +134,27 @@
                                 </variation>
                             </textField>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ng2-m0-ZGS">
-                                <rect key="frame" x="20" y="222" width="560" height="29"/>
+                                <rect key="frame" x="20" y="162" width="560" height="29"/>
                                 <segments>
                                     <segment title="Important"/>
                                     <segment title="Not Important"/>
                                 </segments>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Vt5-sH-FQe">
-                                <rect key="frame" x="20" y="179" width="560" height="29"/>
+                                <rect key="frame" x="20" y="119" width="560" height="29"/>
                                 <segments>
                                     <segment title="Urgent"/>
                                     <segment title="Not Urgent"/>
                                 </segments>
                             </segmentedControl>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Task Details" translatesAutoresizingMaskIntoConstraints="NO" id="610-sX-7gg">
-                                <rect key="frame" x="30" y="517" width="540" height="34"/>
+                                <rect key="frame" x="30" y="460" width="540" height="91"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxE-2L-Q3M">
-                                <rect key="frame" x="20" y="270" width="600" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="20" y="210" width="600" height="24"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -190,6 +191,7 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="6o1-dk-k3r"/>
+                                <exclude reference="Lpb-4O-2WL"/>
                                 <exclude reference="YG4-Wh-Dua"/>
                                 <exclude reference="Y2R-Lv-KYb"/>
                                 <exclude reference="guh-db-Re5"/>
@@ -226,7 +228,7 @@
         <scene sceneID="iGX-3F-t2n">
             <objects>
                 <navigationController title="Tasks" automaticallyAdjustsScrollViewInsets="NO" id="aAb-X6-0MN" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="oLt-T7-Jbf"/>
+                    <tabBarItem key="tabBarItem" title="Tasks" image="Tasks" id="oLt-T7-Jbf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zHK-Uh-G2V">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -257,12 +259,12 @@
                                 <rect key="frame" x="199" y="199" width="202" height="202"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Left" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFe-sf-x2M">
-                                        <rect key="frame" x="30" y="76" width="142" height="51"/>
+                                        <rect key="frame" x="43" y="76" width="117" height="39"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" priority="750" constant="300" id="nal-D3-WPY"/>
-                                            <constraint firstAttribute="height" priority="750" constant="100" id="oZg-br-IlE"/>
+                                            <constraint firstAttribute="width" priority="750" constant="117" id="nal-D3-WPY"/>
+                                            <constraint firstAttribute="height" priority="750" constant="39" id="oZg-br-IlE"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="28"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -270,14 +272,14 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="jFe-sf-x2M" firstAttribute="centerY" secondItem="zoa-5l-nwl" secondAttribute="centerY" id="21D-Ip-KzJ"/>
+                                    <constraint firstItem="jFe-sf-x2M" firstAttribute="centerY" secondItem="zoa-5l-nwl" secondAttribute="centerY" constant="-5.5" id="21D-Ip-KzJ"/>
                                     <constraint firstAttribute="height" priority="750" constant="1000" id="2pR-8s-SvK"/>
-                                    <constraint firstItem="jFe-sf-x2M" firstAttribute="height" secondItem="zoa-5l-nwl" secondAttribute="height" multiplier="0.25" id="CVS-Nn-cIg"/>
+                                    <constraint firstItem="jFe-sf-x2M" firstAttribute="height" secondItem="zoa-5l-nwl" secondAttribute="height" multiplier="0.25" constant="-11.5" id="CVS-Nn-cIg"/>
                                     <constraint firstAttribute="width" secondItem="zoa-5l-nwl" secondAttribute="height" multiplier="1:1" id="Fg4-qd-IUq"/>
                                     <constraint firstItem="jFe-sf-x2M" firstAttribute="centerX" secondItem="zoa-5l-nwl" secondAttribute="centerX" id="PE7-yk-VG8"/>
                                     <constraint firstAttribute="width" secondItem="zoa-5l-nwl" secondAttribute="height" multiplier="1:1" id="VSq-ud-QXp"/>
                                     <constraint firstAttribute="width" priority="750" constant="1000" id="g9R-xq-hem"/>
-                                    <constraint firstItem="jFe-sf-x2M" firstAttribute="width" secondItem="zoa-5l-nwl" secondAttribute="width" multiplier="0.7" id="hQ2-Sm-M78"/>
+                                    <constraint firstItem="jFe-sf-x2M" firstAttribute="width" secondItem="zoa-5l-nwl" secondAttribute="width" multiplier="0.8" constant="-44.600000000000023" id="hQ2-Sm-M78"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -286,21 +288,25 @@
                                 </variation>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="liu-xl-RZd">
-                                <rect key="frame" x="174" y="451" width="252" height="40"/>
+                                <rect key="frame" x="189" y="441" width="222" height="111"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="49x-wS-QRy" userLabel="Start">
-                                        <rect key="frame" x="0.0" y="0.0" width="126" height="40"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <state key="normal" title="Start"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="49x-wS-QRy" userLabel="Start">
+                                        <rect key="frame" x="0.0" y="0.0" width="111" height="111"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="49x-wS-QRy" secondAttribute="height" multiplier="1:1" id="Vqd-cw-mtL"/>
+                                        </constraints>
+                                        <state key="normal" image="Play"/>
                                         <connections>
                                             <action selector="startPauseButtonPressed:" destination="zDZ-FL-W2b" eventType="touchUpInside" id="tha-8e-ymQ"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Um-e9-LB6">
-                                        <rect key="frame" x="126" y="0.0" width="126" height="40"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Um-e9-LB6">
+                                        <rect key="frame" x="111" y="0.0" width="111" height="111"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <state key="normal" title="Restart"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="1Um-e9-LB6" secondAttribute="height" multiplier="1:1" id="jbo-nb-ZLA"/>
+                                        </constraints>
+                                        <state key="normal" image="Restart"/>
                                         <connections>
                                             <action selector="restartButtonPressed:" destination="zDZ-FL-W2b" eventType="touchUpInside" id="8CD-U7-Kva"/>
                                         </connections>
@@ -309,11 +315,20 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="49x-wS-QRy" firstAttribute="width" secondItem="1Um-e9-LB6" secondAttribute="width" id="3EB-84-cLg"/>
+                                    <constraint firstItem="1Um-e9-LB6" firstAttribute="height" secondItem="49x-wS-QRy" secondAttribute="height" constant="1" id="nhc-Lt-ETR"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="nhc-Lt-ETR"/>
+                                    </mask>
+                                </variation>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P8N-wE-1SD">
-                                <rect key="frame" x="20" y="20" width="83" height="30"/>
-                                <state key="normal" title="Preferences"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P8N-wE-1SD">
+                                <rect key="frame" x="25" y="25" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="P8N-wE-1SD" secondAttribute="height" multiplier="1:1" id="fgo-Ny-hVE"/>
+                                </constraints>
+                                <state key="normal" image="Preferences"/>
                                 <connections>
                                     <action selector="preferencesButtonPressed:" destination="zDZ-FL-W2b" eventType="touchUpInside" id="giF-r2-9TX"/>
                                     <segue destination="sPf-pD-0Ab" kind="show" id="L05-pa-wcT"/>
@@ -322,16 +337,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="P8N-wE-1SD" firstAttribute="top" secondItem="XWl-mo-qJ9" secondAttribute="bottom" id="37R-nC-hzl"/>
+                            <constraint firstItem="P8N-wE-1SD" firstAttribute="top" secondItem="XWl-mo-qJ9" secondAttribute="bottom" constant="5" id="37R-nC-hzl"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="top" relation="greaterThanOrEqual" secondItem="XWl-mo-qJ9" secondAttribute="bottom" constant="100" id="5uO-qb-gfQ"/>
                             <constraint firstItem="l5M-1R-gDd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="zoa-5l-nwl" secondAttribute="bottom" constant="150" id="8WA-uy-xbN"/>
-                            <constraint firstItem="liu-xl-RZd" firstAttribute="width" secondItem="zoa-5l-nwl" secondAttribute="width" multiplier="1.25" id="EPA-6E-pFC"/>
+                            <constraint firstItem="liu-xl-RZd" firstAttribute="width" secondItem="zoa-5l-nwl" secondAttribute="width" multiplier="1.1" id="EPA-6E-pFC"/>
                             <constraint firstItem="liu-xl-RZd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="zoa-5l-nwl" secondAttribute="bottom" constant="30" id="EsL-0x-LDh"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="centerY" secondItem="5eh-35-kI9" secondAttribute="centerY" id="HIt-z6-fem"/>
-                            <constraint firstItem="P8N-wE-1SD" firstAttribute="leading" secondItem="5eh-35-kI9" secondAttribute="leadingMargin" id="IVF-pb-hxz"/>
+                            <constraint firstItem="P8N-wE-1SD" firstAttribute="leading" secondItem="5eh-35-kI9" secondAttribute="leadingMargin" constant="5" id="IVF-pb-hxz"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="centerY" secondItem="5eh-35-kI9" secondAttribute="centerY" id="KU5-fS-XXV"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="centerX" secondItem="5eh-35-kI9" secondAttribute="centerX" id="SfB-cr-qGw"/>
-                            <constraint firstItem="liu-xl-RZd" firstAttribute="top" secondItem="zoa-5l-nwl" secondAttribute="bottom" constant="50" id="WXD-vx-2A1"/>
+                            <constraint firstItem="P8N-wE-1SD" firstAttribute="width" secondItem="5eh-35-kI9" secondAttribute="width" multiplier="0.1" id="Tnp-MR-UqB"/>
+                            <constraint firstItem="liu-xl-RZd" firstAttribute="top" secondItem="zoa-5l-nwl" secondAttribute="bottom" constant="40" id="WXD-vx-2A1"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="centerY" secondItem="5eh-35-kI9" secondAttribute="centerY" id="X84-55-jt6"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="zoa-5l-nwl" secondAttribute="trailing" constant="30" id="aCZ-WW-An5"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="height" secondItem="5eh-35-kI9" secondAttribute="height" id="k04-jT-nt5"/>
@@ -347,10 +363,11 @@
                                 <exclude reference="k04-jT-nt5"/>
                                 <exclude reference="v0q-ZK-WRn"/>
                                 <exclude reference="EsL-0x-LDh"/>
+                                <exclude reference="kLQ-GB-jYX"/>
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="Z4f-fp-Pc2"/>
+                    <tabBarItem key="tabBarItem" title="Timer" image="Timer" id="Z4f-fp-Pc2"/>
                     <connections>
                         <outlet property="startPauseButton" destination="49x-wS-QRy" id="Rsk-Fy-s5G"/>
                         <outlet property="timeLeftLabel" destination="jFe-sf-x2M" id="ITf-ZU-0aP"/>
@@ -373,16 +390,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="P6a-1X-dUd" userLabel="WorkDuration">
-                                <rect key="frame" x="140" y="94" width="320" height="237"/>
+                                <rect key="frame" x="140" y="94" width="320" height="242"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Work Duration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4l5-VE-tfy">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="26"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="atg-6M-Dpv" userLabel="WorkDurationPickerView">
-                                        <rect key="frame" x="0.0" y="21" width="320" height="216"/>
+                                        <rect key="frame" x="0.0" y="26" width="320" height="216"/>
                                     </pickerView>
                                 </subviews>
                                 <constraints>
@@ -390,16 +407,16 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kN6-MM-c0e" userLabel="BreakDuration">
-                                <rect key="frame" x="140" y="361" width="320" height="237"/>
+                                <rect key="frame" x="140" y="366" width="320" height="242"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Break Duration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jqq-nx-LBK">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="26"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b2t-V1-Djo" userLabel="BreakDurationPickerView">
-                                        <rect key="frame" x="0.0" y="21" width="320" height="216"/>
+                                        <rect key="frame" x="0.0" y="26" width="320" height="216"/>
                                     </pickerView>
                                 </subviews>
                                 <constraints>
@@ -476,6 +493,14 @@
             <point key="canvasLocation" x="-993" y="1325"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Play" width="34" height="40"/>
+        <image name="Preferences" width="42" height="43"/>
+        <image name="Restart" width="35" height="35"/>
+        <image name="Tasks" width="35" height="23"/>
+        <image name="Timer" width="30" height="31"/>
+        <image name="newNote" width="25" height="25"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="zSj-MT-0dh"/>
     </inferredMetricsTieBreakers>

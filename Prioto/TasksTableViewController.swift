@@ -217,7 +217,7 @@ class TasksTableViewController: UITableViewController {
 		let task = self.taskForIndexPath(indexPath)
 				
 		//configure left buttons
-		cell.leftButtons = [MGSwipeButton(title: "Done", backgroundColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0), callback: {
+		cell.leftButtons = [MGSwipeButton(title: "", icon: UIImage(named:"completeTask.png"), backgroundColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0), callback: {
 			(sender: MGSwipeTableCell!) -> Bool in
 			try! self.realm.write() {
 				let task = self.taskForIndexPath(indexPath)
@@ -227,7 +227,7 @@ class TasksTableViewController: UITableViewController {
 			return true
 			})]
 		cell.leftSwipeSettings.transition = MGSwipeTransition.Border
-		cell.rightButtons = [MGSwipeButton(title: "Delete", backgroundColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0), callback: {
+		cell.rightButtons = [MGSwipeButton(title: "", icon: UIImage(named:"deleteTask.png"), backgroundColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0), callback: {
 			(sender: MGSwipeTableCell!) -> Bool in
 			RealmHelper.deleteTask(self.taskForIndexPath(indexPath)!)
 			return true
