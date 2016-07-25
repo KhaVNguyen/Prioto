@@ -6,7 +6,6 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Tab Bar Controller-->
@@ -74,24 +73,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="vhh-F0-hsG">
-                        <barButtonItem key="leftBarButtonItem" title="Delete All" id="wAh-nl-dev">
+                        <barButtonItem key="rightBarButtonItem" image="newNote" id="bCg-qv-ilA">
+                            <color key="tintColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="deleteAllButtonTapped:" destination="d7n-i7-5Vo" id="LPP-KN-pyn"/>
+                                <segue destination="etP-fC-i0u" kind="show" identifier="addNewTaskSegue" id="OHH-pX-crZ"/>
                             </connections>
                         </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem image="newNote" id="bCg-qv-ilA">
-                                <color key="tintColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <segue destination="etP-fC-i0u" kind="show" identifier="addNewTaskSegue" id="OHH-pX-crZ"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Fill" id="Qju-Y2-Ica">
-                                <connections>
-                                    <action selector="fillButtonTapped:" destination="d7n-i7-5Vo" id="uo3-Bl-Tly"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LIG-Z3-2mm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -116,7 +103,7 @@
                                     <!--2016-07-12 23:42:08 +0000-->
                                 </date>
                             </datePicker>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Task Title" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="UJW-Cp-DCk">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Task Title" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="UJW-Cp-DCk">
                                 <rect key="frame" x="20" y="74" width="560" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="UJW-Cp-DCk" secondAttribute="height" multiplier="1:1" id="Rli-Vl-g3S"/>
@@ -259,36 +246,46 @@
                                 <rect key="frame" x="199" y="199" width="202" height="202"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Left" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFe-sf-x2M">
-                                        <rect key="frame" x="43" y="76" width="117" height="39"/>
+                                        <rect key="frame" x="21" y="76" width="161" height="51"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" priority="750" constant="117" id="nal-D3-WPY"/>
+                                            <constraint firstAttribute="width" priority="750" constant="140" id="nal-D3-WPY"/>
                                             <constraint firstAttribute="height" priority="750" constant="39" id="oZg-br-IlE"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="28"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="nal-D3-WPY"/>
+                                                <exclude reference="oZg-br-IlE"/>
+                                            </mask>
+                                        </variation>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="jFe-sf-x2M" firstAttribute="centerY" secondItem="zoa-5l-nwl" secondAttribute="centerY" constant="-5.5" id="21D-Ip-KzJ"/>
+                                    <constraint firstItem="jFe-sf-x2M" firstAttribute="centerY" secondItem="zoa-5l-nwl" secondAttribute="centerY" id="21D-Ip-KzJ"/>
                                     <constraint firstAttribute="height" priority="750" constant="1000" id="2pR-8s-SvK"/>
-                                    <constraint firstItem="jFe-sf-x2M" firstAttribute="height" secondItem="zoa-5l-nwl" secondAttribute="height" multiplier="0.25" constant="-11.5" id="CVS-Nn-cIg"/>
+                                    <constraint firstItem="jFe-sf-x2M" firstAttribute="height" secondItem="zoa-5l-nwl" secondAttribute="height" multiplier="0.25" id="CVS-Nn-cIg"/>
+                                    <constraint firstItem="jFe-sf-x2M" firstAttribute="centerX" secondItem="zoa-5l-nwl" secondAttribute="centerX" id="EAF-1x-c2D"/>
                                     <constraint firstAttribute="width" secondItem="zoa-5l-nwl" secondAttribute="height" multiplier="1:1" id="Fg4-qd-IUq"/>
                                     <constraint firstItem="jFe-sf-x2M" firstAttribute="centerX" secondItem="zoa-5l-nwl" secondAttribute="centerX" id="PE7-yk-VG8"/>
                                     <constraint firstAttribute="width" secondItem="zoa-5l-nwl" secondAttribute="height" multiplier="1:1" id="VSq-ud-QXp"/>
                                     <constraint firstAttribute="width" priority="750" constant="1000" id="g9R-xq-hem"/>
-                                    <constraint firstItem="jFe-sf-x2M" firstAttribute="width" secondItem="zoa-5l-nwl" secondAttribute="width" multiplier="0.8" constant="-44.600000000000023" id="hQ2-Sm-M78"/>
+                                    <constraint firstItem="jFe-sf-x2M" firstAttribute="width" secondItem="zoa-5l-nwl" secondAttribute="width" multiplier="0.8" id="hQ2-Sm-M78"/>
+                                    <constraint firstItem="jFe-sf-x2M" firstAttribute="centerY" secondItem="zoa-5l-nwl" secondAttribute="centerY" id="qZE-nU-Mho"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="VSq-ud-QXp"/>
+                                        <exclude reference="PE7-yk-VG8"/>
+                                        <exclude reference="qZE-nU-Mho"/>
                                     </mask>
                                 </variation>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="liu-xl-RZd">
-                                <rect key="frame" x="189" y="441" width="222" height="111"/>
+                                <rect key="frame" x="189" y="451" width="222" height="111"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="49x-wS-QRy" userLabel="Start">
                                         <rect key="frame" x="0.0" y="0.0" width="111" height="111"/>
@@ -334,11 +331,18 @@
                                     <segue destination="sPf-pD-0Ab" kind="show" id="L05-pa-wcT"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="typeLabel" text="Work" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YkB-RK-Hbr">
+                                <rect key="frame" x="270" y="114" width="61" height="35"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="P8N-wE-1SD" firstAttribute="top" secondItem="XWl-mo-qJ9" secondAttribute="bottom" constant="5" id="37R-nC-hzl"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="top" relation="greaterThanOrEqual" secondItem="XWl-mo-qJ9" secondAttribute="bottom" constant="100" id="5uO-qb-gfQ"/>
+                            <constraint firstItem="zoa-5l-nwl" firstAttribute="centerX" secondItem="5eh-35-kI9" secondAttribute="centerX" id="6Eg-ZT-gZN"/>
                             <constraint firstItem="l5M-1R-gDd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="zoa-5l-nwl" secondAttribute="bottom" constant="150" id="8WA-uy-xbN"/>
                             <constraint firstItem="liu-xl-RZd" firstAttribute="width" secondItem="zoa-5l-nwl" secondAttribute="width" multiplier="1.1" id="EPA-6E-pFC"/>
                             <constraint firstItem="liu-xl-RZd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="zoa-5l-nwl" secondAttribute="bottom" constant="30" id="EsL-0x-LDh"/>
@@ -347,18 +351,23 @@
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="centerY" secondItem="5eh-35-kI9" secondAttribute="centerY" id="KU5-fS-XXV"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="centerX" secondItem="5eh-35-kI9" secondAttribute="centerX" id="SfB-cr-qGw"/>
                             <constraint firstItem="P8N-wE-1SD" firstAttribute="width" secondItem="5eh-35-kI9" secondAttribute="width" multiplier="0.1" id="Tnp-MR-UqB"/>
-                            <constraint firstItem="liu-xl-RZd" firstAttribute="top" secondItem="zoa-5l-nwl" secondAttribute="bottom" constant="40" id="WXD-vx-2A1"/>
+                            <constraint firstItem="liu-xl-RZd" firstAttribute="top" secondItem="zoa-5l-nwl" secondAttribute="bottom" constant="50" id="WXD-vx-2A1"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="centerY" secondItem="5eh-35-kI9" secondAttribute="centerY" id="X84-55-jt6"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="zoa-5l-nwl" secondAttribute="trailing" constant="30" id="aCZ-WW-An5"/>
+                            <constraint firstItem="zoa-5l-nwl" firstAttribute="centerY" secondItem="5eh-35-kI9" secondAttribute="centerY" id="bqz-Hb-KWU"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="height" secondItem="5eh-35-kI9" secondAttribute="height" id="k04-jT-nt5"/>
                             <constraint firstItem="liu-xl-RZd" firstAttribute="height" secondItem="zoa-5l-nwl" secondAttribute="height" multiplier="0.2" id="kLQ-GB-jYX"/>
+                            <constraint firstItem="YkB-RK-Hbr" firstAttribute="centerX" secondItem="zoa-5l-nwl" secondAttribute="centerX" id="pOd-lv-SP7"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5eh-35-kI9" secondAttribute="leadingMargin" constant="30" id="stv-cq-Vq0"/>
                             <constraint firstItem="liu-xl-RZd" firstAttribute="centerX" secondItem="5eh-35-kI9" secondAttribute="centerX" id="ulv-ZM-AQu"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="width" secondItem="5eh-35-kI9" secondAttribute="width" id="v0q-ZK-WRn"/>
+                            <constraint firstItem="zoa-5l-nwl" firstAttribute="top" secondItem="YkB-RK-Hbr" secondAttribute="bottom" constant="50" id="yU6-yO-awv"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="HIt-z6-fem"/>
                                 <exclude reference="KU5-fS-XXV"/>
+                                <exclude reference="SfB-cr-qGw"/>
                                 <exclude reference="X84-55-jt6"/>
                                 <exclude reference="k04-jT-nt5"/>
                                 <exclude reference="v0q-ZK-WRn"/>
@@ -371,6 +380,7 @@
                     <connections>
                         <outlet property="startPauseButton" destination="49x-wS-QRy" id="Rsk-Fy-s5G"/>
                         <outlet property="timeLeftLabel" destination="jFe-sf-x2M" id="ITf-ZU-0aP"/>
+                        <outlet property="typeLabel" destination="YkB-RK-Hbr" id="CXH-7p-1BA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KRp-fe-VtH" userLabel="First Responder" sceneMemberID="firstResponder"/>

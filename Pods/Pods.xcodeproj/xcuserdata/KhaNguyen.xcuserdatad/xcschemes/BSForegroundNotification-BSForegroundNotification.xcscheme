@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '1F993103E3B314511E1ED9528FA3B3A7'
-               BlueprintName = 'SWTableViewCell'
+               BlueprintIdentifier = '82EE5ECBE3CD6B100D413A8AA9EE2E0D'
+               BlueprintName = 'BSForegroundNotification-BSForegroundNotification'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SWTableViewCell.framework'>
+               BuildableName = 'BSForegroundNotification.bundle'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

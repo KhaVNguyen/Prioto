@@ -14,6 +14,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>BSForegroundNotification-BSForegroundNotification.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>BSForegroundNotification.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>CircleProgressView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -87,12 +97,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0C56872A10F6F234655F9C503B381EAE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>0E27016FBF20A09E7F69C8DDC6539E9B</key>
+		<key>1F993103E3B314511E1ED9528FA3B3A7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -103,6 +108,11 @@
 			<true/>
 		</dict>
 		<key>2F991CF3C026C746D3FB683C5359E543</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>313C32F58AD9FFA8687AB0ED4E6FC12F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -122,12 +132,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>561E86B8FEE1780440A0331273AE602E</key>
+		<key>5556F4210AAAFB60D2838E40C1F0AC20</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5AEFAD0A223612E7A7A48A9DA88620A8</key>
+		<key>5F209C9B483E1EE4B338BF8CE6A2188F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -137,12 +147,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>905833B1C9F4AC05AFA21DAB576E8143</key>
+		<key>753AC0B6F6A29EAFF234014999957FAB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9C6461675A616A818D9D318F2A00BBDC</key>
+		<key>82EE5ECBE3CD6B100D413A8AA9EE2E0D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>905833B1C9F4AC05AFA21DAB576E8143</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -152,7 +167,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B9127453A119063BE1FBA100C3D19C17</key>
+		<key>A9DDE0C240C5069F51176403E22AF544</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C91A8861FD49612C3FE7CB898F29D121</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -162,7 +182,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F413E3383B7C352AE005A85F0A13CB84</key>
+		<key>FFE4A2B81AC6459591EB533FC4D06CA2</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -26,8 +26,8 @@ class PreferencesViewController: UIViewController, UIPickerViewDelegate, UIPicke
 //	var workDurations: [Int] = [20, 25, 30, 35, 40, 45, 50, 55, 60, 70, 80, 90, 120] // in minutes
 //	var breakDurations:[Int] = [1, 2, 3, 4, 5, 10, 15, 20, 25, 30, 60, 90, 120]
 	
-	var workDurations: [Int] = [60,1200, 1500, 1800, 2100, 2400, 2700, 3000, 3300, 3600, 4200, 4800, 5400, 7200] // in seconds
-	var breakDurations: [Int] = [60, 120, 180, 240, 300, 600, 900, 1200, 1500, 1800, 3600, 5400, 7200]
+	var workDurations: [Int] = [10,1200, 1500, 1800, 2100, 2400, 2700, 3000, 3300, 3600, 4200, 4800, 5400, 7200] // in seconds
+	var breakDurations: [Int] = [10, 120, 180, 240, 300, 600, 900, 1200, 1500, 1800, 3600, 5400, 7200]
 	
 	var selectedWorkDuration: Int = 1500
 	var selectedBreakDuration: Int = 300

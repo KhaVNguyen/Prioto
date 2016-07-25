@@ -11,8 +11,10 @@ import SwiftyTimer
 import ConcentricProgressRingView
 import LionheartExtensions
 import SwiftyUserDefaults
+import BSForegroundNotification
+import AudioToolbox
 
-class NewFocusViewController: UIViewController {
+class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate {
 	
 	enum TimerType : String {
 		case Work = "Work"
@@ -23,6 +25,8 @@ class NewFocusViewController: UIViewController {
 	
 	var progressRingView: ConcentricProgressRingView!
 
+	@IBOutlet weak var typeLabel: UILabel!
+	
 	var timeRemaining: Double!
 	var timeMax: Double!
 	
@@ -37,18 +41,27 @@ class NewFocusViewController: UIViewController {
 	var counting: Bool = false
 	
 	var timerType: TimerType!
+	var typeName: String!
+	
+	var localNotification: UILocalNotification?
+	var localNotificationEndDate: NSDate!
+	var willDisplayForegroundNotification: Bool = true
 	
 	@IBOutlet weak var startPauseButton: UIButton!
 	
 	@IBAction func startPauseButtonPressed(sender: AnyObject) {
 		if self.counting {
 			self.timer?.invalidate()
+			UIApplication.sharedApplication().cancelAllLocalNotifications()
+			self.willDisplayForegroundNotification = false
 			self.counting = false
 			startPauseButton.setTitle("Resume", forState: .Normal)
 			startPauseButton.setImage(UIImage(named: "Play.png"), forState: .Normal)
 		}
 		else {
+			setupLocalNotifications()
 			self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(NewFocusViewController.countdown), userInfo: nil, repeats: true)
+			self.willDisplayForegroundNotification = true
 			self.counting = true
 			startPauseButton.setTitle("Pause", forState: .Normal)
 			startPauseButton.setImage(UIImage(named: "Pause.png"), forState: .Normal)
@@ -58,14 +71,20 @@ class NewFocusViewController: UIViewController {
 	
 	@IBAction func restartButtonPressed(sender: AnyObject) {
 		self.timer?.invalidate()
+		UIApplication.sharedApplication().cancelAllLocalNotifications()
 		self.timeRemaining = Double(self.timeMax)
 		self.counting = false
+		self.willDisplayForegroundNotification = false
 		self.updateTimer()
 		self.startPauseButton.setTitle("Start", forState: .Normal)
 		startPauseButton.setImage(UIImage(named: "Play.png"), forState: .Normal)
 	}
 	
 	override func viewDidLoad() {
+		
+		let settings = UIUserNotificationSettings(forTypes: [.Badge, .Sound, .Alert], categories: nil)
+		UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+		
 		let margin: CGFloat = 1
 		let radius: CGFloat = 130
 		
@@ -90,8 +109,11 @@ class NewFocusViewController: UIViewController {
 		self.workTimeMax = Defaults[.workDuration]
 		self.breakTimeMax = Defaults[.breakDuration]
 		timerType = TimerType.Work
+		self.typeName = "Work"
+		self.typeLabel.text = self.typeName
 		self.setTimeBasedOnTimerType(self.timerType)
 		self.resetTimer()
+		
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewFocusViewController.didReopenApp), name: "didReopenApp", object: nil)
 	}
 	
@@ -123,10 +145,11 @@ class NewFocusViewController: UIViewController {
 			self.workTimeMax = Defaults[.workDuration]
 			self.breakTimeMax = Defaults[.breakDuration]
 			self.setTimeBasedOnTimerType(self.timerType)
-			self.resetTimer()
 			self.timer?.invalidate()
 			self.counting = false
-			self.updateTimer()
+			self.willDisplayForegroundNotification = false
+			self.resetTimer()
+			self.timerType = TimerType.Work
 			self.startPauseButton.setTitle("Start", forState: .Normal)
 			startPauseButton.setImage(UIImage(named: "Play.png"), forState: .Normal)
 		}
@@ -135,51 +158,111 @@ class NewFocusViewController: UIViewController {
 	func countdown() { // gets called by timer every second
 		self.timeRemaining = timeRemaining - 1 // decrement timeRemaining integer
 		self.updateTimer()
-		if self.timeRemaining <= 0 {
-			self.switchTimerType()
+		if self.timeRemaining == 0 {
+			AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
 		}
+		if self.timeRemaining < 0 {
+			self.switchTimerType()
+			setupLocalNotifications()
+		}
+		print("counting down")
 	}
 	
 	func switchTimerType() {
 		if self.timerType == TimerType.Work {
 			self.timerType = TimerType.Break
+			self.typeName = "Break"
 		}
 		else if self.timerType == TimerType.Break {
 			self.timerType = TimerType.Work
+			self.typeName = "Work"
 		}
 		setTimeBasedOnTimerType(self.timerType)
 		resetTimer()
 	}
 	
 	func updateTimer() {
-		self.timeLeftLabel.text = formatSecondsAsTimeString(timeRemaining)
+		self.timeLeftLabel.text = formatSecondsAsTimeString(self.timeRemaining)
 
 		self.progressRingView[1].progress = 1.0 - ((CGFloat(self.timeRemaining) % 60.0) / 60.0)
+		
 		
 		if timeRemaining == timeMax {
 			self.progressRingView[1].progress = 0.0
 		}
+		
+		self.progressRingView[0].progress = 1.0 - (CGFloat(self.timeRemaining) / CGFloat(self.timeMax))
 	}
 	
 	func resetTimer() {
 		self.timeLeftLabel.text = formatSecondsAsTimeString(timeMax)
 		self.timeRemaining = self.timeMax
+		self.typeLabel.text = self.typeName
+		updateTimer()
 	}
 	
 	
 	func formatSecondsAsTimeString(time: Double) -> String {
-		let hours = Int(time) / 3600
-		let minutes = Int(time) / 60 % 60
-		let seconds = Int(time) % 60
+		let hours = Int(round(time)) / 3600
+		let minutes = Int(round(time)) / 60 % 60
+		let seconds = Int(round(time)) % 60
 		return String(format:"%02i:%02i:%02i", hours, minutes, seconds)
 	}
+	
 	
 	func setTimeBasedOnTimerType(timerType: TimerType) {
 		switch timerType {
 		case TimerType.Work:
 			self.timeMax = Double(self.workTimeMax)
+			self.typeName = "Work"
+			
 		case TimerType.Break:
 			self.timeMax = Double(self.breakTimeMax)
+			self.typeName = "Break"
 		}
 	}
+	
+	func setupLocalNotifications() {
+		UIApplication.sharedApplication().cancelAllLocalNotifications()
+		self.localNotification = UILocalNotification()
+		self.localNotificationEndDate = NSDate().dateByAddingTimeInterval(self.timeRemaining)
+		print("Current date: \(NSDate())")
+		let alertBody = "Time for " + self.typeName + " is up!"
+		let alertTitle = ""
+		self.localNotification!.fireDate = self.localNotificationEndDate
+		self.localNotification!.alertBody = alertBody
+		self.localNotification!.alertTitle = alertTitle
+		self.localNotification!.soundName = UILocalNotificationDefaultSoundName
+		self.localNotification!.category = "START_CATEGORY"
+		
+		UIApplication.sharedApplication().scheduleLocalNotification(self.localNotification!)
+		
+		
+//		let notification = BSForegroundNotification(localNotification: self.localNotification!) //local
+		let notification = BSForegroundNotification(userInfo: userInfoForCategory("ONE_BUTTON"))
+		
+
+		notification.timeToDismissNotification = NSTimeInterval(10)
+		// Delay 10 seconds
+		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(self.timeRemaining * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) { () -> Void in
+			if self.willDisplayForegroundNotification {
+				notification.presentNotification()
+			}
+		}
+		notification.delegate = self
+	}
+	
+	private func userInfoForCategory(category: String) -> [NSObject: AnyObject] {
+		
+		return ["aps": [
+			"category": category,
+			"alert": [
+				"body": "Time for " + self.typeName + " is up!",
+				"title": "Prioto"
+			],
+			"sound": "sound.wav"
+			]
+		]
+	}
+
 }

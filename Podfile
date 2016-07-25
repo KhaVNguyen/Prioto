@@ -20,6 +20,8 @@ pod "ConcentricProgressRingView"
 pod "LionheartExtensions"
 pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift2'
 pod 'SwiftyUserDefaults'
+pod "BSForegroundNotification"
+
 
 
 end
