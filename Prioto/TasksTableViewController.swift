@@ -52,6 +52,7 @@ class TasksTableViewController: UITableViewController {
 	var priorityIndexes = [0, 1, 2, 3]
 	var priorityTitles = ["Urgent | Important", "Urgent | Not Important", "Not Urgent | Important", "Not Urgent | Not Important"]
 	var tasksByPriority = [Results<Task>]()
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -73,6 +74,9 @@ class TasksTableViewController: UITableViewController {
 		var leftButton = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("showEditing:"))
 		self.navigationItem.leftBarButtonItem = leftButton
 		
+		let nib = UINib(nibName: "PriorityHeaderView", bundle: nil)
+		tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "PriorityHeaderView")
+		
 		tableView.reloadData()
 		
 		// long press drag and drop gesture recognizer
@@ -80,27 +84,27 @@ class TasksTableViewController: UITableViewController {
 		tableView.addGestureRecognizer(longpress)
 	}
 	
-	func showEditing(sender: UIBarButtonItem) {
-		if(self.tableView.editing == true)
-		{
-			self.tableView.editing = false
-			self.navigationItem.leftBarButtonItem?.title = "Done"
-		}
-		else
-		{
-			self.tableView.editing = true
-			self.navigationItem.leftBarButtonItem?.title = "Edit"
-		}
-	}
+//	func showEditing(sender: UIBarButtonItem) {
+//		if(self.tableView.editing == true)
+//		{
+//			self.tableView.editing = false
+//			self.navigationItem.leftBarButtonItem?.title = "Done"
+//		}
+//		else
+//		{
+//			self.tableView.editing = true
+//			self.navigationItem.leftBarButtonItem?.title = "Edit"
+//		}
+//	}
 	
-	override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-		if editingStyle == .Delete {
-			// Delete the row from the data source
-			RealmHelper.deleteTask(self.taskForIndexPath(indexPath)!)
-		} else if editingStyle == .Insert {
-			// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-		}
-	}
+//	override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+//		if editingStyle == .Delete {
+//			// Delete the row from the data source
+//			RealmHelper.deleteTask(self.taskForIndexPath(indexPath)!)
+//		} else if editingStyle == .Insert {
+//			// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+//		}
+//	}
 	
 	func longPressGestureRecognized(gestureRecognizer: UIGestureRecognizer) {
 		let longPress = gestureRecognizer as! UILongPressGestureRecognizer
@@ -159,6 +163,7 @@ class TasksTableViewController: UITableViewController {
 				
 				if ((indexPath != nil) && (indexPath != Path.initialIndexPath)) {
 					//itemsArray.insert(itemsArray.removeAtIndex(Path.initialIndexPath!.row), atIndex: indexPath!.row)
+					tasksByPriority
 					try! realm.write() {
 						taskForIndexPath(Path.initialIndexPath!)?.priorityIndex = indexPath!.section
 						tableView.reloadData()
@@ -233,6 +238,19 @@ class TasksTableViewController: UITableViewController {
 	
 	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		return priorityTitles[section]
+	}
+	
+	override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+		// Here, we use NSFetchedResultsController
+		// And we simply use the section name as title
+		let title = priorityTitles[section]
+		
+		// Dequeue with the reuse identifier
+		let cell = self.tableView.dequeueReusableHeaderFooterViewWithIdentifier("PriorityHeaderView")
+		let header = cell as! PriorityHeaderView
+		header.priorityLabel.text = title
+		
+		return cell
 	}
 	
 

@@ -6,6 +6,7 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Tab Bar Controller-->
@@ -72,14 +73,30 @@
                             <outlet property="delegate" destination="d7n-i7-5Vo" id="xum-Zm-chv"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="agc-Df-P0Z"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="vhh-F0-hsG">
-                        <barButtonItem key="rightBarButtonItem" image="newNote" id="bCg-qv-ilA">
-                            <color key="tintColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <barButtonItem key="leftBarButtonItem" title="Delete All" id="DpO-Wu-cnY">
                             <connections>
-                                <segue destination="etP-fC-i0u" kind="show" identifier="addNewTaskSegue" id="OHH-pX-crZ"/>
+                                <action selector="deleteAllButtonTapped:" destination="d7n-i7-5Vo" id="2eB-a6-W4P"/>
                             </connections>
                         </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="newNote" id="bCg-qv-ilA">
+                                <color key="tintColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <segue destination="etP-fC-i0u" kind="show" identifier="addNewTaskSegue" id="OHH-pX-crZ"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Fill" id="tlk-iS-38v">
+                                <connections>
+                                    <action selector="fillButtonTapped:" destination="d7n-i7-5Vo" id="z9d-U9-2fJ"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LIG-Z3-2mm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
