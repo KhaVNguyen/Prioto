@@ -10,10 +10,6 @@ import UIKit
 
 class PriorityHeaderView: UITableViewHeaderFooterView {
 	
-	
-	@IBAction func priorityAddTaskButton(sender: AnyObject) {
-		
-	}
 	@IBOutlet weak var priorityLabel: UILabel!
 	
 
@@ -24,6 +20,5 @@ class PriorityHeaderView: UITableViewHeaderFooterView {
         // Drawing code
     }
     */
-	
 
 }

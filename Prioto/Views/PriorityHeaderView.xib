@@ -12,49 +12,47 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="30"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Urgent | Not Important" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evM-8U-9bG" userLabel="priorityLabel">
-                    <rect key="frame" x="8" y="6" width="174" height="17"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N4w-Sm-T4r">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="30"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Urgent | Not Important" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evM-8U-9bG" userLabel="priorityLabel">
+                            <rect key="frame" x="8" y="7" width="174" height="17"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="42" id="poX-vZ-HCG"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="poX-vZ-HCG"/>
+                                </mask>
+                            </variation>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="42" id="poX-vZ-HCG"/>
+                        <constraint firstItem="evM-8U-9bG" firstAttribute="leading" secondItem="N4w-Sm-T4r" secondAttribute="leadingMargin" id="4Vk-QY-Rml"/>
+                        <constraint firstItem="evM-8U-9bG" firstAttribute="bottom" secondItem="N4w-Sm-T4r" secondAttribute="bottomMargin" id="KYP-K3-8zG"/>
+                        <constraint firstItem="evM-8U-9bG" firstAttribute="centerY" secondItem="N4w-Sm-T4r" secondAttribute="centerY" id="WU3-Tj-Cue"/>
                     </constraints>
-                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
                     <variation key="default">
                         <mask key="constraints">
-                            <exclude reference="poX-vZ-HCG"/>
+                            <exclude reference="KYP-K3-8zG"/>
                         </mask>
                     </variation>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kKl-pl-er5">
-                    <rect key="frame" x="550" y="0.0" width="42" height="30"/>
-                    <state key="normal" title="+"/>
-                    <connections>
-                        <action selector="priorityAddTaskButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="gA0-jC-5Sb"/>
-                    </connections>
-                </button>
+                </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="evM-8U-9bG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="5JN-wG-9Ud"/>
-                <constraint firstItem="evM-8U-9bG" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="8cP-NO-44c"/>
-                <constraint firstAttribute="trailing" secondItem="kKl-pl-er5" secondAttribute="trailing" constant="8" id="Be5-uE-wtJ"/>
-                <constraint firstAttribute="trailing" secondItem="evM-8U-9bG" secondAttribute="trailing" constant="550" id="Ue2-Ne-VIA"/>
-                <constraint firstItem="kKl-pl-er5" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="YBf-bV-mBI"/>
-                <constraint firstItem="kKl-pl-er5" firstAttribute="leading" secondItem="evM-8U-9bG" secondAttribute="trailing" constant="500" id="ggW-qw-y4B"/>
-                <constraint firstItem="kKl-pl-er5" firstAttribute="centerY" secondItem="evM-8U-9bG" secondAttribute="centerY" id="htM-4o-uK6"/>
+                <constraint firstItem="N4w-Sm-T4r" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="HLp-um-Y5v"/>
+                <constraint firstItem="N4w-Sm-T4r" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="QN2-qe-Xwq"/>
+                <constraint firstItem="N4w-Sm-T4r" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="YYw-0a-bKG"/>
+                <constraint firstItem="N4w-Sm-T4r" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="cc9-1D-3Ru"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="Ue2-Ne-VIA"/>
-                    <exclude reference="Be5-uE-wtJ"/>
-                    <exclude reference="ggW-qw-y4B"/>
-                </mask>
-            </variation>
             <connections>
                 <outlet property="priorityLabel" destination="evM-8U-9bG" id="mgE-5Y-JcB"/>
             </connections>

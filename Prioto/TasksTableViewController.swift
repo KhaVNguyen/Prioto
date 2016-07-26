@@ -11,6 +11,46 @@ import MGSwipeTableCell
 import RealmSwift
 import Realm
 import AEAccordion
+import AudioToolbox
+
+class Task: Object {
+	dynamic var text: String = ""
+	dynamic var details: String = ""
+	dynamic var completed: Bool = false
+	dynamic var dueDate: NSDate? = nil
+	dynamic var priorityIndex: Int = 0
+	dynamic var dateCreated = NSDate()
+	
+	convenience init(text: String) {
+		self.init()
+		self.text = text
+	}
+	
+	convenience init(text: String, priority: Int) {
+		self.init()
+		self.text = text
+		self.priorityIndex = priority
+	}
+	
+	convenience init(task: Task, index: Int) {
+		self.init()
+		self.text = task.text
+		self.priorityIndex = index
+		self.details = task.details
+		self.completed = task.completed
+		self.dueDate = task.dueDate
+		self.dateCreated = task.dateCreated
+	}
+}
+
+class Priority: Object {
+	dynamic var name = ""
+	let tasks = List<Task>()
+}
+
+class TasksByPriority: Object {
+	let priorities = List<Priority>()
+}
 
 class TasksTableViewController: UITableViewController {
 	
@@ -51,11 +91,26 @@ class TasksTableViewController: UITableViewController {
 	var notificationToken: NotificationToken?
 	var priorityIndexes = [0, 1, 2, 3]
 	var priorityTitles = ["Urgent | Important", "Urgent | Not Important", "Not Urgent | Important", "Not Urgent | Not Important"]
-	var tasksByPriority = [Results<Task>]()
+	
+	let tasksByPriority: TasksByPriority = {
+		// Get the singleton GroupParent() object from the Realm, creating it
+		// if needed. In a more complete example with more than one view, this
+		// would be supplied as the data source by whatever is displaying this
+		// table view
+		let realm = try! Realm()
+		let obj = realm.objects(TasksByPriority.self).first
+		if obj != nil {
+			return obj!
+		}
+		
+		let newObj = TasksByPriority()
+		try! realm.write { realm.add(newObj) }
+		return newObj
+	}()
+
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-		
 		
 		realm = try! Realm()
 		
@@ -65,14 +120,16 @@ class TasksTableViewController: UITableViewController {
 		
 		tableView.backgroundColor = UIColor.whiteColor()
 		
-		for priority in priorityIndexes {
-			let unsortedObjects = realm.objects(Task.self).filter("priorityIndex == \(priority)")
-			let sortedObjects = unsortedObjects.sorted("dateCreated", ascending: true)
-			tasksByPriority.append(sortedObjects)
-		}
+//		for priority in priorityIndexes {
+//			let unsortedObjects = realm.objects(Task.self).filter("priorityIndex == \(priority)")
+//			let sortedObjects = unsortedObjects.sorted("dateCreated", ascending: true)
+//			tasksByPriority.append(sortedObjects)
+//		}
 		
-		var leftButton = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("showEditing:"))
-		self.navigationItem.leftBarButtonItem = leftButton
+		RealmHelper.addPriorities()
+		
+//		var leftButton = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("showEditing:"))
+//		self.navigationItem.leftBarButtonItem = leftButton
 		
 		let nib = UINib(nibName: "PriorityHeaderView", bundle: nil)
 		tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "PriorityHeaderView")
@@ -105,6 +162,9 @@ class TasksTableViewController: UITableViewController {
 //			// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
 //		}
 //	}
+	
+	// MARK: Realm
+		
 	
 	func longPressGestureRecognized(gestureRecognizer: UIGestureRecognizer) {
 		let longPress = gestureRecognizer as! UILongPressGestureRecognizer
@@ -162,12 +222,16 @@ class TasksTableViewController: UITableViewController {
 				My.cellSnapshot!.center = center
 				
 				if ((indexPath != nil) && (indexPath != Path.initialIndexPath)) {
-					//itemsArray.insert(itemsArray.removeAtIndex(Path.initialIndexPath!.row), atIndex: indexPath!.row)
-					tasksByPriority
+					// itemsArray.insert(itemsArray.removeAtIndex(Path.initialIndexPath!.row), atIndex: indexPath!.row)
+					
+					let oldTask = taskForIndexPath(Path.initialIndexPath!)
+					let newTask = Task(task: oldTask!, index: indexPath!.row)
+					
+					RealmHelper.deleteTask(oldTask!)
 					try! realm.write() {
-						taskForIndexPath(Path.initialIndexPath!)?.priorityIndex = indexPath!.section
-						tableView.reloadData()
+						tasksByPriority.priorities[indexPath!.section].tasks.insert(newTask, atIndex: indexPath!.row)
 					}
+					
 					Path.initialIndexPath = indexPath
 				}
 			}
@@ -222,7 +286,7 @@ class TasksTableViewController: UITableViewController {
     // MARK: - Table view data source
 	override func tableView(tableView: UITableView, heightForRowAtIndexPath
 		indexPath: NSIndexPath) -> CGFloat {
-		return tableView.rowHeight;
+		return tableView.rowHeight
 	}
 	
 	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -232,7 +296,8 @@ class TasksTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return Int(tasksByPriority[section].count)
+		return tasksByPriority.priorities[section].tasks.count
+
     }
 	
 	
@@ -266,6 +331,7 @@ class TasksTableViewController: UITableViewController {
 			try! self.realm.write() {
 				let task = self.taskForIndexPath(indexPath)
 				self.taskForIndexPath(indexPath)?.completed = !(self.taskForIndexPath(indexPath)?.completed)!
+				AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
 				self.strikethroughCompleted(indexPath, cell: cell, task: task!)
 			}
 			return true
@@ -288,9 +354,12 @@ class TasksTableViewController: UITableViewController {
         return cell
     }
 	
+
+	// Get the Task at a given index path
 	func taskForIndexPath(indexPath: NSIndexPath) -> Task? {
-		return tasksByPriority[indexPath.section][indexPath.row]
+		return tasksByPriority.priorities[indexPath.section].tasks[indexPath.row]
 	}
+
 	
 	func strikethroughCompleted(indexPath: NSIndexPath, cell: TaskTableViewCell, task: Task) {
 		if let task = taskForIndexPath(indexPath) {
@@ -307,7 +376,7 @@ class TasksTableViewController: UITableViewController {
 	// MARK: - Table view delegate
 	
 	func colorForIndexRow(row: Int, section: Int) -> UIColor {
-		let itemCount = tasksByPriority[section].count - 1
+		let itemCount = tasksByPriority.priorities[section].tasks.count - 1
 		let val = (CGFloat(row) / CGFloat(itemCount)) * 0.5
 		
 		switch section {

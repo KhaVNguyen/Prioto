@@ -151,7 +151,7 @@
                                     <segment title="Not Urgent"/>
                                 </segments>
                             </segmentedControl>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Task Details" translatesAutoresizingMaskIntoConstraints="NO" id="610-sX-7gg">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="Task Details" translatesAutoresizingMaskIntoConstraints="NO" id="610-sX-7gg">
                                 <rect key="frame" x="30" y="460" width="540" height="91"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
