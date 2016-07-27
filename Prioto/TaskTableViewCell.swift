@@ -19,13 +19,24 @@ import MGSwipeTableCell
 //}
 
 class TaskTableViewCell: MGSwipeTableCell {
+	@IBOutlet weak var stackView: UIStackView!
 
 	@IBOutlet weak var taskTextLabel: UILabel!
 	
+	@IBAction func expandTaskButtonTapped(sender: AnyObject) {
+		if let selectionCallback = self.selectionCallback{
+			selectionCallback()
+		}
+	}
+	
+	var expanded = false
+	var selectionCallback: (() -> Void)?
+
 	let gradientLayer = CAGradientLayer()
 	
 	override func awakeFromNib() {
         super.awakeFromNib()
+		stackView.arrangedSubviews.last?.hidden = true
 		gradientLayer.frame = bounds
 		let color1 = UIColor(white: 1.0, alpha: 0.2).CGColor as CGColorRef
 		let color2 = UIColor(white: 1.0, alpha: 0.1).CGColor as CGColorRef
@@ -41,10 +52,26 @@ class TaskTableViewCell: MGSwipeTableCell {
 		gradientLayer.frame = bounds
 	}
 
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+	
+//	override funcx setSelected(selected: Bool, animated: Bool) {
+//		super.setSelected(selected, animated: animated)
+//		
+//		UIView.animateWithDuration(0.5) {
+//			self.stackView.arrangedSubviews.last?.hidden = !selected
+//		}
+//	}
+	
+	func changeCellStatus(selected: Bool){
+		expanded = !expanded
+		UIView.animateWithDuration(0.5,
+		                           delay: 0,
+		                           usingSpringWithDamping: 1,
+		                           initialSpringVelocity: 1,
+		                           options: UIViewAnimationOptions.CurveEaseIn,
+		                           animations: { () -> Void in
+									self.stackView.arrangedSubviews.last?.hidden = !selected
+			},
+		                           completion: nil)
+	}
 	
 }

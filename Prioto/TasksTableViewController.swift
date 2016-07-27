@@ -54,6 +54,9 @@ class TasksByPriority: Object {
 
 class TasksTableViewController: UITableViewController {
 	
+	
+	@IBOutlet weak var stackView: UIStackView!
+	
 	@IBAction func fillButtonTapped(sender: AnyObject) {
 		RealmHelper.addTask(Task(text: "1", priority: 0))
 		RealmHelper.addTask(Task(text: "2", priority: 0))
@@ -111,6 +114,9 @@ class TasksTableViewController: UITableViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		tableView.estimatedRowHeight = 80
+		tableView.rowHeight = UITableViewAutomaticDimension
 		
 		realm = try! Realm()
 		
@@ -284,10 +290,10 @@ class TasksTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-	override func tableView(tableView: UITableView, heightForRowAtIndexPath
-		indexPath: NSIndexPath) -> CGFloat {
-		return tableView.rowHeight
-	}
+//	override func tableView(tableView: UITableView, heightForRowAtIndexPath
+//		indexPath: NSIndexPath) -> CGFloat {
+//		return tableView.rowHeight
+//	}
 	
 	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -351,8 +357,17 @@ class TasksTableViewController: UITableViewController {
 		cell.layer.borderWidth = 2
 		cell.layer.cornerRadius = 5
 		
+		cell.selectionCallback = {
+			cell.changeCellStatus(!cell.expanded)
+			tableView.beginUpdates()
+			tableView.endUpdates()
+		}
+		
         return cell
     }
+	
+	
+
 	
 
 	// Get the Task at a given index path
@@ -412,6 +427,7 @@ class TasksTableViewController: UITableViewController {
 		// Return false if you do not want the specified item to be editable.
 		return true
 	}
+	
 	
 	// MARK: Segues
 	
