@@ -45,6 +45,7 @@ class Task: Object {
 
 class Priority: Object {
 	dynamic var name = ""
+	dynamic var shouldNotAddPlaceholderCell = false
 	let tasks = List<Task>()
 }
 
@@ -52,42 +53,34 @@ class TasksByPriority: Object {
 	let priorities = List<Priority>()
 }
 
-class TasksTableViewController: UITableViewController {
+class TasksTableViewController: UITableViewController{
 	
 	
 	@IBOutlet weak var stackView: UIStackView!
 	
 	@IBAction func fillButtonTapped(sender: AnyObject) {
-		RealmHelper.addTask(Task(text: "1", priority: 0))
-		RealmHelper.addTask(Task(text: "2", priority: 0))
-		RealmHelper.addTask(Task(text: "3", priority: 0))
-		RealmHelper.addTask(Task(text: "4", priority: 0))
-		RealmHelper.addTask(Task(text: "5", priority: 0))
+		RealmHelper.addTask(Task(text: "Complete feature to reorder tasks", priority: 0))
+		RealmHelper.addTask(Task(text: "User test app", priority: 0))
+		RealmHelper.addTask(Task(text: "Email Mr. Shuen / other instructor", priority: 0))
+		RealmHelper.addTask(Task(text: "Integrate time and tasks", priority: 0))
 		
-		RealmHelper.addTask(Task(text: "1", priority: 1))
-		RealmHelper.addTask(Task(text: "2", priority: 1))
-		RealmHelper.addTask(Task(text: "3", priority: 1))
-		RealmHelper.addTask(Task(text: "4", priority: 1))
-		RealmHelper.addTask(Task(text: "5", priority: 1))
+		RealmHelper.addTask(Task(text: "Answer emails", priority: 1))
+		RealmHelper.addTask(Task(text: "Share app with mom", priority: 1))
 		
-		RealmHelper.addTask(Task(text: "1", priority: 2))
-		RealmHelper.addTask(Task(text: "2", priority: 2))
-		RealmHelper.addTask(Task(text: "3", priority: 2))
-		RealmHelper.addTask(Task(text: "4", priority: 2))
-		RealmHelper.addTask(Task(text: "5", priority: 2))
+		RealmHelper.addTask(Task(text: "Go to the gym", priority: 2))
+		RealmHelper.addTask(Task(text: "Call grandma", priority: 2))
+		RealmHelper.addTask(Task(text: "Research productivity", priority: 2))
+		RealmHelper.addTask(Task(text: "Think of long - term marketing strategy", priority: 2))
 		
-		RealmHelper.addTask(Task(text: "1", priority: 3))
-		RealmHelper.addTask(Task(text: "2", priority: 3))
-		RealmHelper.addTask(Task(text: "3", priority: 3))
-		RealmHelper.addTask(Task(text: "4", priority: 3))
-		RealmHelper.addTask(Task(text: "5", priority: 3))
+		RealmHelper.addTask(Task(text: "Watch TV", priority: 3))
+		RealmHelper.addTask(Task(text: "Play Pokemon GO", priority: 3))
+		RealmHelper.addTask(Task(text: "Watch YouTube videos", priority: 3))
+
 	}
 	
 	
 	@IBAction func deleteAllButtonTapped(sender: AnyObject) {
-		try! realm.write() {
-			realm.deleteAll()
-		}
+		
 	}
 	
 	var realm: Realm!
@@ -191,7 +184,10 @@ class TasksTableViewController: UITableViewController {
 		case UIGestureRecognizerState.Began:
 			if indexPath != nil {
 				Path.initialIndexPath = indexPath
-				let cell = tableView.cellForRowAtIndexPath(indexPath!) as UITableViewCell!
+				let cell = tableView.cellForRowAtIndexPath(indexPath!) as! TaskTableViewCell
+				
+				// collapseCellAtIndexPath(indexPath!)
+				
 				My.cellSnapshot  = snapshotOfCell(cell)
 				
 				var center = cell.center
@@ -237,6 +233,8 @@ class TasksTableViewController: UITableViewController {
 					try! realm.write() {
 						tasksByPriority.priorities[indexPath!.section].tasks.insert(newTask, atIndex: indexPath!.row)
 					}
+					
+					// collapseCellAtIndexPath(indexPath!)
 					
 					Path.initialIndexPath = indexPath
 				}
@@ -299,10 +297,29 @@ class TasksTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of sections
         return priorityIndexes.count
     }
+	
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-		return tasksByPriority.priorities[section].tasks.count
+		if(tasksByPriority.priorities[section].tasks.count == 0) {
+//			if tasksByPriority.priorities[section].shouldNotAddPlaceholderCell  {
+////				let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC)))
+////				dispatch_after(delayTime, dispatch_get_main_queue()) {
+////					try! self.realm.write {
+////						self.tasksByPriority.priorities[section].shouldNotAddPlaceholderCell = true
+////					}
+////					self.tableView.insertRowsAtIndexPaths([self.lastIdenPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+////				}
+//				return 0
+//			} else {
+			
+				return 1
+				
+//			}
+		}
+		else {
+			return tasksByPriority.priorities[section].tasks.count
+		}
 
     }
 	
@@ -312,6 +329,7 @@ class TasksTableViewController: UITableViewController {
 	}
 	
 	override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+		
 		// Here, we use NSFetchedResultsController
 		// And we simply use the section name as title
 		let title = priorityTitles[section]
@@ -326,50 +344,85 @@ class TasksTableViewController: UITableViewController {
 	
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("taskTableViewCell", forIndexPath: indexPath) as! TaskTableViewCell
 		
-        // Configure the cell...
-		let task = self.taskForIndexPath(indexPath)
-				
-		//configure left buttons
-		cell.leftButtons = [MGSwipeButton(title: "", icon: UIImage(named:"completeTask.png"), backgroundColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0), callback: {
-			(sender: MGSwipeTableCell!) -> Bool in
-			try! self.realm.write() {
-				let task = self.taskForIndexPath(indexPath)
-				self.taskForIndexPath(indexPath)?.completed = !(self.taskForIndexPath(indexPath)?.completed)!
-				AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
-				self.strikethroughCompleted(indexPath, cell: cell, task: task!)
-			}
-			return true
-			})]
-		cell.leftSwipeSettings.transition = MGSwipeTransition.Border
-		cell.rightButtons = [MGSwipeButton(title: "", icon: UIImage(named:"deleteTask.png"), backgroundColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0), callback: {
-			(sender: MGSwipeTableCell!) -> Bool in
-			RealmHelper.deleteTask(self.taskForIndexPath(indexPath)!)
-			return true
-		})]
-		
-		self.strikethroughCompleted(indexPath, cell: cell, task: task!)
-		
-		cell.contentView.layer.cornerRadius = 8
-		cell.contentView.layer.masksToBounds = true
-		cell.layer.borderColor = UIColor.whiteColor().CGColor
-		cell.layer.borderWidth = 2
-		cell.layer.cornerRadius = 5
-		
-		cell.selectionCallback = {
-			cell.changeCellStatus(!cell.expanded)
-			tableView.beginUpdates()
-			tableView.endUpdates()
+		print("Section: \(indexPath.section) count is: \(tasksByPriority.priorities[indexPath.section].tasks.count)")
+		if tasksByPriority.priorities[indexPath.section].tasks.count == 0 {
+			let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "placeholderCell")
+			//set the data here
+			cell.setHeight(1.0)
+			return cell
 		}
 		
-        return cell
+		else {
+			let cell = tableView.dequeueReusableCellWithIdentifier("taskTableViewCell", forIndexPath: indexPath) as! TaskTableViewCell
+			
+			// Configure the cell...
+			let task = self.taskForIndexPath(indexPath)
+			
+			//configure left buttons
+			cell.leftButtons = [MGSwipeButton(title: "", icon: UIImage(named:"completeTask.png"), backgroundColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0), callback: {
+				(sender: MGSwipeTableCell!) -> Bool in
+				try! self.realm.write() {
+					let task = self.taskForIndexPath(indexPath)
+					self.taskForIndexPath(indexPath)?.completed = !(self.taskForIndexPath(indexPath)?.completed)!
+					AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+					self.strikethroughCompleted(indexPath, cell: cell, task: task!)
+					let cell = tableView.cellForRowAtIndexPath(indexPath) as! TaskTableViewCell
+					cell.changeCellStatus(false)
+					cell.expanded = false
+					tableView.beginUpdates()
+					tableView.endUpdates()
+				}
+				return true
+			})]
+			cell.leftSwipeSettings.transition = MGSwipeTransition.Border
+			cell.rightButtons = [MGSwipeButton(title: "", icon: UIImage(named:"deleteTask.png"), backgroundColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0), callback: {
+				(sender: MGSwipeTableCell!) -> Bool in
+				let cell = tableView.cellForRowAtIndexPath(indexPath) as! TaskTableViewCell
+				cell.changeCellStatus(false)
+				cell.expanded = false
+				tableView.beginUpdates()
+				tableView.endUpdates()
+				RealmHelper.deleteTask(self.taskForIndexPath(indexPath)!)
+				if self.tasksByPriority.priorities[indexPath.section].tasks.count == 0 {
+//					try! self.realm.write {
+//						self.tasksByPriority.priorities[indexPath.section].shouldNotAddPlaceholderCell = false
+//					}
+					
+				}
+				return true
+			})]
+			
+			self.strikethroughCompleted(indexPath, cell: cell, task: task!)
+			
+			cell.contentView.layer.cornerRadius = 8
+			cell.contentView.layer.masksToBounds = true
+			cell.layer.borderColor = UIColor.whiteColor().CGColor
+			cell.layer.borderWidth = 2
+			cell.layer.cornerRadius = 5
+			
+			cell.selectionCallback = {
+				print("Cell expanded: \(cell.expanded)")
+				cell.switchCellStatus()
+				tableView.beginUpdates()
+				tableView.endUpdates()
+				print("Cell expanded: \(cell.expanded)")
+
+			}
+			
+			return cell
+		}
     }
 	
+	func collapseCellAtIndexPath(indexPath: NSIndexPath) {
+		
+		let cell = tableView.cellForRowAtIndexPath(indexPath) as! TaskTableViewCell
+			cell.changeCellStatus(false)
+			cell.expanded = false
+			tableView.beginUpdates()
+			tableView.endUpdates()
+	}
 	
-
-	
-
 	// Get the Task at a given index path
 	func taskForIndexPath(indexPath: NSIndexPath) -> Task? {
 		return tasksByPriority.priorities[indexPath.section].tasks[indexPath.row]
@@ -440,8 +493,10 @@ class TasksTableViewController: UITableViewController {
 				}
 				
 				else { // changing priority
+					collapseCellAtIndexPath(selectedIndexPath)
 					RealmHelper.addTask(task)
-					RealmHelper.deleteTask(taskForIndexPath(selectedIndexPath)!)
+					
+				RealmHelper.deleteTask(taskForIndexPath(selectedIndexPath)!)
 				}
 			}
 			else {

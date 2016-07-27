@@ -59,7 +59,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2SL-E1-DRr">
-                                                            <rect key="frame" x="541" y="15" width="51" height="30"/>
+                                                            <rect key="frame" x="541" y="0.0" width="51" height="60"/>
                                                             <state key="normal" title="Expand">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
@@ -69,6 +69,7 @@
                                                         </button>
                                                     </subviews>
                                                     <constraints>
+                                                        <constraint firstItem="2SL-E1-DRr" firstAttribute="height" secondItem="BiZ-la-A9t" secondAttribute="height" id="9gO-iW-cjR"/>
                                                         <constraint firstItem="7R7-9L-Ma9" firstAttribute="height" secondItem="BiZ-la-A9t" secondAttribute="height" multiplier="0.5" id="NRC-ap-iv8"/>
                                                         <constraint firstItem="7R7-9L-Ma9" firstAttribute="top" secondItem="BiZ-la-A9t" secondAttribute="top" constant="15" id="Qcf-cJ-r31"/>
                                                         <constraint firstItem="7R7-9L-Ma9" firstAttribute="leading" secondItem="BiZ-la-A9t" secondAttribute="leadingMargin" id="Tqi-Tg-gDh"/>
@@ -90,8 +91,8 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qtb-EY-rST">
                                                     <rect key="frame" x="0.0" y="60" width="600" height="30"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lu4-Fd-niK">
-                                                            <rect key="frame" x="284" y="8" width="33" height="14"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Elapsed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lu4-Fd-niK">
+                                                            <rect key="frame" x="259" y="8" width="82" height="14"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -134,6 +135,28 @@
                                     <outlet property="taskTextLabel" destination="7R7-9L-Ma9" id="jRH-KO-RnR"/>
                                     <segue destination="x4Y-Jd-H20" kind="show" identifier="editTaskDetailsSegue" id="zSj-MT-0dh"/>
                                 </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="placeholderCell" rowHeight="50" id="7rm-e7-i4B" customClass="PlaceholderTableViewCell" customModule="Prioto" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="182" width="600" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7rm-e7-i4B" id="HfI-Ef-EJX">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="guL-9p-bGL">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                            <state key="normal" title="No tasks in this section. Tap to add one.">
+                                                <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="guL-9p-bGL" firstAttribute="width" secondItem="HfI-Ef-EJX" secondAttribute="width" id="2vb-aq-Kel"/>
+                                        <constraint firstItem="guL-9p-bGL" firstAttribute="height" secondItem="HfI-Ef-EJX" secondAttribute="height" id="NSe-Vn-Xom"/>
+                                        <constraint firstItem="guL-9p-bGL" firstAttribute="centerY" secondItem="HfI-Ef-EJX" secondAttribute="centerY" id="NjD-V1-Dkw"/>
+                                        <constraint firstItem="guL-9p-bGL" firstAttribute="centerX" secondItem="HfI-Ef-EJX" secondAttribute="centerX" id="gDp-9n-G4q"/>
+                                    </constraints>
+                                </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
