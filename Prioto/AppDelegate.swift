@@ -9,6 +9,7 @@
 import UIKit
 import IQKeyboardManager
 import SwiftyUserDefaults
+import BSForegroundNotification
 
 extension DefaultsKeys {
 	static let dateAppExited = DefaultsKey<NSDate>("dateAppExited")
@@ -17,12 +18,12 @@ extension DefaultsKeys {
 public var hasExitedAppAndGoBack: Bool = false
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, BSForegroundNotificationDelegate {
 
 	var window: UIWindow?
 	var newFocusViewController: NewFocusViewController!
 
-
+	
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		// Override point for customization after application launch.
 		IQKeyboardManager.sharedManager().enable = true
@@ -67,6 +68,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func applicationWillTerminate(application: UIApplication) {
 		// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+	}
+	
+	func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+		let notification = BSForegroundNotification(userInfo: userInfoForCategory("ONE_BUTTON"))
+		notification.delegate = self
+		notification.timeToDismissNotification = NSTimeInterval(5)
+		notification.presentNotification()
+
+	}
+	
+	func userInfoForCategory(category: String) -> [NSObject: AnyObject] {
+		
+		return ["aps": [
+			"category": category,
+			"alert": [
+				"body": "Time is up!",
+				"title": "Prioto"
+			],
+			"sound": "sound.wav"
+			]
+		]
 	}
 }
 

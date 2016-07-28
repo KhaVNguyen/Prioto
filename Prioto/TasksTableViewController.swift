@@ -56,8 +56,6 @@ class TasksByPriority: Object {
 class TasksTableViewController: UITableViewController{
 	
 	
-	@IBOutlet weak var stackView: UIStackView!
-	
 	@IBAction func fillButtonTapped(sender: AnyObject) {
 		RealmHelper.addTask(Task(text: "Complete feature to reorder tasks", priority: 0))
 		RealmHelper.addTask(Task(text: "User test app", priority: 0))
@@ -155,6 +153,7 @@ class TasksTableViewController: UITableViewController{
 				Path.initialIndexPath = indexPath
 				let cell = tableView.cellForRowAtIndexPath(indexPath!) as! TaskTableViewCell
 				
+				
 				collapseCellAtIndexPath(indexPath!)
 				
 				My.cellSnapshot  = snapshotOfCell(cell)
@@ -186,14 +185,27 @@ class TasksTableViewController: UITableViewController{
 				})
 			}
 			
+			
 		case UIGestureRecognizerState.Changed:
+			print("indexPath: \(indexPath!.row)")
+			print("Location: \(locationInView.y))")
+			
 			if My.cellSnapshot != nil {
 				var center = My.cellSnapshot!.center
 				center.y = locationInView.y
 				My.cellSnapshot!.center = center
 				
 				if ((indexPath != nil) && (indexPath != Path.initialIndexPath)) {
-					// itemsArray.insert(itemsArray.removeAtIndex(Path.initialIndexPath!.row), atIndex: indexPath!.row)
+					
+					if locationInView.y < 200 && indexPath!.row > 1 {
+						let indexPath = NSIndexPath(forRow: indexPath!.row-1, inSection: 0)
+						tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Top, animated: false)
+					} else if locationInView.y > 500 {
+						if indexPath!.row < tasksByPriority.priorities[indexPath!.section].tasks.count {
+							let indexPath = NSIndexPath(forRow: indexPath!.row + 1, inSection: indexPath!.section)
+							tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+						}
+					}
 					
 					let oldTask = taskForIndexPath(Path.initialIndexPath!)
 					let newTask = Task(task: oldTask!, index: indexPath!.row)
@@ -342,8 +354,8 @@ class TasksTableViewController: UITableViewController{
 			
 			cell.selectionCallback = {
 				//print("Cell expanded: \(cell.expanded)")
-				cell.switchCellStatus()
 				tableView.beginUpdates()
+				cell.switchCellStatus()
 				tableView.endUpdates()
 				//print("Cell expanded: \(cell.expanded)")
 
@@ -355,10 +367,13 @@ class TasksTableViewController: UITableViewController{
 	
 	func collapseCellAtIndexPath(indexPath: NSIndexPath) {
 		
-		let cell = tableView.cellForRowAtIndexPath(indexPath) as! TaskTableViewCell
-			cell.changeCellStatus(false)
+		if let cell = tableView.cellForRowAtIndexPath(indexPath) as? TaskTableViewCell{
 			tableView.beginUpdates()
+			cell.changeCellStatus(true)
+			cell.changeCellStatus(false)
 			tableView.endUpdates()
+		}
+		
 	}
 	
 	// Get the Task at a given index path

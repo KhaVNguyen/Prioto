@@ -14,7 +14,7 @@ import SwiftyUserDefaults
 import BSForegroundNotification
 import AudioToolbox
 
-class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate {
+class NewFocusViewController: UIViewController {
 	
 	enum TimerType : String {
 		case Work = "Work"
@@ -236,33 +236,6 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		self.localNotification!.category = "START_CATEGORY"
 		
 		UIApplication.sharedApplication().scheduleLocalNotification(self.localNotification!)
-		
-		
-//		let notification = BSForegroundNotification(localNotification: self.localNotification!) //local
-		let notification = BSForegroundNotification(userInfo: userInfoForCategory("ONE_BUTTON"))
-		
-
-		notification.timeToDismissNotification = NSTimeInterval(10)
-		// Delay 10 seconds
-		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(self.timeRemaining * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) { () -> Void in
-			if self.willDisplayForegroundNotification {
-				notification.presentNotification()
-			}
-		}
-		notification.delegate = self
-	}
-	
-	private func userInfoForCategory(category: String) -> [NSObject: AnyObject] {
-		
-		return ["aps": [
-			"category": category,
-			"alert": [
-				"body": "Time for " + self.typeName + " is up!",
-				"title": "Prioto"
-			],
-			"sound": "sound.wav"
-			]
-		]
 	}
 
 }
