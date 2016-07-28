@@ -61,20 +61,23 @@ class TaskTableViewCell: MGSwipeTableCell {
 //		}
 //	}
 	
-	func changeCellStatus(selected: Bool){
+	func changeCellStatus(expanded: Bool){
+		self.expanded = expanded
 		UIView.animateWithDuration(0.5,
 		                           delay: 0,
 		                           usingSpringWithDamping: 1,
 		                           initialSpringVelocity: 1,
 		                           options: UIViewAnimationOptions.CurveEaseIn,
 		                           animations: { () -> Void in
-									self.stackView.arrangedSubviews.last?.hidden = !selected
+									print("expanded: \(expanded).Before assignment: \(self.stackView.arrangedSubviews.last!.hidden)")
+									self.stackView.arrangedSubviews.last!.hidden = !expanded
+									print("hidden: \(self.stackView.arrangedSubviews.last!.hidden)")
 			},
 		                           completion: nil)
 	}
 	
 	func switchCellStatus() {
-		expanded = !expanded
+		self.expanded = !self.expanded
 		changeCellStatus(expanded)
 	}
 	

@@ -186,7 +186,7 @@ class TasksTableViewController: UITableViewController{
 				Path.initialIndexPath = indexPath
 				let cell = tableView.cellForRowAtIndexPath(indexPath!) as! TaskTableViewCell
 				
-				// collapseCellAtIndexPath(indexPath!)
+				collapseCellAtIndexPath(indexPath!)
 				
 				My.cellSnapshot  = snapshotOfCell(cell)
 				
@@ -233,9 +233,7 @@ class TasksTableViewController: UITableViewController{
 					try! realm.write() {
 						tasksByPriority.priorities[indexPath!.section].tasks.insert(newTask, atIndex: indexPath!.row)
 					}
-					
-					// collapseCellAtIndexPath(indexPath!)
-					
+					collapseCellAtIndexPath(indexPath!)
 					Path.initialIndexPath = indexPath
 				}
 			}
@@ -345,7 +343,7 @@ class TasksTableViewController: UITableViewController{
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		
-		print("Section: \(indexPath.section) count is: \(tasksByPriority.priorities[indexPath.section].tasks.count)")
+		// print("Section: \(indexPath.section) count is: \(tasksByPriority.priorities[indexPath.section].tasks.count)")
 		if tasksByPriority.priorities[indexPath.section].tasks.count == 0 {
 			let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "placeholderCell")
 			//set the data here
@@ -367,22 +365,14 @@ class TasksTableViewController: UITableViewController{
 					self.taskForIndexPath(indexPath)?.completed = !(self.taskForIndexPath(indexPath)?.completed)!
 					AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
 					self.strikethroughCompleted(indexPath, cell: cell, task: task!)
-					let cell = tableView.cellForRowAtIndexPath(indexPath) as! TaskTableViewCell
-					cell.changeCellStatus(false)
-					cell.expanded = false
-					tableView.beginUpdates()
-					tableView.endUpdates()
+					self.collapseCellAtIndexPath(indexPath)
 				}
 				return true
 			})]
 			cell.leftSwipeSettings.transition = MGSwipeTransition.Border
 			cell.rightButtons = [MGSwipeButton(title: "", icon: UIImage(named:"deleteTask.png"), backgroundColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0), callback: {
 				(sender: MGSwipeTableCell!) -> Bool in
-				let cell = tableView.cellForRowAtIndexPath(indexPath) as! TaskTableViewCell
-				cell.changeCellStatus(false)
-				cell.expanded = false
-				tableView.beginUpdates()
-				tableView.endUpdates()
+				self.collapseCellAtIndexPath(indexPath)
 				RealmHelper.deleteTask(self.taskForIndexPath(indexPath)!)
 				if self.tasksByPriority.priorities[indexPath.section].tasks.count == 0 {
 //					try! self.realm.write {
@@ -402,11 +392,11 @@ class TasksTableViewController: UITableViewController{
 			cell.layer.cornerRadius = 5
 			
 			cell.selectionCallback = {
-				print("Cell expanded: \(cell.expanded)")
+				//print("Cell expanded: \(cell.expanded)")
 				cell.switchCellStatus()
 				tableView.beginUpdates()
 				tableView.endUpdates()
-				print("Cell expanded: \(cell.expanded)")
+				//print("Cell expanded: \(cell.expanded)")
 
 			}
 			
@@ -418,7 +408,6 @@ class TasksTableViewController: UITableViewController{
 		
 		let cell = tableView.cellForRowAtIndexPath(indexPath) as! TaskTableViewCell
 			cell.changeCellStatus(false)
-			cell.expanded = false
 			tableView.beginUpdates()
 			tableView.endUpdates()
 	}
