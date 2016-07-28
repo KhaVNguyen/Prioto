@@ -59,9 +59,9 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2SL-E1-DRr">
-                                                            <rect key="frame" x="542" y="0.0" width="50" height="60"/>
+                                                            <rect key="frame" x="542" y="0.0" width="60" height="60"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="50" id="xox-Ee-fAg"/>
+                                                                <constraint firstAttribute="width" constant="60" id="xox-Ee-fAg"/>
                                                             </constraints>
                                                             <state key="normal" image="Dropdown">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -85,7 +85,7 @@
                                                         <constraint firstItem="7R7-9L-Ma9" firstAttribute="top" secondItem="BiZ-la-A9t" secondAttribute="top" constant="14" id="u4L-mD-RFo"/>
                                                         <constraint firstItem="2SL-E1-DRr" firstAttribute="centerY" secondItem="7R7-9L-Ma9" secondAttribute="centerY" id="vKS-ki-75g"/>
                                                         <constraint firstAttribute="trailing" secondItem="7R7-9L-Ma9" secondAttribute="trailing" constant="10" id="wAg-zP-bFT"/>
-                                                        <constraint firstItem="2SL-E1-DRr" firstAttribute="trailing" secondItem="BiZ-la-A9t" secondAttribute="trailingMargin" id="zgO-do-L5W"/>
+                                                        <constraint firstItem="2SL-E1-DRr" firstAttribute="trailing" secondItem="BiZ-la-A9t" secondAttribute="trailingMargin" constant="10" id="zgO-do-L5W"/>
                                                     </constraints>
                                                     <variation key="default">
                                                         <mask key="constraints">

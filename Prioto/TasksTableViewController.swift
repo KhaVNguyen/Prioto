@@ -119,16 +119,7 @@ class TasksTableViewController: UITableViewController{
 		
 		tableView.backgroundColor = UIColor.whiteColor()
 		
-//		for priority in priorityIndexes {
-//			let unsortedObjects = realm.objects(Task.self).filter("priorityIndex == \(priority)")
-//			let sortedObjects = unsortedObjects.sorted("dateCreated", ascending: true)
-//			tasksByPriority.append(sortedObjects)
-//		}
-		
 		RealmHelper.addPriorities()
-		
-//		var leftButton = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("showEditing:"))
-//		self.navigationItem.leftBarButtonItem = leftButton
 		
 		let nib = UINib(nibName: "PriorityHeaderView", bundle: nil)
 		tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "PriorityHeaderView")
@@ -139,28 +130,6 @@ class TasksTableViewController: UITableViewController{
 		let longpress = UILongPressGestureRecognizer(target: self, action: "longPressGestureRecognized:")
 		tableView.addGestureRecognizer(longpress)
 	}
-	
-//	func showEditing(sender: UIBarButtonItem) {
-//		if(self.tableView.editing == true)
-//		{
-//			self.tableView.editing = false
-//			self.navigationItem.leftBarButtonItem?.title = "Done"
-//		}
-//		else
-//		{
-//			self.tableView.editing = true
-//			self.navigationItem.leftBarButtonItem?.title = "Edit"
-//		}
-//	}
-	
-//	override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-//		if editingStyle == .Delete {
-//			// Delete the row from the data source
-//			RealmHelper.deleteTask(self.taskForIndexPath(indexPath)!)
-//		} else if editingStyle == .Insert {
-//			// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-//		}
-//	}
 	
 	// MARK: Realm
 		
@@ -300,20 +269,7 @@ class TasksTableViewController: UITableViewController{
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
 		if(tasksByPriority.priorities[section].tasks.count == 0) {
-//			if tasksByPriority.priorities[section].shouldNotAddPlaceholderCell  {
-////				let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC)))
-////				dispatch_after(delayTime, dispatch_get_main_queue()) {
-////					try! self.realm.write {
-////						self.tasksByPriority.priorities[section].shouldNotAddPlaceholderCell = true
-////					}
-////					self.tableView.insertRowsAtIndexPaths([self.lastIdenPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-////				}
-//				return 0
-//			} else {
-			
 				return 1
-				
-//			}
 		}
 		else {
 			return tasksByPriority.priorities[section].tasks.count
@@ -343,7 +299,6 @@ class TasksTableViewController: UITableViewController{
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		
-		// print("Section: \(indexPath.section) count is: \(tasksByPriority.priorities[indexPath.section].tasks.count)")
 		if tasksByPriority.priorities[indexPath.section].tasks.count == 0 {
 			let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "placeholderCell")
 			//set the data here
@@ -374,12 +329,6 @@ class TasksTableViewController: UITableViewController{
 				(sender: MGSwipeTableCell!) -> Bool in
 				self.collapseCellAtIndexPath(indexPath)
 				RealmHelper.deleteTask(self.taskForIndexPath(indexPath)!)
-				if self.tasksByPriority.priorities[indexPath.section].tasks.count == 0 {
-//					try! self.realm.write {
-//						self.tasksByPriority.priorities[indexPath.section].shouldNotAddPlaceholderCell = false
-//					}
-					
-				}
 				return true
 			})]
 			
