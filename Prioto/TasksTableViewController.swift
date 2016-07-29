@@ -53,9 +53,11 @@ class TasksByPriority: Object {
 	let priorities = List<Priority>()
 }
 
-class TasksTableViewController: UITableViewController{
+class TasksTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 	
 	
+	@IBOutlet var tasksTableView: TasksTableView!
+		
 	@IBAction func fillButtonTapped(sender: AnyObject) {
 		RealmHelper.addTask(Task(text: "Complete feature to reorder tasks", priority: 0))
 		RealmHelper.addTask(Task(text: "User test app", priority: 0))
@@ -101,164 +103,40 @@ class TasksTableViewController: UITableViewController{
 		try! realm.write { realm.add(newObj) }
 		return newObj
 	}()
-
+	
+	var currentIndexPath: NSIndexPath?
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		tableView.estimatedRowHeight = 80
-		tableView.rowHeight = UITableViewAutomaticDimension
-		
 		realm = try! Realm()
 		
 		notificationToken = realm.addNotificationBlock { [unowned self] note, realm in
-			self.tableView.reloadData()
+			self.tasksTableView.reloadData()
 		}
 		
-		tableView.backgroundColor = UIColor.whiteColor()
 		
 		RealmHelper.addPriorities()
 		
+		tasksTableView.backgroundColor = UIColor.grayColor()
+		tasksTableView.estimatedRowHeight = CGFloat(90)
+		tasksTableView.rowHeight = UITableViewAutomaticDimension
+		
+		
+		
+		
+		tasksTableView.delegate = self
+		tasksTableView.dataSource = self
+		
+		
+		tasksTableView.setRearrangeOptions([.hover, .translucency], dataSource: self)
+		
 		let nib = UINib(nibName: "PriorityHeaderView", bundle: nil)
-		tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "PriorityHeaderView")
+		tasksTableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "PriorityHeaderView")
 		
-		tableView.reloadData()
+		tasksTableView.reloadData()
 		
-		// long press drag and drop gesture recognizer
-		let longpress = UILongPressGestureRecognizer(target: self, action: "longPressGestureRecognized:")
-		tableView.addGestureRecognizer(longpress)
-	}
-	
-	// MARK: Realm
-		
-	
-	func longPressGestureRecognized(gestureRecognizer: UIGestureRecognizer) {
-		let longPress = gestureRecognizer as! UILongPressGestureRecognizer
-		let state = longPress.state
-		let locationInView = longPress.locationInView(tableView)
-		let indexPath = tableView.indexPathForRowAtPoint(locationInView)
-		
-		struct My {
-			static var cellSnapshot : UIView? = nil
-			static var cellIsAnimating : Bool = false
-			static var cellNeedToShow : Bool = false
-		}
-		struct Path {
-			static var initialIndexPath : NSIndexPath? = nil
-		}
-		
-		switch state {
-		case UIGestureRecognizerState.Began:
-			if indexPath != nil {
-				Path.initialIndexPath = indexPath
-				let cell = tableView.cellForRowAtIndexPath(indexPath!) as! TaskTableViewCell
-				
-				
-				collapseCellAtIndexPath(indexPath!)
-				
-				My.cellSnapshot  = snapshotOfCell(cell)
-				
-				var center = cell.center
-				My.cellSnapshot!.center = center
-				My.cellSnapshot!.alpha = 0.0
-				tableView.addSubview(My.cellSnapshot!)
-				
-				UIView.animateWithDuration(0.25, animations: { () -> Void in
-					center.y = locationInView.y
-					My.cellIsAnimating = true
-					My.cellSnapshot!.center = center
-					My.cellSnapshot!.transform = CGAffineTransformMakeScale(1.05, 1.05)
-					My.cellSnapshot!.alpha = 0.98
-					cell.alpha = 0.0
-					}, completion: { (finished) -> Void in
-						if finished {
-							My.cellIsAnimating = false
-							if My.cellNeedToShow {
-								My.cellNeedToShow = false
-								UIView.animateWithDuration(0.25, animations: { () -> Void in
-									cell.alpha = 1
-								})
-							} else {
-								cell.hidden = true
-							}
-						}
-				})
-			}
-			
-			
-		case UIGestureRecognizerState.Changed:
-			print("indexPath: \(indexPath!.row)")
-			print("Location: \(locationInView.y))")
-			
-			if My.cellSnapshot != nil {
-				var center = My.cellSnapshot!.center
-				center.y = locationInView.y
-				My.cellSnapshot!.center = center
-				
-				if ((indexPath != nil) && (indexPath != Path.initialIndexPath)) {
-					
-					if locationInView.y < 200 && indexPath!.row > 1 {
-						let indexPath = NSIndexPath(forRow: indexPath!.row-1, inSection: 0)
-						tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Top, animated: false)
-					} else if locationInView.y > 500 {
-						if indexPath!.row < tasksByPriority.priorities[indexPath!.section].tasks.count {
-							let indexPath = NSIndexPath(forRow: indexPath!.row + 1, inSection: indexPath!.section)
-							tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
-						}
-					}
-					
-					let oldTask = taskForIndexPath(Path.initialIndexPath!)
-					let newTask = Task(task: oldTask!, index: indexPath!.row)
-					
-					RealmHelper.deleteTask(oldTask!)
-					try! realm.write() {
-						tasksByPriority.priorities[indexPath!.section].tasks.insert(newTask, atIndex: indexPath!.row)
-					}
-					collapseCellAtIndexPath(indexPath!)
-					Path.initialIndexPath = indexPath
-				}
-			}
-		default:
-			if Path.initialIndexPath != nil {
-				let cell = tableView.cellForRowAtIndexPath(Path.initialIndexPath!) as UITableViewCell!
-				if My.cellIsAnimating {
-					My.cellNeedToShow = true
-				} else {
-					cell.hidden = false
-					cell.alpha = 0.0
-				}
-				
-				UIView.animateWithDuration(0.25, animations: { () -> Void in
-					My.cellSnapshot!.center = cell.center
-					My.cellSnapshot!.transform = CGAffineTransformIdentity
-					My.cellSnapshot!.alpha = 0.0
-					cell.alpha = 1.0
-					
-					}, completion: { (finished) -> Void in
-						if finished {
-							Path.initialIndexPath = nil
-							My.cellSnapshot!.removeFromSuperview()
-							My.cellSnapshot = nil
-						}
-				})
-			}
-		}
-	}
-	
-	func snapshotOfCell(inputView: UIView) -> UIView {
-		UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, false, 0.0)
-		inputView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
-		let image = UIGraphicsGetImageFromCurrentImageContext() as UIImage
-		UIGraphicsEndImageContext()
-		
-		let cellSnapshot : UIView = UIImageView(image: image)
-		cellSnapshot.layer.masksToBounds = false
-		cellSnapshot.layer.cornerRadius = 0.0
-		cellSnapshot.layer.shadowOffset = CGSizeMake(-5.0, 0.0)
-		cellSnapshot.layer.shadowRadius = 5.0
-		cellSnapshot.layer.shadowOpacity = 0.4
-		return cellSnapshot
-	}
+}
 	
 	
     override func didReceiveMemoryWarning() {
@@ -267,18 +145,20 @@ class TasksTableViewController: UITableViewController{
     }
 
     // MARK: - Table view data source
-//	override func tableView(tableView: UITableView, heightForRowAtIndexPath
+//	override func tasksTableView(tasksTableView: UITableView, heightForRowAtIndexPath
 //		indexPath: NSIndexPath) -> CGFloat {
 //		return tableView.rowHeight
 //	}
 	
-	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+	
+	
+	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return priorityIndexes.count
     }
 	
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
 		if(tasksByPriority.priorities[section].tasks.count == 0) {
 				return 1
@@ -290,18 +170,18 @@ class TasksTableViewController: UITableViewController{
     }
 	
 	
-	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		return priorityTitles[section]
 	}
 	
-	override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+	func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 		
 		// Here, we use NSFetchedResultsController
 		// And we simply use the section name as title
 		let title = priorityTitles[section]
 		
 		// Dequeue with the reuse identifier
-		let cell = self.tableView.dequeueReusableHeaderFooterViewWithIdentifier("PriorityHeaderView")
+		let cell = self.tasksTableView.dequeueReusableHeaderFooterViewWithIdentifier("PriorityHeaderView")
 		let header = cell as! PriorityHeaderView
 		header.priorityLabel.text = title
 		
@@ -309,7 +189,7 @@ class TasksTableViewController: UITableViewController{
 	}
 	
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		
 		if tasksByPriority.priorities[indexPath.section].tasks.count == 0 {
 			let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "placeholderCell")
@@ -319,7 +199,7 @@ class TasksTableViewController: UITableViewController{
 		}
 		
 		else {
-			let cell = tableView.dequeueReusableCellWithIdentifier("taskTableViewCell", forIndexPath: indexPath) as! TaskTableViewCell
+			let cell = tasksTableView.dequeueReusableCellWithIdentifier("taskTableViewCell", forIndexPath: indexPath) as! TaskTableViewCell
 			
 			// Configure the cell...
 			let task = self.taskForIndexPath(indexPath)
@@ -354,11 +234,10 @@ class TasksTableViewController: UITableViewController{
 			
 			cell.selectionCallback = {
 				//print("Cell expanded: \(cell.expanded)")
-				tableView.beginUpdates()
+				self.tasksTableView.beginUpdates()
 				cell.switchCellStatus()
-				tableView.endUpdates()
+				self.tasksTableView.endUpdates()
 				//print("Cell expanded: \(cell.expanded)")
-
 			}
 			
 			return cell
@@ -367,11 +246,11 @@ class TasksTableViewController: UITableViewController{
 	
 	func collapseCellAtIndexPath(indexPath: NSIndexPath) {
 		
-		if let cell = tableView.cellForRowAtIndexPath(indexPath) as? TaskTableViewCell{
-			tableView.beginUpdates()
+		if let cell = tasksTableView.cellForRowAtIndexPath(indexPath) as? TaskTableViewCell{
+			self.tasksTableView.beginUpdates()
 			cell.changeCellStatus(true)
 			cell.changeCellStatus(false)
-			tableView.endUpdates()
+			self.tasksTableView.endUpdates()
 		}
 		
 	}
@@ -423,13 +302,13 @@ class TasksTableViewController: UITableViewController{
 	}
 	
  
-	override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
+	func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
 	                        forRowAtIndexPath indexPath: NSIndexPath) {
 		cell.backgroundColor = colorForIndexRow(indexPath.row, section: indexPath.section)
 	}
 	
 	// Override to support conditional editing of the table view.
-	override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+	func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
 		// Return false if you do not want the specified item to be editable.
 		return true
 	}
@@ -439,7 +318,7 @@ class TasksTableViewController: UITableViewController{
 	
 	@IBAction func unwindToTasksTableViewController(sender: UIStoryboardSegue) {
 		if let sourceViewController = sender.sourceViewController as? DisplayTaskViewController, task = sourceViewController.task, priorityIndex = sourceViewController.priorityIndex {
-			if let selectedIndexPath = tableView.indexPathForSelectedRow {
+			if let selectedIndexPath = tasksTableView.indexPathForSelectedRow {
 				// Update an existing task.
 				if selectedIndexPath.section == priorityIndex { // not changing priority
 					RealmHelper.updateTask(taskForIndexPath(selectedIndexPath)!, newTask: task)
@@ -467,7 +346,7 @@ class TasksTableViewController: UITableViewController{
 				
 				// set task of DisplayTaskViewController to task tapped on
 				if let selectedTaskCell = sender as? TaskTableViewCell {
-					let indexPath = tableView.indexPathForCell(selectedTaskCell)!
+					let indexPath = tasksTableView.indexPathForCell(selectedTaskCell)!
 					let selectedTask = taskForIndexPath(indexPath)
 					displayTaskViewController.task = selectedTask
 					print("Task completed: \(selectedTask!.completed)")
@@ -482,6 +361,25 @@ class TasksTableViewController: UITableViewController{
 	}
 }
 
-extension AEAccordionTableViewController {
+extension TasksTableViewController: RearrangeDataSource {
 	
+	func moveObjectAtCurrentIndexPath(to indexPath: NSIndexPath) {
+		
+		guard let unwrappedCurrentIndexPath = currentIndexPath else { return }
+		
+//		let object = cellTitles[unwrappedCurrentIndexPath.section][unwrappedCurrentIndexPath.row]
+//		cellTitles[unwrappedCurrentIndexPath.section].removeAtIndex(unwrappedCurrentIndexPath.row)
+//		cellTitles[indexPath.section].insert(object, atIndex: indexPath.row)
+		
+		let oldTask = taskForIndexPath(unwrappedCurrentIndexPath)
+		let newTask = Task(task: oldTask!, index: indexPath.row)
+		
+		RealmHelper.deleteTask(oldTask!)
+		try! realm.write() {
+			tasksByPriority.priorities[indexPath.section].tasks.insert(newTask, atIndex: indexPath.row)
+		}
+		collapseCellAtIndexPath(indexPath)
+		
+		
+	}
 }

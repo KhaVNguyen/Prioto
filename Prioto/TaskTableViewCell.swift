@@ -69,9 +69,9 @@ class TaskTableViewCell: MGSwipeTableCell {
 		                           initialSpringVelocity: 1,
 		                           options: UIViewAnimationOptions.CurveEaseIn,
 		                           animations: { () -> Void in
-									print("expanded: \(expanded).Before assignment: \(self.stackView.arrangedSubviews.last!.hidden)")
+									//print("expanded: \(expanded).Before assignment: \(self.stackView.arrangedSubviews.last!.hidden)")
 									self.stackView.arrangedSubviews.last!.hidden = !expanded
-									print("hidden: \(self.stackView.arrangedSubviews.last!.hidden)")
+									//print("hidden: \(self.stackView.arrangedSubviews.last!.hidden)")
 			},
 		                           completion: nil)
 	}

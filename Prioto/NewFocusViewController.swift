@@ -223,7 +223,6 @@ class NewFocusViewController: UIViewController {
 	}
 	
 	func setupLocalNotifications() {
-		UIApplication.sharedApplication().cancelAllLocalNotifications()
 		self.localNotification = UILocalNotification()
 		self.localNotificationEndDate = NSDate().dateByAddingTimeInterval(self.timeRemaining)
 		print("Current date: \(NSDate())")
@@ -236,6 +235,10 @@ class NewFocusViewController: UIViewController {
 		self.localNotification!.category = "START_CATEGORY"
 		
 		UIApplication.sharedApplication().scheduleLocalNotification(self.localNotification!)
+	}
+	
+	func setupMultipleLocalNotifications() {
+		
 	}
 
 }
