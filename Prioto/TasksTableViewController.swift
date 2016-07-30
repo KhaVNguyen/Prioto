@@ -119,17 +119,18 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		RealmHelper.addPriorities()
 		
 		tasksTableView.backgroundColor = UIColor.grayColor()
-		tasksTableView.estimatedRowHeight = CGFloat(90)
+//		tasksTableView.estimatedRowHeight = CGFloat(90)
 		tasksTableView.rowHeight = UITableViewAutomaticDimension
+//		tasksTableView.rowHeight = 90
 		
-		
-		
+		tasksTableView.layoutMargins = UIEdgeInsetsZero
+		tasksTableView.separatorInset = UIEdgeInsetsZero
 		
 		tasksTableView.delegate = self
 		tasksTableView.dataSource = self
+		tasksTableView.tableFooterView = UIView()
 		
-		
-		tasksTableView.setRearrangeOptions([.hover, .translucency], dataSource: self)
+		tasksTableView.setRearrangeOptions([.hover], dataSource: self)
 		
 		let nib = UINib(nibName: "PriorityHeaderView", bundle: nil)
 		tasksTableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "PriorityHeaderView")
@@ -144,22 +145,23 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
-//	override func tasksTableView(tasksTableView: UITableView, heightForRowAtIndexPath
-//		indexPath: NSIndexPath) -> CGFloat {
-//		return tableView.rowHeight
-//	}
+   //  MARK: - Table view data source
 	
-	
+	func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+		return CGFloat(90)
+	}
 	
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return priorityIndexes.count
+		
+		 return priorityIndexes.count
     }
 	
 
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+		
+		
 		if(tasksByPriority.priorities[section].tasks.count == 0) {
 				return 1
 		}
@@ -171,7 +173,18 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 	
 	
 	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		return priorityTitles[section]
+		// return priorityTitles[section]
+		switch section {
+		case 0:
+			return "Section 0"
+		case 1:
+			return "Section 1"
+		case 2:
+			return "Section 2"
+		default:
+			return "Unknown"
+		}
+
 	}
 	
 	func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -240,8 +253,21 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 				//print("Cell expanded: \(cell.expanded)")
 			}
 			
+//			if indexPath == currentIndexPath {
+//				
+//				cell.backgroundColor = nil
+//			}
+//			else {
+//				
+//				cell.textLabel?.text = taskForIndexPath(indexPath)!.text
+//			}
+//			
+//			cell.separatorInset = UIEdgeInsetsZero
+//			cell.layoutMargins = UIEdgeInsetsZero
+			
 			return cell
 		}
+
     }
 	
 	func collapseCellAtIndexPath(indexPath: NSIndexPath) {
@@ -301,6 +327,9 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		}
 	}
 	
+	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		tableView.deselectRowAtIndexPath(indexPath, animated: true)
+	}
  
 	func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
 	                        forRowAtIndexPath indexPath: NSIndexPath) {
@@ -367,18 +396,16 @@ extension TasksTableViewController: RearrangeDataSource {
 		
 		guard let unwrappedCurrentIndexPath = currentIndexPath else { return }
 		
-//		let object = cellTitles[unwrappedCurrentIndexPath.section][unwrappedCurrentIndexPath.row]
-//		cellTitles[unwrappedCurrentIndexPath.section].removeAtIndex(unwrappedCurrentIndexPath.row)
-//		cellTitles[indexPath.section].insert(object, atIndex: indexPath.row)
-		
 		let oldTask = taskForIndexPath(unwrappedCurrentIndexPath)
+		collapseCellAtIndexPath(unwrappedCurrentIndexPath)
+		collapseCellAtIndexPath(indexPath)
+		
 		let newTask = Task(task: oldTask!, index: indexPath.row)
 		
 		RealmHelper.deleteTask(oldTask!)
 		try! realm.write() {
 			tasksByPriority.priorities[indexPath.section].tasks.insert(newTask, atIndex: indexPath.row)
 		}
-		collapseCellAtIndexPath(indexPath)
 		
 		
 	}

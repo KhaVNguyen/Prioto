@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 class DisplayTaskViewController: UIViewController {
 
@@ -77,6 +78,10 @@ class DisplayTaskViewController: UIViewController {
 	func datePickerValueChanged(sender:UIDatePicker) {
 		
 		dueDateLabel.text = "Due Date:  \(formatDateAsString(dueDatePicker.date))"
+		if dueDatePicker.date < dueDatePicker.minimumDate {
+			AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+			print("incorrect date")
+		}
 	}
 	
 	func formatDateAsString(date: NSDate) -> String {
@@ -149,13 +154,4 @@ class DisplayTaskViewController: UIViewController {
 	}
 }
 
-//extension NSDate: Comparable {
-//	
-//	public func ==(lhs: NSDate, rhs: NSDate) -> Bool {
-//	return lhs === rhs || lhs.compare(rhs) == .OrderedSame
-//	}
-//	
-//	public func <(lhs: NSDate, rhs: NSDate) -> Bool {
-//	return lhs.compare(rhs) == .OrderedAscending
-//	}
-//}
+

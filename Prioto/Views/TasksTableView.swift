@@ -11,20 +11,12 @@ import Foundation
 import UIKit
 
 class TasksTableView: UITableView {
-	
-	let estimatedHeight: CGFloat = 90
-	
+		
 	var rearrange: RearrangeProperties!
 	
 	override init(frame: CGRect, style: UITableViewStyle) {
 		
 		super.init(frame: frame, style: style)
-		
-		self.backgroundColor = UIColor.grayColor()
-		self.layoutMargins = UIEdgeInsetsZero
-		self.separatorInset = UIEdgeInsetsZero
-		self.estimatedRowHeight = estimatedHeight
-		self.rowHeight = UITableViewAutomaticDimension
 		
 	}
 	
