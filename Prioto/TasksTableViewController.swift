@@ -12,6 +12,7 @@ import RealmSwift
 import Realm
 import AEAccordion
 import AudioToolbox
+import Spring
 
 class Task: Object {
 	dynamic var text: String = ""
@@ -113,12 +114,13 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		
 		notificationToken = realm.addNotificationBlock { [unowned self] note, realm in
 			self.tasksTableView.reloadData()
+			print("Realm array changed")
 		}
 		
 		
 		RealmHelper.addPriorities()
 		
-		tasksTableView.backgroundColor = UIColor.grayColor()
+		tasksTableView.backgroundColor = UIColor.whiteColor()
 //		tasksTableView.estimatedRowHeight = CGFloat(90)
 		tasksTableView.rowHeight = UITableViewAutomaticDimension
 //		tasksTableView.rowHeight = 90
@@ -135,7 +137,7 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		let nib = UINib(nibName: "PriorityHeaderView", bundle: nil)
 		tasksTableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "PriorityHeaderView")
 		
-		tasksTableView.reloadData()
+		 tasksTableView.reloadData()
 		
 }
 	
@@ -234,6 +236,10 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 				(sender: MGSwipeTableCell!) -> Bool in
 				self.collapseCellAtIndexPath(indexPath)
 				RealmHelper.deleteTask(self.taskForIndexPath(indexPath)!)
+				// self.tasksTableView.reloadData()
+				
+							
+				
 				return true
 			})]
 			
@@ -273,10 +279,10 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 	func collapseCellAtIndexPath(indexPath: NSIndexPath) {
 		
 		if let cell = tasksTableView.cellForRowAtIndexPath(indexPath) as? TaskTableViewCell{
-			self.tasksTableView.beginUpdates()
 			cell.changeCellStatus(true)
+			self.tasksTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
 			cell.changeCellStatus(false)
-			self.tasksTableView.endUpdates()
+			self.tasksTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
 		}
 		
 	}
@@ -327,9 +333,9 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		}
 	}
 	
-	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		tableView.deselectRowAtIndexPath(indexPath, animated: true)
-	}
+//	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//		tableView.deselectRowAtIndexPath(indexPath, animated: true)
+//	}
  
 	func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
 	                        forRowAtIndexPath indexPath: NSIndexPath) {
@@ -351,17 +357,22 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 				// Update an existing task.
 				if selectedIndexPath.section == priorityIndex { // not changing priority
 					RealmHelper.updateTask(taskForIndexPath(selectedIndexPath)!, newTask: task)
+					// tasksTableView.reloadData()
+
 				}
 				
 				else { // changing priority
 					collapseCellAtIndexPath(selectedIndexPath)
 					RealmHelper.addTask(task)
+
 					
-				RealmHelper.deleteTask(taskForIndexPath(selectedIndexPath)!)
+					RealmHelper.deleteTask(taskForIndexPath(selectedIndexPath)!)
+					// tasksTableView.reloadData()
 				}
 			}
 			else {
 				RealmHelper.addTask(task)
+				// tasksTableView.reloadData()
 			}
 		}
 		
@@ -397,7 +408,6 @@ extension TasksTableViewController: RearrangeDataSource {
 		guard let unwrappedCurrentIndexPath = currentIndexPath else { return }
 		
 		let oldTask = taskForIndexPath(unwrappedCurrentIndexPath)
-		collapseCellAtIndexPath(unwrappedCurrentIndexPath)
 		collapseCellAtIndexPath(indexPath)
 		
 		let newTask = Task(task: oldTask!, index: indexPath.row)
@@ -406,7 +416,5 @@ extension TasksTableViewController: RearrangeDataSource {
 		try! realm.write() {
 			tasksByPriority.priorities[indexPath.section].tasks.insert(newTask, atIndex: indexPath.row)
 		}
-		
-		
 	}
 }

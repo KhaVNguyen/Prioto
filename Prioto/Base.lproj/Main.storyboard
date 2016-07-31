@@ -43,7 +43,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="90"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="I0H-fZ-gGS">
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="I0H-fZ-gGS" customClass="SpringVIew">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="90"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BiZ-la-A9t">
@@ -154,8 +154,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="1"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="guL-9p-bGL">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="guL-9p-bGL">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="1"/>
                                             <state key="normal" title="No tasks in this section. Tap to add one.">
                                                 <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -226,7 +226,7 @@
                                     <!--2016-07-12 23:42:08 +0000-->
                                 </date>
                             </datePicker>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Task Title" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="UJW-Cp-DCk">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Task Title Here..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="UJW-Cp-DCk" customClass="SpringTextField" customModule="Spring">
                                 <rect key="frame" x="20" y="74" width="560" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="UJW-Cp-DCk" secondAttribute="height" multiplier="1:1" id="Rli-Vl-g3S"/>
@@ -257,10 +257,13 @@
                                     <segment title="Not Urgent"/>
                                 </segments>
                             </segmentedControl>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Task Details" translatesAutoresizingMaskIntoConstraints="NO" id="610-sX-7gg">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="610-sX-7gg" userLabel="Task Details" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
                                 <rect key="frame" x="30" y="460" width="540" height="96"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Enter Task Details Here..."/>
+                                </userDefinedRuntimeAttributes>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxE-2L-Q3M">
                                 <rect key="frame" x="20" y="210" width="600" height="24"/>
@@ -325,6 +328,7 @@
                         <outlet property="dueDateLabel" destination="vxE-2L-Q3M" id="Tor-Lf-dK6"/>
                         <outlet property="dueDatePicker" destination="vyD-Pv-lHq" id="4AW-is-Yth"/>
                         <outlet property="importanceSelector" destination="ng2-m0-ZGS" id="q2k-u9-ct1"/>
+                        <outlet property="taskDetails" destination="610-sX-7gg" id="zKh-W1-fke"/>
                         <outlet property="taskTitleTextField" destination="UJW-Cp-DCk" id="bQW-jb-Z2a"/>
                         <outlet property="urgencySelector" destination="Vt5-sH-FQe" id="W6H-Ty-8UC"/>
                     </connections>
@@ -375,7 +379,7 @@
                                             <constraint firstAttribute="height" priority="750" constant="39" id="oZg-br-IlE"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="28"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="default">
                                             <mask key="constraints">
@@ -457,7 +461,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="typeLabel" text="Work" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YkB-RK-Hbr">
                                 <rect key="frame" x="270" y="114" width="61" height="35"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="25"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -528,7 +532,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Work Duration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4l5-VE-tfy">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="26"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="atg-6M-Dpv" userLabel="WorkDurationPickerView">
@@ -545,7 +549,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Break Duration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jqq-nx-LBK">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="26"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b2t-V1-Djo" userLabel="BreakDurationPickerView">

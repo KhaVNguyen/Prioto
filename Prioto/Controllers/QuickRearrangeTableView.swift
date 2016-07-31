@@ -5,6 +5,8 @@ protocol RearrangeDataSource: class {
 	var currentIndexPath: NSIndexPath? { get set }
 	
 	func moveObjectAtCurrentIndexPath(to indexPath: NSIndexPath)
+	
+	func collapseCellAtIndexPath(indexPath: NSIndexPath)
 }
 
 struct RearrangeOptions: OptionSetType {
@@ -78,14 +80,11 @@ extension TasksTableView: Rearrangable {
 		guard let source = rearrange.dataSource, currentIndexPath = source.currentIndexPath,
 			catchedViewCenter = rearrange.catchedView?.center, newIndexPath = indexPathForRowAtPoint(catchedViewCenter)
 			where newIndexPath != currentIndexPath else { return }
-		
 		source.moveObjectAtCurrentIndexPath(to: newIndexPath)
-		source.currentIndexPath = newIndexPath
 		
-//		beginUpdates()
-//		deleteRowsAtIndexPaths([currentIndexPath], withRowAnimation: .Top)
-//		insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Top)
-//		endUpdates()
+		// reloadData()
+
+		source.currentIndexPath = newIndexPath
 	}
 	
 	func longPress() {
@@ -102,6 +101,8 @@ extension TasksTableView: Rearrangable {
 			
 			guard let currentIndexPath = source.currentIndexPath,
 				catchedCell = cellForRowAtIndexPath(currentIndexPath) else { return }
+			
+			source.collapseCellAtIndexPath(currentIndexPath)
 			
 			allowsSelection = false
 			
@@ -138,9 +139,10 @@ extension TasksTableView: Rearrangable {
 				}
 				
 				self.moveCatchedViewCenterToY(location.y)
+				
 			}
 			
-			// reloadRowsAtIndexPaths([currentIndexPath], withRowAnimation: .None)
+		// reloadRowsAtIndexPaths([currentIndexPath], withRowAnimation: .None)
 			
 		case .Changed:
 			
@@ -168,6 +170,7 @@ extension TasksTableView: Rearrangable {
 			}
 			
 		default:
+			
 			
 			allowsSelection = true
 			

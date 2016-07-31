@@ -8,6 +8,7 @@
 
 import UIKit
 import AudioToolbox
+import Spring
 
 class DisplayTaskViewController: UIViewController {
 
@@ -17,6 +18,9 @@ class DisplayTaskViewController: UIViewController {
 	@IBOutlet weak var dueDatePicker: UIDatePicker!
 	
 	@IBOutlet weak var dueDateLabel: UILabel!
+	
+	
+	@IBOutlet weak var taskDetails: UITextView!
 	
 	var priorityIndex: Int!
 	var completed: Bool = false
@@ -56,6 +60,7 @@ class DisplayTaskViewController: UIViewController {
 				importanceSelector.selectedSegmentIndex = 0
 				urgencySelector.selectedSegmentIndex = 0
 			}
+			taskDetails.text = task.details
 		}
     }
 	
@@ -112,13 +117,14 @@ class DisplayTaskViewController: UIViewController {
 				task = Task()
 				task!.text = text!
 				task!.completed = self.completed
+				task!.details = self.taskDetails.text
 				
-				setTaskDetails(task!)
+				setTaskComponents(task!)
 			}
 		}
 	}
 	
-	func setTaskDetails(task: Task) {
+	func setTaskComponents(task: Task) {
 //		if dueDatePicker.date > NSDate() {
 			task.dueDate = dueDatePicker.date
 //		}

@@ -22,5 +22,6 @@ pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift2
 pod 'SwiftyUserDefaults'
 pod "BSForegroundNotification"
 pod 'DZNEmptyDataSet'
+pod 'KMPlaceholderTextView', '~> 1.2.2' 
 
 end
