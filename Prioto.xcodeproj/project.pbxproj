@@ -17,6 +17,7 @@
 		0F4355411D3C9A7F001764AB /* RealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4355401D3C9A7F001764AB /* RealmHelper.swift */; };
 		0F586CCD1D49471300B1697B /* PlaceholderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F586CCC1D49471300B1697B /* PlaceholderTableViewCell.swift */; };
 		0F6E6D371D36AC4200FF8A76 /* DisplayTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6E6D361D36AC4200FF8A76 /* DisplayTaskViewController.swift */; };
+		0F81A9511D4FB26D00B11DE1 /* NotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F81A9501D4FB26D00B11DE1 /* NotificationHelper.swift */; };
 		0F84FBC81D474478001E75E8 /* PriorityHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F84FBC71D474478001E75E8 /* PriorityHeaderView.swift */; };
 		0F84FBCA1D474495001E75E8 /* PriorityHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F84FBC91D474495001E75E8 /* PriorityHeaderView.xib */; };
 		0F909CEF1D4BE221008C81D1 /* QuickRearrangeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F909CEE1D4BE221008C81D1 /* QuickRearrangeTableView.swift */; };
@@ -43,6 +44,7 @@
 		0F4355401D3C9A7F001764AB /* RealmHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmHelper.swift; sourceTree = "<group>"; };
 		0F586CCC1D49471300B1697B /* PlaceholderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderTableViewCell.swift; sourceTree = "<group>"; };
 		0F6E6D361D36AC4200FF8A76 /* DisplayTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayTaskViewController.swift; sourceTree = "<group>"; };
+		0F81A9501D4FB26D00B11DE1 /* NotificationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationHelper.swift; sourceTree = "<group>"; };
 		0F84FBC71D474478001E75E8 /* PriorityHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriorityHeaderView.swift; sourceTree = "<group>"; };
 		0F84FBC91D474495001E75E8 /* PriorityHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PriorityHeaderView.xib; sourceTree = "<group>"; };
 		0F909CEE1D4BE221008C81D1 /* QuickRearrangeTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickRearrangeTableView.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				0FA486C01D3406B70075CD9B /* AppDelegate.swift */,
+				0F81A9501D4FB26D00B11DE1 /* NotificationHelper.swift */,
 				0FA486C41D3406B70075CD9B /* Main.storyboard */,
 				0FA486C71D3406B70075CD9B /* Assets.xcassets */,
 				0FA486C91D3406B70075CD9B /* LaunchScreen.storyboard */,
@@ -372,6 +375,7 @@
 				0F909CEF1D4BE221008C81D1 /* QuickRearrangeTableView.swift in Sources */,
 				0F2D075B1D3FE587007B815A /* NewFocusViewController.swift in Sources */,
 				0F6E6D371D36AC4200FF8A76 /* DisplayTaskViewController.swift in Sources */,
+				0F81A9511D4FB26D00B11DE1 /* NotificationHelper.swift in Sources */,
 				0F4355411D3C9A7F001764AB /* RealmHelper.swift in Sources */,
 				0F2344D31D41402300FE12B2 /* PreferencesViewController.swift in Sources */,
 				0F167FDC1D408C1D0075AEE9 /* MKGradientGenerator.swift in Sources */,

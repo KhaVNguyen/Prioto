@@ -14,7 +14,11 @@ import SwiftyUserDefaults
 import BSForegroundNotification
 import AudioToolbox
 
-class NewFocusViewController: UIViewController {
+
+var newFocusViewControllerLoaded: Bool = false
+var timerInterrupted: Bool = false
+
+class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate {
 	
 	enum TimerType : String {
 		case Work = "Work"
@@ -27,6 +31,7 @@ class NewFocusViewController: UIViewController {
 
 	@IBOutlet weak var typeLabel: UILabel!
 	
+	var timer: NSTimer!
 	var timeRemaining: Double!
 	var timeMax: Double!
 	
@@ -37,7 +42,6 @@ class NewFocusViewController: UIViewController {
 	var breakTimeMax: Int = 300
 	var workTimeMax: Int = 1500
 	
-	var timer: NSTimer?
 	var counting: Bool = false
 	
 	var timerType: TimerType!
@@ -51,26 +55,60 @@ class NewFocusViewController: UIViewController {
 	
 	@IBAction func startPauseButtonPressed(sender: AnyObject) {
 		if self.counting {
-			self.timer?.invalidate()
-			UIApplication.sharedApplication().cancelAllLocalNotifications()
-			self.willDisplayForegroundNotification = false
-			self.counting = false
-			startPauseButton.setTitle("Resume", forState: .Normal)
-			startPauseButton.setImage(UIImage(named: "Play.png"), forState: .Normal)
+			pauseTimer()
 		}
 		else {
-			setupLocalNotifications()
-			self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(NewFocusViewController.countdown), userInfo: nil, repeats: true)
-			self.willDisplayForegroundNotification = true
-			self.counting = true
-			startPauseButton.setTitle("Pause", forState: .Normal)
-			startPauseButton.setImage(UIImage(named: "Pause.png"), forState: .Normal)
-
+			startTimer()
 		}
 	}
 	
+	func pauseTimer() {
+		self.timer.invalidate()
+		UIApplication.sharedApplication().cancelAllLocalNotifications()
+		self.willDisplayForegroundNotification = false
+		self.counting = false
+		startPauseButton.setTitle("Resume", forState: .Normal)
+		startPauseButton.setImage(UIImage(named: "Play.png"), forState: .Normal)
+	}
+	
+	func startTimer() {
+		setupLocalNotifications()
+		self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(NewFocusViewController.countdown), userInfo: nil, repeats: true)
+		self.willDisplayForegroundNotification = true
+		self.counting = true
+		startPauseButton.setTitle("Pause", forState: .Normal)
+		startPauseButton.setImage(UIImage(named: "Pause.png"), forState: .Normal)
+	}
+	
+	func pauseTimerIfRunning() { // called upon app exit.
+		if self.counting {
+			pauseTimer()
+			timerInterrupted = true
+			let timerPausedNotification = UILocalNotification()
+			timerPausedNotification.alertTitle = "Prioto"
+			timerPausedNotification.alertBody = "Timer has been paused. Reenter Prioto to continue."
+			timerPausedNotification.soundName = UILocalNotificationDefaultSoundName
+			timerPausedNotification.category = "STOP_TIMER"
+			
+			UIApplication.sharedApplication().scheduleLocalNotification(timerPausedNotification)
+		}
+	}
+	
+	func unpauseTimerIfInterrupted() { // called upon app reenter
+		if timerInterrupted {
+			startTimer()
+			timerInterrupted = false
+			let notification = BSForegroundNotification(userInfo: NotificationHelper.userInfoForCategory("START_TIMER"))
+			notification.delegate = self
+			notification.timeToDismissNotification = NSTimeInterval(5)
+			notification.presentNotification()
+		}
+	}
+	
+	
+	
 	@IBAction func restartButtonPressed(sender: AnyObject) {
-		self.timer?.invalidate()
+		self.timer.invalidate()
 		UIApplication.sharedApplication().cancelAllLocalNotifications()
 		self.timeRemaining = Double(self.timeMax)
 		self.counting = false
@@ -81,6 +119,8 @@ class NewFocusViewController: UIViewController {
 	}
 	
 	override func viewDidLoad() {
+		
+		newFocusViewControllerLoaded = true
 		
 		let settings = UIUserNotificationSettings(forTypes: [.Badge, .Sound, .Alert], categories: nil)
 		UIApplication.sharedApplication().registerUserNotificationSettings(settings)
@@ -115,6 +155,15 @@ class NewFocusViewController: UIViewController {
 		self.resetTimer()
 		
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewFocusViewController.didReopenApp), name: "didReopenApp", object: nil)
+		
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: "pauseTimerIfRunning", name: "appExited", object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: "unpauseTimerIfInterrupted", name: "appEntered", object: nil)
+
+
+	}
+	
+	deinit {
+		NSNotificationCenter.defaultCenter().removeObserver(self)
 	}
 	
 	func didReopenApp() {
@@ -145,7 +194,7 @@ class NewFocusViewController: UIViewController {
 			self.workTimeMax = Defaults[.workDuration]
 			self.breakTimeMax = Defaults[.breakDuration]
 			self.setTimeBasedOnTimerType(self.timerType)
-			self.timer?.invalidate()
+			self.timer.invalidate()
 			self.counting = false
 			self.willDisplayForegroundNotification = false
 			self.resetTimer()
@@ -232,7 +281,12 @@ class NewFocusViewController: UIViewController {
 		self.localNotification!.alertBody = alertBody
 		self.localNotification!.alertTitle = alertTitle
 		self.localNotification!.soundName = UILocalNotificationDefaultSoundName
-		self.localNotification!.category = "START_CATEGORY"
+		if self.timerType == TimerType.Work {
+			self.localNotification!.category = "WORKTIME_UP"
+		}
+		else if self.timerType == TimerType.Break {
+			self.localNotification!.category = "BREAKTIME_UP"
+		}
 		
 		UIApplication.sharedApplication().scheduleLocalNotification(self.localNotification!)
 	}
@@ -240,5 +294,7 @@ class NewFocusViewController: UIViewController {
 	func setupMultipleLocalNotifications() {
 		
 	}
+	
+	
 
 }

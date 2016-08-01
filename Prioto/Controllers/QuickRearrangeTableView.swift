@@ -102,7 +102,7 @@ extension TasksTableView: Rearrangable {
 			guard let currentIndexPath = source.currentIndexPath,
 				catchedCell = cellForRowAtIndexPath(currentIndexPath) else { return }
 			
-			source.collapseCellAtIndexPath(currentIndexPath)
+			// source.collapseCellAtIndexPath(currentIndexPath)
 			
 			allowsSelection = false
 			

@@ -20,8 +20,9 @@ public var hasExitedAppAndGoBack: Bool = false
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, BSForegroundNotificationDelegate {
 
+
 	var window: UIWindow?
-	var newFocusViewController: NewFocusViewController!
+	var localNotification: UILocalNotification!
 
 	
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -41,6 +42,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BSForegroundNotificationD
 		Defaults[DefaultsKeys.dateAppExited._key] = NSDate()
 		hasExitedAppAndGoBack = false
 		
+		
+		NSNotificationCenter.defaultCenter().postNotificationName("appExited", object: self)
+
 	}
 
 	func applicationDidEnterBackground(application: UIApplication) {
@@ -61,6 +65,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BSForegroundNotificationD
 			
 		}
 		
+		
+		NSNotificationCenter.defaultCenter().postNotificationName("appEntered", object: self)
+
+		
+		
 //		self.newFocusViewController.timeRemaining = self.newFocusViewController.timeRemaining - Int(timeElapsed)
 //		self.newFocusViewController.updateTimer()
 
@@ -71,24 +80,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BSForegroundNotificationD
 	}
 	
 	func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-		let notification = BSForegroundNotification(userInfo: userInfoForCategory("ONE_BUTTON"))
-		notification.delegate = self
-		notification.timeToDismissNotification = NSTimeInterval(5)
-		notification.presentNotification()
-
-	}
-	
-	func userInfoForCategory(category: String) -> [NSObject: AnyObject] {
+		if notification.category == "WORKTIME_UP" {
+			let foregroundNotification = BSForegroundNotification(userInfo: NotificationHelper.userInfoForCategory("WORKTIME_UP"))
+			foregroundNotification.delegate = self
+			foregroundNotification.timeToDismissNotification = NSTimeInterval(5)
+			foregroundNotification.presentNotification()
+		}
 		
-		return ["aps": [
-			"category": category,
-			"alert": [
-				"body": "Time is up!",
-				"title": "Prioto"
-			],
-			"sound": "sound.wav"
-			]
-		]
+		else if notification.category == "BREAKTIME_UP" {
+			let foregroundNotification = BSForegroundNotification(userInfo: NotificationHelper.userInfoForCategory("BREAKTIME_UP"))
+			foregroundNotification.delegate = self
+			foregroundNotification.timeToDismissNotification = NSTimeInterval(5)
+			foregroundNotification.presentNotification()
+		}
 	}
 }
 

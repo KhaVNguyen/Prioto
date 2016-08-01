@@ -147,14 +147,14 @@
                                     <segue destination="x4Y-Jd-H20" kind="show" identifier="editTaskDetailsSegue" id="zSj-MT-0dh"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="placeholderCell" rowHeight="1" id="7rm-e7-i4B" customClass="PlaceholderTableViewCell" customModule="Prioto" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="182" width="600" height="1"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="placeholderCell" rowHeight="20" id="7rm-e7-i4B" customClass="PlaceholderTableViewCell" customModule="Prioto" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="182" width="600" height="20"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7rm-e7-i4B" id="HfI-Ef-EJX">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="1"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="guL-9p-bGL">
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="guL-9p-bGL">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="1"/>
                                             <state key="normal" title="No tasks in this section. Tap to add one.">
                                                 <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>

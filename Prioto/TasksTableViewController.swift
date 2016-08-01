@@ -209,7 +209,8 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		if tasksByPriority.priorities[indexPath.section].tasks.count == 0 {
 			let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "placeholderCell")
 			//set the data here
-			cell.setHeight(1.0)
+			cell.setHeight(1)
+			// cell.userInteractionEnabled = false
 			return cell
 		}
 		
@@ -227,14 +228,18 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 					self.taskForIndexPath(indexPath)?.completed = !(self.taskForIndexPath(indexPath)?.completed)!
 					AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
 					self.strikethroughCompleted(indexPath, cell: cell, task: task!)
-					self.collapseCellAtIndexPath(indexPath)
+					if cell.expanded == true {
+						self.collapseCellAtIndexPath(indexPath)
+					}
 				}
 				return true
 			})]
 			cell.leftSwipeSettings.transition = MGSwipeTransition.Border
 			cell.rightButtons = [MGSwipeButton(title: "", icon: UIImage(named:"deleteTask.png"), backgroundColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0), callback: {
 				(sender: MGSwipeTableCell!) -> Bool in
-				self.collapseCellAtIndexPath(indexPath)
+				if cell.expanded {
+					self.collapseCellAtIndexPath(indexPath)
+				}
 				RealmHelper.deleteTask(self.taskForIndexPath(indexPath)!)
 				// self.tasksTableView.reloadData()
 				
@@ -279,12 +284,21 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 	func collapseCellAtIndexPath(indexPath: NSIndexPath) {
 		
 		if let cell = tasksTableView.cellForRowAtIndexPath(indexPath) as? TaskTableViewCell{
+			self.tasksTableView.beginUpdates()
 			cell.changeCellStatus(true)
-			self.tasksTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
 			cell.changeCellStatus(false)
-			self.tasksTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+			self.tasksTableView.endUpdates()
 		}
 		
+	}
+	
+	func expandCellAtIndexPath(indexPath: NSIndexPath) {
+		if let cell = tasksTableView.cellForRowAtIndexPath(indexPath) as? TaskTableViewCell{
+			self.tasksTableView.beginUpdates()
+			cell.changeCellStatus(false)
+			cell.changeCellStatus(true)
+			self.tasksTableView.endUpdates()
+		}
 	}
 	
 	// Get the Task at a given index path
@@ -407,8 +421,13 @@ extension TasksTableViewController: RearrangeDataSource {
 		
 		guard let unwrappedCurrentIndexPath = currentIndexPath else { return }
 		
+		if let cell = tasksTableView.cellForRowAtIndexPath(unwrappedCurrentIndexPath) as? TaskTableViewCell{
+			if cell.expanded {
+				collapseCellAtIndexPath(unwrappedCurrentIndexPath)
+			}
+		}
+		
 		let oldTask = taskForIndexPath(unwrappedCurrentIndexPath)
-		collapseCellAtIndexPath(indexPath)
 		
 		let newTask = Task(task: oldTask!, index: indexPath.row)
 		
@@ -416,5 +435,12 @@ extension TasksTableViewController: RearrangeDataSource {
 		try! realm.write() {
 			tasksByPriority.priorities[indexPath.section].tasks.insert(newTask, atIndex: indexPath.row)
 		}
+		
+		if let cell = tasksTableView.cellForRowAtIndexPath(indexPath) as? TaskTableViewCell{
+			if cell.expanded {
+				collapseCellAtIndexPath(indexPath)
+			}
+		}
+		
 	}
 }
