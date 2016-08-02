@@ -37,5 +37,6 @@ class Task: Object {
 		self.completed = task.completed
 		self.dueDate = task.dueDate
 		self.dateCreated = task.dateCreated
+		self.timeWorked = task.timeWorked
 	}
 }

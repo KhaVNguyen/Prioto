@@ -158,6 +158,7 @@
                                 <connections>
                                     <outlet property="stackView" destination="I0H-fZ-gGS" id="OM9-sr-sVg"/>
                                     <outlet property="taskTextLabel" destination="7R7-9L-Ma9" id="jRH-KO-RnR"/>
+                                    <outlet property="timeElapsedLabel" destination="lu4-Fd-niK" id="kFS-ys-EK8"/>
                                     <segue destination="x4Y-Jd-H20" kind="show" identifier="editTaskDetailsSegue" id="zSj-MT-0dh"/>
                                 </connections>
                             </tableViewCell>

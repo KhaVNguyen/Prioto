@@ -251,6 +251,8 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 //			cell.separatorInset = UIEdgeInsetsZero
 //			cell.layoutMargins = UIEdgeInsetsZero
 			
+			cell.timeElapsedLabel.text = formatSecondsAsTimeString(Double((task?.timeWorked)!))
+			
 			return cell
 		}
 
@@ -391,7 +393,12 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 	
 	// MARK: Timer integration
 	
-	
+	func formatSecondsAsTimeString(time: Double) -> String {
+		let hours = Int(round(time)) / 3600
+		let minutes = Int(round(time)) / 60 % 60
+		let seconds = Int(round(time)) % 60
+		return String(format:"%02i:%02i:%02i", hours, minutes, seconds)
+	}
 	
 }
 

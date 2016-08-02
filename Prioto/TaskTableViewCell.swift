@@ -80,6 +80,9 @@ class TaskTableViewCell: MGSwipeTableCell {
 	}
 	
 	
+	@IBOutlet weak var timeElapsedLabel: UILabel!
+	
+	
 	
 	
 	

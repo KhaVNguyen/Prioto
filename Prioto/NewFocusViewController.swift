@@ -237,10 +237,12 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		
 		if self.timerType == TimerType.Work { // add time to task
 			if let task = self.task {
-				let realm = try! Realm()
-				try! realm.write {
-					task.timeWorked += 1
-					print("Time worked: \(task.timeWorked)")
+				if task.invalidated != true {
+					let realm = try! Realm()
+					try! realm.write {
+						task.timeWorked += 1
+						print("Time worked: \(task.timeWorked)")
+					}
 				}
 			}
 		}
@@ -362,6 +364,7 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		if let task = notification.userInfo?["task"] as? Task {
 			self.task = task
 			taskLabel.text = self.task!.text
+			print("Assigned task elapsed time: \(self.task?.timeWorked))")
 		}
 	}
 	
