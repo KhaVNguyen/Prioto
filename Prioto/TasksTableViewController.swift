@@ -71,6 +71,10 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
 		
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		storyboard.instantiateViewControllerWithIdentifier("NewFocusViewController")
+
+		
 		realm = try! Realm()
 		
 		notificationToken = realm.addNotificationBlock { [unowned self] note, realm in

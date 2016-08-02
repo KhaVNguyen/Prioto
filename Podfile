@@ -24,6 +24,8 @@ pod "BSForegroundNotification"
 pod 'DZNEmptyDataSet'
 pod 'KMPlaceholderTextView', '~> 1.2.2' 
 pod 'AZDropdownMenu'
+pod "AutocompleteField", "~> 1.1" 
+
 
 
 end

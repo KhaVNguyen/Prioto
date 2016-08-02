@@ -14,6 +14,7 @@ import SwiftyUserDefaults
 import BSForegroundNotification
 import AudioToolbox
 import AZDropdownMenu
+import RealmSwift
 
 var newFocusViewControllerLoaded: Bool = false
 var timerInterrupted: Bool = false
@@ -161,9 +162,7 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewFocusViewController.pauseTimerIfRunning), name: "appExited", object: nil)
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewFocusViewController.unpauseTimerIfInterrupted), name: "appEntered", object: nil)
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewFocusViewController.assignTask(_:)), name: "taskChosen", object: nil)
-		
-		
+		addObserver()
 		view.frame = CGRectMake(0, 44.0, CGRectGetWidth(UIScreen.mainScreen().bounds), CGRectGetHeight(UIScreen.mainScreen().bounds))
 
 		
@@ -171,6 +170,8 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		self.dropdownMenu = AZDropdownMenu(titles: taskTitles)
 		self.dropdownMenu!.menuTopOffset = 44.0
 		self.dropdownMenu!.itemHeight = 44
+		
+		
 	}
 	
 	deinit {
@@ -233,6 +234,16 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 			setupLocalNotifications()
 		}
 		print("counting down")
+		
+		if self.timerType == TimerType.Work { // add time to task
+			if let task = self.task {
+				let realm = try! Realm()
+				try! realm.write {
+					task.timeWorked += 1
+					print("Time worked: \(task.timeWorked)")
+				}
+			}
+		}
 	}
 	
 	func switchTimerType() {
@@ -314,6 +325,7 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 	}
 	
 	// MARK: Timer - Todo List Integration
+	var task: Task?
 	
 	@IBAction func dropdownMenuButtonPressed(sender: AnyObject) {
 		showDropdown()
@@ -339,8 +351,6 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		self.dropdownMenu?.cellTapHandler = { [weak self] (indexPath: NSIndexPath) -> Void in
 			
 		}
-		
-		
 	}
 	
 	func updateTasksInMenu() {
@@ -350,12 +360,12 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 	
 	func assignTask(notification: NSNotification) {
 		if let task = notification.userInfo?["task"] as? Task {
-			taskLabel.text = task.text
+			self.task = task
+			taskLabel.text = self.task!.text
 		}
-
 	}
-
 	
-	
-
+	func addObserver() {
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewFocusViewController.assignTask(_:)), name: "taskChosen", object: nil)
+	}
 }

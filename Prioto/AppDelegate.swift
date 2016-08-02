@@ -30,7 +30,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BSForegroundNotificationD
 		IQKeyboardManager.sharedManager().enable = true
 		IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
 		// types are UIUserNotificationType values
-		application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)) 
+		application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
+
+		if let tabBarController = self.window!.rootViewController as? UITabBarController {
+			for viewController in tabBarController.viewControllers! {
+				if let view = viewController.topViewController()  {
+					view.view.description
+				}
+			}
+		}
+		
+//		let tabBarController = self.window!.rootViewController as! UITabBarController
+//		for viewController in tabBarController.viewControllers! {
+//			let aView = viewController.topViewController as! UIViewController
+//			aView.view.description
+//		}
+		
+		
 		return true
 	}
 
