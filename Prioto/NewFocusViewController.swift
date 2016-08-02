@@ -105,6 +105,9 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 	
 	@IBAction func restartButtonPressed(sender: AnyObject) {
 		if let timer = self.timer {
+			if timeRemaining == timeMax { // if already reset, then change type
+				switchTimerType()
+			}
 			self.timer.invalidate()
 			UIApplication.sharedApplication().cancelAllLocalNotifications()
 			self.timeRemaining = Double(self.timeMax)
