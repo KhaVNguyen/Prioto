@@ -17,6 +17,7 @@ class Task: Object {
 	dynamic var priorityIndex: Int = 0
 	dynamic var dateCreated = NSDate()
 	dynamic var timeWorked = 0 // in seconds 
+	dynamic var isBeingWorkedOn = false
 	
 	convenience init(text: String) {
 		self.init()

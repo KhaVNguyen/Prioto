@@ -67,6 +67,7 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 	}()
 	
 	var currentIndexPath: NSIndexPath?
+	var selectedIndexPath : NSIndexPath!
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -324,9 +325,12 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		}
 	}
 	
-//	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//		tableView.deselectRowAtIndexPath(indexPath, animated: true)
-//	}
+	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		
+		self.selectedIndexPath = indexPath
+		tableView.deselectRowAtIndexPath(indexPath, animated: true)
+		self.performSegueWithIdentifier("editTaskDetailsSegue", sender: self)
+	}
  
 	func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
 	                        forRowAtIndexPath indexPath: NSIndexPath) {
@@ -344,8 +348,9 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 	
 	@IBAction func unwindToTasksTableViewController(sender: UIStoryboardSegue) {
 		if let sourceViewController = sender.sourceViewController as? DisplayTaskViewController, task = sourceViewController.task, priorityIndex = sourceViewController.priorityIndex {
-			if let selectedIndexPath = tasksTableView.indexPathForSelectedRow {
+			if let selectedIndexPath = self.selectedIndexPath {
 				// Update an existing task.
+				self.selectedIndexPath = nil
 				if selectedIndexPath.section == priorityIndex { // not changing priority
 					RealmHelper.updateTask(taskForIndexPath(selectedIndexPath)!, newTask: task)
 					// tasksTableView.reloadData()
@@ -373,17 +378,18 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		if let identifier = segue.identifier {
 			
 			if identifier == "editTaskDetailsSegue" {
-				let displayTaskViewController = segue.destinationViewController as! DisplayTaskViewController
+				let displayTaskViewController = (segue.destinationViewController as! UINavigationController).viewControllers[0] as! DisplayTaskViewController
 				
 				// set task of DisplayTaskViewController to task tapped on
-				if let selectedTaskCell = sender as? TaskTableViewCell {
-					let indexPath = tasksTableView.indexPathForCell(selectedTaskCell)!
-					let selectedTask = taskForIndexPath(indexPath)
+//				if let selectedTaskCell = sender as? TaskTableViewCell {
+					let selectedTask = taskForIndexPath(self.selectedIndexPath)
 					displayTaskViewController.task = selectedTask
 					print("Task completed: \(selectedTask!.completed)")
-					displayTaskViewController.priorityIndex = indexPath.section
+					displayTaskViewController.priorityIndex = self.selectedIndexPath.section
 					displayTaskViewController.completed = (selectedTask?.completed)!
-				}
+					displayTaskViewController.timeWorked = (selectedTask?.timeWorked)!
+
+//				}
 			}
 			
 			else if identifier == "addNewTaskSegue" {
@@ -415,6 +421,10 @@ extension TasksTableViewController: RearrangeDataSource {
 		}
 		
 		let oldTask = taskForIndexPath(unwrappedCurrentIndexPath)
+		var makeNewTaskActive = false
+		if oldTask!.isBeingWorkedOn {
+			makeNewTaskActive = true
+		}
 		
 		let newTask = Task(task: oldTask!, index: indexPath.row)
 		
@@ -427,6 +437,11 @@ extension TasksTableViewController: RearrangeDataSource {
 			if cell.expanded {
 				collapseCellAtIndexPath(indexPath)
 			}
+		}
+		
+		if makeNewTaskActive {
+			let taskDataDict:[String: Task] = ["task": newTask]
+			NSNotificationCenter.defaultCenter().postNotificationName("taskChosen", object: self, userInfo: taskDataDict)
 		}
 		
 	}

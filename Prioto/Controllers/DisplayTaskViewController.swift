@@ -9,6 +9,7 @@
 import UIKit
 import AudioToolbox
 import Spring
+import RealmSwift
 
 class DisplayTaskViewController: UIViewController {
 
@@ -24,7 +25,9 @@ class DisplayTaskViewController: UIViewController {
 	
 	var priorityIndex: Int!
 	var completed: Bool = false
+	var timeWorked: Int!
 	var task: Task?
+	
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -113,18 +116,32 @@ class DisplayTaskViewController: UIViewController {
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if let identifier = segue.identifier {
 			if identifier == "Save" {
-				let text = self.taskTitleTextField.text
-				task = Task()
-				task!.text = text!
-				task!.completed = self.completed
-				task!.details = self.taskDetails.text
+				if let taskToBeEdited = self.task {
+					let text = self.taskTitleTextField.text
+					let realm = try! Realm()
+					try! realm.write {
+						taskToBeEdited.text = text!
+						taskToBeEdited.completed = self.completed
+						taskToBeEdited.details = self.taskDetails.text
+						taskToBeEdited.timeWorked = self.timeWorked
+						setTaskPriority(taskToBeEdited)
+					}
+				}
+				else {
+					task = Task()
+					task!.text = self.taskTitleTextField.text!
+					task!.completed = self.completed
+					task!.details = self.taskDetails.text
+					task!.timeWorked = 0
+					setTaskPriority(task!)
+
+				}
 				
-				setTaskComponents(task!)
 			}
 		}
 	}
 	
-	func setTaskComponents(task: Task) {
+	func setTaskPriority(task: Task) {
 //		if dueDatePicker.date > NSDate() {
 			task.dueDate = dueDatePicker.date
 //		}

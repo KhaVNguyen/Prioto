@@ -198,7 +198,12 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 			Defaults[DefaultsKeys.dateAppExited._key] = nil
 		}
 		updateTasksInMenu()
-
+		if let task = self.task {
+			if task.invalidated {
+				taskLabel.text = "No task being tracked"
+				taskLabel.textColor = UIColor.redColor()
+			}
+		}
 
 	}
 	
@@ -243,6 +248,9 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 						task.timeWorked += 1
 						print("Time worked: \(task.timeWorked)")
 					}
+				}
+				else {
+					taskLabel.text = "No task being tracked"
 				}
 			}
 		}
@@ -361,9 +369,22 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 	}
 	
 	func assignTask(notification: NSNotification) {
+		if let oldTask = self.task {
+			if oldTask.invalidated != true {
+				let realm = try! Realm()
+				try! realm.write {
+					oldTask.isBeingWorkedOn = false
+				}
+			}
+		}
 		if let task = notification.userInfo?["task"] as? Task {
 			self.task = task
+			let realm = try! Realm()
+			try! realm.write {
+				self.task!.isBeingWorkedOn = true
+			}
 			taskLabel.text = self.task!.text
+			taskLabel.textColor = UIColor.blackColor()
 			print("Assigned task elapsed time: \(self.task?.timeWorked))")
 		}
 	}
