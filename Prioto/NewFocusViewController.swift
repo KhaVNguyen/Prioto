@@ -13,7 +13,7 @@ import LionheartExtensions
 import SwiftyUserDefaults
 import BSForegroundNotification
 import AudioToolbox
-
+import AZDropdownMenu
 
 var newFocusViewControllerLoaded: Bool = false
 var timerInterrupted: Bool = false
@@ -34,10 +34,6 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 	var timer: NSTimer!
 	var timeRemaining: Double!
 	var timeMax: Double!
-	
-	@IBAction func preferencesButtonPressed(sender: AnyObject) {
-		
-	}
 	
 	var breakTimeMax: Int = 300
 	var workTimeMax: Int = 1500
@@ -108,15 +104,19 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 	
 	
 	@IBAction func restartButtonPressed(sender: AnyObject) {
-		self.timer.invalidate()
-		UIApplication.sharedApplication().cancelAllLocalNotifications()
-		self.timeRemaining = Double(self.timeMax)
-		self.counting = false
-		self.willDisplayForegroundNotification = false
-		self.updateTimer()
-		self.startPauseButton.setTitle("Start", forState: .Normal)
-		startPauseButton.setImage(UIImage(named: "Play.png"), forState: .Normal)
+		if let timer = self.timer {
+			self.timer.invalidate()
+			UIApplication.sharedApplication().cancelAllLocalNotifications()
+			self.timeRemaining = Double(self.timeMax)
+			self.counting = false
+			self.willDisplayForegroundNotification = false
+			self.updateTimer()
+			self.startPauseButton.setTitle("Start", forState: .Normal)
+			startPauseButton.setImage(UIImage(named: "Play.png"), forState: .Normal)
+		}
 	}
+	
+	
 	
 	override func viewDidLoad() {
 		
@@ -156,10 +156,18 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewFocusViewController.didReopenApp), name: "didReopenApp", object: nil)
 		
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: "pauseTimerIfRunning", name: "appExited", object: nil)
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: "unpauseTimerIfInterrupted", name: "appEntered", object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewFocusViewController.pauseTimerIfRunning), name: "appExited", object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewFocusViewController.unpauseTimerIfInterrupted), name: "appEntered", object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewFocusViewController.assignTask(_:)), name: "taskChosen", object: nil)
+		
+		
+		view.frame = CGRectMake(0, 44.0, CGRectGetWidth(UIScreen.mainScreen().bounds), CGRectGetHeight(UIScreen.mainScreen().bounds))
 
-
+		
+		let taskTitles = RealmHelper.getTaskTitles()
+		self.dropdownMenu = AZDropdownMenu(titles: taskTitles)
+		self.dropdownMenu!.menuTopOffset = 44.0
+		self.dropdownMenu!.itemHeight = 44
 	}
 	
 	deinit {
@@ -181,11 +189,18 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 //				print("Time elapsed: \(timeElapsed)")
 //
 //			}
-			
 			self.updateTimer()
 			hasExitedAppAndGoBack = false
 			Defaults[DefaultsKeys.dateAppExited._key] = nil
 		}
+		updateTasksInMenu()
+
+
+	}
+	
+	override func viewWillDisappear(animated: Bool) {
+		self.dropdownMenu?.hideMenu()
+		// navigationController?.navigationBar.translucent = true
 
 	}
 	
@@ -294,6 +309,49 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 	func setupMultipleLocalNotifications() {
 		
 	}
+	
+	// MARK: Timer - Todo List Integration
+	
+	@IBAction func dropdownMenuButtonPressed(sender: AnyObject) {
+		showDropdown()
+	}
+	
+	var dropdownMenu: AZDropdownMenu?
+	
+	@IBOutlet weak var taskLabel: UILabel!
+	
+	func showDropdown() {
+
+		if (self.dropdownMenu?.isDescendantOfView(self.view) == true) {
+			print("is decendent")
+			self.dropdownMenu?.hideMenu()
+			// navigationController?.navigationBar.translucent = true
+
+		} else {
+			self.dropdownMenu?.showMenuFromView(self.view)
+			// navigationController?.navigationBar.translucent = false
+
+		}
+		
+		self.dropdownMenu?.cellTapHandler = { [weak self] (indexPath: NSIndexPath) -> Void in
+			
+		}
+		
+		
+	}
+	
+	func updateTasksInMenu() {
+		let taskTitles = RealmHelper.getTaskTitles()
+		self.dropdownMenu = AZDropdownMenu(titles: taskTitles)
+	}
+	
+	func assignTask(notification: NSNotification) {
+		if let task = notification.userInfo?["task"] as? Task {
+			taskLabel.text = task.text
+		}
+
+	}
+
 	
 	
 

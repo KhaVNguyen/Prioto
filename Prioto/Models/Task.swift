@@ -2,11 +2,11 @@
 //  Task.swift
 //  Prioto
 //
-//  Created by Kha Nguyen on 7/11/16.
+//  Created by Kha Nguyen on 8/1/16.
 //  Copyright © 2016 Kha. All rights reserved.
 //
 
-import Foundation
+
 import RealmSwift
 
 class Task: Object {
@@ -16,6 +16,7 @@ class Task: Object {
 	dynamic var dueDate: NSDate? = nil
 	dynamic var priorityIndex: Int = 0
 	dynamic var dateCreated = NSDate()
+	dynamic var timeWorked = 0 // in seconds 
 	
 	convenience init(text: String) {
 		self.init()
@@ -26,5 +27,15 @@ class Task: Object {
 		self.init()
 		self.text = text
 		self.priorityIndex = priority
+	}
+	
+	convenience init(task: Task, index: Int) {
+		self.init()
+		self.text = task.text
+		self.priorityIndex = index
+		self.details = task.details
+		self.completed = task.completed
+		self.dueDate = task.dueDate
+		self.dateCreated = task.dateCreated
 	}
 }

@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'F71AB6B300C60336EF3B70672A05A074'
-               BlueprintName = 'SwiftyUserDefaults'
+               BlueprintIdentifier = '336B93337DFC5EE58B564606FF93F15D'
+               BlueprintName = 'AZDropdownMenu-AZDropdownMenu'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SwiftyUserDefaults.framework'>
+               BuildableName = 'AZDropdownMenu.bundle'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

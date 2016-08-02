@@ -14,46 +14,6 @@ import AEAccordion
 import AudioToolbox
 import Spring
 
-class Task: Object {
-	dynamic var text: String = ""
-	dynamic var details: String = ""
-	dynamic var completed: Bool = false
-	dynamic var dueDate: NSDate? = nil
-	dynamic var priorityIndex: Int = 0
-	dynamic var dateCreated = NSDate()
-	
-	convenience init(text: String) {
-		self.init()
-		self.text = text
-	}
-	
-	convenience init(text: String, priority: Int) {
-		self.init()
-		self.text = text
-		self.priorityIndex = priority
-	}
-	
-	convenience init(task: Task, index: Int) {
-		self.init()
-		self.text = task.text
-		self.priorityIndex = index
-		self.details = task.details
-		self.completed = task.completed
-		self.dueDate = task.dueDate
-		self.dateCreated = task.dateCreated
-	}
-}
-
-class Priority: Object {
-	dynamic var name = ""
-	dynamic var shouldNotAddPlaceholderCell = false
-	let tasks = List<Task>()
-}
-
-class TasksByPriority: Object {
-	let priorities = List<Priority>()
-}
-
 class TasksTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 	
 	
@@ -76,9 +36,10 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		RealmHelper.addTask(Task(text: "Watch TV", priority: 3))
 		RealmHelper.addTask(Task(text: "Play Pokemon GO", priority: 3))
 		RealmHelper.addTask(Task(text: "Watch YouTube videos", priority: 3))
+		
+		RealmHelper.getTaskTitles()
 
 	}
-	
 	
 	@IBAction func deleteAllButtonTapped(sender: AnyObject) {
 		
@@ -232,6 +193,7 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 						self.collapseCellAtIndexPath(indexPath)
 					}
 				}
+				RealmHelper.getTaskTitles()
 				return true
 			})]
 			cell.leftSwipeSettings.transition = MGSwipeTransition.Border
@@ -242,9 +204,9 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 				}
 				RealmHelper.deleteTask(self.taskForIndexPath(indexPath)!)
 				// self.tasksTableView.reloadData()
-				
-							
-				
+											
+				RealmHelper.getTaskTitles()
+
 				return true
 			})]
 			
@@ -262,6 +224,15 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 				cell.switchCellStatus()
 				self.tasksTableView.endUpdates()
 				//print("Cell expanded: \(cell.expanded)")
+			}
+			
+			cell.timeTaskCallBack = {
+				let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+				if let tabBarController = appDelegate.window!.rootViewController as? UITabBarController {
+					tabBarController.selectedIndex = 1
+				}
+				let taskDataDict:[String: Task] = ["task": task!]
+				NSNotificationCenter.defaultCenter().postNotificationName("taskChosen", object: self, userInfo: taskDataDict)
 			}
 			
 //			if indexPath == currentIndexPath {
@@ -413,6 +384,11 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 			}
 		}
 	}
+	
+	// MARK: Timer integration
+	
+	
+	
 }
 
 extension TasksTableViewController: RearrangeDataSource {

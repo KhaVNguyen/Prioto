@@ -86,6 +86,7 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/AEAccordion/AEAccordion.framework"
   install_framework "$BUILT_PRODUCTS_DIR/AEXibceptionView/AEXibceptionView.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/AZDropdownMenu/AZDropdownMenu.framework"
   install_framework "$BUILT_PRODUCTS_DIR/BSForegroundNotification/BSForegroundNotification.framework"
   install_framework "$BUILT_PRODUCTS_DIR/CircleProgressView/CircleProgressView.framework"
   install_framework "$BUILT_PRODUCTS_DIR/ConcentricProgressRingView/ConcentricProgressRingView.framework"
@@ -106,6 +107,7 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/AEAccordion/AEAccordion.framework"
   install_framework "$BUILT_PRODUCTS_DIR/AEXibceptionView/AEXibceptionView.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/AZDropdownMenu/AZDropdownMenu.framework"
   install_framework "$BUILT_PRODUCTS_DIR/BSForegroundNotification/BSForegroundNotification.framework"
   install_framework "$BUILT_PRODUCTS_DIR/CircleProgressView/CircleProgressView.framework"
   install_framework "$BUILT_PRODUCTS_DIR/ConcentricProgressRingView/ConcentricProgressRingView.framework"

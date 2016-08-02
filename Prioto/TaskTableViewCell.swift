@@ -29,8 +29,14 @@ class TaskTableViewCell: MGSwipeTableCell {
 		}
 	}
 	
+	@IBAction func timeTaskButtonTapped(sender: AnyObject) {
+		if let timeTaskCallBack = self.timeTaskCallBack {
+			timeTaskCallBack()
+		}
+	}
 	var expanded = false
 	var selectionCallback: (() -> Void)?
+	var timeTaskCallBack: (() -> Void)?
 
 	let gradientLayer = CAGradientLayer()
 	
@@ -72,6 +78,8 @@ class TaskTableViewCell: MGSwipeTableCell {
 		self.expanded = !self.expanded
 		changeCellStatus(expanded)
 	}
+	
+	
 	
 	
 	

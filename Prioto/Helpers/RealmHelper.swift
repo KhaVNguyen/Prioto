@@ -11,7 +11,6 @@ import RealmSwift
 
 class RealmHelper {
 	
-	
 	static func deleteTask(task: Task) -> Task {
 		let realm = try! Realm()
 		try! realm.write() {
@@ -69,5 +68,19 @@ class RealmHelper {
 			try! realm.write {
 				block(tasksByPriority.priorities)
 			}
+	}
+	
+	static func getTaskTitles() -> [String] {
+		var taskTitles: [String] = []
+		let realm = try! Realm()
+		let tasksByPriority = realm.objects(TasksByPriority.self).first!
+		let priorities = tasksByPriority.priorities
+		for priority in priorities {
+			for task in priority.tasks {
+				taskTitles.append(task.text)
+			}
+		}
+		print(taskTitles)
+		return taskTitles
 	}
 }

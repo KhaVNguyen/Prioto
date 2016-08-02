@@ -23,5 +23,7 @@ pod 'SwiftyUserDefaults'
 pod "BSForegroundNotification"
 pod 'DZNEmptyDataSet'
 pod 'KMPlaceholderTextView', '~> 1.2.2' 
+pod 'AZDropdownMenu'
+
 
 end

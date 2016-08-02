@@ -20,7 +20,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="aAb-X6-0MN" kind="relationship" relationship="viewControllers" id="i3f-wS-x4Z"/>
-                        <segue destination="zDZ-FL-W2b" kind="relationship" relationship="viewControllers" id="HaZ-Hg-nfA"/>
+                        <segue destination="piS-6p-naS" kind="relationship" relationship="viewControllers" id="HaZ-Hg-nfA"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ST-lh-Qe8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -108,12 +108,23 @@
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J5l-Xt-KRW">
+                                                            <rect key="frame" x="8" y="4" width="17" height="22"/>
+                                                            <state key="normal" image="Time"/>
+                                                            <connections>
+                                                                <action selector="timeTaskButtonPressed:" destination="d7n-i7-5Vo" eventType="touchUpInside" id="5Px-FH-sMY"/>
+                                                                <action selector="timeTaskButtonTapped:" destination="lU5-ta-AHk" eventType="touchUpInside" id="ShL-G5-ArX"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
+                                                    <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstItem="lu4-Fd-niK" firstAttribute="bottom" secondItem="qtb-EY-rST" secondAttribute="bottomMargin" id="Dab-mv-OQN"/>
                                                         <constraint firstItem="lu4-Fd-niK" firstAttribute="top" secondItem="qtb-EY-rST" secondAttribute="top" id="Ny6-JY-9xN"/>
                                                         <constraint firstItem="lu4-Fd-niK" firstAttribute="centerY" secondItem="qtb-EY-rST" secondAttribute="centerY" id="S84-ke-3sd"/>
                                                         <constraint firstItem="lu4-Fd-niK" firstAttribute="centerX" secondItem="qtb-EY-rST" secondAttribute="centerX" id="ZbD-W1-N1I"/>
+                                                        <constraint firstItem="J5l-Xt-KRW" firstAttribute="leading" secondItem="qtb-EY-rST" secondAttribute="leadingMargin" id="ias-dU-3aP"/>
+                                                        <constraint firstItem="J5l-Xt-KRW" firstAttribute="centerY" secondItem="qtb-EY-rST" secondAttribute="centerY" id="xwE-cb-kr4"/>
                                                     </constraints>
                                                     <variation key="default">
                                                         <mask key="constraints">
@@ -154,8 +165,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="guL-9p-bGL">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="1"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="guL-9p-bGL">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
                                             <state key="normal" title="No tasks in this section. Tap to add one.">
                                                 <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -206,7 +217,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LIG-Z3-2mm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1377" y="-107"/>
+            <point key="canvasLocation" x="2189" y="-107"/>
         </scene>
         <!--Display Task View Controller-->
         <scene sceneID="yks-pw-fXl">
@@ -336,7 +347,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z3X-jx-rkP" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="EaU-8n-Zpb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2700" y="237"/>
+            <point key="canvasLocation" x="3512" y="237"/>
         </scene>
         <!--Tasks-->
         <scene sceneID="iGX-3F-t2n">
@@ -355,7 +366,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hdh-zw-XAC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="471" y="-113"/>
+            <point key="canvasLocation" x="1283" y="-113"/>
         </scene>
         <!--NewFocusViewController-->
         <scene sceneID="pIt-2H-4ug">
@@ -369,8 +380,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zoa-5l-nwl">
-                                <rect key="frame" x="199" y="199" width="202" height="202"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zoa-5l-nwl">
+                                <rect key="frame" x="200" y="199" width="202" height="202"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Left" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFe-sf-x2M">
                                         <rect key="frame" x="21" y="76" width="161" height="51"/>
@@ -447,18 +458,7 @@
                                     </mask>
                                 </variation>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P8N-wE-1SD">
-                                <rect key="frame" x="25" y="25" width="60" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="P8N-wE-1SD" secondAttribute="height" multiplier="1:1" id="fgo-Ny-hVE"/>
-                                </constraints>
-                                <state key="normal" image="Preferences"/>
-                                <connections>
-                                    <action selector="preferencesButtonPressed:" destination="zDZ-FL-W2b" eventType="touchUpInside" id="giF-r2-9TX"/>
-                                    <segue destination="sPf-pD-0Ab" kind="show" id="L05-pa-wcT"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="typeLabel" text="Work" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YkB-RK-Hbr">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" restorationIdentifier="typeLabel" text="Work" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YkB-RK-Hbr">
                                 <rect key="frame" x="270" y="114" width="61" height="35"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="25"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -467,17 +467,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="P8N-wE-1SD" firstAttribute="top" secondItem="XWl-mo-qJ9" secondAttribute="bottom" constant="5" id="37R-nC-hzl"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="top" relation="greaterThanOrEqual" secondItem="XWl-mo-qJ9" secondAttribute="bottom" constant="100" id="5uO-qb-gfQ"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="centerX" secondItem="5eh-35-kI9" secondAttribute="centerX" id="6Eg-ZT-gZN"/>
                             <constraint firstItem="l5M-1R-gDd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="zoa-5l-nwl" secondAttribute="bottom" constant="150" id="8WA-uy-xbN"/>
                             <constraint firstItem="liu-xl-RZd" firstAttribute="width" secondItem="zoa-5l-nwl" secondAttribute="width" multiplier="1.1" id="EPA-6E-pFC"/>
                             <constraint firstItem="liu-xl-RZd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="zoa-5l-nwl" secondAttribute="bottom" constant="30" id="EsL-0x-LDh"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="centerY" secondItem="5eh-35-kI9" secondAttribute="centerY" id="HIt-z6-fem"/>
-                            <constraint firstItem="P8N-wE-1SD" firstAttribute="leading" secondItem="5eh-35-kI9" secondAttribute="leadingMargin" constant="5" id="IVF-pb-hxz"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="centerY" secondItem="5eh-35-kI9" secondAttribute="centerY" id="KU5-fS-XXV"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="centerX" secondItem="5eh-35-kI9" secondAttribute="centerX" id="SfB-cr-qGw"/>
-                            <constraint firstItem="P8N-wE-1SD" firstAttribute="width" secondItem="5eh-35-kI9" secondAttribute="width" multiplier="0.1" id="Tnp-MR-UqB"/>
                             <constraint firstItem="liu-xl-RZd" firstAttribute="top" secondItem="zoa-5l-nwl" secondAttribute="bottom" constant="50" id="WXD-vx-2A1"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="centerY" secondItem="5eh-35-kI9" secondAttribute="centerY" id="X84-55-jt6"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="zoa-5l-nwl" secondAttribute="trailing" constant="30" id="aCZ-WW-An5"/>
@@ -503,16 +500,48 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Timer" image="Timer" id="Z4f-fp-Pc2"/>
+                    <navigationItem key="navigationItem" id="uCc-l6-1Uj">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" image="Preferences" id="xjM-8x-2SS" userLabel="Preferences Button">
+                            <connections>
+                                <segue destination="sPf-pD-0Ab" kind="presentation" identifier="showPreferencesSegue" id="f9L-wu-3MJ"/>
+                            </connections>
+                        </barButtonItem>
+                        <view key="titleView" contentMode="scaleToFill" id="v89-7b-63d">
+                            <rect key="frame" x="93" y="6" width="414" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Currently Being Worked On" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odf-sr-612">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="33"/>
+                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="odf-sr-612" firstAttribute="centerX" secondItem="v89-7b-63d" secondAttribute="centerX" id="9z1-Sl-aOk"/>
+                                <constraint firstItem="odf-sr-612" firstAttribute="height" secondItem="v89-7b-63d" secondAttribute="height" id="duf-5F-lOt"/>
+                                <constraint firstItem="odf-sr-612" firstAttribute="centerY" secondItem="v89-7b-63d" secondAttribute="centerY" id="pJ7-FF-PoE"/>
+                                <constraint firstItem="odf-sr-612" firstAttribute="width" secondItem="v89-7b-63d" secondAttribute="width" id="tIx-Cl-Mbv"/>
+                            </constraints>
+                        </view>
+                        <barButtonItem key="rightBarButtonItem" image="dropdownMenu" id="mDG-f4-zCJ" userLabel="Dropdown Menu Button">
+                            <connections>
+                                <action selector="dropdownMenuButtonPressed:" destination="zDZ-FL-W2b" id="C6P-CD-POK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="startPauseButton" destination="49x-wS-QRy" id="Rsk-Fy-s5G"/>
+                        <outlet property="taskLabel" destination="odf-sr-612" id="lon-hE-gnm"/>
                         <outlet property="timeLeftLabel" destination="jFe-sf-x2M" id="ITf-ZU-0aP"/>
                         <outlet property="typeLabel" destination="YkB-RK-Hbr" id="CXH-7p-1BA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KRp-fe-VtH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-993" y="511"/>
+            <point key="canvasLocation" x="-181" y="511"/>
         </scene>
         <!--PreferencesViewController-->
         <scene sceneID="AvD-wH-jib">
@@ -609,7 +638,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mAJ-0S-87N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2140" y="953"/>
+            <point key="canvasLocation" x="2952" y="953"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hdU-Gg-cqJ">
@@ -629,6 +658,25 @@
             </objects>
             <point key="canvasLocation" x="-993" y="1325"/>
         </scene>
+        <!--Timer-->
+        <scene sceneID="Gtd-Y9-c9z">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="piS-6p-naS" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Timer" image="Timer" id="Z4f-fp-Pc2"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EPx-E0-gFZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="zDZ-FL-W2b" kind="relationship" relationship="rootViewController" id="QOp-tN-bIS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zpP-Al-sOT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-993" y="511"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Dropdown" width="25" height="14"/>
@@ -636,7 +684,9 @@
         <image name="Preferences" width="42" height="43"/>
         <image name="Restart" width="35" height="35"/>
         <image name="Tasks" width="35" height="23"/>
+        <image name="Time" width="17" height="18"/>
         <image name="Timer" width="30" height="31"/>
+        <image name="dropdownMenu" width="35" height="29"/>
         <image name="newNote" width="26" height="29"/>
     </resources>
     <inferredMetricsTieBreakers>
