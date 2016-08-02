@@ -54,7 +54,7 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="30" id="Bvs-LY-A9h"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -109,15 +109,14 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J5l-Xt-KRW">
-                                                            <rect key="frame" x="8" y="4" width="17" height="22"/>
+                                                            <rect key="frame" x="8" y="3" width="22" height="24"/>
                                                             <state key="normal" image="Time"/>
+                                                            <state key="selected" image="Time-Pressed"/>
                                                             <connections>
-                                                                <action selector="timeTaskButtonPressed:" destination="d7n-i7-5Vo" eventType="touchUpInside" id="5Px-FH-sMY"/>
                                                                 <action selector="timeTaskButtonTapped:" destination="lU5-ta-AHk" eventType="touchUpInside" id="ShL-G5-ArX"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
-                                                    <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstItem="lu4-Fd-niK" firstAttribute="bottom" secondItem="qtb-EY-rST" secondAttribute="bottomMargin" id="Dab-mv-OQN"/>
                                                         <constraint firstItem="lu4-Fd-niK" firstAttribute="top" secondItem="qtb-EY-rST" secondAttribute="top" id="Ny6-JY-9xN"/>
@@ -513,7 +512,7 @@
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Currently Being Worked On" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odf-sr-612">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="33"/>
-                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
+                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -662,7 +661,7 @@
         <scene sceneID="Gtd-Y9-c9z">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="piS-6p-naS" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Timer" image="Timer" id="Z4f-fp-Pc2"/>
+                    <tabBarItem key="tabBarItem" title="Timer" image="Time" id="Z4f-fp-Pc2"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="EPx-E0-gFZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -683,9 +682,9 @@
         <image name="Play" width="34" height="40"/>
         <image name="Preferences" width="42" height="43"/>
         <image name="Restart" width="35" height="35"/>
-        <image name="Tasks" width="35" height="23"/>
-        <image name="Time" width="17" height="18"/>
-        <image name="Timer" width="30" height="31"/>
+        <image name="Tasks" width="27" height="27"/>
+        <image name="Time" width="22" height="24"/>
+        <image name="Time-Pressed" width="22" height="24"/>
         <image name="dropdownMenu" width="35" height="29"/>
         <image name="newNote" width="26" height="29"/>
     </resources>
