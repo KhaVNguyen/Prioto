@@ -27,11 +27,12 @@ public class AZDropdownMenu: UIView {
 
     // MARK: - Configuration options
 	
-	public var menuTopOffset : CGFloat = 0.0 {
+	public var menuTopOffset : CGFloat = 66.0 {
 		didSet {
 			self.menuConfig?.menuTopOffset = menuTopOffset
 			self.menuView.frame = CGRectMake(0, menuTopOffset, frame.size.width, menuHeight)
 		}
+	
 	}
 
     /// Row height of the menu item
@@ -142,7 +143,7 @@ public class AZDropdownMenu: UIView {
 
     private var calcMenuHeight : CGFloat {
         get {
-            return CGFloat(itemHeight * itemDataSource.count)
+            return CGFloat(itemHeight * 7)
         }
     }
 
@@ -289,33 +290,32 @@ public class AZDropdownMenu: UIView {
             }
         )
     }
-
-    public func showMenuFromRect(rect:CGRect) {
-        let window = UIApplication.sharedApplication().keyWindow!
-
-//        let menuFrame = CGRectMake(0, rect.origin.y, frame.size.width, menuHeight)
-		let menuFrame = CGRectMake(0, menuTopOffset, frame.size.width, menuHeight)
+	
+	public func showMenuFromViewOffset(view: UIView) {
+		view.addSubview(self)
 
 		
-        self.menuView.frame = menuFrame
-
-        window.addSubview(self)
-
-        animateOvelay(overlayAlpha, interval: 0.4, completionHandler: nil)
-        menuView.reloadData()
-        UIView.animateWithDuration(
-            0.2,
-            delay:0,
-            usingSpringWithDamping: 0.9,
-            initialSpringVelocity: 0.6,
-            options:[],
-            animations: {
-                self.frame.origin.y = rect.origin.y
-            }, completion: { (finished : Bool) -> Void in
-                self.initialMenuCenter = self.menuView.center
-            }
-        )
-    }
+		//        let menuFrame = CGRectMake(0, rect.origin.y, frame.size.width, menuHeight)
+		let menuFrame = CGRectMake(0, menuTopOffset, frame.size.width, menuHeight)
+		
+		
+		self.menuView.frame = menuFrame
+		
+		animateOvelay(overlayAlpha, interval: 0.4, completionHandler: nil)
+		menuView.reloadData()
+		UIView.animateWithDuration(
+			0.2,
+			delay:0,
+			usingSpringWithDamping: 0.9,
+			initialSpringVelocity: 0.6,
+			options:[],
+			animations: {
+				self.frame.origin.y = view.frame.origin.y
+			}, completion: { (finished : Bool) -> Void in
+				self.initialMenuCenter = self.menuView.center
+			}
+		)
+	}
 
     public func hideMenu() {
 

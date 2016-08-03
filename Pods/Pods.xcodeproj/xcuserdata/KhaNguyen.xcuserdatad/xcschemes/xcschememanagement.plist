@@ -39,6 +39,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ChameleonFramework.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>CircleProgressView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -122,17 +127,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>06146BD753551AB4C3DF40FA8886FD28</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>06FC96B5575078083DED075F6A5C28A7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>116910EA2E6759C1F6BAED03DD201260</key>
+		<key>14C2B355D5EA8C5F11D5B2536C443F2E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -162,6 +157,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>36573A07358AE6F403715CA3D09DBAF5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>37C76CD246D637B8E4C586284A0D96B2</key>
 		<dict>
 			<key>primary</key>
@@ -177,7 +177,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>5172ACAB7FEA22813859DC97CA0AA16F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5C8C59ABE261C3807F71EF6F619D7A9C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>5D71132139A1E1855313CBD9F229AC7A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6A8C034722CDBC9DB8CD9D74BD36E04D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -192,12 +207,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>82EE5ECBE3CD6B100D413A8AA9EE2E0D</key>
+		<key>82BDBC0903D81B715ECD63BD40D4736F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8BAAC0604C7FC6D09EE5018FBAC7019D</key>
+		<key>82EE5ECBE3CD6B100D413A8AA9EE2E0D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -212,7 +227,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B06B5A98FF8EB3383AB967F2756093AF</key>
+		<key>AEC7B237552DE9557B751347D4F81C85</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -222,17 +237,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EA4628B2D5A3A9240D5BF5890A0A6112</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>EC25B770E2E786F47106EE8F013163EA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F491E4D49EB25158B8E7413F64DCA69D</key>
+		<key>F1E5311BE25AEDD3931602D9CC441B58</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -120,7 +120,6 @@
                                                             </connections>
                                                         </button>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="lu4-Fd-niK" firstAttribute="bottom" secondItem="qtb-EY-rST" secondAttribute="bottomMargin" id="Dab-mv-OQN"/>
                                                         <constraint firstItem="J5l-Xt-KRW" firstAttribute="height" secondItem="qtb-EY-rST" secondAttribute="height" id="GnI-4c-4DV"/>

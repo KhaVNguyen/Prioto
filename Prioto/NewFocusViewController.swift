@@ -168,7 +168,9 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		
 		let taskTitles = RealmHelper.getTaskTitles()
 		self.dropdownMenu = AZDropdownMenu(titles: taskTitles)
-		self.dropdownMenu!.menuTopOffset = 44.0
+		var topOffset = (self.navigationController?.navigationBar.frame.height)! + UIApplication.sharedApplication().statusBarFrame.height
+		print("Top bar height: \(topOffset)")
+		self.dropdownMenu!.menuTopOffset = topOffset
 		self.dropdownMenu!.itemHeight = 44
 		
 		
@@ -353,7 +355,7 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 			// navigationController?.navigationBar.translucent = true
 
 		} else {
-			self.dropdownMenu?.showMenuFromView(self.view)
+			self.dropdownMenu?.showMenuFromViewOffset(self.view)
 			// navigationController?.navigationBar.translucent = false
 
 		}

@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '82BDBC0903D81B715ECD63BD40D4736F'
-               BlueprintName = 'Spring'
+               BlueprintIdentifier = '5172ACAB7FEA22813859DC97CA0AA16F'
+               BlueprintName = 'ChameleonFramework'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'Spring.framework'>
+               BuildableName = 'ChameleonFramework.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

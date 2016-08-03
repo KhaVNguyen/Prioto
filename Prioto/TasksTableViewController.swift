@@ -194,7 +194,7 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 					self.taskForIndexPath(indexPath)?.completed = !(self.taskForIndexPath(indexPath)?.completed)!
 					AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
 					self.strikethroughCompleted(indexPath, cell: cell, task: task!)
-					if cell.expanded == true {
+					if cell.expanded {
 						self.collapseCellAtIndexPath(indexPath)
 					}
 				}
@@ -224,11 +224,11 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 			cell.layer.cornerRadius = 5
 			
 			cell.selectionCallback = {
-				//print("Cell expanded: \(cell.expanded)")
+//				//print("Cell expanded: \(cell.expanded)")
 				self.tasksTableView.beginUpdates()
 				cell.switchCellStatus()
 				self.tasksTableView.endUpdates()
-				//print("Cell expanded: \(cell.expanded)")
+//				//print("Cell expanded: \(cell.expanded)")
 			}
 			
 			cell.timeTaskCallBack = {
@@ -413,7 +413,6 @@ extension TasksTableViewController: RearrangeDataSource {
 	func moveObjectAtCurrentIndexPath(to indexPath: NSIndexPath) {
 		
 		guard let unwrappedCurrentIndexPath = currentIndexPath else { return }
-		
 		if let cell = tasksTableView.cellForRowAtIndexPath(unwrappedCurrentIndexPath) as? TaskTableViewCell{
 			if cell.expanded {
 				collapseCellAtIndexPath(unwrappedCurrentIndexPath)
@@ -434,9 +433,7 @@ extension TasksTableViewController: RearrangeDataSource {
 		}
 		
 		if let cell = tasksTableView.cellForRowAtIndexPath(indexPath) as? TaskTableViewCell{
-			if cell.expanded {
-				collapseCellAtIndexPath(indexPath)
-			}
+			collapseCellAtIndexPath(indexPath)
 		}
 		
 		if makeNewTaskActive {
