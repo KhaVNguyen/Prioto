@@ -26,6 +26,8 @@ pod 'KMPlaceholderTextView', '~> 1.2.2'
 pod 'AZDropdownMenu'
 pod "AutocompleteField", "~> 1.1" 
 pod ‘ChameleonFramework/Swift’
+pod 'NVActivityIndicatorView'
+
 
 
 

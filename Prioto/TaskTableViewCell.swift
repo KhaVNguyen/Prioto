@@ -9,6 +9,7 @@
 import UIKit
 import QuartzCore
 import MGSwipeTableCell
+import NVActivityIndicatorView
 
 
 
@@ -32,9 +33,14 @@ class TaskTableViewCell: MGSwipeTableCell {
 	@IBAction func timeTaskButtonTapped(sender: AnyObject) {
 		if let timeTaskCallBack = self.timeTaskCallBack {
 			timeTaskCallBack()
+			startAnimation()
 		}
 	}
-	var expanded = false
+	var expanded = false {
+		didSet {
+			print("Changed expanded==============================")
+		}
+	}
 	var selectionCallback: (() -> Void)?
 	var timeTaskCallBack: (() -> Void)?
 
@@ -51,6 +57,10 @@ class TaskTableViewCell: MGSwipeTableCell {
 		gradientLayer.colors = [color1, color2, color3, color4]
 		gradientLayer.locations = [0.0, 0.01, 0.95, 1.0]
 		layer.insertSublayer(gradientLayer, atIndex: 0)
+		
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TaskTableViewCell.stopAnimation), name: "pausedTiming", object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TaskTableViewCell.startAnimation), name: "startedTiming", object: nil)
+
     }
 	
 	override func layoutSubviews() {
@@ -82,8 +92,16 @@ class TaskTableViewCell: MGSwipeTableCell {
 	
 	@IBOutlet weak var timeElapsedLabel: UILabel!
 	
+	@IBOutlet weak var timingIndicator: NVActivityIndicatorView!
 	
+	func stopAnimation() {
+		//timingIndicator.stopAnimation()
+	}
 	
+	func startAnimation() {
+		//timingIndicator.startAnimation()
+	}
 	
+
 	
 }

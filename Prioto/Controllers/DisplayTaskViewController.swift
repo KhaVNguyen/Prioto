@@ -26,6 +26,7 @@ class DisplayTaskViewController: UIViewController {
 	var priorityIndex: Int!
 	var completed: Bool = false
 	var timeWorked: Int!
+	var previousPriorityIndex: Int!
 	var task: Task?
 	
 	
@@ -46,6 +47,7 @@ class DisplayTaskViewController: UIViewController {
 				dueDatePicker.date = task.dueDate!
 				dueDateLabel.text = "Due Date: \(formatDateAsString(task.dueDate!))"
 			}
+			self.previousPriorityIndex = priorityIndex
 			switch priorityIndex {
 			case 0: // Urgent - Important
 				importanceSelector.selectedSegmentIndex = 0

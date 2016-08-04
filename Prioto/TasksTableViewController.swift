@@ -13,6 +13,8 @@ import Realm
 import AEAccordion
 import AudioToolbox
 import Spring
+import SwiftyUserDefaults
+
 
 class TasksTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 	
@@ -41,10 +43,11 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 
 	}
 	
-	@IBAction func deleteAllButtonTapped(sender: AnyObject) {
-		
+	@IBAction func printExpandedButtonTapped(sender: AnyObject) {
+		for priority in taskExpanded {
+			print(priority)
+		}
 	}
-	
 	var realm: Realm!
 	var notificationToken: NotificationToken?
 	var priorityIndexes = [0, 1, 2, 3]
@@ -69,6 +72,8 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 	var currentIndexPath: NSIndexPath?
 	var selectedIndexPath : NSIndexPath!
 	
+	var taskExpanded: [[Bool]] = [[],[],[],[]]
+		
     override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -76,7 +81,7 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		storyboard.instantiateViewControllerWithIdentifier("NewFocusViewController")
 
 		
-		realm = try! Realm()
+		let realm = try! Realm()
 		
 		notificationToken = realm.addNotificationBlock { [unowned self] note, realm in
 			self.tasksTableView.reloadData()
@@ -105,7 +110,19 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		
 		 tasksTableView.reloadData()
 		
-}
+		
+		let tasksByPriority = realm.objects(TasksByPriority.self).first!
+		let priorities = tasksByPriority.priorities
+		var section = 0
+		for priority in priorities {
+			for task in priority.tasks {
+				taskExpanded[section].append(false)
+			}
+			section += 1
+		}
+		print(taskExpanded)
+		
+	}
 	
 	
     override func didReceiveMemoryWarning() {
@@ -181,8 +198,16 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		}
 		
 		else {
-			let cell = tasksTableView.dequeueReusableCellWithIdentifier("taskTableViewCell", forIndexPath: indexPath) as! TaskTableViewCell
-			
+			var cell : TaskTableViewCell!
+			if indexPath.section == 0 {
+				cell = tasksTableView.dequeueReusableCellWithIdentifier("taskTableViewCellSection0", forIndexPath: indexPath) as! TaskTableViewCell
+			} else if indexPath.section == 1 {
+				cell = tasksTableView.dequeueReusableCellWithIdentifier("taskTableViewCellSection1", forIndexPath: indexPath) as! TaskTableViewCell
+			} else if indexPath.section == 2 {
+				cell = tasksTableView.dequeueReusableCellWithIdentifier("taskTableViewCellSection2", forIndexPath: indexPath) as! TaskTableViewCell
+			} else if indexPath.section == 3 {
+				cell = tasksTableView.dequeueReusableCellWithIdentifier("taskTableViewCellSection3", forIndexPath: indexPath) as! TaskTableViewCell
+			}
 			// Configure the cell...
 			let task = self.taskForIndexPath(indexPath)
 			
@@ -209,7 +234,8 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 				}
 				RealmHelper.deleteTask(self.taskForIndexPath(indexPath)!)
 				// self.tasksTableView.reloadData()
-											
+				self.taskExpanded[indexPath.section].removeAtIndex(indexPath.row)
+				
 				RealmHelper.getTaskTitles()
 
 				return true
@@ -225,11 +251,22 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 			
 			cell.selectionCallback = {
 //				//print("Cell expanded: \(cell.expanded)")
-				self.tasksTableView.beginUpdates()
-				cell.switchCellStatus()
-				self.tasksTableView.endUpdates()
+				if cell.expanded {
+					self.collapseCellAtIndexPath(indexPath)
+				}
+				else if !cell.expanded {
+					self.expandCellAtIndexPath(indexPath)
+				}
 //				//print("Cell expanded: \(cell.expanded)")
 			}
+			
+			if taskExpanded[indexPath.section][indexPath.row] {
+				expandCellAtIndexPath(indexPath)
+			}
+			else if !taskExpanded[indexPath.section][indexPath.row] {
+					collapseCellAtIndexPath(indexPath)
+			}
+			
 			
 			cell.timeTaskCallBack = {
 				let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -238,6 +275,7 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 				}
 				let taskDataDict:[String: Task] = ["task": task!]
 				NSNotificationCenter.defaultCenter().postNotificationName("taskChosen", object: self, userInfo: taskDataDict)
+
 			}
 			
 //			if indexPath == currentIndexPath {
@@ -267,7 +305,7 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 			cell.changeCellStatus(false)
 			self.tasksTableView.endUpdates()
 		}
-		
+		taskExpanded[indexPath.section][indexPath.row] = false
 	}
 	
 	func expandCellAtIndexPath(indexPath: NSIndexPath) {
@@ -277,6 +315,8 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 			cell.changeCellStatus(true)
 			self.tasksTableView.endUpdates()
 		}
+		taskExpanded[indexPath.section][indexPath.row] = true
+
 	}
 	
 	// Get the Task at a given index path
@@ -337,6 +377,18 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		cell.backgroundColor = colorForIndexRow(indexPath.row, section: indexPath.section)
 	}
 	
+	func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+		
+		if let taskTableViewCell = cell as? TaskTableViewCell {
+			taskTableViewCell.selectionCallback = nil
+			taskTableViewCell.timeTaskCallBack = nil
+//			self.tasksTableView.beginUpdates()
+//			taskTableViewCell.changeCellStatus(true)
+//			taskTableViewCell.changeCellStatus(false)
+//			self.tasksTableView.endUpdates()
+		}
+	}
+	
 	// Override to support conditional editing of the table view.
 	func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
 		// Return false if you do not want the specified item to be editable.
@@ -359,7 +411,18 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 				
 				else { // changing priority
 					collapseCellAtIndexPath(selectedIndexPath)
-					RealmHelper.addTask(task)
+					let newTask = Task(task: task)
+					RealmHelper.addTask(newTask)
+					if task.isBeingWorkedOn { // if task from old priority is being worked on, set the new one to also be timed
+						let taskDataDict:[String: Task] = ["task": newTask]
+						NSNotificationCenter.defaultCenter().postNotificationName("taskChosen", object: self, userInfo: taskDataDict)
+					}
+					
+					
+					let oldTaskExpanded = taskExpanded[selectedIndexPath.section][selectedIndexPath.row]
+					print("Old task expanded: \(oldTaskExpanded)")
+					taskExpanded[priorityIndex].append(oldTaskExpanded)
+					taskExpanded[selectedIndexPath.section].removeAtIndex(selectedIndexPath.row)
 
 					
 					RealmHelper.deleteTask(taskForIndexPath(selectedIndexPath)!)
@@ -368,6 +431,8 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 			}
 			else {
 				RealmHelper.addTask(task)
+				taskExpanded[priorityIndex].append(false)
+
 				// tasksTableView.reloadData()
 			}
 		}

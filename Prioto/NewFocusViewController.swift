@@ -29,7 +29,7 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 	@IBOutlet weak var timeLeftLabel: UILabel!
 	
 	var progressRingView: ConcentricProgressRingView!
-
+	
 	@IBOutlet weak var typeLabel: UILabel!
 	
 	var timer: NSTimer!
@@ -47,6 +47,22 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 	var localNotification: UILocalNotification?
 	var localNotificationEndDate: NSDate!
 	var willDisplayForegroundNotification: Bool = true
+	
+	lazy var tasksByPriority: TasksByPriority = {
+		// Get the singleton GroupParent() object from the Realm, creating it
+		// if needed. In a more complete example with more than one view, this
+		// would be supplied as the data source by whatever is displaying this
+		// table view
+		let realm = try! Realm()
+		let obj = realm.objects(TasksByPriority.self).first
+		if obj != nil {
+			return obj!
+		}
+		
+		let newObj = TasksByPriority()
+		try! realm.write { realm.add(newObj) }
+		return newObj
+	}()
 	
 	@IBOutlet weak var startPauseButton: UIButton!
 	
@@ -66,6 +82,8 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		self.counting = false
 		startPauseButton.setTitle("Resume", forState: .Normal)
 		startPauseButton.setImage(UIImage(named: "Play.png"), forState: .Normal)
+		NSNotificationCenter.defaultCenter().postNotificationName("pausedTiming", object: self)
+		
 	}
 	
 	func startTimer() {
@@ -75,6 +93,8 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		self.counting = true
 		startPauseButton.setTitle("Pause", forState: .Normal)
 		startPauseButton.setImage(UIImage(named: "Pause.png"), forState: .Normal)
+		NSNotificationCenter.defaultCenter().postNotificationName("startedTiming", object: self)
+		
 	}
 	
 	func pauseTimerIfRunning() { // called upon app exit.
@@ -88,6 +108,8 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 			timerPausedNotification.category = "STOP_TIMER"
 			
 			UIApplication.sharedApplication().scheduleLocalNotification(timerPausedNotification)
+			NSNotificationCenter.defaultCenter().postNotificationName("pausedTiming", object: self)
+			
 		}
 	}
 	
@@ -100,6 +122,7 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 			notification.timeToDismissNotification = NSTimeInterval(5)
 			notification.presentNotification()
 		}
+		NSNotificationCenter.defaultCenter().postNotificationName("startedTiming", object: self)
 	}
 	
 	
@@ -135,7 +158,7 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		let rings = [
 			ProgressRing(color: UIColor(.RGB(192,57,43)), backgroundColor: UIColor(.RGB(255, 255, 255))),
 			ProgressRing(color: UIColor(.RGB(231,76,60)), backgroundColor: UIColor(.RGB(255, 255, 255)))]
-
+		
 		progressRingView = try! ConcentricProgressRingView(center: view.center, radius: radius, margin: margin, rings: rings, defaultColor: UIColor.clearColor(), defaultWidth: 18)
 		
 		for ring in progressRingView {
@@ -163,15 +186,17 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewFocusViewController.pauseTimerIfRunning), name: "appExited", object: nil)
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewFocusViewController.unpauseTimerIfInterrupted), name: "appEntered", object: nil)
 		addObserver()
+		
+		
 		view.frame = CGRectMake(0, 44.0, CGRectGetWidth(UIScreen.mainScreen().bounds), CGRectGetHeight(UIScreen.mainScreen().bounds))
-
+		
 		
 		let taskTitles = RealmHelper.getTaskTitles()
 		self.dropdownMenu = AZDropdownMenu(titles: taskTitles)
 		var topOffset = (self.navigationController?.navigationBar.frame.height)! + UIApplication.sharedApplication().statusBarFrame.height
 		print("Top bar height: \(topOffset)")
-		self.dropdownMenu!.menuTopOffset = topOffset
-		self.dropdownMenu!.itemHeight = 44
+		//		self.dropdownMenu!.menuTopOffset = topOffset
+		//		self.dropdownMenu!.itemHeight = 44
 		
 		
 	}
@@ -189,12 +214,12 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		print("View appeared")
 		if hasExitedAppAndGoBack && self.counting {
 			
-//			if let lastDate = Defaults["dateAppExited"].date {
-//				let timeElapsed = Double(NSDate().timeIntervalSinceDate(lastDate))
-//				self.timeRemaining = self.timeRemaining - timeElapsed
-//				print("Time elapsed: \(timeElapsed)")
-//
-//			}
+			//			if let lastDate = Defaults["dateAppExited"].date {
+			//				let timeElapsed = Double(NSDate().timeIntervalSinceDate(lastDate))
+			//				self.timeRemaining = self.timeRemaining - timeElapsed
+			//				print("Time elapsed: \(timeElapsed)")
+			//
+			//			}
 			self.updateTimer()
 			hasExitedAppAndGoBack = false
 			Defaults[DefaultsKeys.dateAppExited._key] = nil
@@ -206,13 +231,13 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 				taskLabel.textColor = UIColor.redColor()
 			}
 		}
-
+		
 	}
 	
 	override func viewWillDisappear(animated: Bool) {
 		self.dropdownMenu?.hideMenu()
 		// navigationController?.navigationBar.translucent = true
-
+		
 	}
 	
 	@IBAction func unwindToNewFocusViewController(segue: UIStoryboardSegue) {
@@ -273,7 +298,7 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 	
 	func updateTimer() {
 		self.timeLeftLabel.text = formatSecondsAsTimeString(self.timeRemaining)
-
+		
 		self.progressRingView[1].progress = 1.0 - ((CGFloat(self.timeRemaining) % 60.0) / 60.0)
 		
 		
@@ -348,16 +373,16 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 	@IBOutlet weak var taskLabel: UILabel!
 	
 	func showDropdown() {
-
+		
 		if (self.dropdownMenu?.isDescendantOfView(self.view) == true) {
 			print("is decendent")
 			self.dropdownMenu?.hideMenu()
 			// navigationController?.navigationBar.translucent = true
-
+			
 		} else {
 			self.dropdownMenu?.showMenuFromViewOffset(self.view)
 			// navigationController?.navigationBar.translucent = false
-
+			
 		}
 		
 		self.dropdownMenu?.cellTapHandler = { [weak self] (indexPath: NSIndexPath) -> Void in
@@ -389,6 +414,13 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 			taskLabel.textColor = UIColor.blackColor()
 			print("Assigned task elapsed time: \(self.task?.timeWorked))")
 		}
+	}
+	
+	
+	
+	// Get the Task at a given index path
+	func taskForIndexPath(indexPath: NSIndexPath) -> Task? {
+		return tasksByPriority.priorities[indexPath.section].tasks[indexPath.row]
 	}
 	
 	func addObserver() {

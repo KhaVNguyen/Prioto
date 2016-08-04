@@ -30,6 +30,18 @@ class Task: Object {
 		self.priorityIndex = priority
 	}
 	
+	convenience init(task: Task) {
+		self.init()
+		self.text = task.text
+		self.details = task.details
+		self.completed = task.completed
+		self.dueDate = task.dueDate
+		self.dateCreated = task.dateCreated
+		self.timeWorked = task.timeWorked
+		self.priorityIndex = task.priorityIndex
+		self.isBeingWorkedOn = task.isBeingWorkedOn
+	}
+	
 	convenience init(task: Task, index: Int) {
 		self.init()
 		self.text = task.text

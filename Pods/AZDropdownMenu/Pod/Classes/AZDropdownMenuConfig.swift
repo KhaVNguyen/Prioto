@@ -14,7 +14,7 @@ struct AZDropdownMenuConfig {
     var itemColor : UIColor = UIColor.whiteColor()
     var itemSelectionColor : UIColor = UIColor.lightGrayColor()
     var itemAlignment : AZDropdownMenuItemAlignment = .Left
-    var itemFontColor : UIColor = UIColor.redColor()
+    var itemFontColor : UIColor = UIColor.blueColor()
 		// UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0)
     var itemFontSize : CGFloat = 14.0
     var itemFont : String = "Helvetica"
