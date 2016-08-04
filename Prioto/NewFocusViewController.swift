@@ -273,7 +273,7 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 					let realm = try! Realm()
 					try! realm.write {
 						task.timeWorked += 1
-						print("Time worked: \(task.timeWorked)")
+						//print("Time worked: \(task.timeWorked)")
 					}
 				}
 				else {

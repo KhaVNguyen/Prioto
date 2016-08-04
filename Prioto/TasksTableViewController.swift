@@ -98,7 +98,7 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		
 		notificationToken = realm.addNotificationBlock { [unowned self] note, realm in
 			self.tasksTableView.reloadData()
-			print("Realm array changed")
+			// print("Realm array changed")
 		}
 		
 		
@@ -232,7 +232,7 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 					self.taskForIndexPath(indexPath)?.completed = !(self.taskForIndexPath(indexPath)?.completed)!
 					AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
 					self.strikethroughCompleted(indexPath, cell: cell, task: task!)
-					if cell.expanded {
+					if self.taskExpanded[indexPath.section][indexPath.row] {
 						self.collapseCellAtIndexPath(indexPath)
 					}
 				}
@@ -242,7 +242,7 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 			cell.leftSwipeSettings.transition = MGSwipeTransition.Border
 			cell.rightButtons = [MGSwipeButton(title: "", icon: UIImage(named:"deleteTask.png"), backgroundColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0), callback: {
 				(sender: MGSwipeTableCell!) -> Bool in
-				if cell.expanded {
+				if self.taskExpanded[indexPath.section][indexPath.row] {
 					self.collapseCellAtIndexPath(indexPath)
 				}
 				RealmHelper.deleteTask(self.taskForIndexPath(indexPath)!)
@@ -263,14 +263,15 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 			cell.layer.cornerRadius = 5
 			
 			cell.selectionCallback = {
-//				//print("Cell expanded: \(cell.expanded)")
-				if cell.expanded {
+				if self.taskExpanded[indexPath.section][indexPath.row] {
 					self.collapseCellAtIndexPath(indexPath)
 				}
-				else if !cell.expanded {
+				else if !self.taskExpanded[indexPath.section][indexPath.row] {
 					self.expandCellAtIndexPath(indexPath)
 				}
-//				//print("Cell expanded: \(cell.expanded)")
+				else {
+					print("neither of the expansion cases met.")
+				}
 			}
 			
 			if taskExpanded[indexPath.section][indexPath.row] {
@@ -311,30 +312,32 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 	
 	func collapseCellAtIndexPath(indexPath: NSIndexPath) {
-		
+		taskExpanded[indexPath.section][indexPath.row] = false
 		if let cell = tasksTableView.cellForRowAtIndexPath(indexPath) as? TaskTableViewCell{
 			self.tasksTableView.beginUpdates()
 			cell.changeCellStatus(true)
 			cell.changeCellStatus(false)
 			self.tasksTableView.endUpdates()
 		}
-		taskExpanded[indexPath.section][indexPath.row] = false
 	}
 	
 	func expandCellAtIndexPath(indexPath: NSIndexPath) {
+		taskExpanded[indexPath.section][indexPath.row] = true
 		if let cell = tasksTableView.cellForRowAtIndexPath(indexPath) as? TaskTableViewCell{
 			self.tasksTableView.beginUpdates()
 			cell.changeCellStatus(false)
 			cell.changeCellStatus(true)
 			self.tasksTableView.endUpdates()
 		}
-		taskExpanded[indexPath.section][indexPath.row] = true
-
 	}
 	
 	// Get the Task at a given index path
 	func taskForIndexPath(indexPath: NSIndexPath) -> Task? {
 		return tasksByPriority.priorities[indexPath.section].tasks[indexPath.row]
+	}
+	
+	func expandedForIndexPath(indexPath: NSIndexPath) -> Bool? {
+		return taskExpanded[indexPath.section][indexPath.row]
 	}
 
 	
@@ -504,7 +507,7 @@ extension TasksTableViewController: RearrangeDataSource {
 		
 		guard let unwrappedCurrentIndexPath = currentIndexPath else { return }
 		if let cell = tasksTableView.cellForRowAtIndexPath(unwrappedCurrentIndexPath) as? TaskTableViewCell{
-			if cell.expanded {
+			if taskExpanded[unwrappedCurrentIndexPath.section][unwrappedCurrentIndexPath.row] {
 				collapseCellAtIndexPath(unwrappedCurrentIndexPath)
 			}
 		}
