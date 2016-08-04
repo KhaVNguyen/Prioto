@@ -40,10 +40,23 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		RealmHelper.addTask(Task(text: "Watch YouTube videos", priority: 3))
 		
 		RealmHelper.getTaskTitles()
+		
+		taskExpanded = [[], [], [], []]
+		let realm = try! Realm()
+		let tasksByPriority = realm.objects(TasksByPriority.self).first!
+		let priorities = tasksByPriority.priorities
+		var section = 0
+		for priority in priorities {
+			for task in priority.tasks {
+				taskExpanded[section].append(false)
+			}
+			section += 1
+		}
 
 	}
 	
 	@IBAction func printExpandedButtonTapped(sender: AnyObject) {
+		print("------------------------------------------------------------------------")
 		for priority in taskExpanded {
 			print(priority)
 		}
@@ -369,12 +382,21 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		
 		self.selectedIndexPath = indexPath
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
+		print("Old task expanded: \(taskExpanded[selectedIndexPath.section][selectedIndexPath.row]) ")
+
 		self.performSegueWithIdentifier("editTaskDetailsSegue", sender: self)
 	}
  
 	func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
 	                        forRowAtIndexPath indexPath: NSIndexPath) {
 		cell.backgroundColor = colorForIndexRow(indexPath.row, section: indexPath.section)
+//		if taskExpanded[indexPath.section][indexPath.row] {
+//			expandCellAtIndexPath(indexPath)
+//		}
+//		else if !taskExpanded[indexPath.section][indexPath.row] {
+//			collapseCellAtIndexPath(indexPath)
+//		}
+
 	}
 	
 	func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -402,7 +424,6 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		if let sourceViewController = sender.sourceViewController as? DisplayTaskViewController, task = sourceViewController.task, priorityIndex = sourceViewController.priorityIndex {
 			if let selectedIndexPath = self.selectedIndexPath {
 				// Update an existing task.
-				self.selectedIndexPath = nil
 				if selectedIndexPath.section == priorityIndex { // not changing priority
 					RealmHelper.updateTask(taskForIndexPath(selectedIndexPath)!, newTask: task)
 					// tasksTableView.reloadData()
@@ -422,12 +443,14 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 					let oldTaskExpanded = taskExpanded[selectedIndexPath.section][selectedIndexPath.row]
 					print("Old task expanded: \(oldTaskExpanded)")
 					taskExpanded[priorityIndex].append(oldTaskExpanded)
-					taskExpanded[selectedIndexPath.section].removeAtIndex(selectedIndexPath.row)
 
 					
 					RealmHelper.deleteTask(taskForIndexPath(selectedIndexPath)!)
+					taskExpanded[selectedIndexPath.section].removeAtIndex(selectedIndexPath.row)
+
 					// tasksTableView.reloadData()
 				}
+				self.selectedIndexPath = nil
 			}
 			else {
 				RealmHelper.addTask(task)
@@ -443,6 +466,8 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		if let identifier = segue.identifier {
 			
 			if identifier == "editTaskDetailsSegue" {
+				print("Selected index path: \(selectedIndexPath.section), \(selectedIndexPath.row)")
+
 				let displayTaskViewController = (segue.destinationViewController as! UINavigationController).viewControllers[0] as! DisplayTaskViewController
 				
 				// set task of DisplayTaskViewController to task tapped on
@@ -491,11 +516,13 @@ extension TasksTableViewController: RearrangeDataSource {
 		}
 		
 		let newTask = Task(task: oldTask!, index: indexPath.row)
-		
+		let realm = try! Realm()
 		RealmHelper.deleteTask(oldTask!)
+		taskExpanded[unwrappedCurrentIndexPath.section].removeAtIndex(unwrappedCurrentIndexPath.row)
 		try! realm.write() {
 			tasksByPriority.priorities[indexPath.section].tasks.insert(newTask, atIndex: indexPath.row)
 		}
+		taskExpanded[indexPath.section].insert(false, atIndex: indexPath.row)
 		
 		if let cell = tasksTableView.cellForRowAtIndexPath(indexPath) as? TaskTableViewCell{
 			collapseCellAtIndexPath(indexPath)
