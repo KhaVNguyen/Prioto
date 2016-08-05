@@ -255,7 +255,8 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		}
 	}
 	
-	func countdown() { // gets called by timer every second
+	
+		func countdown() { // gets called by timer every second
 		self.timeRemaining = timeRemaining - 1 // decrement timeRemaining integer
 		self.updateTimer()
 		if self.timeRemaining == 0 {
@@ -265,7 +266,7 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 			self.switchTimerType()
 			setupLocalNotifications()
 		}
-		print("counting down")
+		// print("counting down")
 		
 		if self.timerType == TimerType.Work { // add time to task
 			if let task = self.task {
@@ -425,5 +426,8 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 	
 	func addObserver() {
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewFocusViewController.assignTask(_:)), name: "taskChosen", object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewFocusViewController.startTimer), name: "swipeEnded", object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewFocusViewController.pauseTimer), name: "swipeStarted", object: nil)
+		
 	}
 }
