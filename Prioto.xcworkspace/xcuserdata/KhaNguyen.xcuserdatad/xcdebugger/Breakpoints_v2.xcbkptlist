@@ -478,11 +478,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Prioto/TasksTableViewController.swift"
-            timestampString = "492157011.356635"
+            timestampString = "492162146.955752"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "509"
-            endingLineNumber = "509"
+            startingLineNumber = "513"
+            endingLineNumber = "513"
             landmarkName = "TasksTableViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -494,11 +494,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Prioto/TasksTableViewController.swift"
-            timestampString = "492157011.356635"
+            timestampString = "492162146.955752"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "301"
-            endingLineNumber = "301"
+            startingLineNumber = "304"
+            endingLineNumber = "304"
             landmarkName = "tableView(_:cellForRowAtIndexPath:)"
             landmarkType = "5">
             <Locations>
@@ -557,84 +557,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Prioto/TaskTableViewCell.swift"
-            timestampString = "492155596.257494"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "TaskTableViewCell"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Prioto.TaskTableViewCell.timeTaskCallBack.getter : Swift.Optional&lt;() -&gt; ()&gt;"
-                  moduleName = "Prioto"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/USB%2064/Stuff/MakeSchool/Prioto/Prioto/TaskTableViewCell.swift"
-                  timestampString = "491949944.083087"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "41"
-                  endingLineNumber = "41"
-                  offsetFromSymbolStart = "60">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Prioto.TaskTableViewCell.timeTaskCallBack.setter : Swift.Optional&lt;() -&gt; ()&gt;"
-                  moduleName = "Prioto"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/USB%2064/Stuff/MakeSchool/Prioto/Prioto/TaskTableViewCell.swift"
-                  timestampString = "491949944.083366"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "41"
-                  endingLineNumber = "41"
-                  offsetFromSymbolStart = "108">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Prioto.TaskTableViewCell.init (style : __C.UITableViewCellStyle, reuseIdentifier : Swift.Optional&lt;Swift.String&gt;) -&gt; Prioto.TaskTableViewCell"
-                  moduleName = "Prioto"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/USB%2064/Stuff/MakeSchool/Prioto/Prioto/TaskTableViewCell.swift"
-                  timestampString = "491949944.083511"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "41"
-                  endingLineNumber = "41"
-                  offsetFromSymbolStart = "280">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Prioto.TaskTableViewCell.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;Prioto.TaskTableViewCell&gt;"
-                  moduleName = "Prioto"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/USB%2064/Stuff/MakeSchool/Prioto/Prioto/TaskTableViewCell.swift"
-                  timestampString = "491949944.083656"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "41"
-                  endingLineNumber = "41"
-                  offsetFromSymbolStart = "224">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Prioto/TasksTableViewController.swift"
             timestampString = "492107636.98685"
             startingColumnNumber = "9223372036854775807"
@@ -652,11 +574,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Prioto/TasksTableViewController.swift"
-            timestampString = "492157011.356635"
+            timestampString = "492162146.955752"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "440"
-            endingLineNumber = "440"
+            startingLineNumber = "444"
+            endingLineNumber = "444"
             landmarkName = "unwindToTasksTableViewController(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -668,11 +590,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Prioto/TasksTableViewController.swift"
-            timestampString = "492157011.356635"
+            timestampString = "492162146.955752"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "451"
-            endingLineNumber = "451"
+            startingLineNumber = "455"
+            endingLineNumber = "455"
             landmarkName = "unwindToTasksTableViewController(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -684,11 +606,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Prioto/TasksTableViewController.swift"
-            timestampString = "492157011.356635"
+            timestampString = "492162146.955752"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "278"
-            endingLineNumber = "278"
+            startingLineNumber = "281"
+            endingLineNumber = "281"
             landmarkName = "tableView(_:cellForRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -700,11 +622,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Prioto/TasksTableViewController.swift"
-            timestampString = "492157011.356635"
+            timestampString = "492162146.955752"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "535"
-            endingLineNumber = "535"
+            startingLineNumber = "539"
+            endingLineNumber = "539"
             landmarkName = "moveObjectAtCurrentIndexPath(to:)"
             landmarkType = "5">
             <Locations>
@@ -754,6 +676,22 @@
             startingLineNumber = "139"
             endingLineNumber = "139"
             landmarkName = "viewDidLoad()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Prioto/TaskTableViewCell.swift"
+            timestampString = "492157554.799305"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "timeTaskButtonTapped(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

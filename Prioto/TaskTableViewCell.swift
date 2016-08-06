@@ -35,11 +35,11 @@ class TaskTableViewCell: MGSwipeTableCell {
 			startAnimation()
 		}
 	}
-	var expanded = false {
-		didSet {
-			print("Changed expanded==============================")
-		}
-	}
+//	var expanded = false {
+//		didSet {
+//			print("Changed expanded==============================")
+//		}
+//	}
 	var selectionCallback: (() -> Void)?
 	var timeTaskCallBack: (() -> Void)?
 
@@ -93,11 +93,14 @@ class TaskTableViewCell: MGSwipeTableCell {
 	@IBOutlet weak var timingIndicator: NVActivityIndicatorView!
 	
 	func stopAnimation() {
-		//timingIndicator.stopAnimation()
+		timingIndicator.stopAnimation()
+		print("stopped animation")
 	}
 	
 	func startAnimation() {
-		//timingIndicator.startAnimation()
+		timingIndicator.startAnimation()
+		print("started animation")
+
 	}
 	
 //	override func prepareForReuse() {

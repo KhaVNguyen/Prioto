@@ -106,7 +106,7 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		RealmHelper.addPriorities()
 		
 		tasksTableView.backgroundColor = UIColor.whiteColor()
-//		tasksTableView.estimatedRowHeight = CGFloat(90)
+//		tasksTableView.estimatedRowHeight = CGFloat(50)
 //		tasksTableView.rowHeight = UITableViewAutomaticDimension
 		tasksTableView.rowHeight = 50
 		
@@ -146,6 +146,7 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 
    //  MARK: - Table view data source
+	
 	
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -201,15 +202,17 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
      func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		
 		if tasksByPriority.priorities[indexPath.section].tasks.count == 0 {
-			let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "placeholderCell")
+//			let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "placeholderCell")
+			let cell = tasksTableView.dequeueReusableCellWithIdentifier("placeholderCell", forIndexPath: indexPath) as! PlaceholderTableViewCell
 			//set the data here
-			cell.setHeight(1)
-			// cell.userInteractionEnabled = false
+			cell.userInteractionEnabled = false
+			cell.placeholderLabel.setTitle("No tasks in this section.", forState: .Normal)
+		
 			return cell
 		}
 		
 		else {
-			var cell = tasksTableView.dequeueReusableCellWithIdentifier("taskTableViewCell", forIndexPath: indexPath) as! TaskTableViewCell
+			let cell = tasksTableView.dequeueReusableCellWithIdentifier("taskTableViewCell", forIndexPath: indexPath) as! TaskTableViewCell
 			
 //			if taskExpanded[indexPath.section][indexPath.row] {
 //				expandCellAtIndexPath(indexPath)
@@ -260,7 +263,7 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 			
 			
 			cell.contentView.layer.cornerRadius = 8
-			cell.contentView.layer.masksToBounds = true
+			// cell.contentView.layer.masksToBounds = true
 			cell.layer.borderColor = UIColor.whiteColor().CGColor
 			cell.layer.borderWidth = 2
 			cell.layer.cornerRadius = 5
@@ -366,6 +369,7 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 	// MARK: - Table view delegate
 	
 	func colorForIndexRow(row: Int, section: Int) -> UIColor {
+		
 		let itemCount = tasksByPriority.priorities[section].tasks.count - 1
 		let val = (CGFloat(row) / CGFloat(itemCount)) * 0.5
 		

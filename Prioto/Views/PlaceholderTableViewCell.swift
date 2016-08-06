@@ -21,4 +21,8 @@ class PlaceholderTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+	@IBOutlet weak var placeholderLabel: UIButton!
+	
+	@IBAction func placeolderLabelTapped(sender: AnyObject) {
+	}
 }
