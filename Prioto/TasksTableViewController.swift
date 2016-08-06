@@ -477,6 +477,8 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 					RealmHelper.deleteTask(taskForIndexPath(selectedIndexPath)!)
 					taskExpanded[selectedIndexPath.section].removeAtIndex(selectedIndexPath.row)
 					
+					collapseAll()
+					
 					// tasksTableView.reloadData()
 				}
 				self.selectedIndexPath = nil
@@ -484,6 +486,7 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 			else {
 				RealmHelper.addTask(task)
 				taskExpanded[priorityIndex].append(false)
+				collapseAll()
 				
 				// tasksTableView.reloadData()
 			}
@@ -526,11 +529,29 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 	}
 	
 	func collapseAll() {
-		for var section = 0; section < taskExpanded.count; section++ {
-			for var row = 0; row < taskExpanded[section].count; row++ {
-				taskExpanded[section][row] = false
+//		for var section = 0; section < taskExpanded.count; section++ {
+//			for var row = 0; row < taskExpanded[section].count; row++ {
+//				taskExpanded[section][row] = false
+//			}
+//		}
+		
+		//get section of interest i.e: first section (0)
+		for (var section = 0; section < tasksTableView.numberOfSections; section++)
+		{
+			for (var row = 0; row < tasksTableView.numberOfRowsInSection(section); row++) {
+				var indexPath = NSIndexPath(forRow: row, inSection: section)
+				//following line of code is for invisible cells
+				tasksTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Top, animated: false)
+				if let cell  = tasksTableView.cellForRowAtIndexPath(indexPath) as? TaskTableViewCell {
+				//	if taskExpanded[indexPath.section][indexPath.row] {
+						collapseCellAtIndexPath(indexPath)
+					tasksTableView.reloadData()
+				//	}
+				//}
+				}
 			}
 		}
+		
 	}
 	
 }
@@ -552,8 +573,8 @@ extension TasksTableViewController: RearrangeDataSource {
 		
 		let newTask = Task(task: oldTask!, index: indexPath.row)
 		let realm = try! Realm()
-		RealmHelper.deleteTask(oldTask!)
 		taskExpanded[unwrappedCurrentIndexPath.section].removeAtIndex(unwrappedCurrentIndexPath.row)
+		RealmHelper.deleteTask(oldTask!)
 		taskExpanded[indexPath.section].insert(false, atIndex: indexPath.row)
 		try! realm.write() {
 			tasksByPriority.priorities[indexPath.section].tasks.insert(newTask, atIndex: indexPath.row)
@@ -566,6 +587,8 @@ extension TasksTableViewController: RearrangeDataSource {
 			let taskDataDict:[String: Task] = ["task": newTask]
 			NSNotificationCenter.defaultCenter().postNotificationName("taskChosen", object: self, userInfo: taskDataDict)
 		}
+		
+		collapseAll()
 		
 	}
 }
