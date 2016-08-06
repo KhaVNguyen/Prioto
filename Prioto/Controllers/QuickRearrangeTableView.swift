@@ -6,7 +6,7 @@ protocol RearrangeDataSource: class {
 	
 	func moveObjectAtCurrentIndexPath(to indexPath: NSIndexPath)
 	
-	func collapseCellAtIndexPath(indexPath: NSIndexPath)
+//	func collapseCellAtIndexPath(indexPath: NSIndexPath)
 }
 
 struct RearrangeOptions: OptionSetType {

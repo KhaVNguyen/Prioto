@@ -142,8 +142,8 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 			startPauseButton.setImage(UIImage(named: "Play.png"), forState: .Normal)
 		}
 	}
-	
-	
+		
+	@IBOutlet weak var timeWorkedLabel: UILabel!
 	
 	override func viewDidLoad() {
 		
@@ -198,7 +198,9 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		//		self.dropdownMenu!.menuTopOffset = topOffset
 		//		self.dropdownMenu!.itemHeight = 44
 		
-		
+		taskLabel.adjustsFontSizeToFitWidth = true
+		taskLabel.minimumScaleFactor = 0.4
+		taskLabel.numberOfLines = 1
 	}
 	
 	deinit {
@@ -230,6 +232,10 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 				taskLabel.text = "No task being tracked"
 				taskLabel.textColor = UIColor.redColor()
 			}
+		}
+		else {
+			taskLabel.text = "No task being tracked"
+			taskLabel.textColor = UIColor.redColor()
 		}
 		
 	}
@@ -276,6 +282,7 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 						task.timeWorked += 1
 						//print("Time worked: \(task.timeWorked)")
 					}
+					timeWorkedLabel.text = "Time Worked On Task: \(formatSecondsAsTimeString(Double(task.timeWorked)))"
 				}
 				else {
 					taskLabel.text = "No task being tracked"
@@ -413,6 +420,7 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 			}
 			taskLabel.text = self.task!.text
 			taskLabel.textColor = UIColor.blackColor()
+			timeWorkedLabel.text = "Time Worked On Task: \(formatSecondsAsTimeString(Double(task.timeWorked)))"
 			print("Assigned task elapsed time: \(self.task?.timeWorked))")
 		}
 	}

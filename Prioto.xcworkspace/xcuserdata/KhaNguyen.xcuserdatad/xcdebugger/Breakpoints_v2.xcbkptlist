@@ -110,11 +110,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Prioto/NewFocusViewController.swift"
-            timestampString = "492112342.518529"
+            timestampString = "492156471.433917"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "354"
-            endingLineNumber = "354"
+            startingLineNumber = "361"
+            endingLineNumber = "361"
             landmarkName = "setupLocalNotifications()"
             landmarkType = "5">
          </BreakpointContent>
@@ -126,11 +126,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Prioto/NewFocusViewController.swift"
-            timestampString = "492112342.518529"
+            timestampString = "492156471.433917"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "380"
-            endingLineNumber = "380"
+            startingLineNumber = "387"
+            endingLineNumber = "387"
             landmarkName = "showDropdown()"
             landmarkType = "5">
          </BreakpointContent>
@@ -142,11 +142,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Prioto/NewFocusViewController.swift"
-            timestampString = "492112342.518529"
+            timestampString = "492156471.433917"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "379"
-            endingLineNumber = "379"
+            startingLineNumber = "386"
+            endingLineNumber = "386"
             landmarkName = "showDropdown()"
             landmarkType = "5">
          </BreakpointContent>
@@ -221,38 +221,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Prioto/TaskTableViewCell.swift"
-            timestampString = "491948196.276027"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "timeTaskButtonTapped(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Prioto/TaskTableViewCell.swift"
-            timestampString = "491948196.276027"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "timeTaskButtonTapped(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Prioto/NewFocusViewController.swift"
             timestampString = "491956388.239024"
             startingColumnNumber = "9223372036854775807"
@@ -270,11 +238,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Prioto/NewFocusViewController.swift"
-            timestampString = "491956388.239024"
+            timestampString = "492156471.433917"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
             landmarkName = "unwindToNewFocusViewController(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -286,11 +254,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Prioto/NewFocusViewController.swift"
-            timestampString = "491956388.239024"
+            timestampString = "492156471.433917"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "254"
-            endingLineNumber = "254"
+            startingLineNumber = "260"
+            endingLineNumber = "260"
             landmarkName = "unwindToNewFocusViewController(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -302,11 +270,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Prioto/NewFocusViewController.swift"
-            timestampString = "491956388.239024"
+            timestampString = "492156471.433917"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "243"
-            endingLineNumber = "243"
+            startingLineNumber = "249"
+            endingLineNumber = "249"
             landmarkName = "unwindToNewFocusViewController(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -318,11 +286,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Prioto/NewFocusViewController.swift"
-            timestampString = "491956388.239024"
+            timestampString = "492156471.433917"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "256"
-            endingLineNumber = "256"
+            startingLineNumber = "262"
+            endingLineNumber = "262"
             landmarkName = "unwindToNewFocusViewController(_:)"
             landmarkType = "5">
             <Locations>
@@ -366,11 +334,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Prioto/NewFocusViewController.swift"
-            timestampString = "492112342.518529"
+            timestampString = "492156471.433917"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "259"
-            endingLineNumber = "259"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
             landmarkName = "countdown()"
             landmarkType = "5">
          </BreakpointContent>
@@ -382,11 +350,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Prioto/NewFocusViewController.swift"
-            timestampString = "492112342.518529"
+            timestampString = "492156471.433917"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "260"
-            endingLineNumber = "260"
+            startingLineNumber = "266"
+            endingLineNumber = "266"
             landmarkName = "countdown()"
             landmarkType = "5">
             <Locations>
@@ -430,11 +398,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Prioto/NewFocusViewController.swift"
-            timestampString = "492112342.518529"
+            timestampString = "492156471.433917"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "262"
-            endingLineNumber = "262"
+            startingLineNumber = "268"
+            endingLineNumber = "268"
             landmarkName = "countdown()"
             landmarkType = "5">
          </BreakpointContent>
@@ -446,11 +414,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Prioto/NewFocusViewController.swift"
-            timestampString = "492112342.518529"
+            timestampString = "492156471.433917"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
+            startingLineNumber = "267"
+            endingLineNumber = "267"
             landmarkName = "countdown()"
             landmarkType = "5">
          </BreakpointContent>
@@ -462,11 +430,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Prioto/NewFocusViewController.swift"
-            timestampString = "492112342.518529"
+            timestampString = "492156471.433917"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "385"
-            endingLineNumber = "385"
+            startingLineNumber = "392"
+            endingLineNumber = "392"
             landmarkName = "showDropdown()"
             landmarkType = "5">
          </BreakpointContent>
@@ -510,11 +478,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Prioto/TasksTableViewController.swift"
-            timestampString = "492122741.918663"
+            timestampString = "492157011.356635"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "526"
-            endingLineNumber = "526"
+            startingLineNumber = "509"
+            endingLineNumber = "509"
             landmarkName = "TasksTableViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -526,27 +494,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Prioto/TasksTableViewController.swift"
-            timestampString = "492122741.918663"
+            timestampString = "492157011.356635"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "327"
-            endingLineNumber = "327"
-            landmarkName = "collapseCellAtIndexPath(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Prioto/TasksTableViewController.swift"
-            timestampString = "492122741.918663"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "318"
-            endingLineNumber = "318"
+            startingLineNumber = "301"
+            endingLineNumber = "301"
             landmarkName = "tableView(_:cellForRowAtIndexPath:)"
             landmarkType = "5">
             <Locations>
@@ -589,22 +541,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Prioto/TaskTableViewCell.swift"
-            timestampString = "491950200.835367"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "changeCellStatus(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Pods/AZDropdownMenu/Pod/Classes/AZDropdownMenu.swift"
             timestampString = "491945584.394341"
             startingColumnNumber = "9223372036854775807"
@@ -622,27 +558,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Prioto/TaskTableViewCell.swift"
-            timestampString = "491950200.835367"
+            timestampString = "492155596.257494"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "switchCellStatus()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Prioto/TaskTableViewCell.swift"
-            timestampString = "491949944.045403"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
             landmarkName = "TaskTableViewCell"
             landmarkType = "3">
             <Locations>
@@ -715,22 +635,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Prioto/TaskTableViewCell.swift"
-            timestampString = "491951997.914912"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "timeTaskButtonTapped(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Prioto/TasksTableViewController.swift"
             timestampString = "492107636.98685"
             startingColumnNumber = "9223372036854775807"
@@ -748,11 +652,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Prioto/TasksTableViewController.swift"
-            timestampString = "492122741.918663"
+            timestampString = "492157011.356635"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "457"
-            endingLineNumber = "457"
+            startingLineNumber = "440"
+            endingLineNumber = "440"
             landmarkName = "unwindToTasksTableViewController(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -764,11 +668,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Prioto/TasksTableViewController.swift"
-            timestampString = "492122741.918663"
+            timestampString = "492157011.356635"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "468"
-            endingLineNumber = "468"
+            startingLineNumber = "451"
+            endingLineNumber = "451"
             landmarkName = "unwindToTasksTableViewController(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -780,11 +684,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Prioto/TasksTableViewController.swift"
-            timestampString = "492122741.918663"
+            timestampString = "492157011.356635"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "292"
-            endingLineNumber = "292"
+            startingLineNumber = "278"
+            endingLineNumber = "278"
             landmarkName = "tableView(_:cellForRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -796,11 +700,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Prioto/TasksTableViewController.swift"
-            timestampString = "492122741.918663"
+            timestampString = "492157011.356635"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "552"
-            endingLineNumber = "552"
+            startingLineNumber = "535"
+            endingLineNumber = "535"
             landmarkName = "moveObjectAtCurrentIndexPath(to:)"
             landmarkType = "5">
             <Locations>
@@ -844,44 +748,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Prioto/TasksTableViewController.swift"
-            timestampString = "492107881.117782"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Prioto/TasksTableViewController.swift"
             timestampString = "492108090.611866"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "139"
             endingLineNumber = "139"
             landmarkName = "viewDidLoad()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Prioto/TasksTableViewController.swift"
-            timestampString = "492122189.523971"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "230"
-            endingLineNumber = "230"
-            landmarkName = "tableView(_:cellForRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

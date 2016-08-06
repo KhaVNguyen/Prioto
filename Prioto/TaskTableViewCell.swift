@@ -20,14 +20,13 @@ import NVActivityIndicatorView
 //}
 
 class TaskTableViewCell: MGSwipeTableCell {
-	@IBOutlet weak var stackView: UIStackView!
 
 	@IBOutlet weak var taskTextLabel: UILabel!
 	
 	@IBAction func expandTaskButtonTapped(sender: AnyObject) {
-		if let selectionCallback = self.selectionCallback{
-			selectionCallback()
-		}
+//		if let selectionCallback = self.selectionCallback{
+//			selectionCallback()
+//		}
 	}
 	
 	@IBAction func timeTaskButtonTapped(sender: AnyObject) {
@@ -48,7 +47,7 @@ class TaskTableViewCell: MGSwipeTableCell {
 	
 	override func awakeFromNib() {
         super.awakeFromNib()
-		stackView.arrangedSubviews.last?.hidden = true
+//		stackView.arrangedSubviews.last?.hidden = true
 		gradientLayer.frame = bounds
 		let color1 = UIColor(white: 1.0, alpha: 0.2).CGColor as CGColorRef
 		let color2 = UIColor(white: 1.0, alpha: 0.1).CGColor as CGColorRef
@@ -69,28 +68,27 @@ class TaskTableViewCell: MGSwipeTableCell {
 	}
 
 	
-	func changeCellStatus(expanded: Bool){
-		self.expanded = expanded
-		UIView.animateWithDuration(0.5,
-		                           delay: 0,
-		                           usingSpringWithDamping: 1,
-		                           initialSpringVelocity: 1,
-		                           options: UIViewAnimationOptions.CurveEaseIn,
-		                           animations: { () -> Void in
-									//print("expanded: \(expanded).Before assignment: \(self.stackView.arrangedSubviews.last!.hidden)")
-									self.stackView.arrangedSubviews.last!.hidden = !expanded
-									//print("hidden: \(self.stackView.arrangedSubviews.last!.hidden)")
-			},
-		                           completion: nil)
-	}
+//	func changeCellStatus(expanded: Bool){
+//		self.expanded = expanded
+//		UIView.animateWithDuration(0.5,
+//		                           delay: 0,
+//		                           usingSpringWithDamping: 1,
+//		                           initialSpringVelocity: 1,
+//		                           options: UIViewAnimationOptions.CurveEaseIn,
+//		                           animations: { () -> Void in
+//									//print("expanded: \(expanded).Before assignment: \(self.stackView.arrangedSubviews.last!.hidden)")
+//									self.stackView.arrangedSubviews.last!.hidden = !expanded
+//									//print("hidden: \(self.stackView.arrangedSubviews.last!.hidden)")
+//			},
+//		                           completion: nil)
+//	}
+//	
+//	func switchCellStatus() {
+//		self.expanded = !self.expanded
+//		changeCellStatus(expanded)
+//	}
 	
-	func switchCellStatus() {
-		self.expanded = !self.expanded
-		changeCellStatus(expanded)
-	}
 	
-	
-	@IBOutlet weak var timeElapsedLabel: UILabel!
 	
 	@IBOutlet weak var timingIndicator: NVActivityIndicatorView!
 	
@@ -102,6 +100,11 @@ class TaskTableViewCell: MGSwipeTableCell {
 		//timingIndicator.startAnimation()
 	}
 	
+//	override func prepareForReuse() {
+//		super.prepareForReuse()
+//		changeCellStatus(expanded)
+//	}
+
 
 	
 }
