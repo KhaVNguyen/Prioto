@@ -46,6 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BSForegroundNotificationD
 //			aView.view.description
 //		}
 		
+		NSNotificationCenter.defaultCenter().postNotificationName("appExited", object: self)
 		
 		return true
 	}

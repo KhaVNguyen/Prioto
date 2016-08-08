@@ -15,6 +15,7 @@ import BSForegroundNotification
 import AudioToolbox
 import AZDropdownMenu
 import RealmSwift
+import UIColor_Hex_Swift
 
 var newFocusViewControllerLoaded: Bool = false
 var timerInterrupted: Bool = false
@@ -166,6 +167,7 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		}
 		
 		view.backgroundColor = UIColor.whiteColor()
+		progressRingView.tag = 100
 		view.addSubview(progressRingView)
 		
 		if (Defaults[.workDuration] == 0 && Defaults[.breakDuration] == 0) {
@@ -415,6 +417,43 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		if let task = notification.userInfo?["task"] as? Task {
 			setupTask(task)
 		}
+		
+		var outerRingColor: UIColor = UIColor()
+		var innerRingColor: UIColor = UIColor()
+		if let priorityIndex = task?.priorityIndex {
+			switch priorityIndex {
+			case 0:
+				outerRingColor = UIColor(.RGB(192,57,43))
+				innerRingColor = UIColor(.RGB(231,76,60))
+			case 1:
+				outerRingColor = UIColor(.RGB(30,99,214))
+				innerRingColor = UIColor(.RGB(30,145,214))
+			case 2:
+				outerRingColor = UIColor(.RGB(36,123,160))
+				innerRingColor = UIColor(.RGB(61,167,211))
+			case 3:
+				outerRingColor = UIColor(.RGB(13,171,118))
+				innerRingColor = UIColor(.RGB(23,237,166))
+			default:
+				outerRingColor = UIColor(.RGB(13,171,118))
+				innerRingColor = UIColor(.RGB(231,76,60))
+			}
+		}
+		
+		if let viewWithTag = self.view.viewWithTag(100) {
+			viewWithTag.removeFromSuperview()
+		}
+		
+		let margin: CGFloat = 1
+		let radius: CGFloat = 130
+		let rings = [
+			ProgressRing(color: outerRingColor, backgroundColor: UIColor(.RGB(255, 255, 255))),
+			ProgressRing(color: innerRingColor, backgroundColor: UIColor(.RGB(255, 255, 255)))]
+		progressRingView = try! ConcentricProgressRingView(center: view.center, radius: radius, margin: margin, rings: rings, defaultColor: UIColor.clearColor(), defaultWidth: 18)
+		updateTimer()
+		view.backgroundColor = UIColor.whiteColor()
+		progressRingView.tag = 100
+		view.addSubview(progressRingView)
 	}
 	
 	func setupTask(task: Task) {

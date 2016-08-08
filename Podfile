@@ -27,6 +27,8 @@ pod 'AZDropdownMenu'
 pod "AutocompleteField", "~> 1.1" 
 pod ‘ChameleonFramework/Swift’
 pod 'NVActivityIndicatorView'
+pod 'UIColor_Hex_Swift', '~> 2.1'
+
 
 
 

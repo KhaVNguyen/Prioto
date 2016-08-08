@@ -143,7 +143,7 @@
                         <barButtonItem title="Item" id="agc-Df-P0Z"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="vhh-F0-hsG">
-                        <barButtonItem key="leftBarButtonItem" title="Print Working On" id="DpO-Wu-cnY">
+                        <barButtonItem key="leftBarButtonItem" id="DpO-Wu-cnY" userLabel="Print Working On">
                             <connections>
                                 <action selector="printExpandedButtonTapped:" destination="d7n-i7-5Vo" id="zp0-6m-YQe"/>
                             </connections>
@@ -483,16 +483,6 @@
                                 <segue destination="sPf-pD-0Ab" kind="presentation" identifier="showPreferencesSegue" id="f9L-wu-3MJ"/>
                             </connections>
                         </barButtonItem>
-                        <view key="titleView" contentMode="scaleToFill" id="v89-7b-63d">
-                            <rect key="frame" x="93" y="6" width="414" height="33"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
-                        </view>
-                        <barButtonItem key="rightBarButtonItem" image="dropdownMenu" id="mDG-f4-zCJ" userLabel="Dropdown Menu Button">
-                            <connections>
-                                <action selector="dropdownMenuButtonPressed:" destination="zDZ-FL-W2b" id="C6P-CD-POK"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="startPauseButton" destination="49x-wS-QRy" id="Rsk-Fy-s5G"/>
@@ -648,7 +638,6 @@
         <image name="Tasks" width="27" height="27"/>
         <image name="Time" width="22" height="24"/>
         <image name="Time-Pressed" width="22" height="24"/>
-        <image name="dropdownMenu" width="25" height="20"/>
         <image name="newNote" width="26" height="29"/>
     </resources>
     <inferredMetricsTieBreakers>

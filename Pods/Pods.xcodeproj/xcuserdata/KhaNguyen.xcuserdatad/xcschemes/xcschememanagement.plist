@@ -129,10 +129,25 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>UIColor_Hex_Swift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>02FF34870E62CFA5ACE3C480C90E35AA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>16FB872D0D2D4BA0F378AB34D47CF95F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>261D9589FC6C31E0A416FC02ABABB16B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -157,6 +172,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>3531DECB7F8F5409CF02EFFF49028E28</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>37C76CD246D637B8E4C586284A0D96B2</key>
 		<dict>
 			<key>primary</key>
@@ -177,11 +197,6 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>51EE8FE221E265837AE6F3656999998C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>5D71132139A1E1855313CBD9F229AC7A</key>
 		<dict>
 			<key>primary</key>
@@ -197,7 +212,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>76435FAC722DDF95F549D4C46F0FF2B2</key>
+		<key>7F8E31241B5FF7ED37DA8FC61B0FF7D4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -217,12 +232,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>9C083BF4CDCE3BF628A386E1E7419E0A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>9E29A23890B992C6D47D51882C1B22A6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AEB617166B391A2A839ABD41FBBF5558</key>
+		<key>A79F8B5F95831536229071FBD08D58A4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B3A870F3D6DAA392A6FDF1C32882FB5E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -232,27 +257,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D2FF16CE9F6554DB234ED03D4CA786B8</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E260ACA3F3C354A84FA9C29CE60C0FF5</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>EC25B770E2E786F47106EE8F013163EA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EF58F7E5745069319307D62F82285F5B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F78C880B250D36B3D83AF1CA941A9FC7</key>
+		<key>EDADB6A9571AD292C1334A97DDEC58A4</key>
 		<dict>
 			<key>primary</key>
 			<true/>

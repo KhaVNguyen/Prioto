@@ -575,6 +575,9 @@ extension TasksTableViewController: RearrangeDataSource {
 		try! realm.write() {
 			tasksByPriority.priorities[indexPath.section].tasks.insert(newTask, atIndex: indexPath.row)
 		}
+		try! realm.write() {
+			newTask.priorityIndex = indexPath.section
+		}
 //		if let cell = tasksTableView.cellForRowAtIndexPath(indexPath) as? TaskTableViewCell{
 //			collapseCellAtIndexPath(indexPath)
 //		}
