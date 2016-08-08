@@ -82,7 +82,7 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		self.counting = false
 		startPauseButton.setTitle("Resume", forState: .Normal)
 		startPauseButton.setImage(UIImage(named: "Play.png"), forState: .Normal)
-		NSNotificationCenter.defaultCenter().postNotificationName("pausedTiming", object: self)
+//		NSNotificationCenter.defaultCenter().postNotificationName("pausedTiming", object: self)
 		
 	}
 	
@@ -93,7 +93,7 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		self.counting = true
 		startPauseButton.setTitle("Pause", forState: .Normal)
 		startPauseButton.setImage(UIImage(named: "Pause.png"), forState: .Normal)
-		NSNotificationCenter.defaultCenter().postNotificationName("startedTiming", object: self)
+//		NSNotificationCenter.defaultCenter().postNotificationName("startedTiming", object: self)
 		
 	}
 	
@@ -413,15 +413,28 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 			}
 		}
 		if let task = notification.userInfo?["task"] as? Task {
-			self.task = task
-			let realm = try! Realm()
+			setupTask(task)
+		}
+	}
+	
+	func setupTask(task: Task) {
+		self.task = task
+		let realm = try! Realm()
+		try! realm.write {
+			self.task!.isBeingWorkedOn = true
+		}
+		taskLabel.text = self.task!.text
+		taskLabel.textColor = UIColor.blackColor()
+		timeWorkedLabel.text = "Time Worked On Task: \(formatSecondsAsTimeString(Double(task.timeWorked)))"
+		print("Assigned task elapsed time: \(self.task?.timeWorked))")
+	}
+	
+	func resetWorkingOn() {
+		let realm = try! Realm()
+		if let task = self.task {
 			try! realm.write {
-				self.task!.isBeingWorkedOn = true
+				task.isBeingWorkedOn = false
 			}
-			taskLabel.text = self.task!.text
-			taskLabel.textColor = UIColor.blackColor()
-			timeWorkedLabel.text = "Time Worked On Task: \(formatSecondsAsTimeString(Double(task.timeWorked)))"
-			print("Assigned task elapsed time: \(self.task?.timeWorked))")
 		}
 	}
 	
@@ -436,6 +449,6 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewFocusViewController.assignTask(_:)), name: "taskChosen", object: nil)
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewFocusViewController.startTimer), name: "swipeEnded", object: nil)
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewFocusViewController.pauseTimer), name: "swipeStarted", object: nil)
-		
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewFocusViewController.resetWorkingOn), name: "appClosed", object: nil)
 	}
 }

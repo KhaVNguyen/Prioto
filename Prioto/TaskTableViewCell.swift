@@ -47,7 +47,6 @@ class TaskTableViewCell: MGSwipeTableCell {
 	
 	override func awakeFromNib() {
         super.awakeFromNib()
-//		stackView.arrangedSubviews.last?.hidden = true
 		gradientLayer.frame = bounds
 		let color1 = UIColor(white: 1.0, alpha: 0.2).CGColor as CGColorRef
 		let color2 = UIColor(white: 1.0, alpha: 0.1).CGColor as CGColorRef

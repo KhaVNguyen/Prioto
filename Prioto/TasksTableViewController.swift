@@ -60,6 +60,18 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 //		for priority in taskExpanded {
 //			print(priority)
 //		}
+		let realm = try! Realm()
+		let tasksByPriority = realm.objects(TasksByPriority.self).first!
+		let priorities = tasksByPriority.priorities
+		var section = 0
+
+		for priority in priorities {
+			for task in priority.tasks {
+				print(String(task.isBeingWorkedOn) + ": " + task.text)
+			}
+			section += 1
+		}
+		
 	}
 	var realm: Realm!
 	var notificationToken: NotificationToken?
@@ -137,8 +149,9 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		
 		tasksTableView.reloadData()
 //		initialLoaded = true
+		
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TasksTableViewController.resetAllWorkingOn), name: "appClosed", object: nil)
 	}
-	
 	
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -207,6 +220,11 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 			//set the data here
 			cell.userInteractionEnabled = false
 			cell.placeholderLabel.setTitle("No tasks in this section.", forState: .Normal)
+			cell.contentView.layer.cornerRadius = 8
+			cell.contentView.layer.masksToBounds = true
+			cell.layer.borderColor = UIColor.whiteColor().CGColor
+			cell.layer.borderWidth = 2
+			cell.layer.cornerRadius = 5
 		
 			return cell
 		}
@@ -263,7 +281,7 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 			
 			
 			cell.contentView.layer.cornerRadius = 8
-			// cell.contentView.layer.masksToBounds = true
+			cell.contentView.layer.masksToBounds = true
 			cell.layer.borderColor = UIColor.whiteColor().CGColor
 			cell.layer.borderWidth = 2
 			cell.layer.cornerRadius = 5
@@ -301,6 +319,14 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 //			cell.layoutMargins = UIEdgeInsetsZero
 //			cell.timeElapsedLabel.text = self.formatSecondsAsTimeString(Double((task?.timeWorked)!))
 			
+
+			if task!.isBeingWorkedOn {
+				cell.startAnimation()
+			}
+			else {
+				cell.stopAnimation()
+			}
+
 			return cell
 		}
 
@@ -507,6 +533,22 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		let minutes = Int(round(time)) / 60 % 60
 		let seconds = Int(round(time)) % 60
 		return String(format:"%02i:%02i:%02i", hours, minutes, seconds)
+	}
+	
+	func resetAllWorkingOn() {
+		let realm = try! Realm()
+		let tasksByPriority = realm.objects(TasksByPriority.self).first!
+		let priorities = tasksByPriority.priorities
+		var section = 0
+		for priority in priorities {
+			for task in priority.tasks {
+				try! realm.write() {
+					task.isBeingWorkedOn = false
+				}
+			}
+			section += 1
+		}
+		
 	}
 	
 }
