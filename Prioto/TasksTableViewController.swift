@@ -20,7 +20,7 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 	
 	
 	@IBOutlet var tasksTableView: TasksTableView!
-		
+	
 	@IBAction func fillButtonTapped(sender: AnyObject) {
 		RealmHelper.addTask(Task(text: "Complete feature to reorder tasks", priority: 0))
 		RealmHelper.addTask(Task(text: "User test app", priority: 0))
@@ -41,30 +41,30 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		
 		RealmHelper.getTaskTitles()
 		
-//		taskExpanded = [[], [], [], []]
-//		let realm = try! Realm()
-//		let tasksByPriority = realm.objects(TasksByPriority.self).first!
-//		let priorities = tasksByPriority.priorities
-//		var section = 0
-//		for priority in priorities {
-//			for task in priority.tasks {
-//				taskExpanded[section].append(false)
-//			}
-//			section += 1
-//		}
-
+		//		taskExpanded = [[], [], [], []]
+		//		let realm = try! Realm()
+		//		let tasksByPriority = realm.objects(TasksByPriority.self).first!
+		//		let priorities = tasksByPriority.priorities
+		//		var section = 0
+		//		for priority in priorities {
+		//			for task in priority.tasks {
+		//				taskExpanded[section].append(false)
+		//			}
+		//			section += 1
+		//		}
+		
 	}
 	
 	@IBAction func printExpandedButtonTapped(sender: AnyObject) {
-//		print("---------------------------------------------------")
-//		for priority in taskExpanded {
-//			print(priority)
-//		}
+		//		print("---------------------------------------------------")
+		//		for priority in taskExpanded {
+		//			print(priority)
+		//		}
 		let realm = try! Realm()
 		let tasksByPriority = realm.objects(TasksByPriority.self).first!
 		let priorities = tasksByPriority.priorities
 		var section = 0
-
+		
 		for priority in priorities {
 			for task in priority.tasks {
 				print(String(task.isBeingWorkedOn) + ": " + task.text)
@@ -97,15 +97,15 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 	var currentIndexPath: NSIndexPath?
 	var selectedIndexPath : NSIndexPath!
 	
-//	var taskExpanded: [[Bool]] = [[],[],[],[]]
-//	var initialLoaded: Bool = false
-		
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	//	var taskExpanded: [[Bool]] = [[],[],[],[]]
+	//	var initialLoaded: Bool = false
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
 		
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
 		storyboard.instantiateViewControllerWithIdentifier("NewFocusViewController")
-
+		
 		
 		self.realm = try! Realm()
 		
@@ -118,8 +118,8 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		RealmHelper.addPriorities()
 		
 		tasksTableView.backgroundColor = UIColor.whiteColor()
-//		tasksTableView.estimatedRowHeight = CGFloat(50)
-//		tasksTableView.rowHeight = UITableViewAutomaticDimension
+		//		tasksTableView.estimatedRowHeight = CGFloat(50)
+		//		tasksTableView.rowHeight = UITableViewAutomaticDimension
 		tasksTableView.rowHeight = 55
 		
 		tasksTableView.layoutMargins = UIEdgeInsetsZero
@@ -135,67 +135,67 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		tasksTableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "PriorityHeaderView")
 		
 		
-//		let tasksByPriority = realm.objects(TasksByPriority.self).first!
-//		let priorities = tasksByPriority.priorities
-//		var section = 0
-//		for priority in priorities {
-//			for task in priority.tasks {
-//				taskExpanded[section].append(false)
-//			}
-//			section += 1
-//		}
-//		print("Task expanded:")
-//		print(taskExpanded)
+		//		let tasksByPriority = realm.objects(TasksByPriority.self).first!
+		//		let priorities = tasksByPriority.priorities
+		//		var section = 0
+		//		for priority in priorities {
+		//			for task in priority.tasks {
+		//				taskExpanded[section].append(false)
+		//			}
+		//			section += 1
+		//		}
+		//		print("Task expanded:")
+		//		print(taskExpanded)
 		
 		tasksTableView.reloadData()
-//		initialLoaded = true
+		//		initialLoaded = true
 		
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TasksTableViewController.resetAllWorkingOn), name: "appClosed", object: nil)
 	}
 	
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-   //  MARK: - Table view data source
+	override func didReceiveMemoryWarning() {
+		super.didReceiveMemoryWarning()
+		// Dispose of any resources that can be recreated.
+	}
+	
+	//  MARK: - Table view data source
 	
 	
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+		// #warning Incomplete implementation, return the number of sections
 		
-		 return priorityIndexes.count
-    }
+		return priorityIndexes.count
+	}
 	
-
+	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+		// #warning Incomplete implementation, return the number of rows
 		
 		
 		if(tasksByPriority.priorities[section].tasks.count == 0) {
-				return 1
+			return 1
 		}
 		else {
 			return tasksByPriority.priorities[section].tasks.count
 		}
-
-    }
+		
+	}
 	
 	
-//	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//		// return priorityTitles[section]
-//		switch section {
-//		case 0:
-//			return "Section 0"
-//		case 1:
-//			return "Section 1"
-//		case 2:
-//			return "Section 2"
-//		default:
-//			return "Unknown"
-//		}
-//
-//	}
+	//	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+	//		// return priorityTitles[section]
+	//		switch section {
+	//		case 0:
+	//			return "Section 0"
+	//		case 1:
+	//			return "Section 1"
+	//		case 2:
+	//			return "Section 2"
+	//		default:
+	//			return "Unknown"
+	//		}
+	//
+	//	}
 	
 	func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 		
@@ -211,36 +211,35 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		return cell
 	}
 	
-
-     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+	
+	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		
 		if tasksByPriority.priorities[indexPath.section].tasks.count == 0 {
-//			let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "placeholderCell")
+			//			let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "placeholderCell")
 			let cell = tasksTableView.dequeueReusableCellWithIdentifier("placeholderCell", forIndexPath: indexPath) as! PlaceholderTableViewCell
 			//set the data here
 			cell.userInteractionEnabled = false
 			cell.placeholderLabel.setTitle("No tasks in this section.", forState: .Normal)
-			cell.contentView.layer.cornerRadius = 8
-			cell.contentView.layer.masksToBounds = true
+			cell.layer.cornerRadius = 8
+			cell.layer.masksToBounds = true
+			cell.layer.borderWidth = 15
 			cell.layer.borderColor = UIColor.whiteColor().CGColor
-			cell.layer.borderWidth = 2
-			cell.layer.cornerRadius = 5
-		
+			
 			return cell
 		}
-		
+			
 		else {
 			let cell = tasksTableView.dequeueReusableCellWithIdentifier("taskTableViewCell", forIndexPath: indexPath) as! TaskTableViewCell
 			
-//			if taskExpanded[indexPath.section][indexPath.row] {
-//				expandCellAtIndexPath(indexPath)
-//			}
-//			else if !taskExpanded[indexPath.section][indexPath.row] {
-//				collapseCellAtIndexPath(indexPath)
-//			}
-//			else {
-//				print("************************************Something isn't right...**************************************")
-//			}
+			//			if taskExpanded[indexPath.section][indexPath.row] {
+			//				expandCellAtIndexPath(indexPath)
+			//			}
+			//			else if !taskExpanded[indexPath.section][indexPath.row] {
+			//				collapseCellAtIndexPath(indexPath)
+			//			}
+			//			else {
+			//				print("************************************Something isn't right...**************************************")
+			//			}
 			
 			// Configure the cell...
 			let task = self.taskForIndexPath(indexPath)
@@ -254,9 +253,9 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 					self.taskForIndexPath(indexPath)?.completed = !(self.taskForIndexPath(indexPath)?.completed)!
 					AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
 					self.strikethroughCompleted(indexPath, cell: cell, task: task!)
-//					if self.expandedForIndexPath(indexPath) {
-//						self.collapseCellAtIndexPath(indexPath)
-//					}
+					//					if self.expandedForIndexPath(indexPath) {
+					//						self.collapseCellAtIndexPath(indexPath)
+					//					}
 				}
 				RealmHelper.getTaskTitles()
 				return true
@@ -264,48 +263,48 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 			cell.leftSwipeSettings.transition = MGSwipeTransition.Border
 			cell.rightButtons = [MGSwipeButton(title: "", icon: UIImage(named:"deleteTask.png"), backgroundColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0), callback: {
 				(sender: MGSwipeTableCell!) -> Bool in
-			//	if self.expandedForIndexPath(indexPath) {
+				//	if self.expandedForIndexPath(indexPath) {
  			//	}
 				// self.tasksTableView.reloadData()
-//				self.taskExpanded[indexPath.section].removeAtIndex(indexPath.row)
+				//				self.taskExpanded[indexPath.section].removeAtIndex(indexPath.row)
 				RealmHelper.deleteTask(self.taskForIndexPath(indexPath)!)
 				// self.tasksTableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: UITableViewRowAnimation.Automatic)
 				self.tasksTableView.reloadData()
 				RealmHelper.getTaskTitles()
 				
-//				for priority in self.taskExpanded {
-//					print(priority)
-//				}
+				//				for priority in self.taskExpanded {
+				//					print(priority)
+				//				}
 				return true
 			})]
 			
 			
-			cell.contentView.layer.cornerRadius = 8
-			cell.contentView.layer.masksToBounds = true
+			cell.layer.cornerRadius = 8
+			cell.layer.masksToBounds = true
+			cell.layer.borderWidth = 5
 			cell.layer.borderColor = UIColor.whiteColor().CGColor
-			cell.layer.borderWidth = 2
-			cell.layer.cornerRadius = 5
 			
 			
 			
-//			if indexPath == currentIndexPath {
-//				
-//				cell.backgroundColor = nil
-//			}
-//			else {
-//				
-				strikethroughCompleted(indexPath, cell: cell, task: task!)
-//			}
 			
-//			cell.selectionCallback = {
-//				if self.expandedForIndexPath(indexPath) {
-//					self.collapseCellAtIndexPath(indexPath)
-//				}
-//				else if !self.expandedForIndexPath(indexPath) {
-//					self.expandCellAtIndexPath(indexPath)
-//				}
-//				
-//			}
+			//			if indexPath == currentIndexPath {
+			//
+			//				cell.backgroundColor = nil
+			//			}
+			//			else {
+			//
+			strikethroughCompleted(indexPath, cell: cell, task: task!)
+			//			}
+			
+			//			cell.selectionCallback = {
+			//				if self.expandedForIndexPath(indexPath) {
+			//					self.collapseCellAtIndexPath(indexPath)
+			//				}
+			//				else if !self.expandedForIndexPath(indexPath) {
+			//					self.expandCellAtIndexPath(indexPath)
+			//				}
+			//
+			//			}
 			
 			cell.timeTaskCallBack = {
 				let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -316,88 +315,88 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 				NSNotificationCenter.defaultCenter().postNotificationName("taskChosen", object: self, userInfo: taskDataDict)
 				
 			}
-
-//			if indexPath == currentIndexPath {
-//				cell.backgroundColor = UIColor.whiteColor()
-//				self.tasksTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
-//			}
-//			else {
-//				strikethroughCompleted(indexPath, cell: cell, task: task!)
-//			}
-//
-//			cell.separatorInset = UIEdgeInsetsZero
-//			cell.layoutMargins = UIEdgeInsetsZero
-//			cell.timeElapsedLabel.text = self.formatSecondsAsTimeString(Double((task?.timeWorked)!))
 			
-
-//			if task!.isBeingWorkedOn {
-//				cell.startAnimation()
-//				print("animating")
-//			}
-//			else {
-//				cell.stopAnimation()
-//			}
+			//			if indexPath == currentIndexPath {
+			//				cell.backgroundColor = UIColor.whiteColor()
+			//				self.tasksTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+			//			}
+			//			else {
+			//				strikethroughCompleted(indexPath, cell: cell, task: task!)
+			//			}
+			//
+			//			cell.separatorInset = UIEdgeInsetsZero
+			//			cell.layoutMargins = UIEdgeInsetsZero
+			//			cell.timeElapsedLabel.text = self.formatSecondsAsTimeString(Double((task?.timeWorked)!))
+			
+			
+			//			if task!.isBeingWorkedOn {
+			//				cell.startAnimation()
+			//				print("animating")
+			//			}
+			//			else {
+			//				cell.stopAnimation()
+			//			}
 			
 			if !task!.isBeingWorkedOn {
 				cell.stopAnimation()
 			}
-			
+				
 			else if task!.isBeingWorkedOn {
 				cell.startAnimation()
 			}
-
+			
 			return cell
 		}
-
-    }
+		
+	}
 	
-//	func collapseCellAtIndexPath(indexPath: NSIndexPath) {
-//		
-//		if let cell = tasksTableView.cellForRowAtIndexPath(indexPath) as? TaskTableViewCell{
-//			self.tasksTableView.beginUpdates()
-//			cell.changeCellStatus(true)
-//			self.tasksTableView.endUpdates()
-//			self.tasksTableView.beginUpdates()
-//			cell.changeCellStatus(false)
-//			self.tasksTableView.endUpdates()
-//			taskExpanded[indexPath.section][indexPath.row] = true
-//			taskExpanded[indexPath.section][indexPath.row] = false
-////			self.tasksTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-//			print("---------------------------------------------------")
-//			for priority in taskExpanded {
-//				print(priority)
-//			}
-//		}
-//	}
-//	
-//	func expandCellAtIndexPath(indexPath: NSIndexPath) {
-//		
-//		if let cell = tasksTableView.cellForRowAtIndexPath(indexPath) as? TaskTableViewCell{
-//			self.tasksTableView.beginUpdates()
-//			cell.changeCellStatus(false)
-//			self.tasksTableView.endUpdates()
-//			self.tasksTableView.beginUpdates()
-//			cell.changeCellStatus(true)
-//			self.tasksTableView.endUpdates()
-//			taskExpanded[indexPath.section][indexPath.row] = false
-//			taskExpanded[indexPath.section][indexPath.row] = true
-////			self.tasksTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-//			print("---------------------------------------------------")
-//			for priority in taskExpanded {
-//				print(priority)
-//			}
-//		}
-//	}
+	//	func collapseCellAtIndexPath(indexPath: NSIndexPath) {
+	//
+	//		if let cell = tasksTableView.cellForRowAtIndexPath(indexPath) as? TaskTableViewCell{
+	//			self.tasksTableView.beginUpdates()
+	//			cell.changeCellStatus(true)
+	//			self.tasksTableView.endUpdates()
+	//			self.tasksTableView.beginUpdates()
+	//			cell.changeCellStatus(false)
+	//			self.tasksTableView.endUpdates()
+	//			taskExpanded[indexPath.section][indexPath.row] = true
+	//			taskExpanded[indexPath.section][indexPath.row] = false
+	////			self.tasksTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+	//			print("---------------------------------------------------")
+	//			for priority in taskExpanded {
+	//				print(priority)
+	//			}
+	//		}
+	//	}
+	//
+	//	func expandCellAtIndexPath(indexPath: NSIndexPath) {
+	//
+	//		if let cell = tasksTableView.cellForRowAtIndexPath(indexPath) as? TaskTableViewCell{
+	//			self.tasksTableView.beginUpdates()
+	//			cell.changeCellStatus(false)
+	//			self.tasksTableView.endUpdates()
+	//			self.tasksTableView.beginUpdates()
+	//			cell.changeCellStatus(true)
+	//			self.tasksTableView.endUpdates()
+	//			taskExpanded[indexPath.section][indexPath.row] = false
+	//			taskExpanded[indexPath.section][indexPath.row] = true
+	////			self.tasksTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+	//			print("---------------------------------------------------")
+	//			for priority in taskExpanded {
+	//				print(priority)
+	//			}
+	//		}
+	//	}
 	
 	// Get the Task at a given index path
 	func taskForIndexPath(indexPath: NSIndexPath) -> Task? {
 		return tasksByPriority.priorities[indexPath.section].tasks[indexPath.row]
 	}
 	
-//	func expandedForIndexPath(indexPath: NSIndexPath) -> Bool {
-//		return taskExpanded[indexPath.section][indexPath.row]
-//	}
-
+	//	func expandedForIndexPath(indexPath: NSIndexPath) -> Bool {
+	//		return taskExpanded[indexPath.section][indexPath.row]
+	//	}
+	
 	
 	func strikethroughCompleted(indexPath: NSIndexPath, cell: TaskTableViewCell, task: Task) {
 		if let task = taskForIndexPath(indexPath) {
@@ -419,24 +418,24 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		let val = (CGFloat(row) / CGFloat(itemCount)) * 0.5
 		
 		switch section {
-			// urgent | important
-			case 0:
-				return UIColor(red: 1.0, green: val, blue: 0.0, alpha: 1.0)
+		// urgent | important
+		case 0:
+			return UIColor(red: 1.0, green: val, blue: 0.0, alpha: 1.0)
 			
-			// urgent | not important
-			case 1:
-				return UIColor(red: 0.0, green: val, blue: 1.0, alpha: 1.0)
-
-			// not urgent | important
-			case 2:
-				return UIColor(red: 1.0, green: val, blue: 1.0, alpha: 1.0)
-
-			// not urgent | not important
-			case 3:
-				return UIColor(red: 0.0, green: 1.0, blue: val, alpha: 1.0)
+		// urgent | not important
+		case 1:
+			return UIColor(red: 0.0, green: val, blue: 1.0, alpha: 1.0)
 			
-			default:
-				return UIColor(red: 1.0, green: val, blue: 0.0, alpha: 1.0)
+		// not urgent | important
+		case 2:
+			return UIColor(red: 1.0, green: val, blue: 1.0, alpha: 1.0)
+			
+		// not urgent | not important
+		case 3:
+			return UIColor(red: 0.0, green: 1.0, blue: val, alpha: 1.0)
+			
+		default:
+			return UIColor(red: 1.0, green: val, blue: 0.0, alpha: 1.0)
 		}
 	}
 	
@@ -444,27 +443,27 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		
 		self.selectedIndexPath = indexPath
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
-//		print("Old task expanded: \(taskExpanded[selectedIndexPath.section][selectedIndexPath.row]) ")
-
+		//		print("Old task expanded: \(taskExpanded[selectedIndexPath.section][selectedIndexPath.row]) ")
+		
 		self.performSegueWithIdentifier("editTaskDetailsSegue", sender: self)
 	}
  
 	func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
-	                        forRowAtIndexPath indexPath: NSIndexPath) {
+	               forRowAtIndexPath indexPath: NSIndexPath) {
 		cell.backgroundColor = colorForIndexRow(indexPath.row, section: indexPath.section)
 	}
 	
 	func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
 		
 		if let taskTableViewCell = cell as? TaskTableViewCell {
-//			taskTableViewCell.selectionCallback = nil
-//			taskTableViewCell.timeTaskCallBack = nil
-//			if expandedForIndexPath(indexPath) {
-//				collapseCellAtIndexPath(indexPath)
-//				taskExpanded[indexPath.section][indexPath.row] = false
-//			}
+			//			taskTableViewCell.selectionCallback = nil
+			//			taskTableViewCell.timeTaskCallBack = nil
+			//			if expandedForIndexPath(indexPath) {
+			//				collapseCellAtIndexPath(indexPath)
+			//				taskExpanded[indexPath.section][indexPath.row] = false
+			//			}
 		}
-//		print("Did end displaying")
+		//		print("Did end displaying")
 	}
 	
 	// Override to support conditional editing of the table view.
@@ -483,13 +482,13 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 				if selectedIndexPath.section == priorityIndex { // not changing priority
 					RealmHelper.updateTask(taskForIndexPath(selectedIndexPath)!, newTask: task)
 					// tasksTableView.reloadData()
-
+					
 				}
-				
+					
 				else { // changing priority
-			//		if expandedForIndexPath(selectedIndexPath) {
-//						collapseCellAtIndexPath(selectedIndexPath)
-			//		}
+					//		if expandedForIndexPath(selectedIndexPath) {
+					//						collapseCellAtIndexPath(selectedIndexPath)
+					//		}
 					let newTask = Task(task: task)
 					RealmHelper.addTask(newTask)
 					if task.isBeingWorkedOn { // if task from old priority is being worked on, set the new one to also be timed
@@ -501,11 +500,11 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 					//let oldTaskExpanded = expandedForIndexPath(selectedIndexPath)
 					//print("Old task expanded: \(oldTaskExpanded)")
 					//taskExpanded[priorityIndex].append(oldTaskExpanded)
-
+					
 					
 					RealmHelper.deleteTask(taskForIndexPath(selectedIndexPath)!)
 					//taskExpanded[selectedIndexPath.section].removeAtIndex(selectedIndexPath.row)
-
+					
 					// tasksTableView.reloadData()
 				}
 				self.selectedIndexPath = nil
@@ -513,7 +512,7 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 			else {
 				RealmHelper.addTask(task)
 				//taskExpanded[priorityIndex].append(false)
-
+				
 				// tasksTableView.reloadData()
 			}
 		}
@@ -525,21 +524,21 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 			
 			if identifier == "editTaskDetailsSegue" {
 				print("Selected index path: \(selectedIndexPath.section), \(selectedIndexPath.row)")
-
+				
 				let displayTaskViewController = (segue.destinationViewController as! UINavigationController).viewControllers[0] as! DisplayTaskViewController
 				
 				// set task of DisplayTaskViewController to task tapped on
-//				if let selectedTaskCell = sender as? TaskTableViewCell {
-					let selectedTask = taskForIndexPath(self.selectedIndexPath)
-					displayTaskViewController.task = selectedTask
-					print("Task completed: \(selectedTask!.completed)")
-					displayTaskViewController.priorityIndex = self.selectedIndexPath.section
-					displayTaskViewController.completed = (selectedTask?.completed)!
-					displayTaskViewController.timeWorked = (selectedTask?.timeWorked)!
-
-//				}
+				//				if let selectedTaskCell = sender as? TaskTableViewCell {
+				let selectedTask = taskForIndexPath(self.selectedIndexPath)
+				displayTaskViewController.task = selectedTask
+				print("Task completed: \(selectedTask!.completed)")
+				displayTaskViewController.priorityIndex = self.selectedIndexPath.section
+				displayTaskViewController.completed = (selectedTask?.completed)!
+				displayTaskViewController.timeWorked = (selectedTask?.timeWorked)!
+				
+				//				}
 			}
-			
+				
 			else if identifier == "addNewTaskSegue" {
 			}
 		}
@@ -577,9 +576,9 @@ extension TasksTableViewController: RearrangeDataSource {
 	func moveObjectAtCurrentIndexPath(to indexPath: NSIndexPath) {
 		
 		guard let unwrappedCurrentIndexPath = currentIndexPath else { return }
-//		if let cell = tasksTableView.cellForRowAtIndexPath(unwrappedCurrentIndexPath) as? TaskTableViewCell{
-//				collapseCellAtIndexPath(unwrappedCurrentIndexPath)
-//		}
+		//		if let cell = tasksTableView.cellForRowAtIndexPath(unwrappedCurrentIndexPath) as? TaskTableViewCell{
+		//				collapseCellAtIndexPath(unwrappedCurrentIndexPath)
+		//		}
 		
 		let oldTask = taskForIndexPath(unwrappedCurrentIndexPath)
 		var makeNewTaskActive = false
@@ -597,9 +596,9 @@ extension TasksTableViewController: RearrangeDataSource {
 		try! realm.write() {
 			newTask.priorityIndex = indexPath.section
 		}
-//		if let cell = tasksTableView.cellForRowAtIndexPath(indexPath) as? TaskTableViewCell{
-//			collapseCellAtIndexPath(indexPath)
-//		}
+		//		if let cell = tasksTableView.cellForRowAtIndexPath(indexPath) as? TaskTableViewCell{
+		//			collapseCellAtIndexPath(indexPath)
+		//		}
 		//taskExpanded[indexPath.section].insert(false, atIndex: indexPath.row)
 		
 		if makeNewTaskActive {

@@ -6,7 +6,8 @@ protocol RearrangeDataSource: class {
 	
 	func moveObjectAtCurrentIndexPath(to indexPath: NSIndexPath)
 	
-//	func collapseCellAtIndexPath(indexPath: NSIndexPath)
+	
+	//	func collapseCellAtIndexPath(indexPath: NSIndexPath)
 }
 
 struct RearrangeOptions: OptionSetType {
@@ -83,7 +84,7 @@ extension TasksTableView: Rearrangable {
 		source.moveObjectAtCurrentIndexPath(to: newIndexPath)
 		
 		// reloadData()
-
+		
 		source.currentIndexPath = newIndexPath
 	}
 	
@@ -91,22 +92,24 @@ extension TasksTableView: Rearrangable {
 		
 		guard let source = rearrange.dataSource where !editing else { return }
 		
+		
+		
 		let location = rearrange.recognizer.locationInView(self)
 		
 		switch rearrange.recognizer.state {
 			
 		case .Began:
 			
+			
 			source.currentIndexPath = indexPathForRowAtPoint(location)
 			
 			guard let currentIndexPath = source.currentIndexPath,
-				catchedCell = cellForRowAtIndexPath(currentIndexPath) else { return }
-			
-			// source.collapseCellAtIndexPath(currentIndexPath)
+				catchedCell = cellForRowAtIndexPath(currentIndexPath) as? TaskTableViewCell else { return }
 			
 			allowsSelection = false
 			
 			catchedCell.highlighted = false
+			
 			
 			let sizeWithoutSeparator = CGSizeMake(catchedCell.bounds.size.width, catchedCell.bounds.size.height - 1.0)
 			
@@ -128,6 +131,12 @@ extension TasksTableView: Rearrangable {
 			rearrange.catchedView!.layer.shadowOpacity = 0.25
 			rearrange.catchedView!.layer.shadowOffset = CGSizeZero
 			rearrange.catchedView!.layer.shadowPath = UIBezierPath(rect: rearrange.catchedView!.bounds).CGPath
+			rearrange.catchedView!.layer.borderColor = UIColor.whiteColor().CGColor
+			rearrange.catchedView!.layer.borderWidth = 4.0
+			
+			rearrange.catchedView!.layer.backgroundColor = UIColor.whiteColor().CGColor
+			
+			
 			
 			UIView.animateWithDuration(0.2) { [unowned self] in
 				
@@ -142,7 +151,7 @@ extension TasksTableView: Rearrangable {
 				
 			}
 			
-		// reloadRowsAtIndexPaths([currentIndexPath], withRowAnimation: .None)
+			// reloadRowsAtIndexPaths([currentIndexPath], withRowAnimation: .None)
 			
 		case .Changed:
 			
