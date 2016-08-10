@@ -120,7 +120,7 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		tasksTableView.backgroundColor = UIColor.whiteColor()
 //		tasksTableView.estimatedRowHeight = CGFloat(50)
 //		tasksTableView.rowHeight = UITableViewAutomaticDimension
-		tasksTableView.rowHeight = 50
+		tasksTableView.rowHeight = 55
 		
 		tasksTableView.layoutMargins = UIEdgeInsetsZero
 		tasksTableView.separatorInset = UIEdgeInsetsZero
@@ -286,6 +286,17 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 			cell.layer.borderWidth = 2
 			cell.layer.cornerRadius = 5
 			
+			
+			
+//			if indexPath == currentIndexPath {
+//				
+//				cell.backgroundColor = nil
+//			}
+//			else {
+//				
+				strikethroughCompleted(indexPath, cell: cell, task: task!)
+//			}
+			
 //			cell.selectionCallback = {
 //				if self.expandedForIndexPath(indexPath) {
 //					self.collapseCellAtIndexPath(indexPath)
@@ -306,7 +317,6 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 				
 			}
 
-			strikethroughCompleted(indexPath, cell: cell, task: task!)
 //			if indexPath == currentIndexPath {
 //				cell.backgroundColor = UIColor.whiteColor()
 //				self.tasksTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
@@ -320,11 +330,20 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 //			cell.timeElapsedLabel.text = self.formatSecondsAsTimeString(Double((task?.timeWorked)!))
 			
 
-			if task!.isBeingWorkedOn {
-				cell.startAnimation()
-			}
-			else {
+//			if task!.isBeingWorkedOn {
+//				cell.startAnimation()
+//				print("animating")
+//			}
+//			else {
+//				cell.stopAnimation()
+//			}
+			
+			if !task!.isBeingWorkedOn {
 				cell.stopAnimation()
+			}
+			
+			else if task!.isBeingWorkedOn {
+				cell.startAnimation()
 			}
 
 			return cell
@@ -548,7 +567,7 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 			}
 			section += 1
 		}
-		
+		tasksTableView.reloadData()
 	}
 	
 }

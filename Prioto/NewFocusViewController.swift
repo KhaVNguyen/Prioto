@@ -109,7 +109,7 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 			timerPausedNotification.category = "STOP_TIMER"
 			
 			UIApplication.sharedApplication().scheduleLocalNotification(timerPausedNotification)
-			NSNotificationCenter.defaultCenter().postNotificationName("pausedTiming", object: self)
+			// NSNotificationCenter.defaultCenter().postNotificationName("pausedTiming", object: self)
 			
 		}
 	}
@@ -123,7 +123,7 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 			notification.timeToDismissNotification = NSTimeInterval(5)
 			notification.presentNotification()
 		}
-		NSNotificationCenter.defaultCenter().postNotificationName("startedTiming", object: self)
+//		NSNotificationCenter.defaultCenter().postNotificationName("startedTiming", object: self)
 	}
 	
 	

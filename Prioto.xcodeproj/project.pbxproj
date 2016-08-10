@@ -16,6 +16,7 @@
 		0F2D075B1D3FE587007B815A /* NewFocusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2D075A1D3FE587007B815A /* NewFocusViewController.swift */; };
 		0F4355411D3C9A7F001764AB /* RealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4355401D3C9A7F001764AB /* RealmHelper.swift */; };
 		0F586CCD1D49471300B1697B /* PlaceholderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F586CCC1D49471300B1697B /* PlaceholderTableViewCell.swift */; };
+		0F62DB9B1D5A6B6900C741FC /* Bariol_Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0F8D22591D5A66FE0073B74C /* Bariol_Regular.otf */; };
 		0F6E6D371D36AC4200FF8A76 /* DisplayTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6E6D361D36AC4200FF8A76 /* DisplayTaskViewController.swift */; };
 		0F81A9511D4FB26D00B11DE1 /* NotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F81A9501D4FB26D00B11DE1 /* NotificationHelper.swift */; };
 		0F81A9531D4FB64900B11DE1 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F81A9521D4FB64900B11DE1 /* Task.swift */; };
@@ -53,6 +54,7 @@
 		0F81A9561D4FB6C000B11DE1 /* TasksByPriority.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasksByPriority.swift; sourceTree = "<group>"; };
 		0F84FBC71D474478001E75E8 /* PriorityHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriorityHeaderView.swift; sourceTree = "<group>"; };
 		0F84FBC91D474495001E75E8 /* PriorityHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PriorityHeaderView.xib; sourceTree = "<group>"; };
+		0F8D22591D5A66FE0073B74C /* Bariol_Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bariol_Regular.otf; sourceTree = "<group>"; };
 		0F909CEE1D4BE221008C81D1 /* QuickRearrangeTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickRearrangeTableView.swift; sourceTree = "<group>"; };
 		0F909CF41D4C0209008C81D1 /* TasksTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasksTableView.swift; sourceTree = "<group>"; };
 		0FA486BD1D3406B70075CD9B /* Prioto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Prioto.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -157,6 +159,7 @@
 		0FA486BF1D3406B70075CD9B /* Prioto */ = {
 			isa = PBXGroup;
 			children = (
+				0F8D22591D5A66FE0073B74C /* Bariol_Regular.otf */,
 				0FA486C01D3406B70075CD9B /* AppDelegate.swift */,
 				0F81A9501D4FB26D00B11DE1 /* NotificationHelper.swift */,
 				0FA486C41D3406B70075CD9B /* Main.storyboard */,
@@ -317,6 +320,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F62DB9B1D5A6B6900C741FC /* Bariol_Regular.otf in Resources */,
 				0FA486CB1D3406B70075CD9B /* LaunchScreen.storyboard in Resources */,
 				0F84FBCA1D474495001E75E8 /* PriorityHeaderView.xib in Resources */,
 				0F167FE41D4096B00075AEE9 /* .gitkeep in Resources */,
