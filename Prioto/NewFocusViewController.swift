@@ -258,7 +258,9 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 			self.workTimeMax = Defaults[.workDuration]
 			self.breakTimeMax = Defaults[.breakDuration]
 			self.setTimeBasedOnTimerType(self.timerType)
-			self.timer.invalidate()
+			if self.timer != nil {
+				self.timer.invalidate()
+			}
 			self.counting = false
 			self.willDisplayForegroundNotification = false
 			self.resetTimer()

@@ -45,6 +45,9 @@ class PreferencesViewController: UIViewController, UIPickerViewDelegate, UIPicke
 		
 		workDurationPickerView.selectRow(workDurations.indexOf(selectedWorkDuration) ?? 1, inComponent: 0, animated: true)
 		breakDurationPickerView.selectRow(breakDurations.indexOf(selectedBreakDuration) ?? 4, inComponent: 0, animated: true)
+		workDurationPickerView.tintColor = UIColor.whiteColor()
+		breakDurationPickerView.tintColor = UIColor.whiteColor()
+
 		
 		workDurationLabel.text = "Work Duration: \(selectedWorkDuration/60) minutes"
 		breakDurationLabel.text = "Break Duration: \(selectedBreakDuration/60) minutes"
@@ -76,6 +79,18 @@ class PreferencesViewController: UIViewController, UIPickerViewDelegate, UIPicke
 		}
 		
 		return "Something broke"
+	}
+	
+	func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+		
+		if pickerView == workDurationPickerView {
+			return (NSAttributedString(string: "\(String(workDurations[row]/60)) minutes", attributes: [NSForegroundColorAttributeName:UIColor.whiteColor()]))
+		}
+		else if pickerView == breakDurationPickerView {
+			return (NSAttributedString(string: "\(String(breakDurations[row]/60)) minutes", attributes: [NSForegroundColorAttributeName:UIColor.whiteColor()]))
+		}
+		
+		return (NSAttributedString(string: "Something went wrong..", attributes: [NSForegroundColorAttributeName:UIColor.whiteColor()]))
 	}
 	
 	func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
