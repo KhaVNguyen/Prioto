@@ -131,7 +131,7 @@ extension TasksTableView: Rearrangable {
 			rearrange.catchedView!.layer.shadowOpacity = 0.25
 			rearrange.catchedView!.layer.shadowOffset = CGSizeZero
 			rearrange.catchedView!.layer.shadowPath = UIBezierPath(rect: rearrange.catchedView!.bounds).CGPath
-			rearrange.catchedView!.layer.borderColor = UIColor.whiteColor().CGColor
+			rearrange.catchedView!.layer.borderColor = UIColor(hexString: "#202030").CGColor
 			rearrange.catchedView!.layer.borderWidth = 4.0
 			
 			rearrange.catchedView!.layer.backgroundColor = UIColor.whiteColor().CGColor

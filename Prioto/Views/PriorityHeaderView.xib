@@ -26,7 +26,7 @@
                                 <constraint firstAttribute="width" constant="42" id="poX-vZ-HCG"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="16"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                             <variation key="default">
                                 <mask key="constraints">
@@ -35,7 +35,7 @@
                             </variation>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="evM-8U-9bG" firstAttribute="leading" secondItem="N4w-Sm-T4r" secondAttribute="leadingMargin" id="4Vk-QY-Rml"/>
                         <constraint firstItem="evM-8U-9bG" firstAttribute="bottom" secondItem="N4w-Sm-T4r" secondAttribute="bottomMargin" id="KYP-K3-8zG"/>

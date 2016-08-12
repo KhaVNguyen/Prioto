@@ -40,6 +40,8 @@ class DisplayTaskViewController: UIViewController {
 		 dueDatePicker.addTarget(self, action: #selector(self.datePickerValueChanged), forControlEvents: UIControlEvents.ValueChanged)
 		dueDatePicker.minimumDate = NSDate()
 		
+		taskTitleTextField.becomeFirstResponder()
+		
 		// set up the task details if it already exists
 		if let task = task {
 			taskTitleTextField.text = task.text
@@ -178,5 +180,6 @@ class DisplayTaskViewController: UIViewController {
 		}
 	}
 }
+
 
 

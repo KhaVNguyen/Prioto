@@ -10,10 +10,10 @@ import UIKit
 import MGSwipeTableCell
 import RealmSwift
 import Realm
-import AEAccordion
 import AudioToolbox
 import Spring
 import SwiftyUserDefaults
+import ChameleonFramework
 
 
 class TasksTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -117,7 +117,7 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		
 		RealmHelper.addPriorities()
 		
-		tasksTableView.backgroundColor = UIColor.whiteColor()
+		tasksTableView.backgroundColor = UIColor(hexString: "#202030")
 		//		tasksTableView.estimatedRowHeight = CGFloat(50)
 		//		tasksTableView.rowHeight = UITableViewAutomaticDimension
 		tasksTableView.rowHeight = 55
@@ -220,10 +220,11 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 			//set the data here
 			cell.userInteractionEnabled = false
 			cell.placeholderLabel.setTitle("No tasks in this section.", forState: .Normal)
-			cell.layer.cornerRadius = 8
+						
+			cell.layer.cornerRadius = 15
 			cell.layer.masksToBounds = true
 			cell.layer.borderWidth = 15
-			cell.layer.borderColor = UIColor.whiteColor().CGColor
+			cell.layer.borderColor = UIColor(hexString: "#202030").CGColor
 			
 			return cell
 		}
@@ -282,7 +283,8 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 			cell.layer.cornerRadius = 8
 			cell.layer.masksToBounds = true
 			cell.layer.borderWidth = 5
-			cell.layer.borderColor = UIColor.whiteColor().CGColor
+			cell.layer.borderColor = UIColor(hexString: "#202030").CGColor
+
 			
 			
 			
@@ -420,19 +422,19 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		switch section {
 		// urgent | important
 		case 0:
-			return UIColor(red: 1.0, green: val, blue: 0.0, alpha: 1.0)
+			return UIColor(red: 190.0 / 255, green: val, blue: 50.0 / 255, alpha: 1.0)
 			
 		// urgent | not important
 		case 1:
-			return UIColor(red: 0.0, green: val, blue: 1.0, alpha: 1.0)
+			return UIColor(red: 30.0 / 255, green: val, blue: 200.0 / 255, alpha: 1.0)
 			
 		// not urgent | important
 		case 2:
-			return UIColor(red: 1.0, green: val, blue: 1.0, alpha: 1.0)
+			return UIColor(red: 60.0 / 255 + val, green: 60.0 / 255, blue: 115.0 / 255 , alpha: 1.0)
 			
 		// not urgent | not important
 		case 3:
-			return UIColor(red: 0.0, green: 1.0, blue: val, alpha: 1.0)
+			return UIColor(red: 15.0 / 255 , green: 125.0 / 255 + val, blue: 125.0 / 255, alpha: 1.0)
 			
 		default:
 			return UIColor(red: 1.0, green: val, blue: 0.0, alpha: 1.0)

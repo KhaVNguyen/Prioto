@@ -293,7 +293,7 @@
 				TargetAttributes = {
 					0FA486BC1D3406B70075CD9B = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = XSM5QKVXW5;
+						DevelopmentTeam = H6776G6MGW;
 					};
 				};
 			};
@@ -518,14 +518,18 @@
 			baseConfigurationReference = 8F407FD40451180A0811EECE /* Pods-Prioto.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Kha Nguyen (8TJ9SSJH62)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kha Nguyen (H6776G6MGW)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Prioto/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = kha.Prioto;
+				PRODUCT_BUNDLE_IDENTIFIER = com.khavnguyen.Prioto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "01540b84-8e42-43cd-bbb6-846dc78db436";
 			};
 			name = Debug;
 		};
@@ -534,14 +538,18 @@
 			baseConfigurationReference = B984ABDC2173C26660387769 /* Pods-Prioto.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Kha Nguyen (8TJ9SSJH62)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kha Nguyen (H6776G6MGW)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Prioto/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = kha.Prioto;
+				PRODUCT_BUNDLE_IDENTIFIER = com.khavnguyen.Prioto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "01540b84-8e42-43cd-bbb6-846dc78db436";
 			};
 			name = Release;
 		};

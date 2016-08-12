@@ -67,6 +67,8 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 	
 	@IBOutlet weak var startPauseButton: UIButton!
 	
+	@IBOutlet weak var restartButton: UIButton!
+	
 	@IBAction func startPauseButtonPressed(sender: AnyObject) {
 		if self.counting {
 			pauseTimer()
@@ -81,7 +83,7 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		UIApplication.sharedApplication().cancelAllLocalNotifications()
 		self.willDisplayForegroundNotification = false
 		self.counting = false
-		startPauseButton.setTitle("Resume", forState: .Normal)
+//		startPauseButton.setTitle("Resume", forState: .Normal)
 		startPauseButton.setImage(UIImage(named: "Play.png"), forState: .Normal)
 //		NSNotificationCenter.defaultCenter().postNotificationName("pausedTiming", object: self)
 		
@@ -92,7 +94,7 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(NewFocusViewController.countdown), userInfo: nil, repeats: true)
 		self.willDisplayForegroundNotification = true
 		self.counting = true
-		startPauseButton.setTitle("Pause", forState: .Normal)
+//		startPauseButton.setTitle("Pause", forState: .Normal)
 		startPauseButton.setImage(UIImage(named: "Pause.png"), forState: .Normal)
 //		NSNotificationCenter.defaultCenter().postNotificationName("startedTiming", object: self)
 		
@@ -139,10 +141,12 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 			self.counting = false
 			self.willDisplayForegroundNotification = false
 			self.updateTimer()
-			self.startPauseButton.setTitle("Start", forState: .Normal)
+//			self.startPauseButton.setTitle("Start", forState: .Normal)
 			startPauseButton.setImage(UIImage(named: "Play.png"), forState: .Normal)
 		}
 	}
+	
+	
 		
 	@IBOutlet weak var timeWorkedLabel: UILabel!
 	
@@ -157,8 +161,8 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		let radius: CGFloat = 130
 		
 		let rings = [
-			ProgressRing(color: UIColor(.RGB(192,57,43)), backgroundColor: UIColor(.RGB(255, 255, 255))),
-			ProgressRing(color: UIColor(.RGB(231,76,60)), backgroundColor: UIColor(.RGB(255, 255, 255)))]
+			ProgressRing(color: UIColor(.RGB(192,57,43)), backgroundColor: UIColor(.RGB(33, 33, 48))),
+			ProgressRing(color: UIColor(.RGB(231,76,60)), backgroundColor: UIColor(.RGB(33, 33, 48)))]
 		
 		progressRingView = try! ConcentricProgressRingView(center: view.center, radius: radius, margin: margin, rings: rings, defaultColor: UIColor.clearColor(), defaultWidth: 18)
 		
@@ -166,9 +170,10 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 			ring.progress = 0.0
 		}
 		
-		view.backgroundColor = UIColor.whiteColor()
 		progressRingView.tag = 100
 		view.addSubview(progressRingView)
+		
+		view.backgroundColor = UIColor(.RGB(33, 33, 48))
 		
 		if (Defaults[.workDuration] == 0 && Defaults[.breakDuration] == 0) {
 			Defaults[.workDuration] = 1500
@@ -258,7 +263,7 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 			self.willDisplayForegroundNotification = false
 			self.resetTimer()
 			self.timerType = TimerType.Work
-			self.startPauseButton.setTitle("Start", forState: .Normal)
+//			self.startPauseButton.setTitle("Start", forState: .Normal)
 			startPauseButton.setImage(UIImage(named: "Play.png"), forState: .Normal)
 		}
 	}
@@ -425,18 +430,28 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 			case 0:
 				outerRingColor = UIColor(.RGB(192,57,43))
 				innerRingColor = UIColor(.RGB(231,76,60))
+//				startPauseButton.backgroundColor = UIColor(.RGB(192,57,43))
+//				restartButton.backgroundColor = UIColor(.RGB(192,57,43))
 			case 1:
 				outerRingColor = UIColor(.RGB(30,99,214))
 				innerRingColor = UIColor(.RGB(30,145,214))
+//				startPauseButton.backgroundColor = UIColor(.RGB(30,99,214))
+//				restartButton.backgroundColor = UIColor(.RGB(30,99,214))
 			case 2:
 				outerRingColor = UIColor(.RGB(36,123,160))
 				innerRingColor = UIColor(.RGB(61,167,211))
+//				startPauseButton.backgroundColor = UIColor(.RGB(36,123,160))
+//				restartButton.backgroundColor = UIColor(.RGB(36,123,160))
 			case 3:
 				outerRingColor = UIColor(.RGB(13,171,118))
 				innerRingColor = UIColor(.RGB(23,237,166))
+//				startPauseButton.backgroundColor = UIColor(.RGB(13,171,118))
+//				restartButton.backgroundColor = UIColor(.RGB(13,171,118))
 			default:
 				outerRingColor = UIColor(.RGB(13,171,118))
 				innerRingColor = UIColor(.RGB(231,76,60))
+//				startPauseButton.backgroundColor = UIColor(.RGB(192,57,43))
+//				restartButton.backgroundColor = UIColor(.RGB(192,57,43))
 			}
 		}
 		
@@ -447,11 +462,10 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		let margin: CGFloat = 1
 		let radius: CGFloat = 130
 		let rings = [
-			ProgressRing(color: outerRingColor, backgroundColor: UIColor(.RGB(255, 255, 255))),
-			ProgressRing(color: innerRingColor, backgroundColor: UIColor(.RGB(255, 255, 255)))]
+			ProgressRing(color: outerRingColor, backgroundColor: UIColor(.RGB(33, 33, 48))),
+			ProgressRing(color: innerRingColor, backgroundColor: UIColor(.RGB(33, 33, 48)))]
 		progressRingView = try! ConcentricProgressRingView(center: view.center, radius: radius, margin: margin, rings: rings, defaultColor: UIColor.clearColor(), defaultWidth: 18)
 		updateTimer()
-		view.backgroundColor = UIColor.whiteColor()
 		progressRingView.tag = 100
 		view.addSubview(progressRingView)
 	}
@@ -463,7 +477,7 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 			self.task!.isBeingWorkedOn = true
 		}
 		taskLabel.text = self.task!.text
-		taskLabel.textColor = UIColor.blackColor()
+		taskLabel.textColor = UIColor.whiteColor()
 		timeWorkedLabel.text = "Time Worked On Task: \(formatSecondsAsTimeString(Double(task.timeWorked)))"
 		print("Assigned task elapsed time: \(self.task?.timeWorked))")
 	}

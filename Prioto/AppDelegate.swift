@@ -39,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BSForegroundNotificationD
 			}
 		}
 		
+		UIApplication.sharedApplication().statusBarStyle = .LightContent		
 //		let tabBarController = self.window!.rootViewController as! UITabBarController
 //		for viewController in tabBarController.viewControllers! {
 //			let aView = viewController.topViewController as! UIViewController
