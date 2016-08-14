@@ -159,15 +159,19 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		
 		let settings = UIUserNotificationSettings(forTypes: [.Badge, .Sound, .Alert], categories: nil)
 		UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+        
+        var bounds = UIScreen.mainScreen().bounds
+        var width = bounds.size.width
 		
 		let margin: CGFloat = 1
-		let radius: CGFloat = timerView.frame.width / 2
+		let radius: CGFloat = width * 0.6 / 2
 		
 		let rings = [
 			ProgressRing(color: UIColor(.RGB(192,57,43)), backgroundColor: UIColor(.RGB(33, 33, 48))),
 			ProgressRing(color: UIColor(.RGB(231,76,60)), backgroundColor: UIColor(.RGB(33, 33, 48)))]
 		
 		progressRingView = try! ConcentricProgressRingView(center: view.center, radius: radius, margin: margin, rings: rings, defaultColor: UIColor.clearColor(), defaultWidth: 14)
+        
 		
 		for ring in progressRingView {
 			ring.progress = 0.0
@@ -182,6 +186,8 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 			Defaults[.workDuration] = 1500
 			Defaults[.breakDuration] = 300
 		}
+        
+
 		
 		self.workTimeMax = Defaults[.workDuration]
 		self.breakTimeMax = Defaults[.breakDuration]
@@ -201,10 +207,10 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 //		view.frame = CGRectMake(0, 44.0, CGRectGetWidth(UIScreen.mainScreen().bounds), CGRectGetHeight(UIScreen.mainScreen().bounds))
 		
 		
-		let taskTitles = RealmHelper.getTaskTitles()
-		self.dropdownMenu = AZDropdownMenu(titles: taskTitles)
-		var topOffset = (self.navigationController?.navigationBar.frame.height)! + UIApplication.sharedApplication().statusBarFrame.height
-		print("Top bar height: \(topOffset)")
+		//let taskTitles = RealmHelper.getTaskTitles()
+		//self.dropdownMenu = AZDropdownMenu(titles: taskTitles)
+		//var topOffset = (self.navigationController?.navigationBar.frame.height)! + UIApplication.sharedApplication().statusBarFrame.height
+		//print("Top bar height: \(topOffset)")
 		//		self.dropdownMenu!.menuTopOffset = topOffset
 		//		self.dropdownMenu!.itemHeight = 44
 		
@@ -217,7 +223,8 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		timeLeftLabel.adjustsFontSizeToFitWidth = true
 		timeLeftLabel.minimumScaleFactor = 0.4
 		timeLeftLabel.numberOfLines = 1
-		
+        
+        print("Timer view frame width from viewload: \(timerView.frame.width / 2)")
 	}
 	
 	deinit {
@@ -230,7 +237,8 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 	
 	
 	override func viewWillAppear(animated: Bool) {
-		print("View appeared")
+	// 	print("View appeared")
+        
 		if hasExitedAppAndGoBack && self.counting {
 			
 			//			if let lastDate = Defaults["dateAppExited"].date {
@@ -243,7 +251,7 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 			hasExitedAppAndGoBack = false
 			Defaults[DefaultsKeys.dateAppExited._key] = nil
 		}
-		updateTasksInMenu()
+		// updateTasksInMenu()
 		if let task = self.task {
 			if task.invalidated {
 				taskLabel.text = "No task being tracked"
@@ -254,13 +262,16 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 			taskLabel.text = "No task being tracked"
 			taskLabel.textColor = UIColor.redColor()
 		}
+        
+        print("Radius from view appear: \(timerView.frame.width / 2)")
 		
 	}
 	
 	override func viewWillDisappear(animated: Bool) {
-		self.dropdownMenu?.hideMenu()
+	//	self.dropdownMenu?.hideMenu()
 		// navigationController?.navigationBar.translucent = true
-		
+        print("Radius from view disappear: \(timerView.frame.width / 2)")
+
 	}
 	
 	@IBAction func unwindToNewFocusViewController(segue: UIStoryboardSegue) {
@@ -392,35 +403,35 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 	var task: Task?
 	
 	@IBAction func dropdownMenuButtonPressed(sender: AnyObject) {
-		showDropdown()
+	//	showDropdown()
 	}
 	
-	var dropdownMenu: AZDropdownMenu?
+	//var dropdownMenu: AZDropdownMenu?
 	
 	@IBOutlet weak var taskLabel: UILabel!
 	
-	func showDropdown() {
-		
-		if (self.dropdownMenu?.isDescendantOfView(self.view) == true) {
-			print("is decendent")
-			self.dropdownMenu?.hideMenu()
-			// navigationController?.navigationBar.translucent = true
-			
-		} else {
-			self.dropdownMenu?.showMenuFromViewOffset(self.view)
-			// navigationController?.navigationBar.translucent = false
-			
-		}
-		
-		self.dropdownMenu?.cellTapHandler = { [weak self] (indexPath: NSIndexPath) -> Void in
-			
-		}
-	}
-	
-	func updateTasksInMenu() {
-		let taskTitles = RealmHelper.getTaskTitles()
-		self.dropdownMenu = AZDropdownMenu(titles: taskTitles)
-	}
+//	func showDropdown() {
+//		
+//		if (self.dropdownMenu?.isDescendantOfView(self.view) == true) {
+//			print("is decendent")
+//			self.dropdownMenu?.hideMenu()
+//			// navigationController?.navigationBar.translucent = true
+//			
+//		} else {
+//			self.dropdownMenu?.showMenuFromViewOffset(self.view)
+//			// navigationController?.navigationBar.translucent = false
+//			
+//		}
+//		
+//		self.dropdownMenu?.cellTapHandler = { [weak self] (indexPath: NSIndexPath) -> Void in
+//			
+//		}
+//	}
+//	
+//	func updateTasksInMenu() {
+//		let taskTitles = RealmHelper.getTaskTitles()
+//		self.dropdownMenu = AZDropdownMenu(titles: taskTitles)
+//	}
 	
 	func assignTask(notification: NSNotification) {
 		if let oldTask = self.task {
@@ -471,12 +482,18 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 			viewWithTag.removeFromSuperview()
 		}
 		
+        var bounds = UIScreen.mainScreen().bounds
+        var width = bounds.size.width
+
+        
 		let margin: CGFloat = 1
-		let radius: CGFloat = 130
+		let radius: CGFloat = width * 0.6 / 2
+    
 		let rings = [
 			ProgressRing(color: outerRingColor, backgroundColor: UIColor(.RGB(33, 33, 48))),
 			ProgressRing(color: innerRingColor, backgroundColor: UIColor(.RGB(33, 33, 48)))]
-		progressRingView = try! ConcentricProgressRingView(center: view.center, radius: radius, margin: margin, rings: rings, defaultColor: UIColor.clearColor(), defaultWidth: 18)
+		progressRingView = try! ConcentricProgressRingView(center: view.center, radius: radius, margin: margin, rings: rings, defaultColor: UIColor.clearColor(), defaultWidth: 14)
+        print("Radius: \(radius)")
 		updateTimer()
 		progressRingView.tag = 100
 		view.addSubview(progressRingView)

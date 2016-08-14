@@ -80,7 +80,7 @@ class RealmHelper {
 				taskTitles.append(task.text)
 			}
 		}
-		print(taskTitles)
+		//print(taskTitles)
 		return taskTitles
 	}
 }

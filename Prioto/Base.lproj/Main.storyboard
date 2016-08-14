@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RoI-Ck-V6C">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RoI-Ck-V6C">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -212,8 +212,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="vyD-Pv-lHq">
-                                <rect key="frame" x="140" y="234" width="320" height="216"/>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="vyD-Pv-lHq">
+                                <rect key="frame" x="140" y="223" width="320" height="216"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <date key="date" timeIntervalSinceReferenceDate="490059728.98059303">
                                     <!--2016-07-12 23:42:08 +0000-->
@@ -224,8 +224,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </datePicker>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Task Title Here..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="UJW-Cp-DCk">
-                                <rect key="frame" x="20" y="74" width="560" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Task Title Here..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="UJW-Cp-DCk">
+                                <rect key="frame" x="20" y="74" width="560" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="UJW-Cp-DCk" secondAttribute="height" multiplier="1:1" id="Rli-Vl-g3S"/>
                                     <constraint firstAttribute="width" constant="97" id="cBq-fY-27z"/>
@@ -247,8 +247,8 @@
                                     </mask>
                                 </variation>
                             </textField>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ng2-m0-ZGS">
-                                <rect key="frame" x="20" y="162" width="560" height="29"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ng2-m0-ZGS">
+                                <rect key="frame" x="20" y="157" width="560" height="29"/>
                                 <segments>
                                     <segment title="Important"/>
                                     <segment title="Not Important"/>
@@ -259,8 +259,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </segmentedControl>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Vt5-sH-FQe">
-                                <rect key="frame" x="20" y="119" width="560" height="29"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Vt5-sH-FQe">
+                                <rect key="frame" x="20" y="114" width="560" height="29"/>
                                 <segments>
                                     <segment title="Urgent"/>
                                     <segment title="Not Urgent"/>
@@ -271,8 +271,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </segmentedControl>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="610-sX-7gg" userLabel="Task Details" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                                <rect key="frame" x="30" y="460" width="540" height="96"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="610-sX-7gg" userLabel="Task Details" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
+                                <rect key="frame" x="30" y="449" width="540" height="107"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -283,8 +283,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Due Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxE-2L-Q3M">
-                                <rect key="frame" x="20" y="210" width="600" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxE-2L-Q3M">
+                                <rect key="frame" x="20" y="205" width="600" height="18"/>
                                 <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -390,16 +390,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="49x-wS-QRy" userLabel="Start">
+                                <rect key="frame" x="214" y="520" width="72" height="72"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="49x-wS-QRy" secondAttribute="height" multiplier="1:1" id="HmV-0N-VNv"/>
+                                    <constraint firstAttribute="width" secondItem="49x-wS-QRy" secondAttribute="height" multiplier="1:1" id="Vqd-cw-mtL"/>
+                                </constraints>
+                                <state key="normal" image="Play"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="HmV-0N-VNv"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="startPauseButtonPressed:" destination="zDZ-FL-W2b" eventType="touchUpInside" id="tha-8e-ymQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Um-e9-LB6">
+                                <rect key="frame" x="314" y="520" width="72" height="72"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="1Um-e9-LB6" secondAttribute="height" multiplier="1:1" id="jbo-nb-ZLA"/>
+                                </constraints>
+                                <state key="normal" image="Restart"/>
+                                <connections>
+                                    <action selector="restartButtonPressed:" destination="zDZ-FL-W2b" eventType="touchUpInside" id="8CD-U7-Kva"/>
+                                    <action selector="startPauseButtonPressed:" destination="zDZ-FL-W2b" eventType="touchUpInside" id="SWX-C7-U7r"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" restorationIdentifier="timerView" translatesAutoresizingMaskIntoConstraints="NO" id="zoa-5l-nwl" userLabel="Timer View">
-                                <rect key="frame" x="199" y="199" width="202" height="202"/>
+                                <rect key="frame" x="120" y="120" width="360" height="360"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="typeLabel" text="Timer Type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YkB-RK-Hbr">
+                                        <rect key="frame" x="138" y="156" width="84" height="19"/>
+                                        <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="19"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Left" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFe-sf-x2M">
-                                        <rect key="frame" x="21" y="101" width="161" height="51"/>
+                                        <rect key="frame" x="90" y="183" width="180" height="54"/>
                                         <constraints>
                                             <constraint firstAttribute="width" priority="750" constant="140" id="nal-D3-WPY"/>
                                             <constraint firstAttribute="height" priority="750" constant="39" id="oZg-br-IlE"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="30"/>
+                                        <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="26"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="default">
@@ -413,75 +447,37 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="jFe-sf-x2M" firstAttribute="centerY" secondItem="zoa-5l-nwl" secondAttribute="centerY" constant="25" id="21D-Ip-KzJ"/>
+                                    <constraint firstItem="jFe-sf-x2M" firstAttribute="centerY" secondItem="zoa-5l-nwl" secondAttribute="centerY" constant="30" id="21D-Ip-KzJ"/>
                                     <constraint firstAttribute="height" priority="750" constant="1500" id="2pR-8s-SvK"/>
-                                    <constraint firstItem="jFe-sf-x2M" firstAttribute="height" secondItem="zoa-5l-nwl" secondAttribute="height" multiplier="0.25" id="CVS-Nn-cIg"/>
+                                    <constraint firstItem="jFe-sf-x2M" firstAttribute="height" secondItem="zoa-5l-nwl" secondAttribute="height" multiplier="0.15" id="CVS-Nn-cIg"/>
                                     <constraint firstItem="jFe-sf-x2M" firstAttribute="centerX" secondItem="zoa-5l-nwl" secondAttribute="centerX" id="EAF-1x-c2D"/>
                                     <constraint firstAttribute="width" secondItem="zoa-5l-nwl" secondAttribute="height" multiplier="1:1" id="Fg4-qd-IUq"/>
+                                    <constraint firstItem="YkB-RK-Hbr" firstAttribute="centerX" secondItem="zoa-5l-nwl" secondAttribute="centerX" id="JwJ-kD-o3E"/>
                                     <constraint firstItem="jFe-sf-x2M" firstAttribute="centerX" secondItem="zoa-5l-nwl" secondAttribute="centerX" id="PE7-yk-VG8"/>
                                     <constraint firstAttribute="width" secondItem="zoa-5l-nwl" secondAttribute="height" multiplier="1:1" id="VSq-ud-QXp"/>
                                     <constraint firstAttribute="width" priority="750" constant="1500" id="g9R-xq-hem"/>
-                                    <constraint firstItem="jFe-sf-x2M" firstAttribute="width" secondItem="zoa-5l-nwl" secondAttribute="width" multiplier="0.8" id="hQ2-Sm-M78"/>
+                                    <constraint firstItem="jFe-sf-x2M" firstAttribute="width" secondItem="zoa-5l-nwl" secondAttribute="width" multiplier="0.5" id="hQ2-Sm-M78"/>
+                                    <constraint firstItem="YkB-RK-Hbr" firstAttribute="centerY" secondItem="zoa-5l-nwl" secondAttribute="centerY" constant="-15" id="q6X-hb-aXo"/>
                                     <constraint firstItem="jFe-sf-x2M" firstAttribute="centerY" secondItem="zoa-5l-nwl" secondAttribute="centerY" id="qZE-nU-Mho"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="2pR-8s-SvK"/>
                                         <exclude reference="VSq-ud-QXp"/>
+                                        <exclude reference="g9R-xq-hem"/>
                                         <exclude reference="PE7-yk-VG8"/>
                                         <exclude reference="qZE-nU-Mho"/>
                                     </mask>
                                 </variation>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="liu-xl-RZd">
-                                <rect key="frame" x="189" y="456" width="222" height="111"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="49x-wS-QRy" userLabel="Start">
-                                        <rect key="frame" x="0.0" y="0.0" width="111" height="111"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="49x-wS-QRy" secondAttribute="height" multiplier="1:1" id="Vqd-cw-mtL"/>
-                                        </constraints>
-                                        <state key="normal" image="Play"/>
-                                        <connections>
-                                            <action selector="startPauseButtonPressed:" destination="zDZ-FL-W2b" eventType="touchUpInside" id="tha-8e-ymQ"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Um-e9-LB6">
-                                        <rect key="frame" x="111" y="0.0" width="111" height="111"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="1Um-e9-LB6" secondAttribute="height" multiplier="1:1" id="jbo-nb-ZLA"/>
-                                        </constraints>
-                                        <state key="normal" image="Restart"/>
-                                        <connections>
-                                            <action selector="restartButtonPressed:" destination="zDZ-FL-W2b" eventType="touchUpInside" id="8CD-U7-Kva"/>
-                                            <action selector="startPauseButtonPressed:" destination="zDZ-FL-W2b" eventType="touchUpInside" id="SWX-C7-U7r"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="49x-wS-QRy" firstAttribute="width" secondItem="1Um-e9-LB6" secondAttribute="width" id="3EB-84-cLg"/>
-                                    <constraint firstItem="1Um-e9-LB6" firstAttribute="height" secondItem="49x-wS-QRy" secondAttribute="height" constant="1" id="nhc-Lt-ETR"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="nhc-Lt-ETR"/>
-                                    </mask>
-                                </variation>
-                            </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" restorationIdentifier="typeLabel" text="Timer Type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YkB-RK-Hbr">
-                                <rect key="frame" x="259" y="266" width="84" height="19"/>
-                                <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="19"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Worked On Task: N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQd-up-scu">
-                                <rect key="frame" x="203" y="111" width="194" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Time Worked On Task: N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQd-up-scu">
+                                <rect key="frame" x="203" y="120" width="194" height="0.0"/>
                                 <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Currently Being Worked On" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odf-sr-612" userLabel="Task Title">
-                                <rect key="frame" x="159" y="74" width="282" height="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Task Currently Being Worked On" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odf-sr-612" userLabel="Task Title">
+                                <rect key="frame" x="159" y="84" width="282" height="21"/>
                                 <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -489,47 +485,61 @@
                         </subviews>
                         <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="1Um-e9-LB6" firstAttribute="centerX" secondItem="zoa-5l-nwl" secondAttribute="centerX" constant="50" id="0gb-10-miz"/>
+                            <constraint firstItem="zoa-5l-nwl" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ZQd-up-scu" secondAttribute="bottom" id="2Lj-Ow-6To"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="top" relation="greaterThanOrEqual" secondItem="XWl-mo-qJ9" secondAttribute="bottom" constant="100" id="5uO-qb-gfQ"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="centerX" secondItem="5eh-35-kI9" secondAttribute="centerX" id="6Eg-ZT-gZN"/>
+                            <constraint firstItem="zoa-5l-nwl" firstAttribute="top" secondItem="ZQd-up-scu" secondAttribute="bottom" constant="-49" id="8ST-QF-lV3"/>
                             <constraint firstItem="l5M-1R-gDd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="zoa-5l-nwl" secondAttribute="bottom" constant="150" id="8WA-uy-xbN"/>
-                            <constraint firstItem="odf-sr-612" firstAttribute="top" secondItem="XWl-mo-qJ9" secondAttribute="bottom" constant="10" id="BoS-gh-Bdx"/>
-                            <constraint firstItem="liu-xl-RZd" firstAttribute="width" secondItem="zoa-5l-nwl" secondAttribute="width" multiplier="1.1" id="EPA-6E-pFC"/>
-                            <constraint firstItem="liu-xl-RZd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="zoa-5l-nwl" secondAttribute="bottom" constant="30" id="EsL-0x-LDh"/>
+                            <constraint firstItem="zoa-5l-nwl" firstAttribute="height" secondItem="5eh-35-kI9" secondAttribute="height" multiplier="0.5" id="9fC-7C-4O1"/>
+                            <constraint firstItem="odf-sr-612" firstAttribute="top" relation="greaterThanOrEqual" secondItem="XWl-mo-qJ9" secondAttribute="bottom" constant="20" id="BoS-gh-Bdx"/>
+                            <constraint firstItem="zoa-5l-nwl" firstAttribute="top" secondItem="49x-wS-QRy" secondAttribute="bottom" constant="30" id="Cnu-Iu-JUc"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="centerY" secondItem="5eh-35-kI9" secondAttribute="centerY" id="HIt-z6-fem"/>
                             <constraint firstItem="ZQd-up-scu" firstAttribute="top" secondItem="XWl-mo-qJ9" secondAttribute="bottom" constant="8" symbolic="YES" id="JXK-vo-Jfo"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="centerY" secondItem="5eh-35-kI9" secondAttribute="centerY" id="KU5-fS-XXV"/>
+                            <constraint firstItem="49x-wS-QRy" firstAttribute="centerX" secondItem="zoa-5l-nwl" secondAttribute="centerX" constant="-50" id="LLg-hF-D3j"/>
+                            <constraint firstItem="zoa-5l-nwl" firstAttribute="top" secondItem="49x-wS-QRy" secondAttribute="bottom" constant="-450" id="SCn-H4-8kO"/>
+                            <constraint firstItem="49x-wS-QRy" firstAttribute="width" secondItem="1Um-e9-LB6" secondAttribute="height" multiplier="1:1" id="SaS-eU-LbC"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="centerX" secondItem="5eh-35-kI9" secondAttribute="centerX" id="SfB-cr-qGw"/>
-                            <constraint firstItem="liu-xl-RZd" firstAttribute="top" secondItem="zoa-5l-nwl" secondAttribute="bottom" constant="55" id="WXD-vx-2A1"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="centerY" secondItem="5eh-35-kI9" secondAttribute="centerY" id="X84-55-jt6"/>
+                            <constraint firstItem="49x-wS-QRy" firstAttribute="top" secondItem="zoa-5l-nwl" secondAttribute="top" id="YiV-ul-Wh4"/>
+                            <constraint firstItem="1Um-e9-LB6" firstAttribute="centerY" secondItem="49x-wS-QRy" secondAttribute="centerY" id="aAE-lT-los"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="zoa-5l-nwl" secondAttribute="trailing" constant="30" id="aCZ-WW-An5"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="centerY" secondItem="5eh-35-kI9" secondAttribute="centerY" id="bqz-Hb-KWU"/>
                             <constraint firstItem="odf-sr-612" firstAttribute="centerX" secondItem="5eh-35-kI9" secondAttribute="centerX" id="iwb-Va-n1O"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="height" secondItem="5eh-35-kI9" secondAttribute="height" id="k04-jT-nt5"/>
-                            <constraint firstItem="liu-xl-RZd" firstAttribute="height" secondItem="zoa-5l-nwl" secondAttribute="height" multiplier="0.2" id="kLQ-GB-jYX"/>
+                            <constraint firstItem="zoa-5l-nwl" firstAttribute="width" secondItem="5eh-35-kI9" secondAttribute="width" multiplier="0.6" id="klq-oW-ThY"/>
                             <constraint firstItem="ZQd-up-scu" firstAttribute="centerX" secondItem="5eh-35-kI9" secondAttribute="centerX" id="m0v-Wt-t26"/>
-                            <constraint firstItem="YkB-RK-Hbr" firstAttribute="centerX" secondItem="zoa-5l-nwl" secondAttribute="centerX" id="pOd-lv-SP7"/>
-                            <constraint firstItem="YkB-RK-Hbr" firstAttribute="centerY" secondItem="zoa-5l-nwl" secondAttribute="centerY" constant="-25" id="qCp-Fe-nbE"/>
-                            <constraint firstItem="ZQd-up-scu" firstAttribute="leading" secondItem="YkB-RK-Hbr" secondAttribute="leading" id="qTq-7l-nYt"/>
+                            <constraint firstItem="zoa-5l-nwl" firstAttribute="top" secondItem="49x-wS-QRy" secondAttribute="bottom" constant="-62" id="sG9-BC-Urh"/>
+                            <constraint firstItem="49x-wS-QRy" firstAttribute="top" secondItem="zoa-5l-nwl" secondAttribute="bottom" constant="40" id="snV-BC-qxJ"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5eh-35-kI9" secondAttribute="leadingMargin" constant="30" id="stv-cq-Vq0"/>
-                            <constraint firstItem="liu-xl-RZd" firstAttribute="centerX" secondItem="5eh-35-kI9" secondAttribute="centerX" id="ulv-ZM-AQu"/>
+                            <constraint firstItem="49x-wS-QRy" firstAttribute="top" secondItem="zoa-5l-nwl" secondAttribute="top" constant="30" id="uuK-e0-Vqn"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="width" secondItem="5eh-35-kI9" secondAttribute="width" id="v0q-ZK-WRn"/>
                             <constraint firstItem="odf-sr-612" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5eh-35-kI9" secondAttribute="leadingMargin" constant="10" id="vyw-9J-LDZ"/>
-                            <constraint firstItem="ZQd-up-scu" firstAttribute="top" secondItem="odf-sr-612" secondAttribute="bottom" constant="15" id="xMw-pX-tep"/>
-                            <constraint firstItem="zoa-5l-nwl" firstAttribute="top" secondItem="YkB-RK-Hbr" secondAttribute="bottom" constant="50" id="yU6-yO-awv"/>
+                            <constraint firstItem="49x-wS-QRy" firstAttribute="width" secondItem="zoa-5l-nwl" secondAttribute="width" multiplier="0.2" id="w7L-Pm-2e3"/>
+                            <constraint firstItem="ZQd-up-scu" firstAttribute="top" relation="greaterThanOrEqual" secondItem="odf-sr-612" secondAttribute="bottom" constant="15" id="xMw-pX-tep"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="JXK-vo-Jfo"/>
-                                <exclude reference="qTq-7l-nYt"/>
+                                <exclude reference="5uO-qb-gfQ"/>
+                                <exclude reference="8ST-QF-lV3"/>
+                                <exclude reference="9fC-7C-4O1"/>
+                                <exclude reference="Cnu-Iu-JUc"/>
                                 <exclude reference="HIt-z6-fem"/>
                                 <exclude reference="KU5-fS-XXV"/>
+                                <exclude reference="SCn-H4-8kO"/>
                                 <exclude reference="SfB-cr-qGw"/>
                                 <exclude reference="X84-55-jt6"/>
+                                <exclude reference="aCZ-WW-An5"/>
                                 <exclude reference="k04-jT-nt5"/>
+                                <exclude reference="sG9-BC-Urh"/>
+                                <exclude reference="stv-cq-Vq0"/>
                                 <exclude reference="v0q-ZK-WRn"/>
-                                <exclude reference="yU6-yO-awv"/>
-                                <exclude reference="EsL-0x-LDh"/>
-                                <exclude reference="kLQ-GB-jYX"/>
+                                <exclude reference="vyw-9J-LDZ"/>
+                                <exclude reference="JXK-vo-Jfo"/>
+                                <exclude reference="8WA-uy-xbN"/>
+                                <exclude reference="YiV-ul-Wh4"/>
+                                <exclude reference="uuK-e0-Vqn"/>
                             </mask>
                         </variation>
                     </view>
@@ -591,8 +601,8 @@
                                     <constraint firstItem="4l5-VE-tfy" firstAttribute="width" secondItem="atg-6M-Dpv" secondAttribute="width" id="2fu-Tz-92V"/>
                                 </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kN6-MM-c0e" userLabel="BreakDuration">
-                                <rect key="frame" x="140" y="366" width="320" height="241"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kN6-MM-c0e" userLabel="BreakDuration">
+                                <rect key="frame" x="140" y="365" width="320" height="241"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Break Duration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jqq-nx-LBK">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="25"/>
