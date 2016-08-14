@@ -419,8 +419,13 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 	
 	func colorForIndexRow(row: Int, section: Int) -> UIColor {
 		
-		let itemCount = tasksByPriority.priorities[section].tasks.count - 1
-		let val = (CGFloat(row) / CGFloat(itemCount)) * 0.5
+		let itemCount = tasksByPriority.priorities[section].tasks.count
+       
+		var val = (CGFloat(row) / CGFloat(itemCount)) * 0.5
+        
+        if tasksByPriority.priorities[section].tasks.count == 0 { // placeholder
+            val = 0
+        }
 		
 		switch section {
 		// urgent | important
