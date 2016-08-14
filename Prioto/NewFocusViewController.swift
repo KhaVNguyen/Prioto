@@ -175,10 +175,12 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		let radius: CGFloat = width * 0.65 / 2
 		
 		let rings = [
-			ProgressRing(color: UIColor(.RGB(192,57,43)), backgroundColor: UIColor(.RGB(33, 33, 48))),
-			ProgressRing(color: UIColor(.RGB(231,76,60)), backgroundColor: UIColor(.RGB(33, 33, 48)))]
+            ProgressRing(color: UIColor(.RGB(192,57,43)), backgroundColor: UIColor(.RGB(33, 33, 48)), width: 16),
+            ProgressRing(color: UIColor(.RGB(231,76,60)), backgroundColor: UIColor(.RGB(33, 33, 48))),
+            ]
 		
-		progressRingView = try! ConcentricProgressRingView(center: view.center, radius: radius, margin: margin, rings: rings, defaultColor: UIColor.clearColor(), defaultWidth: 14)
+        
+		progressRingView = try! ConcentricProgressRingView(center: view.center, radius: radius, margin: margin, rings: rings, defaultColor: UIColor.clearColor(), defaultWidth: 12)
         
 		
 		for ring in progressRingView {

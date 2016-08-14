@@ -262,6 +262,7 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 				return true
 			})]
 			cell.leftSwipeSettings.transition = MGSwipeTransition.Border
+            cell.leftExpansion.buttonIndex = 0
 			cell.rightButtons = [MGSwipeButton(title: "", icon: UIImage(named:"deleteTask.png"), backgroundColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0), callback: {
 				(sender: MGSwipeTableCell!) -> Bool in
 				//	if self.expandedForIndexPath(indexPath) {
@@ -279,6 +280,8 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 				return true
 			})]
 			
+            cell.rightSwipeSettings.transition = MGSwipeTransition.Border
+            cell.rightExpansion.buttonIndex = 0
 			
 			cell.layer.cornerRadius = 8
 			cell.layer.masksToBounds = true
