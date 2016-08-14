@@ -390,11 +390,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zoa-5l-nwl">
+                            <view contentMode="scaleToFill" restorationIdentifier="timerView" translatesAutoresizingMaskIntoConstraints="NO" id="zoa-5l-nwl" userLabel="Timer View">
                                 <rect key="frame" x="199" y="199" width="202" height="202"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Left" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFe-sf-x2M">
-                                        <rect key="frame" x="21" y="96" width="161" height="51"/>
+                                        <rect key="frame" x="21" y="101" width="161" height="51"/>
                                         <constraints>
                                             <constraint firstAttribute="width" priority="750" constant="140" id="nal-D3-WPY"/>
                                             <constraint firstAttribute="height" priority="750" constant="39" id="oZg-br-IlE"/>
@@ -413,14 +413,14 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="jFe-sf-x2M" firstAttribute="centerY" secondItem="zoa-5l-nwl" secondAttribute="centerY" constant="20" id="21D-Ip-KzJ"/>
-                                    <constraint firstAttribute="height" priority="750" constant="1000" id="2pR-8s-SvK"/>
+                                    <constraint firstItem="jFe-sf-x2M" firstAttribute="centerY" secondItem="zoa-5l-nwl" secondAttribute="centerY" constant="25" id="21D-Ip-KzJ"/>
+                                    <constraint firstAttribute="height" priority="750" constant="1500" id="2pR-8s-SvK"/>
                                     <constraint firstItem="jFe-sf-x2M" firstAttribute="height" secondItem="zoa-5l-nwl" secondAttribute="height" multiplier="0.25" id="CVS-Nn-cIg"/>
                                     <constraint firstItem="jFe-sf-x2M" firstAttribute="centerX" secondItem="zoa-5l-nwl" secondAttribute="centerX" id="EAF-1x-c2D"/>
                                     <constraint firstAttribute="width" secondItem="zoa-5l-nwl" secondAttribute="height" multiplier="1:1" id="Fg4-qd-IUq"/>
                                     <constraint firstItem="jFe-sf-x2M" firstAttribute="centerX" secondItem="zoa-5l-nwl" secondAttribute="centerX" id="PE7-yk-VG8"/>
                                     <constraint firstAttribute="width" secondItem="zoa-5l-nwl" secondAttribute="height" multiplier="1:1" id="VSq-ud-QXp"/>
-                                    <constraint firstAttribute="width" priority="750" constant="1000" id="g9R-xq-hem"/>
+                                    <constraint firstAttribute="width" priority="750" constant="1500" id="g9R-xq-hem"/>
                                     <constraint firstItem="jFe-sf-x2M" firstAttribute="width" secondItem="zoa-5l-nwl" secondAttribute="width" multiplier="0.8" id="hQ2-Sm-M78"/>
                                     <constraint firstItem="jFe-sf-x2M" firstAttribute="centerY" secondItem="zoa-5l-nwl" secondAttribute="centerY" id="qZE-nU-Mho"/>
                                 </constraints>
@@ -433,7 +433,7 @@
                                 </variation>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="liu-xl-RZd">
-                                <rect key="frame" x="189" y="451" width="222" height="111"/>
+                                <rect key="frame" x="189" y="456" width="222" height="111"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="49x-wS-QRy" userLabel="Start">
                                         <rect key="frame" x="0.0" y="0.0" width="111" height="111"/>
@@ -469,19 +469,19 @@
                                 </variation>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" restorationIdentifier="typeLabel" text="Timer Type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YkB-RK-Hbr">
-                                <rect key="frame" x="255" y="268" width="91" height="25"/>
+                                <rect key="frame" x="259" y="266" width="84" height="19"/>
                                 <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="19"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Time Worked On Task: N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQd-up-scu">
-                                <rect key="frame" x="191" y="117" width="194" height="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Worked On Task: N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQd-up-scu">
+                                <rect key="frame" x="203" y="111" width="194" height="18"/>
                                 <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Task Currently Being Worked On" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odf-sr-612" userLabel="Task Title">
-                                <rect key="frame" x="150" y="74" width="300" height="28"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Currently Being Worked On" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odf-sr-612" userLabel="Task Title">
+                                <rect key="frame" x="159" y="74" width="282" height="22"/>
                                 <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -499,7 +499,7 @@
                             <constraint firstItem="ZQd-up-scu" firstAttribute="top" secondItem="XWl-mo-qJ9" secondAttribute="bottom" constant="8" symbolic="YES" id="JXK-vo-Jfo"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="centerY" secondItem="5eh-35-kI9" secondAttribute="centerY" id="KU5-fS-XXV"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="centerX" secondItem="5eh-35-kI9" secondAttribute="centerX" id="SfB-cr-qGw"/>
-                            <constraint firstItem="liu-xl-RZd" firstAttribute="top" secondItem="zoa-5l-nwl" secondAttribute="bottom" constant="50" id="WXD-vx-2A1"/>
+                            <constraint firstItem="liu-xl-RZd" firstAttribute="top" secondItem="zoa-5l-nwl" secondAttribute="bottom" constant="55" id="WXD-vx-2A1"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="centerY" secondItem="5eh-35-kI9" secondAttribute="centerY" id="X84-55-jt6"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="zoa-5l-nwl" secondAttribute="trailing" constant="30" id="aCZ-WW-An5"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="centerY" secondItem="5eh-35-kI9" secondAttribute="centerY" id="bqz-Hb-KWU"/>
@@ -508,7 +508,7 @@
                             <constraint firstItem="liu-xl-RZd" firstAttribute="height" secondItem="zoa-5l-nwl" secondAttribute="height" multiplier="0.2" id="kLQ-GB-jYX"/>
                             <constraint firstItem="ZQd-up-scu" firstAttribute="centerX" secondItem="5eh-35-kI9" secondAttribute="centerX" id="m0v-Wt-t26"/>
                             <constraint firstItem="YkB-RK-Hbr" firstAttribute="centerX" secondItem="zoa-5l-nwl" secondAttribute="centerX" id="pOd-lv-SP7"/>
-                            <constraint firstItem="YkB-RK-Hbr" firstAttribute="centerY" secondItem="zoa-5l-nwl" secondAttribute="centerY" constant="-20" id="qCp-Fe-nbE"/>
+                            <constraint firstItem="YkB-RK-Hbr" firstAttribute="centerY" secondItem="zoa-5l-nwl" secondAttribute="centerY" constant="-25" id="qCp-Fe-nbE"/>
                             <constraint firstItem="ZQd-up-scu" firstAttribute="leading" secondItem="YkB-RK-Hbr" secondAttribute="leading" id="qTq-7l-nYt"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5eh-35-kI9" secondAttribute="leadingMargin" constant="30" id="stv-cq-Vq0"/>
                             <constraint firstItem="liu-xl-RZd" firstAttribute="centerX" secondItem="5eh-35-kI9" secondAttribute="centerX" id="ulv-ZM-AQu"/>
@@ -548,6 +548,7 @@
                         <outlet property="taskLabel" destination="odf-sr-612" id="lon-hE-gnm"/>
                         <outlet property="timeLeftLabel" destination="jFe-sf-x2M" id="ITf-ZU-0aP"/>
                         <outlet property="timeWorkedLabel" destination="ZQd-up-scu" id="Cqn-VR-Peu"/>
+                        <outlet property="timerView" destination="zoa-5l-nwl" id="sDj-vM-bkb"/>
                         <outlet property="typeLabel" destination="YkB-RK-Hbr" id="CXH-7p-1BA"/>
                     </connections>
                 </viewController>
@@ -567,16 +568,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="P6a-1X-dUd" userLabel="WorkDuration">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="P6a-1X-dUd" userLabel="WorkDuration">
                                 <rect key="frame" x="140" y="94" width="320" height="241"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Work Duration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4l5-VE-tfy">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Work Duration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4l5-VE-tfy">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="25"/>
                                         <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="25"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="atg-6M-Dpv" userLabel="WorkDurationPickerView">
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="atg-6M-Dpv" userLabel="WorkDurationPickerView">
                                         <rect key="frame" x="0.0" y="25" width="320" height="216"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <userDefinedRuntimeAttributes>
@@ -593,13 +594,13 @@
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kN6-MM-c0e" userLabel="BreakDuration">
                                 <rect key="frame" x="140" y="366" width="320" height="241"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Break Duration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jqq-nx-LBK">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Break Duration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jqq-nx-LBK">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="25"/>
                                         <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="25"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b2t-V1-Djo" userLabel="BreakDurationPickerView">
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b2t-V1-Djo" userLabel="BreakDurationPickerView">
                                         <rect key="frame" x="0.0" y="25" width="320" height="216"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <userDefinedRuntimeAttributes>

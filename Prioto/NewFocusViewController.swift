@@ -29,7 +29,10 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 	
 	@IBOutlet weak var timeLeftLabel: UILabel!
 	
-	var progressRingView: ConcentricProgressRingView!
+  var progressRingView: ConcentricProgressRingView!
+
+	
+	@IBOutlet weak var timerView: UIView!
 	
 	@IBOutlet weak var typeLabel: UILabel!
 	
@@ -158,20 +161,20 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		UIApplication.sharedApplication().registerUserNotificationSettings(settings)
 		
 		let margin: CGFloat = 1
-		let radius: CGFloat = 130
+		let radius: CGFloat = timerView.frame.width / 2
 		
 		let rings = [
 			ProgressRing(color: UIColor(.RGB(192,57,43)), backgroundColor: UIColor(.RGB(33, 33, 48))),
 			ProgressRing(color: UIColor(.RGB(231,76,60)), backgroundColor: UIColor(.RGB(33, 33, 48)))]
 		
-		progressRingView = try! ConcentricProgressRingView(center: view.center, radius: radius, margin: margin, rings: rings, defaultColor: UIColor.clearColor(), defaultWidth: 18)
+		progressRingView = try! ConcentricProgressRingView(center: view.center, radius: radius, margin: margin, rings: rings, defaultColor: UIColor.clearColor(), defaultWidth: 14)
 		
 		for ring in progressRingView {
 			ring.progress = 0.0
 		}
 		
-		progressRingView.tag = 100
 		view.addSubview(progressRingView)
+		progressRingView.tag = 100
 		
 		view.backgroundColor = UIColor(.RGB(33, 33, 48))
 		
@@ -195,7 +198,7 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		addObserver()
 		
 		
-		view.frame = CGRectMake(0, 44.0, CGRectGetWidth(UIScreen.mainScreen().bounds), CGRectGetHeight(UIScreen.mainScreen().bounds))
+//		view.frame = CGRectMake(0, 44.0, CGRectGetWidth(UIScreen.mainScreen().bounds), CGRectGetHeight(UIScreen.mainScreen().bounds))
 		
 		
 		let taskTitles = RealmHelper.getTaskTitles()
@@ -208,6 +211,13 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		taskLabel.adjustsFontSizeToFitWidth = true
 		taskLabel.minimumScaleFactor = 0.4
 		taskLabel.numberOfLines = 1
+		typeLabel.adjustsFontSizeToFitWidth = true
+		typeLabel.minimumScaleFactor = 0.4
+		typeLabel.numberOfLines = 1
+		timeLeftLabel.adjustsFontSizeToFitWidth = true
+		timeLeftLabel.minimumScaleFactor = 0.4
+		timeLeftLabel.numberOfLines = 1
+		
 	}
 	
 	deinit {
