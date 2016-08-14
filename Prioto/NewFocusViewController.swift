@@ -75,14 +75,19 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 	@IBAction func startPauseButtonPressed(sender: AnyObject) {
 		if self.counting {
 			pauseTimer()
+
 		}
 		else {
 			startTimer()
+
 		}
 	}
 	
 	func pauseTimer() {
-		self.timer.invalidate()
+        UIApplication.sharedApplication().idleTimerDisabled = false
+        if self.timer != nil {
+            self.timer.invalidate()
+        }
 		UIApplication.sharedApplication().cancelAllLocalNotifications()
 		self.willDisplayForegroundNotification = false
 		self.counting = false
@@ -93,6 +98,7 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 	}
 	
 	func startTimer() {
+        UIApplication.sharedApplication().idleTimerDisabled = true
 		setupLocalNotifications()
 		self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(NewFocusViewController.countdown), userInfo: nil, repeats: true)
 		self.willDisplayForegroundNotification = true
@@ -138,7 +144,9 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 			if timeRemaining == timeMax { // if already reset, then change type
 				switchTimerType()
 			}
-			self.timer.invalidate()
+            if self.timer != nil {
+                self.timer.invalidate()
+            }
 			UIApplication.sharedApplication().cancelAllLocalNotifications()
 			self.timeRemaining = Double(self.timeMax)
 			self.counting = false
@@ -164,7 +172,7 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
         var width = bounds.size.width
 		
 		let margin: CGFloat = 1
-		let radius: CGFloat = width * 0.6 / 2
+		let radius: CGFloat = width * 0.65 / 2
 		
 		let rings = [
 			ProgressRing(color: UIColor(.RGB(192,57,43)), backgroundColor: UIColor(.RGB(33, 33, 48))),
@@ -487,7 +495,7 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 
         
 		let margin: CGFloat = 1
-		let radius: CGFloat = width * 0.6 / 2
+		let radius: CGFloat = width * 0.65 / 2
     
 		let rings = [
 			ProgressRing(color: outerRingColor, backgroundColor: UIColor(.RGB(33, 33, 48))),

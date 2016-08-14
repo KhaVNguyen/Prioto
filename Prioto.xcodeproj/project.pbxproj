@@ -531,7 +531,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.khavnguyen.Prioto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7e6162f5-e5d3-4a19-af30-697ecb3f3cf0";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -552,7 +552,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.khavnguyen.Prioto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7e6162f5-e5d3-4a19-af30-697ecb3f3cf0";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
