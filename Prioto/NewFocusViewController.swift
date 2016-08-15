@@ -16,6 +16,8 @@ import AudioToolbox
 import AZDropdownMenu
 import RealmSwift
 import UIColor_Hex_Swift
+import PopupDialog
+import Device_swift
 
 var newFocusViewControllerLoaded: Bool = false
 var timerInterrupted: Bool = false
@@ -543,4 +545,71 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewFocusViewController.pauseTimer), name: "swipeStarted", object: nil)
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewFocusViewController.resetWorkingOn), name: "appClosed", object: nil)
 	}
+    
+    @IBAction func infoButtonTapped(sender: AnyObject) {
+        showPomodoroInfo()
+    }
+    
+    func showPomodoroInfo() {
+        let deviceType = UIDevice.currentDevice().deviceType
+        
+        switch deviceType {
+        case .IPhone4:
+            // Prepare the popup assets
+            let title = "Work in bursts."
+            let message = "Use the Pomodoro Technique to combat burnout by working in intervals, taking breaks in between. For example, work for 25 minutes fully focused, then break for 5 minutes."
+            
+            // Create the dialog
+            let popup = PopupDialog(title: title, message: message, transitionStyle: .ZoomIn, buttonAlignment: .Horizontal)
+            
+            // Create first button
+            let buttonOne = CancelButton(title: "Okay") {
+            }
+            
+            // Add buttons to dialog
+            popup.addButtons([buttonOne])
+            
+            // Present dialog
+            self.presentViewController(popup, animated: true, completion: nil)
+
+        case .IPhone4S:
+            // Prepare the popup assets
+            let title = "Work in bursts."
+            let message = "Use the Pomodoro Technique to combat burnout by working in intervals, taking breaks in between. For example, work for 25 minutes fully focused, then break for 5 minutes."
+            
+            // Create the dialog
+            let popup = PopupDialog(title: title, message: message, transitionStyle: .ZoomIn, buttonAlignment: .Horizontal)
+            
+            // Create first button
+            let buttonOne = CancelButton(title: "Okay") {
+            }
+            
+            // Add buttons to dialog
+            popup.addButtons([buttonOne])
+            
+            // Present dialog
+            self.presentViewController(popup, animated: true, completion: nil)
+
+        default:
+            // Prepare the popup assets
+            let title = "Work in bursts."
+            let message = "Use the Pomodoro Technique to combat burnout by working in intervals, taking breaks in between. For example, work for 25 minutes fully focused, then break for 5 minutes."
+            let image = UIImage(named: "Pomodoro")
+            
+            // Create the dialog
+            let popup = PopupDialog(title: title, message: message, image: image)
+            
+            // Create first button
+            let buttonOne = CancelButton(title: "Okay") {
+            }
+            
+            // Add buttons to dialog
+            popup.addButtons([buttonOne])
+            
+            // Present dialog
+            self.presentViewController(popup, animated: true, completion: nil)
+        }
+        
+    }
+    
 }

@@ -14,6 +14,7 @@ import AudioToolbox
 import Spring
 import SwiftyUserDefaults
 import ChameleonFramework
+import PopupDialog
 
 
 class TasksTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -578,6 +579,32 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		}
 		tasksTableView.reloadData()
 	}
+    
+    @IBAction func infoButtonTapped(sender: AnyObject) {
+        showEisenhowerInfo()
+    }
+    
+    func showEisenhowerInfo() {
+        
+        // Prepare the popup assets
+        let title = "Not all tasks are created equal."
+        let message = "Utilize the Eisenhower method to carefully allocate valuable time and energy to the tasks that actually matter.  Assign a priority to each of your tasks, based on urgency and importance"
+        let image = UIImage(named: "Eisenhower")
+        
+        // Create the dialog
+        let popup = PopupDialog(title: title, message: message, image: image)
+        
+        // Create first button
+        let buttonOne = CancelButton(title: "Okay") {
+        }
+        
+        // Add buttons to dialog
+        popup.addButtons([buttonOne])
+        
+        // Present dialog
+        self.presentViewController(popup, animated: true, completion: nil)
+    }
+
 	
 }
 

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RoI-Ck-V6C">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -172,9 +171,10 @@
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="vhh-F0-hsG">
-                        <barButtonItem key="leftBarButtonItem" id="DpO-Wu-cnY" userLabel="Print Working On">
+                        <barButtonItem key="leftBarButtonItem" image="Info" id="KBl-jy-WAH" userLabel="Info Button">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="printExpandedButtonTapped:" destination="d7n-i7-5Vo" id="zp0-6m-YQe"/>
+                                <action selector="infoButtonTapped:" destination="d7n-i7-5Vo" id="vFU-4s-Eg0"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
@@ -213,7 +213,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="vyD-Pv-lHq">
+                            <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="vyD-Pv-lHq">
                                 <rect key="frame" x="140" y="223" width="320" height="216"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <date key="date" timeIntervalSinceReferenceDate="490059728.98059303">
@@ -225,7 +225,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </datePicker>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Task Title Here..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="UJW-Cp-DCk">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Task Title Here..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="UJW-Cp-DCk">
                                 <rect key="frame" x="20" y="74" width="560" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="UJW-Cp-DCk" secondAttribute="height" multiplier="1:1" id="Rli-Vl-g3S"/>
@@ -248,7 +248,7 @@
                                     </mask>
                                 </variation>
                             </textField>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ng2-m0-ZGS">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ng2-m0-ZGS">
                                 <rect key="frame" x="20" y="157" width="560" height="29"/>
                                 <segments>
                                     <segment title="Important"/>
@@ -260,7 +260,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </segmentedControl>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Vt5-sH-FQe">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Vt5-sH-FQe">
                                 <rect key="frame" x="20" y="114" width="560" height="29"/>
                                 <segments>
                                     <segment title="Urgent"/>
@@ -272,7 +272,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </segmentedControl>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="610-sX-7gg" userLabel="Task Details" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="610-sX-7gg" userLabel="Task Details" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
                                 <rect key="frame" x="30" y="449" width="540" height="107"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="17"/>
@@ -284,7 +284,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxE-2L-Q3M">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Due Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxE-2L-Q3M">
                                 <rect key="frame" x="20" y="205" width="600" height="18"/>
                                 <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -538,15 +538,21 @@
                                 <exclude reference="v0q-ZK-WRn"/>
                                 <exclude reference="vyw-9J-LDZ"/>
                                 <exclude reference="JXK-vo-Jfo"/>
-                                <exclude reference="8WA-uy-xbN"/>
                                 <exclude reference="YiV-ul-Wh4"/>
                                 <exclude reference="uuK-e0-Vqn"/>
+                                <exclude reference="8WA-uy-xbN"/>
                             </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="uCc-l6-1Uj">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" image="Preferences" id="xjM-8x-2SS" userLabel="Preferences Button">
+                        <barButtonItem key="leftBarButtonItem" image="Info" id="nj5-Hh-Fpv" userLabel="Info Button">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="infoButtonTapped:" destination="zDZ-FL-W2b" id="4o7-pd-sFC"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="Preferences" id="xjM-8x-2SS" userLabel="Preferences Button">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="sPf-pD-0Ab" kind="presentation" identifier="showPreferencesSegue" id="f9L-wu-3MJ"/>
@@ -720,6 +726,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Info" width="27" height="24"/>
         <image name="Play" width="28" height="32"/>
         <image name="Preferences" width="27" height="27"/>
         <image name="Restart" width="31" height="32"/>
