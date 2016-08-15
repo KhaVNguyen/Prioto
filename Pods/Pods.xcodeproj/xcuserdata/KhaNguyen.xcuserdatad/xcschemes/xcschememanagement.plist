@@ -8,101 +8,159 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 		<key>AZDropdownMenu.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>0</integer>
 		</dict>
 		<key>BSForegroundNotification-BSForegroundNotification.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>BSForegroundNotification.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 		<key>ChameleonFramework.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
 		<key>ConcentricProgressRingView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
+		<key>Device.swift.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>20</integer>
 		</dict>
 		<key>IQKeyboardManager.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
 		<key>KMPlaceholderTextView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>7</integer>
 		</dict>
 		<key>LionheartExtensions.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>8</integer>
 		</dict>
 		<key>MGSwipeTableCell.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>9</integer>
 		</dict>
 		<key>NVActivityIndicatorView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>10</integer>
 		</dict>
 		<key>Pods-Prioto.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>11</integer>
+		</dict>
+		<key>PopupDialog.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>21</integer>
 		</dict>
 		<key>Realm.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>13</integer>
 		</dict>
 		<key>RealmSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>14</integer>
 		</dict>
 		<key>SWTableViewCell.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>18</integer>
 		</dict>
 		<key>Spring.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>15</integer>
 		</dict>
 		<key>SwiftyTimer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>16</integer>
 		</dict>
 		<key>SwiftyUserDefaults.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>17</integer>
 		</dict>
 		<key>UIColor_Hex_Swift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>19</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>0D7838291FD66CA9EDE07C8296C9CAD1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1D6216E2861EF11D53A21B4725D72636</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>229948454362E004E882FC962E0FEB6E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -147,6 +205,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>505D8354501ACE7B388EF6B374365DFD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>5172ACAB7FEA22813859DC97CA0AA16F</key>
 		<dict>
 			<key>primary</key>
@@ -162,7 +225,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>638BF05F1EDCA87852DFE9AC39CEBB5E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>688D1B5F95F3E36525FE410E8B96183F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6E6A59CCEB063C51D6BF973FE6DF316D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -182,6 +255,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>CCF85DD3FB61D06744FCA09F71FB5464</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>D2B6CFC21B7A761609E3F17FEA297344</key>
 		<dict>
 			<key>primary</key>
@@ -192,7 +270,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>E111F90F9ABBDD23F88DE1A88E72D89C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E7F26B45B80776DEE5D2A3E66138FFE8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E8339650469D5FC5CACB57F960D1991F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>EC25B770E2E786F47106EE8F013163EA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F682E551D4817F82FADE2F2746EF5166</key>
 		<dict>
 			<key>primary</key>
 			<true/>

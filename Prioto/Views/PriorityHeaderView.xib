@@ -19,8 +19,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N4w-Sm-T4r">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="30"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Not Urgent | Not Important" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evM-8U-9bG" userLabel="priorityLabel">
-                            <rect key="frame" x="8" y="7" width="174" height="17"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Urgent | Not Important" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evM-8U-9bG" userLabel="priorityLabel">
+                            <rect key="frame" x="8" y="7" width="169" height="16"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="42" id="poX-vZ-HCG"/>
                             </constraints>
@@ -46,21 +46,45 @@
                         </mask>
                     </variation>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bEJ-Ia-5a7">
+                    <rect key="frame" x="550" y="0.0" width="50" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="KpJ-8m-moz"/>
+                    </constraints>
+                    <state key="normal" image="Plus"/>
+                    <connections>
+                        <action selector="addTaskToSectionButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="SSb-fu-9Fo"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
+                <constraint firstItem="bEJ-Ia-5a7" firstAttribute="leading" secondItem="N4w-Sm-T4r" secondAttribute="trailing" constant="-54" id="7a6-UV-789"/>
+                <constraint firstItem="bEJ-Ia-5a7" firstAttribute="leading" secondItem="N4w-Sm-T4r" secondAttribute="trailing" constant="-54" id="AbR-JI-zNS"/>
                 <constraint firstItem="N4w-Sm-T4r" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="HLp-um-Y5v"/>
+                <constraint firstItem="bEJ-Ia-5a7" firstAttribute="height" secondItem="N4w-Sm-T4r" secondAttribute="height" id="PHd-Ke-1aU"/>
                 <constraint firstItem="N4w-Sm-T4r" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="QN2-qe-Xwq"/>
                 <constraint firstItem="N4w-Sm-T4r" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="YYw-0a-bKG"/>
                 <constraint firstItem="N4w-Sm-T4r" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="cc9-1D-3Ru"/>
+                <constraint firstItem="bEJ-Ia-5a7" firstAttribute="centerY" secondItem="N4w-Sm-T4r" secondAttribute="centerY" id="mVa-lF-OSj"/>
+                <constraint firstAttribute="trailing" secondItem="bEJ-Ia-5a7" secondAttribute="trailing" id="xFu-dM-VXk"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="7a6-UV-789"/>
+                    <exclude reference="AbR-JI-zNS"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="priorityLabel" destination="evM-8U-9bG" id="mgE-5Y-JcB"/>
             </connections>
             <point key="canvasLocation" x="167" y="357"/>
         </view>
     </objects>
+    <resources>
+        <image name="Plus" width="24" height="24"/>
+    </resources>
 </document>

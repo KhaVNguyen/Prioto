@@ -20,5 +20,13 @@ class PriorityHeaderView: UITableViewHeaderFooterView {
         // Drawing code
     }
     */
+	
+	var addTaskToSectionCallback: (() -> Void)?
+	
+	@IBAction func addTaskToSectionButtonPressed(sender: AnyObject) {
+		if let addTaskToSectionCallback = self.addTaskToSectionCallback {
+			addTaskToSectionCallback()
+		}
+	}
 		
 }

@@ -198,6 +198,8 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 	//
 	//	}
 	
+	var sectionTaskWillBeAddedTo: Int?
+	
 	func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 		
 		// Here, we use NSFetchedResultsController
@@ -208,6 +210,10 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 		let cell = self.tasksTableView.dequeueReusableHeaderFooterViewWithIdentifier("PriorityHeaderView")
 		let header = cell as! PriorityHeaderView
 		header.priorityLabel.text = title
+		header.addTaskToSectionCallback = {
+			self.sectionTaskWillBeAddedTo = section
+			self.performSegueWithIdentifier("addNewTaskSegue", sender: self)
+		}
 		
 		return cell
 	}
@@ -551,6 +557,11 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 			}
 				
 			else if identifier == "addNewTaskSegue" {
+				if let section = self.sectionTaskWillBeAddedTo {
+					let displayTaskViewController = (segue.destinationViewController as! UINavigationController).viewControllers[0] as! DisplayTaskViewController
+					displayTaskViewController.priorityIndex = section
+					self.sectionTaskWillBeAddedTo = nil
+				}
 			}
 		}
 	}

@@ -29,7 +29,7 @@ class DisplayTaskViewController: UIViewController {
 	var previousPriorityIndex: Int!
 	var task: Task?
 	
-	
+	var setupPriorityCallback: (() -> Void)?
     override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -42,6 +42,8 @@ class DisplayTaskViewController: UIViewController {
 		
 		taskTitleTextField.becomeFirstResponder()
 		
+		
+		
 		// set up the task details if it already exists
 		if let task = task {
 			taskTitleTextField.text = task.text
@@ -50,6 +52,10 @@ class DisplayTaskViewController: UIViewController {
 				dueDateLabel.text = "Due Date: \(formatDateAsString(task.dueDate!))"
 			}
 			self.previousPriorityIndex = priorityIndex
+			
+			taskDetails.text = task.details
+		}
+		if let priorityIndex = self.priorityIndex {
 			switch priorityIndex {
 			case 0: // Urgent - Important
 				importanceSelector.selectedSegmentIndex = 0
@@ -67,7 +73,6 @@ class DisplayTaskViewController: UIViewController {
 				importanceSelector.selectedSegmentIndex = 0
 				urgencySelector.selectedSegmentIndex = 0
 			}
-			taskDetails.text = task.details
 		}
     }
 	
