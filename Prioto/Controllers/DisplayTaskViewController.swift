@@ -42,7 +42,11 @@ class DisplayTaskViewController: UIViewController {
 		
 		taskTitleTextField.becomeFirstResponder()
 		
-		
+		var bottomLine = CALayer()
+		bottomLine.frame = CGRectMake(0.0, taskTitleTextField.frame.height - 1, taskTitleTextField.frame.width, 1.0)
+		bottomLine.backgroundColor = UIColor.whiteColor().CGColor
+		taskTitleTextField.borderStyle = UITextBorderStyle.None
+		taskTitleTextField.layer.addSublayer(bottomLine)
 		
 		// set up the task details if it already exists
 		if let task = task {
