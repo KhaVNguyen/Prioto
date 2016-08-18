@@ -499,7 +499,10 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 				if selectedIndexPath.section == priorityIndex { // not changing priority
 					RealmHelper.updateTask(taskForIndexPath(selectedIndexPath)!, newTask: task)
 					// tasksTableView.reloadData()
-					
+					if task.isBeingWorkedOn {
+						let taskDataDict:[String: Task] = ["task": task]
+						NSNotificationCenter.defaultCenter().postNotificationName("taskChosen", object: self, userInfo: taskDataDict)
+					}
 				}
 					
 				else { // changing priority
@@ -525,6 +528,7 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 					// tasksTableView.reloadData()
 				}
 				self.selectedIndexPath = nil
+				
 			}
 			else {
 				RealmHelper.addTask(task)

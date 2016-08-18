@@ -48,7 +48,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BSForegroundNotificationD
 //		}
 		
 		NSNotificationCenter.defaultCenter().postNotificationName("appExited", object: self)
-        
+		NSNotificationCenter.defaultCenter().postNotificationName("appClosed", object: nil)
+		
         // Customize dialog appearance
         let pv = PopupDialogDefaultView.appearance()
         pv.titleFont    = UIFont(name: "HelveticaNeue-Light", size: 16)!

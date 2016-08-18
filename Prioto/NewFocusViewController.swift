@@ -251,30 +251,38 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 	override func viewWillAppear(animated: Bool) {
 	// 	print("View appeared")
         
-		if hasExitedAppAndGoBack && self.counting {
-			
-			//			if let lastDate = Defaults["dateAppExited"].date {
-			//				let timeElapsed = Double(NSDate().timeIntervalSinceDate(lastDate))
-			//				self.timeRemaining = self.timeRemaining - timeElapsed
-			//				print("Time elapsed: \(timeElapsed)")
-			//
-			//			}
-			self.updateTimer()
-			hasExitedAppAndGoBack = false
-			Defaults[DefaultsKeys.dateAppExited._key] = nil
-		}
-		// updateTasksInMenu()
-		if let task = self.task {
-			if task.invalidated {
-				taskLabel.text = "No task being tracked"
-				taskLabel.textColor = UIColor.redColor()
-			}
-		}
-		else {
+//		if hasExitedAppAndGoBack && self.counting {
+//			
+//			//			if let lastDate = Defaults["dateAppExited"].date {
+//			//				let timeElapsed = Double(NSDate().timeIntervalSinceDate(lastDate))
+//			//				self.timeRemaining = self.timeRemaining - timeElapsed
+//			//				print("Time elapsed: \(timeElapsed)")
+//			//
+//			//			}
+//			self.updateTimer()
+//			hasExitedAppAndGoBack = false
+//			Defaults[DefaultsKeys.dateAppExited._key] = nil
+//		}
+//		// updateTasksInMenu()
+//		if let task = self.task {
+//			if task.invalidated {
+//				taskLabel.text = "No task being tracked"
+//				taskLabel.textColor = UIColor.redColor()
+//			}
+//		}
+//		else {
+//			taskLabel.text = "No task being tracked"
+//			taskLabel.textColor = UIColor.redColor()
+//		}
+		
+		guard let task = self.task else {
 			taskLabel.text = "No task being tracked"
 			taskLabel.textColor = UIColor.redColor()
+			NSNotificationCenter.defaultCenter().postNotificationName("appClosed", object: nil)
+			return
 		}
-        
+
+		
         print("Radius from view appear: \(timerView.frame.width / 2)")
 		
 	}
@@ -391,11 +399,11 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		self.localNotification = UILocalNotification()
 		self.localNotificationEndDate = NSDate().dateByAddingTimeInterval(self.timeRemaining)
 		print("Current date: \(NSDate())")
-		let alertBody = "Time for " + self.typeName + " is up!"
-		let alertTitle = ""
+//		let alertBody = "Time for " + self.typeName + " is up!"
+//		let alertTitle = ""
 		self.localNotification!.fireDate = self.localNotificationEndDate
-		self.localNotification!.alertBody = alertBody
-		self.localNotification!.alertTitle = alertTitle
+//		self.localNotification!.alertBody = alertBody
+//		self.localNotification!.alertTitle = alertTitle
 		self.localNotification!.soundName = UILocalNotificationDefaultSoundName
 		if self.timerType == TimerType.Work {
 			self.localNotification!.category = "WORKTIME_UP"
@@ -463,28 +471,36 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		if let priorityIndex = task?.priorityIndex {
 			switch priorityIndex {
 			case 0:
-				outerRingColor = UIColor(.RGB(192,57,43))
-				innerRingColor = UIColor(.RGB(231,76,60))
+				outerRingColor = UIColor(.RGB(190,0,50))
+				innerRingColor = UIColor(.RGB(190,50,50))
 //				startPauseButton.backgroundColor = UIColor(.RGB(192,57,43))
 //				restartButton.backgroundColor = UIColor(.RGB(192,57,43))
+//				taskLabel.textColor = UIColor(.RGB(190,0,50))
 			case 1:
-				outerRingColor = UIColor(.RGB(30,99,214))
-				innerRingColor = UIColor(.RGB(30,145,214))
+				outerRingColor = UIColor(.RGB(30,0,200))
+				innerRingColor = UIColor(.RGB(30,50,200))
 //				startPauseButton.backgroundColor = UIColor(.RGB(30,99,214))
 //				restartButton.backgroundColor = UIColor(.RGB(30,99,214))
+//				taskLabel.textColor = UIColor(.RGB(30,0,200))
+
 			case 2:
-				outerRingColor = UIColor(.RGB(36,123,160))
-				innerRingColor = UIColor(.RGB(61,167,211))
+				outerRingColor = UIColor(.RGB(60,60,115))
+				innerRingColor = UIColor(.RGB(110,60, 115))
 //				startPauseButton.backgroundColor = UIColor(.RGB(36,123,160))
 //				restartButton.backgroundColor = UIColor(.RGB(36,123,160))
+//				taskLabel.textColor = UIColor(.RGB(60,60,115))
+
 			case 3:
-				outerRingColor = UIColor(.RGB(13,171,118))
-				innerRingColor = UIColor(.RGB(23,237,166))
+				outerRingColor = UIColor(.RGB(15,125,125))
+				innerRingColor = UIColor(.RGB(15,175,125))
 //				startPauseButton.backgroundColor = UIColor(.RGB(13,171,118))
 //				restartButton.backgroundColor = UIColor(.RGB(13,171,118))
+//				taskLabel.textColor = UIColor(.RGB(15,125,125))
+
+
 			default:
-				outerRingColor = UIColor(.RGB(13,171,118))
-				innerRingColor = UIColor(.RGB(231,76,60))
+				outerRingColor = UIColor(.RGB(190,0,50))
+				innerRingColor = UIColor(.RGB(190,50,50))
 //				startPauseButton.backgroundColor = UIColor(.RGB(192,57,43))
 //				restartButton.backgroundColor = UIColor(.RGB(192,57,43))
 			}
