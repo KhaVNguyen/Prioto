@@ -10,10 +10,12 @@
 import RealmSwift
 
 class Task: Object {
+	dynamic var uuid: String =  ""
 	dynamic var text: String = ""
 	dynamic var details: String = ""
 	dynamic var completed: Bool = false
 	dynamic var dueDate: NSDate? = nil
+	dynamic var reminderDate: NSDate? = nil
 	dynamic var priorityIndex: Int = 0
 	dynamic var dateCreated = NSDate()
 	dynamic var timeWorked = 0 // in seconds 
@@ -22,6 +24,7 @@ class Task: Object {
 	convenience init(text: String) {
 		self.init()
 		self.text = text
+		
 	}
 	
 	convenience init(text: String, priority: Int) {
@@ -29,6 +32,7 @@ class Task: Object {
 		self.text = text
 		self.priorityIndex = priority
 	}
+	
 	
 	convenience init(task: Task) {
 		self.init()
@@ -40,6 +44,8 @@ class Task: Object {
 		self.timeWorked = task.timeWorked
 		self.priorityIndex = task.priorityIndex
 		self.isBeingWorkedOn = task.isBeingWorkedOn
+		self.reminderDate = task.reminderDate
+		self.uuid = task.uuid
 	}
 	
 	convenience init(task: Task, index: Int) {
@@ -51,5 +57,7 @@ class Task: Object {
 		self.dueDate = task.dueDate
 		self.dateCreated = task.dateCreated
 		self.timeWorked = task.timeWorked
+		self.reminderDate = task.reminderDate
+		self.uuid = task.uuid
 	}
 }

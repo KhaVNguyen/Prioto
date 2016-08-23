@@ -10,16 +10,55 @@ import UIKit
 import AudioToolbox
 import Spring
 import RealmSwift
+import DatePickerDialog
 
 class DisplayTaskViewController: UIViewController {
-
+	
 	@IBOutlet weak var taskTitleTextField: UITextField!
 	@IBOutlet weak var importanceSelector: UISegmentedControl!
 	@IBOutlet weak var urgencySelector: UISegmentedControl!
-	@IBOutlet weak var dueDatePicker: UIDatePicker!
+//	@IBOutlet weak var dueDatePicker: UIDatePicker!
+	
+	
+	@IBAction func dueDateButtonPressed(sender: AnyObject) {
+		let currentDate = NSDate()
+		let dateComponents = NSDateComponents()
+		DatePickerDialog().show("Due Date", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", minimumDate: currentDate, datePickerMode: .DateAndTime) {
+			(date) -> Void in
+			if let dt = date {
+				self.dueDateLabel.text = "Due Date: \(self.formatDateAsString(dt))"
+				self.dueDate = dt
+				
+			} else {
+				print("Due Date:")
+			}
+		}
+
+	}
+	
+	@IBAction func remindButtonPressed(sender: AnyObject) {
+		let currentDate = NSDate()
+		let dateComponents = NSDateComponents()
+		
+		DatePickerDialog().show("Reminder Date", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", minimumDate: currentDate, datePickerMode: .DateAndTime) {
+			(date) -> Void in
+			if let dt = date {
+				print("Current date is: \(NSDate())")
+				print("dt is: \(dt)")
+				self.reminderDateLabel.text = "Reminder Date: \(self.formatDateAsString(dt))"
+				self.reminderDate = dt
+				
+			} else {
+				print("Reminder Date:")
+			}
+		}
+	}
+	
+	@IBOutlet weak var reminderDateLabel: UILabel!
+	var reminderDate: NSDate?
 	
 	@IBOutlet weak var dueDateLabel: UILabel!
-	
+	var dueDate: NSDate?
 	
 	@IBOutlet weak var taskDetails: UITextView!
 	
@@ -37,8 +76,8 @@ class DisplayTaskViewController: UIViewController {
 		view.addGestureRecognizer(tap)
 
         // Do any additional setup after loading the view.
-		 dueDatePicker.addTarget(self, action: #selector(self.datePickerValueChanged), forControlEvents: UIControlEvents.ValueChanged)
-		dueDatePicker.minimumDate = NSDate()
+//		 dueDatePicker.addTarget(self, action: #selector(self.datePickerValueChanged), forControlEvents: UIControlEvents.ValueChanged)
+//		dueDatePicker.minimumDate = NSDate()
 		
 		taskTitleTextField.becomeFirstResponder()
 		
@@ -52,8 +91,11 @@ class DisplayTaskViewController: UIViewController {
 		if let task = task {
 			taskTitleTextField.text = task.text
 			if task.dueDate != nil {
-				dueDatePicker.date = task.dueDate!
+//				dueDatePicker.date = task.dueDate!
 				dueDateLabel.text = "Due Date: \(formatDateAsString(task.dueDate!))"
+			}
+			if task.reminderDate != nil {
+				reminderDateLabel.text = "Reminder Date: \(formatDateAsString(task.reminderDate!))"
 			}
 			self.previousPriorityIndex = priorityIndex
 			
@@ -98,11 +140,11 @@ class DisplayTaskViewController: UIViewController {
 	
 	func datePickerValueChanged(sender:UIDatePicker) {
 		
-		dueDateLabel.text = "Due Date:  \(formatDateAsString(dueDatePicker.date))"
-		if dueDatePicker.date < dueDatePicker.minimumDate {
-			AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
-			print("incorrect date")
-		}
+//		dueDateLabel.text = "Due Date:  \(formatDateAsString(dueDatePicker.date))"
+//		if dueDatePicker.date < dueDatePicker.minimumDate {
+//			AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+//			print("incorrect date")
+//		}
 	}
 	
 	func formatDateAsString(date: NSDate) -> String {
@@ -137,8 +179,11 @@ class DisplayTaskViewController: UIViewController {
 						taskToBeEdited.completed = self.completed
 						taskToBeEdited.details = self.taskDetails.text
 						taskToBeEdited.timeWorked = self.timeWorked
+						if taskToBeEdited.uuid == "" {
+							taskToBeEdited.uuid = NSUUID().UUIDString
+						}
 						setTaskPriority(taskToBeEdited)
-					}
+						}
 				}
 				else {
 					task = Task()
@@ -146,6 +191,8 @@ class DisplayTaskViewController: UIViewController {
 					task!.completed = self.completed
 					task!.details = self.taskDetails.text
 					task!.timeWorked = 0
+					task!.uuid = NSUUID().UUIDString
+					print("UUID: \(task!.uuid)")
 					setTaskPriority(task!)
 
 				}
@@ -155,9 +202,39 @@ class DisplayTaskViewController: UIViewController {
 	}
 	
 	func setTaskPriority(task: Task) {
-//		if dueDatePicker.date > NSDate() {
-			task.dueDate = dueDatePicker.date
-//		}
+		if let dueDate = self.dueDate {
+			if dueDate >= NSDate() {
+				task.dueDate = dueDate
+			}
+		}
+		
+		if let reminderDate = self.reminderDate {
+			print(reminderDate)
+			if reminderDate >= NSDate() {
+				var app:UIApplication = UIApplication.sharedApplication()
+				if let scheduled = app.scheduledLocalNotifications {
+					for reminder in scheduled {
+						var notification = reminder as UILocalNotification
+						if notification.category == task.uuid {
+							//Cancelling local notification
+							print("Cancelling notification with UUID: \(notification.category)")
+							app.cancelLocalNotification(notification)
+						}
+					}
+				}
+				task.reminderDate = self.reminderDate
+				let reminderNotification = UILocalNotification()
+				let alertBody = task.text
+				let alertTitle = "Prioto Task Reminder"
+				reminderNotification.fireDate = task.reminderDate
+				print(reminderNotification.fireDate)
+				reminderNotification.alertBody = alertBody
+				reminderNotification.alertTitle = alertTitle
+				reminderNotification.soundName = UILocalNotificationDefaultSoundName
+				reminderNotification.category = task.uuid
+				UIApplication.sharedApplication().scheduleLocalNotification(reminderNotification)
+			}
+		}
 		
 		
 		// Important

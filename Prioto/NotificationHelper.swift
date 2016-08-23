@@ -50,6 +50,18 @@ static func userInfoForCategory(category: String) -> [NSObject: AnyObject] {
 		
 	}
 	
+	else {
+		return ["aps": [
+			"category": category,
+			"alert": [
+				"body": "",
+				"title": "Prioto"
+			],
+			"sound": "sound.wav"
+			]
+		]
+	}
+	
 	return ["aps": [
 		"category": category,
 		"alert": [

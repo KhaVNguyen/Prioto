@@ -19,6 +19,7 @@
             <string>Bariol-Regular</string>
             <string>Bariol-Regular</string>
             <string>Bariol-Regular</string>
+            <string>Bariol-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -213,18 +214,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="vyD-Pv-lHq">
-                                <rect key="frame" x="140" y="223" width="320" height="216"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <date key="date" timeIntervalSinceReferenceDate="490059728.98059303">
-                                    <!--2016-07-12 23:42:08 +0000-->
-                                </date>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </datePicker>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Task Title Here..." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="UJW-Cp-DCk">
                                 <rect key="frame" x="20" y="74" width="560" height="25"/>
                                 <constraints>
@@ -272,8 +261,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </segmentedControl>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="610-sX-7gg" userLabel="Task Details" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                                <rect key="frame" x="30" y="449" width="540" height="107"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="610-sX-7gg" userLabel="Task Details" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
+                                <rect key="frame" x="30" y="556" width="540" height="0.0"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -285,7 +274,27 @@
                                 </userDefinedRuntimeAttributes>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxE-2L-Q3M">
-                                <rect key="frame" x="20" y="205" width="600" height="18"/>
+                                <rect key="frame" x="56" y="205" width="68" height="18"/>
+                                <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hgn-Ph-EU8" userLabel="Due Date Button">
+                                <rect key="frame" x="20" y="201" width="26" height="26"/>
+                                <state key="normal" image="DueDate"/>
+                                <connections>
+                                    <action selector="dueDateButtonPressed:" destination="x4Y-Jd-H20" eventType="touchUpInside" id="onx-Qa-utZ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bku-Rk-96V">
+                                <rect key="frame" x="20" y="242" width="26" height="35"/>
+                                <state key="normal" image="Reminder"/>
+                                <connections>
+                                    <action selector="remindButtonPressed:" destination="x4Y-Jd-H20" eventType="touchUpInside" id="cMQ-vu-bjq"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remind Me:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzR-Ma-bXU">
+                                <rect key="frame" x="56" y="251" width="84" height="18"/>
                                 <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -296,26 +305,32 @@
                             <constraint firstAttribute="trailingMargin" secondItem="UJW-Cp-DCk" secondAttribute="trailing" id="08P-5L-O77"/>
                             <constraint firstItem="Vt5-sH-FQe" firstAttribute="leading" secondItem="03o-Ql-jau" secondAttribute="leadingMargin" id="1rX-uK-bIN"/>
                             <constraint firstItem="bDU-Fq-rUC" firstAttribute="top" secondItem="610-sX-7gg" secondAttribute="bottom" id="30c-HE-0aB"/>
-                            <constraint firstItem="vyD-Pv-lHq" firstAttribute="top" secondItem="vxE-2L-Q3M" secondAttribute="bottom" id="3z9-Oa-Ozx"/>
+                            <constraint firstItem="vxE-2L-Q3M" firstAttribute="leading" secondItem="Hgn-Ph-EU8" secondAttribute="trailing" constant="10" id="3BE-GF-vce"/>
                             <constraint firstAttribute="trailingMargin" secondItem="UJW-Cp-DCk" secondAttribute="trailing" constant="86" id="6o1-dk-k3r"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="vxE-2L-Q3M" secondAttribute="trailing" id="A9S-Rq-fIp"/>
                             <constraint firstItem="ng2-m0-ZGS" firstAttribute="centerX" secondItem="03o-Ql-jau" secondAttribute="centerX" id="AU9-HB-oxR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ng2-m0-ZGS" secondAttribute="trailing" id="CiW-Sb-dJZ"/>
+                            <constraint firstItem="zzR-Ma-bXU" firstAttribute="leading" secondItem="vxE-2L-Q3M" secondAttribute="leading" id="HBJ-Mt-T9I"/>
                             <constraint firstItem="610-sX-7gg" firstAttribute="width" secondItem="03o-Ql-jau" secondAttribute="width" multiplier="0.9" id="HU2-8V-6n5"/>
+                            <constraint firstItem="bku-Rk-96V" firstAttribute="centerX" secondItem="Hgn-Ph-EU8" secondAttribute="centerX" id="Ht9-VX-bnp"/>
+                            <constraint firstItem="bku-Rk-96V" firstAttribute="leading" secondItem="03o-Ql-jau" secondAttribute="leadingMargin" id="IvI-xn-tqc"/>
                             <constraint firstItem="UJW-Cp-DCk" firstAttribute="height" secondItem="03o-Ql-jau" secondAttribute="height" multiplier="0.15" id="Lpb-4O-2WL"/>
-                            <constraint firstItem="vyD-Pv-lHq" firstAttribute="centerX" secondItem="03o-Ql-jau" secondAttribute="centerX" id="MmO-vf-de7"/>
                             <constraint firstItem="vxE-2L-Q3M" firstAttribute="width" secondItem="03o-Ql-jau" secondAttribute="width" id="Nj7-3F-3Zt"/>
                             <constraint firstItem="ng2-m0-ZGS" firstAttribute="top" secondItem="Vt5-sH-FQe" secondAttribute="bottom" constant="15" id="Qxf-wl-7c9"/>
+                            <constraint firstItem="Hgn-Ph-EU8" firstAttribute="centerY" secondItem="vxE-2L-Q3M" secondAttribute="centerY" id="RL6-No-5Qn"/>
                             <constraint firstItem="bDU-Fq-rUC" firstAttribute="top" secondItem="610-sX-7gg" secondAttribute="bottom" id="RY4-bU-Bef"/>
                             <constraint firstItem="Vt5-sH-FQe" firstAttribute="centerX" secondItem="03o-Ql-jau" secondAttribute="centerX" id="SIx-oC-jT2"/>
+                            <constraint firstItem="bku-Rk-96V" firstAttribute="top" secondItem="Hgn-Ph-EU8" secondAttribute="bottom" constant="15" id="V3X-ZO-kMg"/>
                             <constraint firstItem="ng2-m0-ZGS" firstAttribute="leading" secondItem="03o-Ql-jau" secondAttribute="leadingMargin" id="VeE-vT-zKf"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="vxE-2L-Q3M" secondAttribute="trailing" id="Vfc-pO-Uuh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="610-sX-7gg" secondAttribute="trailing" constant="160" id="Y2R-Lv-KYb"/>
-                            <constraint firstItem="vyD-Pv-lHq" firstAttribute="top" secondItem="ng2-m0-ZGS" secondAttribute="bottom" constant="20" id="YG4-Wh-Dua"/>
                             <constraint firstItem="Vt5-sH-FQe" firstAttribute="top" secondItem="UJW-Cp-DCk" secondAttribute="bottom" constant="15" id="Z2N-B9-2Rl"/>
                             <constraint firstItem="vxE-2L-Q3M" firstAttribute="leading" secondItem="03o-Ql-jau" secondAttribute="leadingMargin" id="ZNx-eb-2xR"/>
+                            <constraint firstItem="zzR-Ma-bXU" firstAttribute="centerY" secondItem="bku-Rk-96V" secondAttribute="centerY" id="fZ1-hy-y5L"/>
                             <constraint firstItem="vxE-2L-Q3M" firstAttribute="top" secondItem="ng2-m0-ZGS" secondAttribute="bottom" constant="20" id="gBZ-fE-Mt9"/>
                             <constraint firstItem="610-sX-7gg" firstAttribute="leading" secondItem="03o-Ql-jau" secondAttribute="leadingMargin" constant="160" id="guh-db-Re5"/>
                             <constraint firstItem="UJW-Cp-DCk" firstAttribute="leading" secondItem="03o-Ql-jau" secondAttribute="leadingMargin" id="hVs-Iu-tD8"/>
-                            <constraint firstItem="610-sX-7gg" firstAttribute="top" secondItem="vyD-Pv-lHq" secondAttribute="bottom" constant="10" id="kTc-PX-yPd"/>
+                            <constraint firstItem="Hgn-Ph-EU8" firstAttribute="leading" secondItem="03o-Ql-jau" secondAttribute="leadingMargin" id="kRo-uU-cBT"/>
                             <constraint firstItem="UJW-Cp-DCk" firstAttribute="top" secondItem="7nO-I3-F5G" secondAttribute="bottom" constant="10" id="tI2-Pk-FBJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Vt5-sH-FQe" secondAttribute="trailing" id="wh4-Ee-0Tu"/>
                             <constraint firstItem="610-sX-7gg" firstAttribute="centerX" secondItem="03o-Ql-jau" secondAttribute="centerX" id="ybc-pK-XIq"/>
@@ -324,10 +339,12 @@
                             <mask key="constraints">
                                 <exclude reference="6o1-dk-k3r"/>
                                 <exclude reference="Lpb-4O-2WL"/>
-                                <exclude reference="YG4-Wh-Dua"/>
+                                <exclude reference="Nj7-3F-3Zt"/>
+                                <exclude reference="Vfc-pO-Uuh"/>
+                                <exclude reference="ZNx-eb-2xR"/>
+                                <exclude reference="30c-HE-0aB"/>
                                 <exclude reference="Y2R-Lv-KYb"/>
                                 <exclude reference="guh-db-Re5"/>
-                                <exclude reference="30c-HE-0aB"/>
                             </mask>
                         </variation>
                     </view>
@@ -347,8 +364,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="dueDateLabel" destination="vxE-2L-Q3M" id="Tor-Lf-dK6"/>
-                        <outlet property="dueDatePicker" destination="vyD-Pv-lHq" id="4AW-is-Yth"/>
                         <outlet property="importanceSelector" destination="ng2-m0-ZGS" id="q2k-u9-ct1"/>
+                        <outlet property="reminderDateLabel" destination="zzR-Ma-bXU" id="ctA-C2-QlE"/>
                         <outlet property="taskDetails" destination="610-sX-7gg" id="zKh-W1-fke"/>
                         <outlet property="taskTitleTextField" destination="UJW-Cp-DCk" id="bQW-jb-Z2a"/>
                         <outlet property="urgencySelector" destination="Vt5-sH-FQe" id="W6H-Ty-8UC"/>
@@ -585,16 +602,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="P6a-1X-dUd" userLabel="WorkDuration">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="P6a-1X-dUd" userLabel="WorkDuration">
                                 <rect key="frame" x="140" y="94" width="320" height="241"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Work Duration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4l5-VE-tfy">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Work Duration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4l5-VE-tfy">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="25"/>
                                         <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="25"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="atg-6M-Dpv" userLabel="WorkDurationPickerView">
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="atg-6M-Dpv" userLabel="WorkDurationPickerView">
                                         <rect key="frame" x="0.0" y="25" width="320" height="216"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <userDefinedRuntimeAttributes>
@@ -608,16 +625,16 @@
                                     <constraint firstItem="4l5-VE-tfy" firstAttribute="width" secondItem="atg-6M-Dpv" secondAttribute="width" id="2fu-Tz-92V"/>
                                 </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kN6-MM-c0e" userLabel="BreakDuration">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kN6-MM-c0e" userLabel="BreakDuration">
                                 <rect key="frame" x="140" y="365" width="320" height="241"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Break Duration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jqq-nx-LBK">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Break Duration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jqq-nx-LBK">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="25"/>
                                         <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="25"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b2t-V1-Djo" userLabel="BreakDurationPickerView">
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b2t-V1-Djo" userLabel="BreakDurationPickerView">
                                         <rect key="frame" x="0.0" y="25" width="320" height="216"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <userDefinedRuntimeAttributes>
@@ -726,9 +743,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Info" width="27" height="24"/>
+        <image name="DueDate" width="26" height="26"/>
+        <image name="Info" width="24" height="24"/>
         <image name="Play" width="28" height="32"/>
         <image name="Preferences" width="27" height="27"/>
+        <image name="Reminder" width="22" height="35"/>
         <image name="Restart" width="31" height="32"/>
         <image name="Tasks" width="27" height="27"/>
         <image name="Time" width="22" height="24"/>

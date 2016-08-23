@@ -23,6 +23,9 @@ pod 'NVActivityIndicatorView'
 pod 'UIColor_Hex_Swift', '~> 2.1'
 pod 'PopupDialog', '~> 0.3'
 pod 'Device.swift'
+pod 'DatePickerDialog'
+pod 'PermissionScope'
+
 
 
 

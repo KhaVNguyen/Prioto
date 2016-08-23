@@ -93,7 +93,7 @@ class TaskTableViewCell: MGSwipeTableCell {
 	
 	func stopAnimation() {
 		timingIndicator.stopAnimation()
-		print("stopped animation")
+	//	print("stopped animation")
 	}
 	
 	func startAnimation() {

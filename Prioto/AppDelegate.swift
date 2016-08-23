@@ -11,6 +11,8 @@ import IQKeyboardManager
 import SwiftyUserDefaults
 import BSForegroundNotification
 import PopupDialog
+import RealmSwift
+import Realm
 
 extension DefaultsKeys {
 	static let dateAppExited = DefaultsKey<NSDate>("dateAppExited")
@@ -27,6 +29,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BSForegroundNotificationD
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		// Override point for customization after application launch.
+		
+		let config = Realm.Configuration(
+			// Set the new schema version. This must be greater than the previously used
+			// version (if you've never set a schema version before, the version is 0).
+			schemaVersion: 2,
+			
+			// Set the block which will be called automatically when opening a Realm with
+			// a schema version lower than the one set above
+			migrationBlock: { migration, oldSchemaVersion in
+    // We haven’t migrated anything yet, so oldSchemaVersion == 0
+    if (oldSchemaVersion < 2) {
+		// Nothing to do!
+		// Realm will automatically detect new properties and removed properties
+		// And will update the schema on disk automatically
+    }
+  })
+		
+		// Tell Realm to use this new configuration object for the default Realm
+		Realm.Configuration.defaultConfiguration = config
+		
+		// Now that we've told Realm how to handle the schema change, opening the file
+		// will automatically perform the migration
+		let realm = try! Realm()
+
 		IQKeyboardManager.sharedManager().enable = true
 		IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
 		// types are UIUserNotificationType values
@@ -85,6 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BSForegroundNotificationD
         cb.titleColor     = UIColor(white: 0.6, alpha: 1)
         cb.buttonColor    = UIColor(red:0.25, green:0.25, blue:0.29, alpha:1.00)
         cb.separatorColor = UIColor(red:0.20, green:0.20, blue:0.25, alpha:1.00)
+		
 		
 		return true
 	}
@@ -149,6 +176,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BSForegroundNotificationD
 			foregroundNotification.delegate = self
 			foregroundNotification.timeToDismissNotification = NSTimeInterval(5)
 			foregroundNotification.presentNotification()
+		}
+		
+		else {
+			let foregroundNotification = BSForegroundNotification(userInfo: NotificationHelper.userInfoForCategory(notification.category!))
+			foregroundNotification.delegate = self
+			foregroundNotification.timeToDismissNotification = NSTimeInterval(5)
+			foregroundNotification.presentNotification()
+
 		}
 	}
 }
