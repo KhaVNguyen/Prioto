@@ -95,6 +95,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/LionheartExtensions/LionheartExtensions.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MGSwipeTableCell/MGSwipeTableCell.framework"
   install_framework "$BUILT_PRODUCTS_DIR/NVActivityIndicatorView/NVActivityIndicatorView.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/PermissionScope/PermissionScope.framework"
   install_framework "$BUILT_PRODUCTS_DIR/PopupDialog/PopupDialog.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Realm/Realm.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RealmSwift/RealmSwift.framework"
@@ -102,6 +103,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Spring/Spring.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyTimer/SwiftyTimer.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyUserDefaults/SwiftyUserDefaults.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/TZStackView/TZStackView.framework"
   install_framework "$BUILT_PRODUCTS_DIR/UIColor_Hex_Swift/UIColor_Hex_Swift.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -116,6 +118,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/LionheartExtensions/LionheartExtensions.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MGSwipeTableCell/MGSwipeTableCell.framework"
   install_framework "$BUILT_PRODUCTS_DIR/NVActivityIndicatorView/NVActivityIndicatorView.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/PermissionScope/PermissionScope.framework"
   install_framework "$BUILT_PRODUCTS_DIR/PopupDialog/PopupDialog.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Realm/Realm.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RealmSwift/RealmSwift.framework"
@@ -123,5 +126,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Spring/Spring.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyTimer/SwiftyTimer.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyUserDefaults/SwiftyUserDefaults.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/TZStackView/TZStackView.framework"
   install_framework "$BUILT_PRODUCTS_DIR/UIColor_Hex_Swift/UIColor_Hex_Swift.framework"
 fi

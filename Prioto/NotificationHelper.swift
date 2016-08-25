@@ -54,8 +54,8 @@ static func userInfoForCategory(category: String) -> [NSObject: AnyObject] {
 		return ["aps": [
 			"category": category,
 			"alert": [
-				"body": "",
-				"title": "Prioto"
+				"body": category,
+				"title": "Task Reminder"
 			],
 			"sound": "sound.wav"
 			]
@@ -65,8 +65,8 @@ static func userInfoForCategory(category: String) -> [NSObject: AnyObject] {
 	return ["aps": [
 		"category": category,
 		"alert": [
-			"body": "Something went wrong...",
-			"title": "Prioto"
+			"body": category,
+			"title": "Task Reminder"
 		],
 		"sound": "sound.wav"
 		]

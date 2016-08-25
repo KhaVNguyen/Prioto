@@ -261,18 +261,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </segmentedControl>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="610-sX-7gg" userLabel="Task Details" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                                <rect key="frame" x="30" y="556" width="540" height="0.0"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Enter Task Details Here..."/>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxE-2L-Q3M">
                                 <rect key="frame" x="56" y="205" width="68" height="18"/>
                                 <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="18"/>
@@ -286,11 +274,18 @@
                                     <action selector="dueDateButtonPressed:" destination="x4Y-Jd-H20" eventType="touchUpInside" id="onx-Qa-utZ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bku-Rk-96V">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bku-Rk-96V" userLabel="Reminder Button">
                                 <rect key="frame" x="20" y="242" width="26" height="35"/>
                                 <state key="normal" image="Reminder"/>
                                 <connections>
                                     <action selector="remindButtonPressed:" destination="x4Y-Jd-H20" eventType="touchUpInside" id="cMQ-vu-bjq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D2m-Dd-qGU" userLabel="Details">
+                                <rect key="frame" x="21" y="292" width="24" height="24"/>
+                                <state key="normal" image="Details"/>
+                                <connections>
+                                    <action selector="detailsButtonPressed:" destination="x4Y-Jd-H20" eventType="touchUpInside" id="joz-dx-2fO"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remind Me:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzR-Ma-bXU">
@@ -299,19 +294,38 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="610-sX-7gg" userLabel="Task Details" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
+                                <rect key="frame" x="51" y="287" width="519" height="269"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Task Details: "/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="UJW-Cp-DCk" secondAttribute="trailing" id="08P-5L-O77"/>
                             <constraint firstItem="Vt5-sH-FQe" firstAttribute="leading" secondItem="03o-Ql-jau" secondAttribute="leadingMargin" id="1rX-uK-bIN"/>
+                            <constraint firstItem="610-sX-7gg" firstAttribute="top" secondItem="D2m-Dd-qGU" secondAttribute="top" constant="-5" id="2WN-ny-Xdl"/>
                             <constraint firstItem="bDU-Fq-rUC" firstAttribute="top" secondItem="610-sX-7gg" secondAttribute="bottom" id="30c-HE-0aB"/>
                             <constraint firstItem="vxE-2L-Q3M" firstAttribute="leading" secondItem="Hgn-Ph-EU8" secondAttribute="trailing" constant="10" id="3BE-GF-vce"/>
+                            <constraint firstItem="D2m-Dd-qGU" firstAttribute="top" secondItem="bku-Rk-96V" secondAttribute="bottom" constant="15" id="3TK-kP-I9W"/>
+                            <constraint firstItem="610-sX-7gg" firstAttribute="top" secondItem="D2m-Dd-qGU" secondAttribute="top" id="6ae-WY-QEb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="UJW-Cp-DCk" secondAttribute="trailing" constant="86" id="6o1-dk-k3r"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="vxE-2L-Q3M" secondAttribute="trailing" id="A9S-Rq-fIp"/>
+                            <constraint firstItem="610-sX-7gg" firstAttribute="top" secondItem="D2m-Dd-qGU" secondAttribute="bottom" constant="20" id="ADh-ey-ejh"/>
                             <constraint firstItem="ng2-m0-ZGS" firstAttribute="centerX" secondItem="03o-Ql-jau" secondAttribute="centerX" id="AU9-HB-oxR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ng2-m0-ZGS" secondAttribute="trailing" id="CiW-Sb-dJZ"/>
+                            <constraint firstItem="D2m-Dd-qGU" firstAttribute="leading" secondItem="bku-Rk-96V" secondAttribute="leading" id="FE5-tl-4XH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="610-sX-7gg" secondAttribute="trailing" constant="10" id="GGa-lp-o68"/>
                             <constraint firstItem="zzR-Ma-bXU" firstAttribute="leading" secondItem="vxE-2L-Q3M" secondAttribute="leading" id="HBJ-Mt-T9I"/>
                             <constraint firstItem="610-sX-7gg" firstAttribute="width" secondItem="03o-Ql-jau" secondAttribute="width" multiplier="0.9" id="HU2-8V-6n5"/>
+                            <constraint firstItem="D2m-Dd-qGU" firstAttribute="centerX" secondItem="bku-Rk-96V" secondAttribute="centerX" id="HkF-Ne-t0w"/>
                             <constraint firstItem="bku-Rk-96V" firstAttribute="centerX" secondItem="Hgn-Ph-EU8" secondAttribute="centerX" id="Ht9-VX-bnp"/>
                             <constraint firstItem="bku-Rk-96V" firstAttribute="leading" secondItem="03o-Ql-jau" secondAttribute="leadingMargin" id="IvI-xn-tqc"/>
                             <constraint firstItem="UJW-Cp-DCk" firstAttribute="height" secondItem="03o-Ql-jau" secondAttribute="height" multiplier="0.15" id="Lpb-4O-2WL"/>
@@ -320,6 +334,7 @@
                             <constraint firstItem="Hgn-Ph-EU8" firstAttribute="centerY" secondItem="vxE-2L-Q3M" secondAttribute="centerY" id="RL6-No-5Qn"/>
                             <constraint firstItem="bDU-Fq-rUC" firstAttribute="top" secondItem="610-sX-7gg" secondAttribute="bottom" id="RY4-bU-Bef"/>
                             <constraint firstItem="Vt5-sH-FQe" firstAttribute="centerX" secondItem="03o-Ql-jau" secondAttribute="centerX" id="SIx-oC-jT2"/>
+                            <constraint firstItem="610-sX-7gg" firstAttribute="leading" secondItem="zzR-Ma-bXU" secondAttribute="leading" constant="-5" id="UXK-lQ-Edx"/>
                             <constraint firstItem="bku-Rk-96V" firstAttribute="top" secondItem="Hgn-Ph-EU8" secondAttribute="bottom" constant="15" id="V3X-ZO-kMg"/>
                             <constraint firstItem="ng2-m0-ZGS" firstAttribute="leading" secondItem="03o-Ql-jau" secondAttribute="leadingMargin" id="VeE-vT-zKf"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="vxE-2L-Q3M" secondAttribute="trailing" id="Vfc-pO-Uuh"/>
@@ -331,6 +346,8 @@
                             <constraint firstItem="610-sX-7gg" firstAttribute="leading" secondItem="03o-Ql-jau" secondAttribute="leadingMargin" constant="160" id="guh-db-Re5"/>
                             <constraint firstItem="UJW-Cp-DCk" firstAttribute="leading" secondItem="03o-Ql-jau" secondAttribute="leadingMargin" id="hVs-Iu-tD8"/>
                             <constraint firstItem="Hgn-Ph-EU8" firstAttribute="leading" secondItem="03o-Ql-jau" secondAttribute="leadingMargin" id="kRo-uU-cBT"/>
+                            <constraint firstItem="610-sX-7gg" firstAttribute="leading" secondItem="D2m-Dd-qGU" secondAttribute="trailing" constant="10" id="leR-R6-tdW"/>
+                            <constraint firstItem="610-sX-7gg" firstAttribute="top" secondItem="bku-Rk-96V" secondAttribute="bottom" constant="20" id="m38-az-9U5"/>
                             <constraint firstItem="UJW-Cp-DCk" firstAttribute="top" secondItem="7nO-I3-F5G" secondAttribute="bottom" constant="10" id="tI2-Pk-FBJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Vt5-sH-FQe" secondAttribute="trailing" id="wh4-Ee-0Tu"/>
                             <constraint firstItem="610-sX-7gg" firstAttribute="centerX" secondItem="03o-Ql-jau" secondAttribute="centerX" id="ybc-pK-XIq"/>
@@ -342,9 +359,16 @@
                                 <exclude reference="Nj7-3F-3Zt"/>
                                 <exclude reference="Vfc-pO-Uuh"/>
                                 <exclude reference="ZNx-eb-2xR"/>
-                                <exclude reference="30c-HE-0aB"/>
+                                <exclude reference="6ae-WY-QEb"/>
+                                <exclude reference="ADh-ey-ejh"/>
+                                <exclude reference="HU2-8V-6n5"/>
                                 <exclude reference="Y2R-Lv-KYb"/>
                                 <exclude reference="guh-db-Re5"/>
+                                <exclude reference="leR-R6-tdW"/>
+                                <exclude reference="m38-az-9U5"/>
+                                <exclude reference="ybc-pK-XIq"/>
+                                <exclude reference="FE5-tl-4XH"/>
+                                <exclude reference="30c-HE-0aB"/>
                             </mask>
                         </variation>
                     </view>
@@ -743,6 +767,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Details" width="24" height="24"/>
         <image name="DueDate" width="26" height="26"/>
         <image name="Info" width="24" height="24"/>
         <image name="Play" width="28" height="32"/>

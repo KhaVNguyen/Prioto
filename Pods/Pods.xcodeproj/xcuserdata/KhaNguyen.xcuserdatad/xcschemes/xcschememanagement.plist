@@ -69,6 +69,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>PermissionScope.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Prioto.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -109,6 +114,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>TZStackView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>UIColor_Hex_Swift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -117,7 +127,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>28ED8D0D9C338FFB3BA58A57B8FF24D5</key>
+		<key>0F731B69DB1B03C4464BCB13DFC437DC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -137,12 +147,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4BC1DD8324EF4773004EE63558EC27DF</key>
+		<key>3C06A708BAC1507AE5D500A4FC19AB59</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4D6B1303FC66CED43B44AD9E58752A39</key>
+		<key>407F0A8417F735F2E04DADAA5C81CECE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4BC1DD8324EF4773004EE63558EC27DF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -162,12 +177,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5D71132139A1E1855313CBD9F229AC7A</key>
+		<key>5397B6538ACBAD836BA4DEA08C2F47C1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5E2EDE9961E378B2A8F239AD4400CE37</key>
+		<key>5D71132139A1E1855313CBD9F229AC7A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -182,22 +197,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A2EB507EFA0BCD16C3C220D14781320E</key>
+		<key>88E08C33B56B7BF050850AFD40CCE8CB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A700E04919CC8831899F85DFE49084DA</key>
+		<key>AD0A78F4302D02598BB864B05207A09C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C80E18865012A6D9D77D2346BF45318E</key>
+		<key>B1D583F1F7A9DEFDCA6DF67061A5FB62</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CA33329BAF679D07956777E64A58B107</key>
+		<key>B4200558565C443345C289FBD6218A86</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C55E46AC6A1E70A6AA25E306AE545375</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -207,22 +227,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CCD4C7252F312CD28DE58A69AAE006FD</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>D7DB3C7C21F358BD086BEE0414F21C69</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EC25B770E2E786F47106EE8F013163EA</key>
+		<key>E5B8F3743AF85BC1EED4F76BD7623D03</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FBFFD7F32E1E631F7F5A035CBFA0013D</key>
+		<key>E9F9A29F66CA100B9F07B6AEBF897A99</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EC25B770E2E786F47106EE8F013163EA</key>
 		<dict>
 			<key>primary</key>
 			<true/>

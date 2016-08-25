@@ -12,10 +12,12 @@ import RealmSwift
 class RealmHelper {
 	
 	static func deleteTask(task: Task) -> Task {
+		
 		let realm = try! Realm()
 		try! realm.write() {
 			realm.delete(task)
 		}
+		
 		return task
 	}
 

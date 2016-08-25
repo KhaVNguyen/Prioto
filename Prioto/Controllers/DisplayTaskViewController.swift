@@ -11,6 +11,7 @@ import AudioToolbox
 import Spring
 import RealmSwift
 import DatePickerDialog
+import PermissionScope
 
 class DisplayTaskViewController: UIViewController {
 	
@@ -36,18 +37,26 @@ class DisplayTaskViewController: UIViewController {
 
 	}
 	
+	let singlePscope = PermissionScope()
+	
 	@IBAction func remindButtonPressed(sender: AnyObject) {
+		
 		let currentDate = NSDate()
 		let dateComponents = NSDateComponents()
 		
 		DatePickerDialog().show("Reminder Date", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", minimumDate: currentDate, datePickerMode: .DateAndTime) {
 			(date) -> Void in
 			if let dt = date {
-				print("Current date is: \(NSDate())")
-				print("dt is: \(dt)")
 				self.reminderDateLabel.text = "Reminder Date: \(self.formatDateAsString(dt))"
 				self.reminderDate = dt
-				
+				self.singlePscope.show(
+					{ finished, results in
+						print("got results \(results)")
+					},
+					cancelled: { results in
+						print("thing was cancelled")
+					}
+				)
 			} else {
 				print("Reminder Date:")
 			}
@@ -62,6 +71,10 @@ class DisplayTaskViewController: UIViewController {
 	
 	@IBOutlet weak var taskDetails: UITextView!
 	
+	@IBAction func detailsButtonPressed(sender: AnyObject) {
+		taskTitleTextField.resignFirstResponder()
+		taskDetails.becomeFirstResponder()
+	}
 	var priorityIndex: Int!
 	var completed: Bool = false
 	var timeWorked: Int!
@@ -72,6 +85,8 @@ class DisplayTaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
+	
+		
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(DisplayTaskViewController.dismissKeyboard))
 		view.addGestureRecognizer(tap)
 
@@ -79,7 +94,6 @@ class DisplayTaskViewController: UIViewController {
 //		 dueDatePicker.addTarget(self, action: #selector(self.datePickerValueChanged), forControlEvents: UIControlEvents.ValueChanged)
 //		dueDatePicker.minimumDate = NSDate()
 		
-		taskTitleTextField.becomeFirstResponder()
 		
 		var bottomLine = CALayer()
 		bottomLine.frame = CGRectMake(0.0, taskTitleTextField.frame.height - 1, taskTitleTextField.frame.width, 1.0)
@@ -101,6 +115,10 @@ class DisplayTaskViewController: UIViewController {
 			
 			taskDetails.text = task.details
 		}
+		
+		else {
+			taskTitleTextField.becomeFirstResponder()
+		}
 		if let priorityIndex = self.priorityIndex {
 			switch priorityIndex {
 			case 0: // Urgent - Important
@@ -120,6 +138,10 @@ class DisplayTaskViewController: UIViewController {
 				urgencySelector.selectedSegmentIndex = 0
 			}
 		}
+		
+		singlePscope.addPermission(NotificationsPermission(notificationCategories: nil),
+		                           message: "Prioto uses this to remind you \r\nabout the task you are procrastinating")
+		
     }
 	
 	//Calls this function when the tap is recognized.
@@ -211,6 +233,7 @@ class DisplayTaskViewController: UIViewController {
 		if let reminderDate = self.reminderDate {
 			print(reminderDate)
 			if reminderDate >= NSDate() {
+				
 				var app:UIApplication = UIApplication.sharedApplication()
 				if let scheduled = app.scheduledLocalNotifications {
 					for reminder in scheduled {
@@ -232,6 +255,7 @@ class DisplayTaskViewController: UIViewController {
 				reminderNotification.alertTitle = alertTitle
 				reminderNotification.soundName = UILocalNotificationDefaultSoundName
 				reminderNotification.category = task.uuid
+				
 				UIApplication.sharedApplication().scheduleLocalNotification(reminderNotification)
 			}
 		}

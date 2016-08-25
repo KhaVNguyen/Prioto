@@ -18,6 +18,7 @@ import RealmSwift
 import UIColor_Hex_Swift
 import PopupDialog
 import Device_swift
+import PermissionScope
 
 var newFocusViewControllerLoaded: Bool = false
 var timerInterrupted: Bool = false
@@ -81,7 +82,14 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		}
 		else {
 			startTimer()
-
+			singlePscope.show(
+				{ finished, results in
+					print("got results \(results)")
+				},
+				cancelled: { results in
+					print("thing was cancelled")
+				}
+			)
 		}
 	}
 	
@@ -163,13 +171,15 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		
 	@IBOutlet weak var timeWorkedLabel: UILabel!
 	
+	let singlePscope = PermissionScope()
+	
 	override func viewDidLoad() {
 		
 		newFocusViewControllerLoaded = true
 		
-		let settings = UIUserNotificationSettings(forTypes: [.Badge, .Sound, .Alert], categories: nil)
-		UIApplication.sharedApplication().registerUserNotificationSettings(settings)
-        
+//		let settings = UIUserNotificationSettings(forTypes: [.Badge, .Sound, .Alert], categories: nil)
+//		UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+		
         var bounds = UIScreen.mainScreen().bounds
         var width = bounds.size.width
 		
@@ -236,7 +246,11 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		timeLeftLabel.minimumScaleFactor = 0.4
 		timeLeftLabel.numberOfLines = 1
         
-        print("Timer view frame width from viewload: \(timerView.frame.width / 2)")
+        // print("Timer view frame width from viewload: \(timerView.frame.width / 2)")
+		
+		singlePscope.addPermission(NotificationsPermission(notificationCategories: nil),
+		                           message: "Prioto uses this to remind you \r\nwhen to work and break")
+
 	}
 	
 	deinit {
@@ -315,9 +329,9 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		func countdown() { // gets called by timer every second
 		self.timeRemaining = timeRemaining - 1 // decrement timeRemaining integer
 		self.updateTimer()
-		if self.timeRemaining == 0 {
-			AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
-		}
+//		if self.timeRemaining == 0 {
+//			AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+//		}
 		if self.timeRemaining < 0 {
 			self.switchTimerType()
 			setupLocalNotifications()

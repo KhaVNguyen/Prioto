@@ -299,6 +299,17 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
  			//	}
 				// self.tasksTableView.reloadData()
 				//				self.taskExpanded[indexPath.section].removeAtIndex(indexPath.row)
+				var app:UIApplication = UIApplication.sharedApplication()
+				if let scheduled = app.scheduledLocalNotifications {
+					for reminder in scheduled {
+						var notification = reminder as UILocalNotification
+						if notification.category == task!.uuid {
+							//Cancelling local notification
+							print("Cancelling notification with UUID: \(notification.category)")
+							app.cancelLocalNotification(notification)
+						}
+					}
+				}
 				RealmHelper.deleteTask(self.taskForIndexPath(indexPath)!)
 				// self.tasksTableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: UITableViewRowAnimation.Automatic)
 				self.tasksTableView.reloadData()

@@ -13,6 +13,7 @@ import BSForegroundNotification
 import PopupDialog
 import RealmSwift
 import Realm
+import AudioToolbox
 
 extension DefaultsKeys {
 	static let dateAppExited = DefaultsKey<NSDate>("dateAppExited")
@@ -56,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BSForegroundNotificationD
 		IQKeyboardManager.sharedManager().enable = true
 		IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
 		// types are UIUserNotificationType values
-		application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
+		// application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
 
 		if let tabBarController = self.window!.rootViewController as? UITabBarController {
 			for viewController in tabBarController.viewControllers! {
@@ -167,22 +168,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BSForegroundNotificationD
 		if notification.category == "WORKTIME_UP" {
 			let foregroundNotification = BSForegroundNotification(userInfo: NotificationHelper.userInfoForCategory("WORKTIME_UP"))
 			foregroundNotification.delegate = self
-			foregroundNotification.timeToDismissNotification = NSTimeInterval(5)
+			foregroundNotification.timeToDismissNotification = NSTimeInterval(10)
 			foregroundNotification.presentNotification()
+			AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
 		}
 		
 		else if notification.category == "BREAKTIME_UP" {
 			let foregroundNotification = BSForegroundNotification(userInfo: NotificationHelper.userInfoForCategory("BREAKTIME_UP"))
 			foregroundNotification.delegate = self
-			foregroundNotification.timeToDismissNotification = NSTimeInterval(5)
+			foregroundNotification.timeToDismissNotification = NSTimeInterval(10)
 			foregroundNotification.presentNotification()
+			AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
 		}
 		
 		else {
-			let foregroundNotification = BSForegroundNotification(userInfo: NotificationHelper.userInfoForCategory(notification.category!))
+			let foregroundNotification = BSForegroundNotification(userInfo: NotificationHelper.userInfoForCategory(notification.alertBody!))
 			foregroundNotification.delegate = self
-			foregroundNotification.timeToDismissNotification = NSTimeInterval(5)
+			foregroundNotification.timeToDismissNotification = NSTimeInterval(86400)
 			foregroundNotification.presentNotification()
+			print("Presenting notification")
+			AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
 
 		}
 	}
