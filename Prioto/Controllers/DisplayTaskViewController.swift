@@ -72,7 +72,7 @@ class DisplayTaskViewController: UIViewController {
 	@IBOutlet weak var taskDetails: UITextView!
 	
 	@IBAction func detailsButtonPressed(sender: AnyObject) {
-		taskTitleTextField.resignFirstResponder()
+view.endEditing(true)
 		taskDetails.becomeFirstResponder()
 	}
 	var priorityIndex: Int!
@@ -117,6 +117,7 @@ class DisplayTaskViewController: UIViewController {
 		}
 		
 		else {
+			taskDetails.resignFirstResponder()
 			taskTitleTextField.becomeFirstResponder()
 		}
 		if let priorityIndex = self.priorityIndex {
