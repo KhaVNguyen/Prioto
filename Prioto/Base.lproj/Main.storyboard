@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RoI-Ck-V6C">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16A313a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RoI-Ck-V6C">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -261,41 +261,58 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxE-2L-Q3M">
-                                <rect key="frame" x="56" y="205" width="68" height="18"/>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxE-2L-Q3M">
+                                <rect key="frame" x="56" y="205" width="68" height="22"/>
                                 <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hgn-Ph-EU8" userLabel="Due Date Button">
-                                <rect key="frame" x="20" y="201" width="26" height="26"/>
+                                <rect key="frame" x="20" y="203" width="26" height="26"/>
                                 <state key="normal" image="DueDate"/>
                                 <connections>
                                     <action selector="dueDateButtonPressed:" destination="x4Y-Jd-H20" eventType="touchUpInside" id="onx-Qa-utZ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3X-63-NcK" userLabel="Remove Due Date Button">
+                                <rect key="frame" x="134" y="205" width="26" height="22"/>
+                                <state key="normal" image="Remove"/>
+                                <connections>
+                                    <action selector="removeDueDateButtonPressed:" destination="x4Y-Jd-H20" eventType="touchUpInside" id="0mS-U8-yz2"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bku-Rk-96V" userLabel="Reminder Button">
-                                <rect key="frame" x="20" y="242" width="26" height="35"/>
+                                <rect key="frame" x="20" y="244" width="26" height="35"/>
                                 <state key="normal" image="Reminder"/>
                                 <connections>
                                     <action selector="remindButtonPressed:" destination="x4Y-Jd-H20" eventType="touchUpInside" id="cMQ-vu-bjq"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lDK-S9-Wqo" userLabel="Remove Reminder Button">
+                                <rect key="frame" x="150" y="251" width="22" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="lDK-S9-Wqo" secondAttribute="height" multiplier="1:1" id="Wif-DI-FBr"/>
+                                </constraints>
+                                <state key="normal" image="Remove"/>
+                                <connections>
+                                    <action selector="removeRemindButtonPressed:" destination="x4Y-Jd-H20" eventType="touchUpInside" id="dlq-2k-7Gu"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D2m-Dd-qGU" userLabel="Details">
-                                <rect key="frame" x="21" y="292" width="24" height="24"/>
+                                <rect key="frame" x="21" y="294" width="24" height="24"/>
                                 <state key="normal" image="Details"/>
                                 <connections>
                                     <action selector="detailsButtonPressed:" destination="x4Y-Jd-H20" eventType="touchUpInside" id="joz-dx-2fO"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remind Me:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzR-Ma-bXU">
-                                <rect key="frame" x="56" y="251" width="84" height="18"/>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remind Me:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzR-Ma-bXU">
+                                <rect key="frame" x="56" y="251" width="84" height="22"/>
                                 <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="610-sX-7gg" userLabel="Task Details" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                                <rect key="frame" x="51" y="287" width="519" height="269"/>
+                                <rect key="frame" x="51" y="289" width="519" height="267"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -310,6 +327,7 @@
                         <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="UJW-Cp-DCk" secondAttribute="trailing" id="08P-5L-O77"/>
+                            <constraint firstItem="lDK-S9-Wqo" firstAttribute="centerY" secondItem="zzR-Ma-bXU" secondAttribute="centerY" id="0xi-YX-ipC"/>
                             <constraint firstItem="Vt5-sH-FQe" firstAttribute="leading" secondItem="03o-Ql-jau" secondAttribute="leadingMargin" id="1rX-uK-bIN"/>
                             <constraint firstItem="610-sX-7gg" firstAttribute="top" secondItem="D2m-Dd-qGU" secondAttribute="top" constant="-5" id="2WN-ny-Xdl"/>
                             <constraint firstItem="bDU-Fq-rUC" firstAttribute="top" secondItem="610-sX-7gg" secondAttribute="bottom" id="30c-HE-0aB"/>
@@ -317,9 +335,11 @@
                             <constraint firstItem="D2m-Dd-qGU" firstAttribute="top" secondItem="bku-Rk-96V" secondAttribute="bottom" constant="15" id="3TK-kP-I9W"/>
                             <constraint firstItem="610-sX-7gg" firstAttribute="top" secondItem="D2m-Dd-qGU" secondAttribute="top" id="6ae-WY-QEb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="UJW-Cp-DCk" secondAttribute="trailing" constant="86" id="6o1-dk-k3r"/>
+                            <constraint firstItem="v3X-63-NcK" firstAttribute="height" secondItem="vxE-2L-Q3M" secondAttribute="height" id="7rc-tR-Xxi"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="vxE-2L-Q3M" secondAttribute="trailing" id="A9S-Rq-fIp"/>
                             <constraint firstItem="610-sX-7gg" firstAttribute="top" secondItem="D2m-Dd-qGU" secondAttribute="bottom" constant="20" id="ADh-ey-ejh"/>
                             <constraint firstItem="ng2-m0-ZGS" firstAttribute="centerX" secondItem="03o-Ql-jau" secondAttribute="centerX" id="AU9-HB-oxR"/>
+                            <constraint firstItem="lDK-S9-Wqo" firstAttribute="height" secondItem="zzR-Ma-bXU" secondAttribute="height" id="Bsv-oA-dAO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ng2-m0-ZGS" secondAttribute="trailing" id="CiW-Sb-dJZ"/>
                             <constraint firstItem="D2m-Dd-qGU" firstAttribute="leading" secondItem="bku-Rk-96V" secondAttribute="leading" id="FE5-tl-4XH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="610-sX-7gg" secondAttribute="trailing" constant="10" id="GGa-lp-o68"/>
@@ -327,7 +347,10 @@
                             <constraint firstItem="610-sX-7gg" firstAttribute="width" secondItem="03o-Ql-jau" secondAttribute="width" multiplier="0.9" id="HU2-8V-6n5"/>
                             <constraint firstItem="D2m-Dd-qGU" firstAttribute="centerX" secondItem="bku-Rk-96V" secondAttribute="centerX" id="HkF-Ne-t0w"/>
                             <constraint firstItem="bku-Rk-96V" firstAttribute="centerX" secondItem="Hgn-Ph-EU8" secondAttribute="centerX" id="Ht9-VX-bnp"/>
+                            <constraint firstItem="lDK-S9-Wqo" firstAttribute="leading" secondItem="zzR-Ma-bXU" secondAttribute="trailing" constant="10" id="IWw-ac-Y4w"/>
                             <constraint firstItem="bku-Rk-96V" firstAttribute="leading" secondItem="03o-Ql-jau" secondAttribute="leadingMargin" id="IvI-xn-tqc"/>
+                            <constraint firstItem="v3X-63-NcK" firstAttribute="width" secondItem="Hgn-Ph-EU8" secondAttribute="height" multiplier="1:1" id="JxK-sm-wPh"/>
+                            <constraint firstItem="v3X-63-NcK" firstAttribute="centerY" secondItem="vxE-2L-Q3M" secondAttribute="centerY" id="KoC-Bj-gnf"/>
                             <constraint firstItem="UJW-Cp-DCk" firstAttribute="height" secondItem="03o-Ql-jau" secondAttribute="height" multiplier="0.15" id="Lpb-4O-2WL"/>
                             <constraint firstItem="vxE-2L-Q3M" firstAttribute="width" secondItem="03o-Ql-jau" secondAttribute="width" id="Nj7-3F-3Zt"/>
                             <constraint firstItem="ng2-m0-ZGS" firstAttribute="top" secondItem="Vt5-sH-FQe" secondAttribute="bottom" constant="15" id="Qxf-wl-7c9"/>
@@ -336,11 +359,13 @@
                             <constraint firstItem="Vt5-sH-FQe" firstAttribute="centerX" secondItem="03o-Ql-jau" secondAttribute="centerX" id="SIx-oC-jT2"/>
                             <constraint firstItem="610-sX-7gg" firstAttribute="leading" secondItem="zzR-Ma-bXU" secondAttribute="leading" constant="-5" id="UXK-lQ-Edx"/>
                             <constraint firstItem="bku-Rk-96V" firstAttribute="top" secondItem="Hgn-Ph-EU8" secondAttribute="bottom" constant="15" id="V3X-ZO-kMg"/>
+                            <constraint firstItem="v3X-63-NcK" firstAttribute="height" secondItem="Hgn-Ph-EU8" secondAttribute="height" id="V7w-uQ-Kk9"/>
                             <constraint firstItem="ng2-m0-ZGS" firstAttribute="leading" secondItem="03o-Ql-jau" secondAttribute="leadingMargin" id="VeE-vT-zKf"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="vxE-2L-Q3M" secondAttribute="trailing" id="Vfc-pO-Uuh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="610-sX-7gg" secondAttribute="trailing" constant="160" id="Y2R-Lv-KYb"/>
                             <constraint firstItem="Vt5-sH-FQe" firstAttribute="top" secondItem="UJW-Cp-DCk" secondAttribute="bottom" constant="15" id="Z2N-B9-2Rl"/>
                             <constraint firstItem="vxE-2L-Q3M" firstAttribute="leading" secondItem="03o-Ql-jau" secondAttribute="leadingMargin" id="ZNx-eb-2xR"/>
+                            <constraint firstItem="lDK-S9-Wqo" firstAttribute="height" secondItem="zzR-Ma-bXU" secondAttribute="height" id="cVM-H9-edO"/>
                             <constraint firstItem="zzR-Ma-bXU" firstAttribute="centerY" secondItem="bku-Rk-96V" secondAttribute="centerY" id="fZ1-hy-y5L"/>
                             <constraint firstItem="vxE-2L-Q3M" firstAttribute="top" secondItem="ng2-m0-ZGS" secondAttribute="bottom" constant="20" id="gBZ-fE-Mt9"/>
                             <constraint firstItem="610-sX-7gg" firstAttribute="leading" secondItem="03o-Ql-jau" secondAttribute="leadingMargin" constant="160" id="guh-db-Re5"/>
@@ -348,9 +373,11 @@
                             <constraint firstItem="Hgn-Ph-EU8" firstAttribute="leading" secondItem="03o-Ql-jau" secondAttribute="leadingMargin" id="kRo-uU-cBT"/>
                             <constraint firstItem="610-sX-7gg" firstAttribute="leading" secondItem="D2m-Dd-qGU" secondAttribute="trailing" constant="10" id="leR-R6-tdW"/>
                             <constraint firstItem="610-sX-7gg" firstAttribute="top" secondItem="bku-Rk-96V" secondAttribute="bottom" constant="20" id="m38-az-9U5"/>
+                            <constraint firstItem="v3X-63-NcK" firstAttribute="leading" secondItem="vxE-2L-Q3M" secondAttribute="trailing" constant="10" id="p2q-VV-s0K"/>
                             <constraint firstItem="UJW-Cp-DCk" firstAttribute="top" secondItem="7nO-I3-F5G" secondAttribute="bottom" constant="10" id="tI2-Pk-FBJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Vt5-sH-FQe" secondAttribute="trailing" id="wh4-Ee-0Tu"/>
                             <constraint firstItem="610-sX-7gg" firstAttribute="centerX" secondItem="03o-Ql-jau" secondAttribute="centerX" id="ybc-pK-XIq"/>
+                            <constraint firstItem="lDK-S9-Wqo" firstAttribute="height" secondItem="bku-Rk-96V" secondAttribute="height" id="zkg-Zq-Y2U"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -359,6 +386,9 @@
                                 <exclude reference="Nj7-3F-3Zt"/>
                                 <exclude reference="Vfc-pO-Uuh"/>
                                 <exclude reference="ZNx-eb-2xR"/>
+                                <exclude reference="V7w-uQ-Kk9"/>
+                                <exclude reference="Bsv-oA-dAO"/>
+                                <exclude reference="zkg-Zq-Y2U"/>
                                 <exclude reference="6ae-WY-QEb"/>
                                 <exclude reference="ADh-ey-ejh"/>
                                 <exclude reference="HU2-8V-6n5"/>
@@ -379,17 +409,27 @@
                                 <segue destination="EaU-8n-Zpb" kind="unwind" identifier="Cancel" unwindAction="unwindToTasksTableViewController:" id="8Xf-nP-UHy"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="JWu-F8-6Oh">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <segue destination="EaU-8n-Zpb" kind="unwind" identifier="Save" unwindAction="unwindToTasksTableViewController:" id="vsw-HQ-s73"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Save" id="JWu-F8-6Oh">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="EaU-8n-Zpb" kind="unwind" identifier="Save" unwindAction="unwindToTasksTableViewController:" id="vsw-HQ-s73"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem id="iiG-NR-JZU">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="notificationsButtonPressed:" destination="x4Y-Jd-H20" id="5yR-CQ-FjU"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="dueDateLabel" destination="vxE-2L-Q3M" id="Tor-Lf-dK6"/>
                         <outlet property="importanceSelector" destination="ng2-m0-ZGS" id="q2k-u9-ct1"/>
                         <outlet property="reminderDateLabel" destination="zzR-Ma-bXU" id="ctA-C2-QlE"/>
+                        <outlet property="removeDueDateButton" destination="v3X-63-NcK" id="Sx0-EZ-YS1"/>
+                        <outlet property="removeReminderButton" destination="lDK-S9-Wqo" id="0pw-hV-6zb"/>
                         <outlet property="taskDetails" destination="610-sX-7gg" id="zKh-W1-fke"/>
                         <outlet property="taskTitleTextField" destination="UJW-Cp-DCk" id="bQW-jb-Z2a"/>
                         <outlet property="urgencySelector" destination="Vt5-sH-FQe" id="W6H-Ty-8UC"/>
@@ -512,18 +552,28 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Time Worked On Task: N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQd-up-scu">
-                                <rect key="frame" x="203" y="120" width="194" height="0.0"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Worked On Task: N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQd-up-scu">
+                                <rect key="frame" x="203" y="105" width="194" height="0.0"/>
                                 <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Task Currently Being Worked On" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odf-sr-612" userLabel="Task Title">
-                                <rect key="frame" x="159" y="84" width="282" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Currently Being Worked On" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odf-sr-612" userLabel="Task Title">
+                                <rect key="frame" x="159" y="84" width="282" height="6"/>
                                 <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zFO-Fu-cD8" userLabel="Remove Task Button">
+                                <rect key="frame" x="451" y="84" width="6" height="6"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="zFO-Fu-cD8" secondAttribute="height" multiplier="1:1" id="L81-0Z-7De"/>
+                                </constraints>
+                                <state key="normal" image="Remove"/>
+                                <connections>
+                                    <action selector="removeTaskButtonPressed:" destination="zDZ-FL-W2b" eventType="touchUpInside" id="Xek-dZ-4O4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -544,10 +594,13 @@
                             <constraint firstItem="49x-wS-QRy" firstAttribute="width" secondItem="1Um-e9-LB6" secondAttribute="height" multiplier="1:1" id="SaS-eU-LbC"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="centerX" secondItem="5eh-35-kI9" secondAttribute="centerX" id="SfB-cr-qGw"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="centerY" secondItem="5eh-35-kI9" secondAttribute="centerY" id="X84-55-jt6"/>
+                            <constraint firstItem="zFO-Fu-cD8" firstAttribute="height" secondItem="odf-sr-612" secondAttribute="height" id="Xs7-DE-S3V"/>
                             <constraint firstItem="49x-wS-QRy" firstAttribute="top" secondItem="zoa-5l-nwl" secondAttribute="top" id="YiV-ul-Wh4"/>
+                            <constraint firstItem="zFO-Fu-cD8" firstAttribute="centerY" secondItem="odf-sr-612" secondAttribute="centerY" id="Yqe-66-1Nm"/>
                             <constraint firstItem="1Um-e9-LB6" firstAttribute="centerY" secondItem="49x-wS-QRy" secondAttribute="centerY" id="aAE-lT-los"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="zoa-5l-nwl" secondAttribute="trailing" constant="30" id="aCZ-WW-An5"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="centerY" secondItem="5eh-35-kI9" secondAttribute="centerY" id="bqz-Hb-KWU"/>
+                            <constraint firstItem="zFO-Fu-cD8" firstAttribute="leading" secondItem="odf-sr-612" secondAttribute="trailing" constant="10" id="igU-SV-b8q"/>
                             <constraint firstItem="odf-sr-612" firstAttribute="centerX" secondItem="5eh-35-kI9" secondAttribute="centerX" id="iwb-Va-n1O"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="height" secondItem="5eh-35-kI9" secondAttribute="height" id="k04-jT-nt5"/>
                             <constraint firstItem="zoa-5l-nwl" firstAttribute="width" secondItem="5eh-35-kI9" secondAttribute="width" multiplier="0.65" id="klq-oW-ThY"/>
@@ -579,9 +632,9 @@
                                 <exclude reference="v0q-ZK-WRn"/>
                                 <exclude reference="vyw-9J-LDZ"/>
                                 <exclude reference="JXK-vo-Jfo"/>
+                                <exclude reference="8WA-uy-xbN"/>
                                 <exclude reference="YiV-ul-Wh4"/>
                                 <exclude reference="uuK-e0-Vqn"/>
-                                <exclude reference="8WA-uy-xbN"/>
                             </mask>
                         </variation>
                     </view>
@@ -601,6 +654,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="removeTaskButton" destination="zFO-Fu-cD8" id="Lmb-zq-F1a"/>
                         <outlet property="restartButton" destination="1Um-e9-LB6" id="7q2-iN-hFJ"/>
                         <outlet property="startPauseButton" destination="49x-wS-QRy" id="Rsk-Fy-s5G"/>
                         <outlet property="taskLabel" destination="odf-sr-612" id="lon-hE-gnm"/>
@@ -626,16 +680,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="P6a-1X-dUd" userLabel="WorkDuration">
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="P6a-1X-dUd" userLabel="WorkDuration">
                                 <rect key="frame" x="140" y="94" width="320" height="241"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Work Duration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4l5-VE-tfy">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Work Duration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4l5-VE-tfy">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="25"/>
                                         <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="25"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="atg-6M-Dpv" userLabel="WorkDurationPickerView">
+                                    <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="atg-6M-Dpv" userLabel="WorkDurationPickerView">
                                         <rect key="frame" x="0.0" y="25" width="320" height="216"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <userDefinedRuntimeAttributes>
@@ -649,16 +703,16 @@
                                     <constraint firstItem="4l5-VE-tfy" firstAttribute="width" secondItem="atg-6M-Dpv" secondAttribute="width" id="2fu-Tz-92V"/>
                                 </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kN6-MM-c0e" userLabel="BreakDuration">
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kN6-MM-c0e" userLabel="BreakDuration">
                                 <rect key="frame" x="140" y="365" width="320" height="241"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Break Duration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jqq-nx-LBK">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Break Duration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jqq-nx-LBK">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="25"/>
                                         <fontDescription key="fontDescription" name="Bariol-Regular" family="Bariol" pointSize="25"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b2t-V1-Djo" userLabel="BreakDurationPickerView">
+                                    <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b2t-V1-Djo" userLabel="BreakDurationPickerView">
                                         <rect key="frame" x="0.0" y="25" width="320" height="216"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <userDefinedRuntimeAttributes>
@@ -773,6 +827,7 @@
         <image name="Play" width="28" height="32"/>
         <image name="Preferences" width="27" height="27"/>
         <image name="Reminder" width="22" height="35"/>
+        <image name="Remove" width="17" height="17"/>
         <image name="Restart" width="31" height="32"/>
         <image name="Tasks" width="27" height="27"/>
         <image name="Time" width="22" height="24"/>

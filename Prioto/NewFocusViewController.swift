@@ -180,8 +180,8 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 //		let settings = UIUserNotificationSettings(forTypes: [.Badge, .Sound, .Alert], categories: nil)
 //		UIApplication.sharedApplication().registerUserNotificationSettings(settings)
 		
-        var bounds = UIScreen.mainScreen().bounds
-        var width = bounds.size.width
+        let bounds = UIScreen.mainScreen().bounds
+        let width = bounds.size.width
 		
 		let margin: CGFloat = 1
 		let radius: CGFloat = width * 0.65 / 2
@@ -250,6 +250,9 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		
 		singlePscope.addPermission(NotificationsPermission(notificationCategories: nil),
 		                           message: "Prioto uses this to remind you \r\nwhen to work and break")
+        if let task = self.task {
+            removeTaskButton.hidden = false
+        }
 
 	}
 	
@@ -263,41 +266,26 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 	
 	
 	override func viewWillAppear(animated: Bool) {
-	// 	print("View appeared")
+        removeTaskButton.hidden = true
+
+        if let task = self.task {
+            if task.invalidated {
+                taskLabel.text = "No task being tracked"
+                taskLabel.textColor = UIColor.redColor()
+                timeWorkedLabel.text = ""
+            }
+            else {
+                removeTaskButton.hidden = false
+            }
+        }
         
-//		if hasExitedAppAndGoBack && self.counting {
-//			
-//			//			if let lastDate = Defaults["dateAppExited"].date {
-//			//				let timeElapsed = Double(NSDate().timeIntervalSinceDate(lastDate))
-//			//				self.timeRemaining = self.timeRemaining - timeElapsed
-//			//				print("Time elapsed: \(timeElapsed)")
-//			//
-//			//			}
-//			self.updateTimer()
-//			hasExitedAppAndGoBack = false
-//			Defaults[DefaultsKeys.dateAppExited._key] = nil
-//		}
-//		// updateTasksInMenu()
-//		if let task = self.task {
-//			if task.invalidated {
-//				taskLabel.text = "No task being tracked"
-//				taskLabel.textColor = UIColor.redColor()
-//			}
-//		}
-//		else {
-//			taskLabel.text = "No task being tracked"
-//			taskLabel.textColor = UIColor.redColor()
-//		}
-		
-		guard let task = self.task else {
-			taskLabel.text = "No task being tracked"
-			taskLabel.textColor = UIColor.redColor()
-			NSNotificationCenter.defaultCenter().postNotificationName("appClosed", object: nil)
-			return
-		}
+        else {
+            taskLabel.text = "No task being tracked"
+            taskLabel.textColor = UIColor.redColor()
+            timeWorkedLabel.text = ""
+        }
 
 		
-        print("Radius from view appear: \(timerView.frame.width / 2)")
 		
 	}
 	
@@ -326,33 +314,36 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 	}
 	
 	
-		func countdown() { // gets called by timer every second
-		self.timeRemaining = timeRemaining - 1 // decrement timeRemaining integer
-		self.updateTimer()
-//		if self.timeRemaining == 0 {
-//			AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
-//		}
-		if self.timeRemaining < 0 {
-			self.switchTimerType()
-			setupLocalNotifications()
-		}
-		// print("counting down")
-		
-		if self.timerType == TimerType.Work { // add time to task
-			if let task = self.task {
-				if task.invalidated != true {
-					let realm = try! Realm()
-					try! realm.write {
-						task.timeWorked += 1
-						//print("Time worked: \(task.timeWorked)")
-					}
-					timeWorkedLabel.text = "Time Worked On Task: \(formatSecondsAsTimeString(Double(task.timeWorked)))"
-				}
-				else {
-					taskLabel.text = "No task being tracked"
-				}
-			}
-		}
+    func countdown() { // gets called by timer every second
+        self.timeRemaining = timeRemaining - 1 // decrement timeRemaining integer
+        self.updateTimer()
+        //		if self.timeRemaining == 0 {
+        //			AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+        //		}
+        if self.timeRemaining < 0 {
+            self.switchTimerType()
+            setupLocalNotifications()
+        }
+        // print("counting down")
+        
+        if self.timerType == TimerType.Work { // add time to task
+            if let task = self.task {
+                if task.invalidated != true {
+                    let realm = try! Realm()
+                    try! realm.write {
+                        task.timeWorked += 1
+                        //print("Time worked: \(task.timeWorked)")
+                    }
+                    timeWorkedLabel.text = "Time Worked On Task: \(formatSecondsAsTimeString(Double(task.timeWorked)))"
+                }
+                else {
+                    taskLabel.text = "No task being tracked"
+                    taskLabel.textColor = UIColor.redColor()
+                    timeWorkedLabel.text = ""
+                    removeTaskButton.hidden = true
+                }
+            }
+        }
 	}
 	
 	func switchTimerType() {
@@ -524,8 +515,8 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 			viewWithTag.removeFromSuperview()
 		}
 		
-        var bounds = UIScreen.mainScreen().bounds
-        var width = bounds.size.width
+        let bounds = UIScreen.mainScreen().bounds
+        let width = bounds.size.width
 
         
 		let margin: CGFloat = 1
@@ -550,15 +541,18 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
 		taskLabel.text = self.task!.text
 		taskLabel.textColor = UIColor.whiteColor()
 		timeWorkedLabel.text = "Time Worked On Task: \(formatSecondsAsTimeString(Double(task.timeWorked)))"
+        removeTaskButton.hidden = false
 		print("Assigned task elapsed time: \(self.task?.timeWorked))")
 	}
 	
 	func resetWorkingOn() {
 		let realm = try! Realm()
 		if let task = self.task {
-			try! realm.write {
-				task.isBeingWorkedOn = false
-			}
+            if task.invalidated != true {
+                try! realm.write {
+                    task.isBeingWorkedOn = false
+                }
+            }
 		}
 	}
 	
@@ -641,5 +635,16 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
         }
         
     }
-    
+
+    @IBOutlet weak var removeTaskButton: UIButton!
+
+    @IBAction func removeTaskButtonPressed(sender: AnyObject) {
+        self.task = nil
+        taskLabel.text = "No task being tracked"
+        taskLabel.textColor = UIColor.redColor()
+        removeTaskButton.hidden = true
+        timeWorkedLabel.text = ""
+        return
+
+    }
 }

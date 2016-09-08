@@ -20,50 +20,95 @@ class DisplayTaskViewController: UIViewController {
 	@IBOutlet weak var urgencySelector: UISegmentedControl!
 //	@IBOutlet weak var dueDatePicker: UIDatePicker!
 	
-	
+    func addDueDate() {
+        let currentDate = NSDate()
+        
+        DatePickerDialog().show("Due Date", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", minimumDate: currentDate, datePickerMode: .DateAndTime) {
+            (date) -> Void in
+            if let dt = date {
+                self.dueDateLabel.text = "Due Date: \(self.formatDateAsString(dt))"
+                self.dueDate = dt
+                self.removeDueDateButton.hidden = false
+            } else {
+                print("Due Date:")
+            }
+        }
+    }
+    
 	@IBAction func dueDateButtonPressed(sender: AnyObject) {
-		let currentDate = NSDate()
-		let dateComponents = NSDateComponents()
-		DatePickerDialog().show("Due Date", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", minimumDate: currentDate, datePickerMode: .DateAndTime) {
-			(date) -> Void in
-			if let dt = date {
-				self.dueDateLabel.text = "Due Date: \(self.formatDateAsString(dt))"
-				self.dueDate = dt
-				
-			} else {
-				print("Due Date:")
-			}
-		}
-
+		
+        addDueDate()
 	}
+    
+    
+    @IBOutlet weak var removeDueDateButton: UIButton!
+    
+    @IBAction func removeDueDateButtonPressed(sender: AnyObject) {
+        self.dueDateLabel.text = "Due Date: "
+        self.dueDate = nil
+        removeDueDateButton.hidden = true
+    }
 	
 	let singlePscope = PermissionScope()
 	
+    
+    func addReminderDate() {
+        let currentDate = NSDate()
+        
+        DatePickerDialog().show("Reminder Date", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", minimumDate: currentDate, datePickerMode: .DateAndTime) {
+            (date) -> Void in
+            if let dt = date {
+                self.reminderDateLabel.text = "Reminder Date: \(self.formatDateAsString(dt))"
+                self.reminderDate = dt
+                self.removeReminderButton.hidden = false
+                self.singlePscope.show(
+                    { finished, results in
+                        print("got results \(results)")
+                    },
+                    cancelled: { results in
+                        print("thing was cancelled")
+                    }
+                )
+            } else {
+                print("Reminder Date:")
+            }
+        }
+    }
 	@IBAction func remindButtonPressed(sender: AnyObject) {
+		addReminderDate()
 		
-		let currentDate = NSDate()
-		let dateComponents = NSDateComponents()
-		
-		DatePickerDialog().show("Reminder Date", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", minimumDate: currentDate, datePickerMode: .DateAndTime) {
-			(date) -> Void in
-			if let dt = date {
-				self.reminderDateLabel.text = "Reminder Date: \(self.formatDateAsString(dt))"
-				self.reminderDate = dt
-				self.singlePscope.show(
-					{ finished, results in
-						print("got results \(results)")
-					},
-					cancelled: { results in
-						print("thing was cancelled")
-					}
-				)
-			} else {
-				print("Reminder Date:")
-			}
-		}
 	}
+    
+    
+    @IBOutlet weak var removeReminderButton: UIButton!
+    
+    @IBAction func removeRemindButtonPressed(sender: AnyObject) {
+        self.reminderDateLabel.text = "Reminder Date: "
+        self.reminderDate = nil
+        
+        let app:UIApplication = UIApplication.sharedApplication()
+        if let scheduled = app.scheduledLocalNotifications {
+            for reminder in scheduled {
+                var notification = reminder as UILocalNotification
+                if let task = self.task {
+                    if notification.category == task.uuid {
+                        //Cancelling local notification
+                        print("Cancelling notification with UUID: \(notification.category)")
+                        app.cancelLocalNotification(notification)
+                    }
+                }
+            }
+        }
+        let realm = try! Realm()
+        try! realm.write {
+            task?.reminderDate = nil
+        }
+        removeReminderButton.hidden = true
+        
+    }
 	
 	@IBOutlet weak var reminderDateLabel: UILabel!
+    
 	var reminderDate: NSDate?
 	
 	@IBOutlet weak var dueDateLabel: UILabel!
@@ -85,9 +130,14 @@ view.endEditing(true)
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-	
-		
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(DisplayTaskViewController.dismissKeyboard))
+        
+        let tapReminderDateLabel = UITapGestureRecognizer(target: self, action: #selector(DisplayTaskViewController.addReminderDate))
+        reminderDateLabel.addGestureRecognizer(tapReminderDateLabel)
+        let tapDueDateLabel = UITapGestureRecognizer(target: self, action: #selector(DisplayTaskViewController.addDueDate))
+        dueDateLabel.addGestureRecognizer(tapDueDateLabel)
+        
+        
 		view.addGestureRecognizer(tap)
 
         // Do any additional setup after loading the view.
@@ -95,7 +145,7 @@ view.endEditing(true)
 //		dueDatePicker.minimumDate = NSDate()
 		
 		
-		var bottomLine = CALayer()
+		let bottomLine = CALayer()
 		bottomLine.frame = CGRectMake(0.0, taskTitleTextField.frame.height - 1, taskTitleTextField.frame.width, 1.0)
 		bottomLine.backgroundColor = UIColor.whiteColor().CGColor
 		taskTitleTextField.borderStyle = UITextBorderStyle.None
@@ -107,10 +157,18 @@ view.endEditing(true)
 			if task.dueDate != nil {
 //				dueDatePicker.date = task.dueDate!
 				dueDateLabel.text = "Due Date: \(formatDateAsString(task.dueDate!))"
+                removeDueDateButton.hidden = false
 			}
+            else {
+                removeDueDateButton.hidden = true
+            }
 			if task.reminderDate != nil {
 				reminderDateLabel.text = "Reminder Date: \(formatDateAsString(task.reminderDate!))"
+                removeReminderButton.hidden = false
 			}
+            else {
+                removeReminderButton.hidden = true
+            }
 			self.previousPriorityIndex = priorityIndex
 			
 			taskDetails.text = task.details
@@ -119,6 +177,8 @@ view.endEditing(true)
 		else {
 			taskDetails.resignFirstResponder()
 			taskTitleTextField.becomeFirstResponder()
+            removeDueDateButton.hidden = true
+            removeReminderButton.hidden = true
 		}
 		if let priorityIndex = self.priorityIndex {
 			switch priorityIndex {
@@ -230,12 +290,15 @@ view.endEditing(true)
 				task.dueDate = dueDate
 			}
 		}
+        
+        else {
+            task.dueDate = nil
+        }
 		
 		if let reminderDate = self.reminderDate {
 			print(reminderDate)
 			if reminderDate >= NSDate() {
-				
-				var app:UIApplication = UIApplication.sharedApplication()
+				let app:UIApplication = UIApplication.sharedApplication()
 				if let scheduled = app.scheduledLocalNotifications {
 					for reminder in scheduled {
 						var notification = reminder as UILocalNotification
@@ -259,8 +322,7 @@ view.endEditing(true)
 				
 				UIApplication.sharedApplication().scheduleLocalNotification(reminderNotification)
 			}
-		}
-		
+        }
 		
 		// Important
 		if importanceSelector.selectedSegmentIndex == 0 {
@@ -286,10 +348,27 @@ view.endEditing(true)
 			else if urgencySelector.selectedSegmentIndex == 1 {
 				task.priorityIndex = 3
 				priorityIndex = 3
-
 			}
 		}
 	}
+    
+    func printNotifications() {
+        let app:UIApplication = UIApplication.sharedApplication()
+        if let scheduled = app.scheduledLocalNotifications {
+            for reminder in scheduled {
+                var notification = reminder as UILocalNotification
+                print(notification.category)
+            }
+        }
+    }
+    
+    @IBAction func notificationsButtonPressed(sender: AnyObject) {
+        print("----------Notifications------------")
+        printNotifications()
+    }
+    
+    
+    
 }
 
 

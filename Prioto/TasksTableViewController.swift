@@ -586,7 +586,6 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 				//				if let selectedTaskCell = sender as? TaskTableViewCell {
 				let selectedTask = taskForIndexPath(self.selectedIndexPath)
 				displayTaskViewController.task = selectedTask
-				print("Task completed: \(selectedTask!.completed)")
 				displayTaskViewController.priorityIndex = self.selectedIndexPath.section
 				displayTaskViewController.completed = (selectedTask?.completed)!
 				displayTaskViewController.timeWorked = (selectedTask?.timeWorked)!
