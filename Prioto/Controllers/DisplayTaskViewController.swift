@@ -85,24 +85,11 @@ class DisplayTaskViewController: UIViewController {
     @IBAction func removeRemindButtonPressed(sender: AnyObject) {
         self.reminderDateLabel.text = "Reminder Date: "
         self.reminderDate = nil
-        
-        let app:UIApplication = UIApplication.sharedApplication()
-        if let scheduled = app.scheduledLocalNotifications {
-            for reminder in scheduled {
-                var notification = reminder as UILocalNotification
-                if let task = self.task {
-                    if notification.category == task.uuid {
-                        //Cancelling local notification
-                        print("Cancelling notification with UUID: \(notification.category)")
-                        app.cancelLocalNotification(notification)
-                    }
-                }
-            }
-        }
-        let realm = try! Realm()
-        try! realm.write {
-            task?.reminderDate = nil
-        }
+
+//        let realm = try! Realm()
+//        try! realm.write {
+//            task?.reminderDate = nil
+//        }
         removeReminderButton.hidden = true
         
     }
@@ -157,6 +144,7 @@ view.endEditing(true)
 			if task.dueDate != nil {
 //				dueDatePicker.date = task.dueDate!
 				dueDateLabel.text = "Due Date: \(formatDateAsString(task.dueDate!))"
+                self.dueDate = task.dueDate!
                 removeDueDateButton.hidden = false
 			}
             else {
@@ -164,6 +152,7 @@ view.endEditing(true)
             }
 			if task.reminderDate != nil {
 				reminderDateLabel.text = "Reminder Date: \(formatDateAsString(task.reminderDate!))"
+                self.reminderDate = task.reminderDate!
                 removeReminderButton.hidden = false
 			}
             else {
@@ -322,8 +311,46 @@ view.endEditing(true)
 				
 				UIApplication.sharedApplication().scheduleLocalNotification(reminderNotification)
 			}
+            else {
+                task.reminderDate = nil
+                
+                let app:UIApplication = UIApplication.sharedApplication()
+                if let scheduled = app.scheduledLocalNotifications {
+                    for reminder in scheduled {
+                        var notification = reminder as UILocalNotification
+                        if let task = self.task {
+                            if notification.category == task.uuid {
+                                //Cancelling local notification
+                                print("Cancelling notification with UUID: \(notification.category)")
+                                app.cancelLocalNotification(notification)
+                            }
+                        }
+                    }
+                }
+                
+            }
+
         }
 		
+        else {
+            task.reminderDate = nil
+            
+            let app:UIApplication = UIApplication.sharedApplication()
+            if let scheduled = app.scheduledLocalNotifications {
+                for reminder in scheduled {
+                    var notification = reminder as UILocalNotification
+                    if let task = self.task {
+                        if notification.category == task.uuid {
+                            //Cancelling local notification
+                            print("Cancelling notification with UUID: \(notification.category)")
+                            app.cancelLocalNotification(notification)
+                        }
+                    }
+                }
+            }
+
+        }
+        
 		// Important
 		if importanceSelector.selectedSegmentIndex == 0 {
 			// Important - Urgent

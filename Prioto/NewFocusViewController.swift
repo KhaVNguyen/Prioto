@@ -273,6 +273,8 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
                 taskLabel.text = "No task being tracked"
                 taskLabel.textColor = UIColor.redColor()
                 timeWorkedLabel.text = ""
+                setDefaultRingColors()
+
             }
             else {
                 removeTaskButton.hidden = false
@@ -283,6 +285,8 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
             taskLabel.text = "No task being tracked"
             taskLabel.textColor = UIColor.redColor()
             timeWorkedLabel.text = ""
+            setDefaultRingColors()
+
         }
 
 		
@@ -335,12 +339,6 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
                         //print("Time worked: \(task.timeWorked)")
                     }
                     timeWorkedLabel.text = "Time Worked On Task: \(formatSecondsAsTimeString(Double(task.timeWorked)))"
-                }
-                else {
-                    taskLabel.text = "No task being tracked"
-                    taskLabel.textColor = UIColor.redColor()
-                    timeWorkedLabel.text = ""
-                    removeTaskButton.hidden = true
                 }
             }
         }
@@ -639,12 +637,38 @@ class NewFocusViewController: UIViewController, BSForegroundNotificationDelegate
     @IBOutlet weak var removeTaskButton: UIButton!
 
     @IBAction func removeTaskButtonPressed(sender: AnyObject) {
+        NSNotificationCenter.defaultCenter().postNotificationName("appClosed", object: self)
         self.task = nil
         taskLabel.text = "No task being tracked"
         taskLabel.textColor = UIColor.redColor()
         removeTaskButton.hidden = true
         timeWorkedLabel.text = ""
+        setDefaultRingColors()
+
         return
 
+    }
+    
+    func setDefaultRingColors() {
+        let outerRingColor = UIColor(.RGB(190,0,50))
+        let innerRingColor = UIColor(.RGB(190,50,50))
+        if let viewWithTag = self.view.viewWithTag(100) {
+            viewWithTag.removeFromSuperview()
+        }
+        
+        let bounds = UIScreen.mainScreen().bounds
+        let width = bounds.size.width
+        
+        
+        let margin: CGFloat = 1
+        let radius: CGFloat = width * 0.65 / 2
+        
+        let rings = [
+            ProgressRing(color: outerRingColor, backgroundColor: UIColor(.RGB(33, 33, 48))),
+            ProgressRing(color: innerRingColor, backgroundColor: UIColor(.RGB(33, 33, 48)))]
+        progressRingView = try! ConcentricProgressRingView(center: view.center, radius: radius, margin: margin, rings: rings, defaultColor: UIColor.clearColor(), defaultWidth: 14)
+        updateTimer()
+        progressRingView.tag = 100
+        view.addSubview(progressRingView)
     }
 }

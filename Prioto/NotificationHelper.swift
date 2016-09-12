@@ -41,7 +41,7 @@ class NotificationHelper {
             return ["aps": [
                 "category": category,
                 "alert": [
-                    "body": "Timer unpaused",
+                    "body": "Timer Unpaused",
                     "title": "Prioto"
                 ],
                 "sound": "sound.wav"

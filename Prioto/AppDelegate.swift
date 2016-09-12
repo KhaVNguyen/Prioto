@@ -180,6 +180,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BSForegroundNotificationD
 			foregroundNotification.presentNotification()
 			AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
 		}
+            
+        else if notification.category == "START_TIMER" {
+            let foregroundNotification = BSForegroundNotification(userInfo: NotificationHelper.userInfoForCategory("START_TIMER"))
+            foregroundNotification.delegate = self
+            foregroundNotification.timeToDismissNotification = NSTimeInterval(5)
+            foregroundNotification.presentNotification()
+            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+        }
+            
+        else if notification.category == "STOP_TIMER" {
+            print("Stopping timer")
+        }
 		
 		else {
 			let foregroundNotification = BSForegroundNotification(userInfo: NotificationHelper.userInfoForCategory(notification.alertBody!))

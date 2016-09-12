@@ -652,6 +652,22 @@ class TasksTableViewController: UIViewController, UITableViewDelegate, UITableVi
         // Present dialog
         self.presentViewController(popup, animated: true, completion: nil)
     }
+    
+    func printNotifications() {
+        let app:UIApplication = UIApplication.sharedApplication()
+        if let scheduled = app.scheduledLocalNotifications {
+            for reminder in scheduled {
+                var notification = reminder as UILocalNotification
+                print(notification.category)
+            }
+        }
+    }
+    
+    
+    @IBAction func printNotificationsButton(sender: AnyObject) {
+        print("----------Notifications------------")
+        printNotifications()
+    }
 
 	
 }
